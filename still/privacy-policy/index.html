@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+      Still — Privacy Policy
+      ============================================================
+      Standalone legal page. Long-form prose is inline here by
+      design (NOT routed through the root site's per-string i18n
+      system, which is built for short UI labels). Own stylesheet,
+      no JS, follows OS light/dark via prefers-color-scheme.
+      When the policy changes, bump the "Effective date" below.
+    -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Privacy Policy for Still, a food expiry tracker for Android and iOS. The products and reminders you create stay on your device." />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)" />
+
+    <title>Still — Privacy Policy</title>
+    <link rel="canonical" href="https://jdgarita.dev/still/privacy-policy/" />
+
+    <link rel="shortcut icon" href="../../image/android.ico" />
+    <link rel="stylesheet" href="../still.css" />
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="doc-header">
+        <div class="container">
+            <a class="wordmark" href="../">Still</a>
+            <nav class="doc-nav" aria-label="Legal documents">
+                <a href="../privacy-policy/" aria-current="page">Privacy Policy</a>
+                <a href="../terms-and-conditions/">Terms</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container doc" id="main" tabindex="-1">
+        <h1>Privacy Policy</h1>
+        <p class="doc-meta">Effective date: <time datetime="2026-05-15">May 15, 2026</time></p>
+
+        <h2>Overview</h2>
+        <p class="doc-lead">This Privacy Policy explains what data Still ("we", "us", "the app") handles, how it is used, and the choices you have. Still is a Kotlin Multiplatform mobile application for Android and iOS that helps you track product expiration dates and reminders.</p>
+        <p>Still is built around a simple principle: the products and reminders you create stay on your device. We do not run a server, we do not have a user account system, and we never receive the names, dates, or contents of the items you track.</p>
+        <p>The limited data we do receive (anonymous analytics on Android, subscription status from Google Play and RevenueCat) is described in detail below.</p>
+
+        <h2>1. Data You Create Stays on Your Device</h2>
+        <p>When you add products, set expiration dates, choose locations (fridge, freezer, pantry, etc.), or configure reminders, that information is stored only on your device:</p>
+        <ul>
+            <li>On Android, in a local SQLite database (<code>fresh_track.db</code>) and in SharedPreferences.</li>
+            <li>On iOS, in a local SQLite database (<code>fresh_track_v2.db</code>) and in NSUserDefaults.</li>
+        </ul>
+        <p>This data is not transmitted to Still or to any third party. We do not have a server that could store it.</p>
+        <p>If you uninstall the app, the operating system deletes this local data. On Android, your device may include Still's data in Google Play's automatic app backup if you have that feature enabled in your Google account; you can review or disable Auto Backup at <a href="https://developer.android.com/identity/data/autobackup" target="_blank" rel="noopener noreferrer">developer.android.com/identity/data/autobackup</a>.</p>
+
+        <h2>2. Subscriptions and Payments</h2>
+        <p>Still offers an optional Pro subscription. All subscription purchases, billing, renewals, and refunds are processed by Google Play under your Google account. We do not receive or store your payment details (card number, billing address, etc.).</p>
+        <p>To validate purchases and keep your Pro features unlocked across reinstalls and devices, we use RevenueCat as a third-party subscription and entitlement processor. When you make a subscription action in Still, RevenueCat receives:</p>
+        <ul>
+            <li>A randomly generated, anonymous app user ID (not linked to your name, email, or Google account in our records).</li>
+            <li>The purchase receipt provided by Google Play.</li>
+            <li>Your subscription / entitlement status (active, expired, in grace period, etc.).</li>
+            <li>Standard device metadata (platform, app version, country code).</li>
+        </ul>
+        <p>RevenueCat does not receive your name, your email address, or any of the products, dates, locations, or reminders you enter into Still.</p>
+        <p>RevenueCat's privacy practices are governed by their own privacy policy: <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">revenuecat.com/privacy</a>.</p>
+        <p>You can restore previous purchases at any time from Settings &gt; Restore Purchases, and you can manage or cancel your subscription from Settings &gt; Manage Subscription.</p>
+
+        <h2>3. Analytics and Crash Reporting (Android Only)</h2>
+        <p>On Android, Still uses two services from Google.</p>
+        <p><strong>Firebase Analytics.</strong> We log anonymous, aggregated events about how the app is used so we can understand which features are useful and which ones need work. Examples of events we log:</p>
+        <ul>
+            <li>Screens you view (product list, settings, paywall, onboarding, archived products).</li>
+            <li>Product actions (added, updated, archived, restored, deleted).</li>
+            <li>Reminder actions (weekly reminder enabled or disabled, per-product reminder added, removed, or time changed).</li>
+            <li>Subscription events (paywall opened, purchase completed, purchases restored, manage-subscription tapped).</li>
+        </ul>
+        <p>Firebase Analytics does not receive the names, dates, or contents of the products you track, your email, or your name. Events are tied to a Google-generated app instance ID, not to a personal identifier.</p>
+        <p><strong>Firebase Crashlytics.</strong> When the app crashes or hits an unexpected error, Crashlytics records non-personal diagnostic information so we can fix the bug — typically the stack trace, the device model, the operating system version, and the Still app version. It does not capture the contents of the screen you were on or the products you had entered.</p>
+        <p>The iOS version of Still does not currently use Firebase Analytics or Crashlytics. Nothing is sent to any analytics or crash-reporting service from iOS.</p>
+        <p>Google's handling of Firebase data is governed by the Firebase Privacy and Security policy: <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">firebase.google.com/support/privacy</a>. You can opt out of Google Analytics on Android via your device's Google account settings.</p>
+
+        <h2>4. Reminders and Notifications</h2>
+        <p>Still can send local notifications to remind you about expiring products — both a weekly digest (free and Pro) and per-product reminders (Pro only).</p>
+        <p>All reminder scheduling is performed on your device using the operating system's notification system. The content of every reminder (the product name, expiration text, etc.) stays on the device and is never sent to us or to any third party. We do not run a server that could receive or trigger your reminders.</p>
+        <p>To deliver these notifications, Still uses operating system permissions:</p>
+        <ul>
+            <li>Android 13 (Tiramisu) and above: the app requests the POST_NOTIFICATIONS runtime permission so it can show notifications, and it uses the system's exact-alarm scheduling so reminders fire at the time you choose.</li>
+            <li>Android (all versions): a boot receiver re-schedules pending reminders after your device restarts so you don't miss them.</li>
+            <li>iOS: the app requests notification authorization (alerts and sound) the first time you enable reminders.</li>
+        </ul>
+        <p>You can disable reminders at any time from Still Settings, or revoke the system notification permission from your device's settings app.</p>
+
+        <h2>5. How We Use the Data We Receive</h2>
+        <p>Beyond the data that stays on your device, the limited information we (or our processors on our behalf) receive is used only to:</p>
+        <ul>
+            <li>Validate and entitle your subscription (Google Play, RevenueCat).</li>
+            <li>Diagnose crashes and bugs (Firebase Crashlytics, Android only).</li>
+            <li>Understand how the app is used in aggregate so we can improve it (Firebase Analytics, Android only).</li>
+        </ul>
+        <p>We do not sell this data. We do not use it for advertising. We do not share it with third parties beyond the processors named in this policy (Google and RevenueCat) and as required by law.</p>
+
+        <h2>6. Third-Party Services We Rely On</h2>
+        <div class="svc">
+            <h3>Google Play Billing</h3>
+            <ul>
+                <li>Purpose: Subscription billing and refunds.</li>
+                <li>Platforms: Android.</li>
+                <li>Privacy policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a></li>
+            </ul>
+        </div>
+        <div class="svc">
+            <h3>RevenueCat</h3>
+            <ul>
+                <li>Purpose: Subscription validation and entitlements.</li>
+                <li>Platforms: Android, iOS.</li>
+                <li>Privacy policy: <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">revenuecat.com/privacy</a></li>
+            </ul>
+        </div>
+        <div class="svc">
+            <h3>Firebase Analytics</h3>
+            <ul>
+                <li>Purpose: Anonymous usage analytics.</li>
+                <li>Platforms: Android only.</li>
+                <li>Privacy policy: <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">firebase.google.com/support/privacy</a></li>
+            </ul>
+        </div>
+        <div class="svc">
+            <h3>Firebase Crashlytics</h3>
+            <ul>
+                <li>Purpose: Crash and error reporting.</li>
+                <li>Platforms: Android only.</li>
+                <li>Privacy policy: <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">firebase.google.com/support/privacy</a></li>
+            </ul>
+        </div>
+
+        <h2>7. Data Retention</h2>
+        <ul>
+            <li>On-device data (your products, settings, reminders) is retained as long as Still is installed. Uninstalling the app deletes it from the device. It may also be included in Android's Google Auto Backup if you have that enabled in your Google account.</li>
+            <li>Subscription records held by Google Play and RevenueCat are retained per their respective policies and are required for billing, refunds, and entitlement validation.</li>
+            <li>Analytics and crash data sent to Firebase (Android only) are retained according to Google's Firebase data retention policy.</li>
+        </ul>
+        <p>Because Still does not have an account system, there is no Still account to delete. To remove your local data, uninstall the app. To remove subscription records, contact Google Play or RevenueCat directly.</p>
+
+        <h2>8. Children's Privacy</h2>
+        <p>Still is not directed to children under the age of 13, and we do not knowingly collect personally identifiable information from anyone under 13. If you believe we have inadvertently received such information, please contact us at the address below and we will take steps to address it.</p>
+
+        <h2>9. Your Rights — GDPR (European Union / EEA / United Kingdom)</h2>
+        <p>If you are located in the European Union, the European Economic Area, or the United Kingdom, the General Data Protection Regulation (GDPR) and equivalent UK legislation give you specific rights over your personal data.</p>
+        <p><strong>Data controller.</strong> The data controller for Still is Juan Diego Garita. You can reach the controller at the contact email below.</p>
+        <p><strong>Legal bases.</strong> Where GDPR applies, our legal bases for processing are:</p>
+        <ul>
+            <li>Your consent — for analytics and crash reporting on Android, which you can opt out of via your device's Google settings.</li>
+            <li>Performance of a contract or legitimate interest — for processing your subscription via Google Play and RevenueCat so we can deliver the Pro features you requested, and for scheduling the local reminders you set up.</li>
+        </ul>
+        <p><strong>Your rights.</strong> You have the right to access, rectify, erase, restrict, port, or object to the processing of your personal data, and to withdraw consent at any time. Because most of your data lives only on your device, the most direct way to exercise these rights is to manage the data in the app or to uninstall.</p>
+        <p><strong>Right to lodge a complaint.</strong> You may also lodge a complaint with your local data protection supervisory authority.</p>
+
+        <h2>10. Your Rights — CCPA (California)</h2>
+        <p>If you are a California resident, the California Consumer Privacy Act (CCPA) gives you specific rights:</p>
+        <ul>
+            <li><strong>Right to know.</strong> You can ask us what categories of personal information we have received about you. The categories described in this policy (anonymous analytics on Android, subscription metadata via RevenueCat) are the only categories that apply.</li>
+            <li><strong>Right to delete.</strong> You can ask us to delete personal information we hold about you. Most of the data described here is held by Google or RevenueCat, not by us — see those services for direct deletion options.</li>
+            <li><strong>Right to opt out of sale.</strong> We do not sell the personal information of our users.</li>
+            <li><strong>Right to non-discrimination.</strong> We will not discriminate against you for exercising any CCPA right.</li>
+        </ul>
+        <p>To make a CCPA request, contact us at the email below.</p>
+
+        <h2>11. Changes to This Privacy Policy</h2>
+        <p>We may update this Privacy Policy as the app evolves. The "Effective date" at the top of this page reflects the most recent revision. Material changes will be reflected in the in-app Settings link and on this page.</p>
+
+        <h2>12. Contact</h2>
+        <p>If you have questions about this Privacy Policy or how Still handles your data:</p>
+        <p>Email: <a href="mailto:hello@jdgarita.dev">hello@jdgarita.dev</a></p>
+    </main>
+
+    <footer class="doc-footer">
+        <div class="container">
+            <p>© <span id="footer-year">2026</span> Juan Diego Garita</p>
+            <p><a href="../terms-and-conditions/">Terms &amp; Conditions</a> · <a href="../">Still</a></p>
+        </div>
+    </footer>
+
+    <script>
+      // Keep the footer copyright year current — no external dependency.
+      var y = document.getElementById('footer-year');
+      if (y) { y.textContent = String(new Date().getFullYear()); }
+    </script>
+</body>
+</html>

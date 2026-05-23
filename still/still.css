@@ -1,0 +1,295 @@
+/*
+  Still — legal pages stylesheet
+  ============================================================
+  Self-contained, neutral styling for the Still app's legal
+  documents (privacy policy, terms). Intentionally NOT coupled
+  to the root site's css/custom.css: the Still mini-site owns
+  its own look, so changing jdgarita.dev's palette never alters
+  these pages and vice versa.
+
+  No JavaScript and no web fonts — these pages follow the OS
+  light/dark preference via prefers-color-scheme and use the
+  system font stack so they load instantly and offline.
+*/
+
+:root {
+  --bg:        #ffffff;
+  --surface:   #ffffff;
+  --surface-2: #f6f7f9;
+  --text:      #161a1f;
+  --muted:     #5b6470;
+  --accent:    #2563eb;
+  --accent-2:  #1d4ed8;
+  --border:    #e4e7ec;
+  --ring:      #2563eb;
+
+  --maxw: 720px;
+  --radius: 12px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:        #0f1115;
+    --surface:   #14171c;
+    --surface-2: #1a1e25;
+    --text:      #e6e8ec;
+    --muted:     #9aa3af;
+    --accent:    #6ea8fe;
+    --accent-2:  #93c0ff;
+    --border:    #262b33;
+    --ring:      #6ea8fe;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ---------- Skip link ---------- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 0 0 var(--radius) 0;
+  z-index: 10;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* ---------- Header ---------- */
+.doc-header {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.doc-header .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.wordmark {
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  text-decoration: none;
+}
+.wordmark:hover { color: var(--accent); }
+
+.doc-nav {
+  margin-left: auto;
+  display: flex;
+  gap: 18px;
+  font-size: 0.95rem;
+}
+.doc-nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.doc-nav a:hover { color: var(--accent); }
+.doc-nav a[aria-current="page"] {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ---------- Document body ---------- */
+main.doc {
+  padding-top: 40px;
+  padding-bottom: 64px;
+}
+.doc h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+}
+.doc-meta {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0 0 8px;
+}
+.doc-lead {
+  font-size: 1.05rem;
+  color: var(--text);
+  margin: 16px 0 0;
+}
+.doc h2 {
+  font-size: 1.3rem;
+  letter-spacing: -0.01em;
+  margin: 40px 0 12px;
+  padding-top: 8px;
+}
+.doc h3 {
+  font-size: 1.05rem;
+  margin: 28px 0 10px;
+}
+.doc p { margin: 0 0 16px; }
+.doc ul {
+  margin: 0 0 16px;
+  padding-left: 22px;
+}
+.doc li { margin: 0 0 8px; }
+.doc a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  word-break: break-word;
+}
+.doc a:hover { color: var(--accent-2); }
+.doc code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.9em;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 1px 5px;
+}
+
+/* Definition-style block for the third-party services list */
+.svc {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  padding: 16px 18px;
+  margin: 0 0 14px;
+}
+.svc h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+.svc ul { margin: 0; }
+.svc li { margin: 0 0 4px; }
+
+/* ---------- Footer ---------- */
+.doc-footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.doc-footer .container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  justify-content: space-between;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+.doc-footer p { margin: 0; }
+.doc-footer a { color: var(--muted); }
+.doc-footer a:hover { color: var(--accent); }
+
+/* ---------- Hub (/still/) ---------- */
+main.hub {
+  padding-top: 64px;
+  padding-bottom: 72px;
+}
+.hub-eyebrow {
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+}
+.hub-eyebrow a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.hub-eyebrow a:hover { color: var(--accent); }
+.hub h1 {
+  font-size: 2.4rem;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+}
+.hub-sub {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin: 0 0 32px;
+}
+.hub-links {
+  display: grid;
+  gap: 14px;
+  margin: 0 0 28px;
+}
+.hub-card {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  padding: 18px 20px;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.hub-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+.hub-card-title {
+  display: block;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 2px;
+}
+.hub-card-desc {
+  display: block;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.hub-store { margin: 0; font-size: 0.95rem; }
+.hub-store a { color: var(--accent); text-decoration: none; }
+.hub-store a:hover { text-decoration: underline; }
+
+/* ---------- Focus ring (do not remove outlines) ---------- */
+a:focus-visible,
+.hub-card:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Skip-link target: <main> carries tabindex="-1" so the skip link
+   reliably moves focus in Safari/Firefox, but the content container
+   itself should not draw a focus ring. Interactive controls keep theirs. */
+main[tabindex="-1"] {
+  outline: none;
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 480px) {
+  body { font-size: 16px; }
+  .doc h1 { font-size: 1.6rem; }
+  .hub h1 { font-size: 2rem; }
+  .doc-nav { gap: 14px; }
+}
+
+/* ---------- Print ---------- */
+@media print {
+  .doc-header, .doc-footer, .skip-link { display: none; }
+  body { font-size: 12pt; color: #000; background: #fff; }
+  .doc a { color: #000; text-decoration: underline; }
+  main.doc { padding-top: 0; }
+}

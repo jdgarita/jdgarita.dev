@@ -10,19 +10,19 @@ Page sections, in order: Hero → About → Experience → Projects → Skills �
 
 ## Branches
 
-- `main` is the default branch.
-- `legacy` is the working branch for the 2026 redesign.
+- `main` is the default branch and the only long-lived one. It is PR-protected — land changes via short-lived feature branches (e.g. `fix/…`, `docs/…`, `content/…`) merged through a PR, not by pushing directly to `main`. Merging to `main` is what deploys to GitHub Pages.
 
 ## Repo layout
 
 Tracked, load-bearing:
 - `index.html` — single-page site, all sections inline, semantic landmarks
 - `frnk/index.html` — sub-page for the frnk project, reuses the root `css/` and `js/`
+- `still/` — standalone legal mini-site for the **Still** app: `still/index.html` (hub) + `still/privacy-policy/` + `still/terms-and-conditions/`. Self-contained — its own `still/still.css`, **no** shared JS/i18n/analytics. See "Sub-pages" for why it deviates.
 - `css/custom.css` — token-driven stylesheet (CSS custom properties)
 - `js/custom.js` — theme toggle, language toggle, i18n loader, mobile nav
 - `i18n/en.json`, `i18n/es.json` — all user-visible copy (root + sub-pages share one dictionary)
 - `css/font-awesome.min.css` + `fonts/fontawesome-*` — FontAwesome 4.7.0 (includes `.woff2`)
-- `image/jd.png`, `image/frnk.png`, `image/android.ico` — profile photo, frnk logo, and favicon (sub-pages reference these via `../image/…`)
+- `image/jd.JPG`, `image/frnk.png`, `image/android.ico` — profile photo, frnk logo, and favicon (sub-pages reference these via `../image/…`). Note the **uppercase `.JPG`** on the profile photo: `index.html` references `image/jd.JPG` exactly, and GitHub Pages serves on a case-sensitive filesystem, so renaming it to `.jpg`/`.png` without updating the reference breaks the image in production even though it still works on macOS.
 - `resume/jd.pdf` — downloadable resume
 - `.github/workflows/claude-code-review.yml`, `claude.yml` — GitHub Actions that run Claude Code on PRs (no app-side CI)
 
@@ -57,12 +57,26 @@ Experience content comes from `resume/jd.pdf` — Swiftly, Mode, BodyBuilding.co
 
 ## Sub-pages
 
-Sub-pages (currently just `frnk/index.html`) reuse the root `css/custom.css` and `js/custom.js` so a single dictionary, theme, and analytics setup serve every page.
+There are **two** sub-page patterns. Pick the one that matches the page's purpose.
+
+### Shared-shell pattern (e.g. `frnk/index.html`)
+
+For project pages that should feel like part of the main site. They reuse the root `css/custom.css` and `js/custom.js` so a single dictionary, theme, and analytics setup serve every page.
 
 - Reference assets with relative paths: `../css/custom.css`, `../js/custom.js`, `../image/android.ico`.
 - Set `<html lang="…" data-i18n-base="../">` so `js/custom.js` resolves `fetch('../i18n/en.json')` instead of looking next to the sub-page.
 - Mirror the no-FOUC inline theme/lang script from the root `index.html` `<head>` so first paint matches.
 - Add new sub-page strings under a namespaced prefix in **both** `i18n/en.json` and `i18n/es.json` (e.g. `frnk.hero.title`), and mirror them in `FALLBACK.en` / `FALLBACK.es` inside `js/custom.js`.
+
+### Standalone pattern (`still/`)
+
+For content that should be **decoupled** from the main site — currently the **Still** app's legal mini-site (privacy policy, terms). These pages deliberately break the rules above, and that is intentional:
+
+- **Own stylesheet** (`still/still.css`), not `css/custom.css`. The "styles belong in `css/custom.css`" rule does **not** apply here — the mini-site owns its look so the personal site's palette can change independently.
+- **No i18n** — English-only, with the long-form legal prose inline in the HTML. The "route everything through i18n" rule does **not** apply: per-string dot-path keys are the wrong tool for multi-section legal documents.
+- **No analytics and no external JS.** The only script is a one-line inline stamp that keeps the footer copyright year current; it degrades to a literal year if JS is off. Light/dark follows the OS via `prefers-color-scheme` (no toggle).
+- **Clean URLs** come from directory + `index.html` (`still/privacy-policy/index.html` → `/still/privacy-policy`).
+- Contact / GDPR-controller email is `hello@jdgarita.dev`. Bump the `Effective date` in a page's `<head>` comment and body when its content changes.
 
 ## Theme & language toggles
 
