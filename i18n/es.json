@@ -1,7 +1,7 @@
 {
   "_comment": "Cadenas en español. Las claves son rutas planas referenciadas por [data-i18n] en index.html. Debe reflejar todas las claves de en.json.",
 
-  "meta.title": "Juan Diego Garita — Ingeniero Senior Android / KMP",
+  "meta.title": "JD Garita · Ingeniero Móvil Senior",
   "meta.description": "Ingeniero móvil senior con más de 10 años de experiencia construyendo apps Android y Kotlin Multiplatform.",
 
   "a11y.themeToggle": "Cambiar tema claro / oscuro",

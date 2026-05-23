@@ -29,7 +29,7 @@
        i18n/en.json and i18n/es.json. ---------- */
     var FALLBACK = {
         en: {
-            'meta.title': 'Juan Diego Garita — Senior Android / KMP Engineer',
+            'meta.title': 'JD Garita · Sr Mobile Engineer',
             'meta.description': 'Senior mobile engineer with 10+ years of experience building Android and Kotlin Multiplatform apps.',
             'a11y.themeToggle': 'Toggle light / dark theme',
             'a11y.langToggle': 'Switch language',
@@ -138,7 +138,7 @@
             'frnk.status.changelogLink': 'View CHANGELOG on GitHub'
         },
         es: {
-            'meta.title': 'Juan Diego Garita — Ingeniero Senior Android / KMP',
+            'meta.title': 'JD Garita · Ingeniero Móvil Senior',
             'meta.description': 'Ingeniero móvil senior con más de 10 años de experiencia construyendo apps Android y Kotlin Multiplatform.',
             'a11y.themeToggle': 'Cambiar tema claro / oscuro',
             'a11y.langToggle': 'Cambiar idioma',
