@@ -23,9 +23,11 @@ css/font-awesome.min.css + fonts/fontawesome-*   FontAwesome 4.7.0 icons
 js/custom.js          theme toggle, language toggle, i18n loader, mobile nav
 i18n/en.json          English copy
 i18n/es.json          Spanish copy
-image/jd.png          profile photo
+image/jd.JPG          profile photo
 image/android.ico     favicon
 resume/jd.pdf         downloadable resume
+frnk/                 sub-page for the frnk project (shares root CSS/JS/i18n)
+still/                standalone legal mini-site for the Still app (own CSS, no JS/i18n)
 CLAUDE.md             notes for Claude Code sessions in this repo
 ```
 

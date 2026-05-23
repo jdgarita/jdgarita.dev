@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+      Still — legal hub (/still/)
+      ============================================================
+      Minimal landing page that links to the Still app's legal
+      documents. Standalone mini-site: own stylesheet (still.css),
+      no shared i18n/JS/analytics from the root site. English only.
+    -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Legal and privacy documents for Still, a food expiry tracker for Android and iOS." />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)" />
+
+    <title>Still — Legal &amp; Privacy</title>
+    <link rel="canonical" href="https://jdgarita.dev/still/" />
+
+    <link rel="shortcut icon" href="../image/android.ico" />
+    <link rel="stylesheet" href="still.css" />
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <main class="container hub" id="main" tabindex="-1">
+        <p class="hub-eyebrow"><a href="../">← jdgarita.dev</a></p>
+        <h1>Still</h1>
+        <p class="hub-sub">Food expiry tracker for Android &amp; iOS — legal &amp; privacy documents.</p>
+
+        <nav class="hub-links" aria-label="Legal documents">
+            <a class="hub-card" href="privacy-policy/">
+                <span class="hub-card-title">Privacy Policy</span>
+                <span class="hub-card-desc">What data Still handles, and the choices you have.</span>
+            </a>
+            <a class="hub-card" href="terms-and-conditions/">
+                <span class="hub-card-title">Terms &amp; Conditions</span>
+                <span class="hub-card-desc">The terms that govern your use of the app.</span>
+            </a>
+        </nav>
+
+        <p class="hub-store">
+            <a href="https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack"
+               target="_blank" rel="noopener noreferrer">View Still on Google Play →</a>
+        </p>
+    </main>
+
+    <footer class="doc-footer">
+        <div class="container">
+            <p>© <span id="footer-year">2026</span> Juan Diego Garita</p>
+            <p><a href="mailto:hello@jdgarita.dev">hello@jdgarita.dev</a></p>
+        </div>
+    </footer>
+
+    <script>
+      // Keep the footer copyright year current — no external dependency.
+      var y = document.getElementById('footer-year');
+      if (y) { y.textContent = String(new Date().getFullYear()); }
+    </script>
+</body>
+</html>
