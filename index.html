@@ -31,9 +31,38 @@
     <meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)" />
 
-    <title data-i18n="meta.title">Juan Diego Garita — Senior Android / KMP Engineer</title>
+    <!--
+      Open Graph / Twitter Card (link previews for Slack, iMessage, LinkedIn, X, …).
+      Scrapers do NOT run JS, so the hard-coded English `content` is what they read.
+      data-i18n-attr keeps the live DOM in sync with the page language; it reuses the
+      existing meta.* keys, so no new i18n keys are introduced. og:image MUST be absolute.
+    -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="jdgarita.dev" />
+    <meta property="og:url" content="https://jdgarita.dev/" />
+    <meta property="og:title" content="JD Garita · Sr Mobile Engineer" data-i18n-attr="content:meta.title" />
+    <meta property="og:description" content="Senior mobile engineer with 10+ years of experience building Android and Kotlin Multiplatform apps." data-i18n-attr="content:meta.description" />
+    <meta property="og:image" content="https://jdgarita.dev/image/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="JD Garita · Sr Mobile Engineer" data-i18n-attr="content:meta.title" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="JD Garita · Sr Mobile Engineer" data-i18n-attr="content:meta.title" />
+    <meta name="twitter:description" content="Senior mobile engineer with 10+ years of experience building Android and Kotlin Multiplatform apps." data-i18n-attr="content:meta.description" />
+    <meta name="twitter:image" content="https://jdgarita.dev/image/og-image.jpg" />
+    <meta name="twitter:image:alt" content="JD Garita · Sr Mobile Engineer" data-i18n-attr="content:meta.title" />
 
-    <link rel="shortcut icon" href="image/android.ico" />
+    <title data-i18n="meta.title">JD Garita · Sr Mobile Engineer</title>
+
+    <!-- JD brand-mark favicon. SVG (theme-aware) for modern browsers, PNG/ICO fallbacks. -->
+    <link rel="icon" href="image/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="image/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="image/favicon-16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="image/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="image/favicon.ico" />
 
     <!-- Google Fonts: Inter for UI, JetBrains Mono for accent/mono text -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

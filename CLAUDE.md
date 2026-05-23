@@ -22,7 +22,9 @@ Tracked, load-bearing:
 - `js/custom.js` — theme toggle, language toggle, i18n loader, mobile nav
 - `i18n/en.json`, `i18n/es.json` — all user-visible copy (root + sub-pages share one dictionary)
 - `css/font-awesome.min.css` + `fonts/fontawesome-*` — FontAwesome 4.7.0 (includes `.woff2`)
-- `image/jd.JPG`, `image/frnk.png`, `image/android.ico` — profile photo, frnk logo, and favicon (sub-pages reference these via `../image/…`). Note the **uppercase `.JPG`** on the profile photo: `index.html` references `image/jd.JPG` exactly, and GitHub Pages serves on a case-sensitive filesystem, so renaming it to `.jpg`/`.png` without updating the reference breaks the image in production even though it still works on macOS.
+- `image/jd.JPG`, `image/frnk.png` — profile photo and frnk logo (sub-pages reference these via `../image/…`). Note the **uppercase `.JPG`** on the profile photo: `index.html` references `image/jd.JPG` exactly, and GitHub Pages serves on a case-sensitive filesystem, so renaming it to `.jpg`/`.png` without updating the reference breaks the image in production even though it still works on macOS.
+- **Favicon** — the JD brand-mark. `image/favicon.svg` is the source of truth (theme-aware via an embedded `prefers-color-scheme` rule: `#6E56CF` light / `#9F85FF` dark, with a `fill` presentation-attribute fallback so it never renders black) for modern browsers; `favicon-32.png`, `favicon-16.png`, `apple-touch-icon.png`, and `favicon.ico` are rasterized fallbacks generated from it. Root and `frnk/` link the full set in `<head>`. `image/android.ico` is the **legacy** favicon, now referenced only by the `still/` mini-site.
+- **Social cards** — `image/og-image.jpg` (root) and `image/og-frnk.jpg` (frnk), both 1200×630, referenced by **absolute** URL from the Open Graph / Twitter meta. Regenerate them if the brand, name, or tagline changes (they don't auto-update from i18n).
 - `resume/jd.pdf` — downloadable resume
 - `.github/workflows/claude-code-review.yml`, `claude.yml` — GitHub Actions that run Claude Code on PRs (no app-side CI)
 
@@ -52,6 +54,7 @@ Structural rules:
 - Keys **must** exist in both `en.json` and `es.json`. Missing keys silently fall through to whatever text is hard-coded in `index.html`.
 - Never hard-code user-visible strings in `index.html` — always route through i18n.
 - Whenever you add or rename a key, mirror the change in `FALLBACK.en` / `FALLBACK.es` inside `js/custom.js` — they are used as the dictionary when `fetch('i18n/*.json')` fails (e.g. `file://` previews).
+- **Open Graph / Twitter meta is the one exception to the "route through i18n" rule.** Social scrapers don't run JS, so each `<meta property="og:…">` / `name="twitter:…">` carries a hard-coded English `content` value (with `data-i18n-attr` only to sync the live DOM). That means the canonical title/description strings are duplicated across the OG/Twitter block and the `<title>`/`description` tags. When you edit `meta.title` / `meta.description` / `frnk.meta.*` in the JSON, update the matching hard-coded `content` values in the page `<head>` too, or the link preview drifts from the page.
 
 Experience content comes from `resume/jd.pdf` — Swiftly, Mode, BodyBuilding.com, Trusona. Update the JSON when the PDF changes, don't introduce placeholders.
 
@@ -63,7 +66,7 @@ There are **two** sub-page patterns. Pick the one that matches the page's purpos
 
 For project pages that should feel like part of the main site. They reuse the root `css/custom.css` and `js/custom.js` so a single dictionary, theme, and analytics setup serve every page.
 
-- Reference assets with relative paths: `../css/custom.css`, `../js/custom.js`, `../image/android.ico`.
+- Reference assets with relative paths: `../css/custom.css`, `../js/custom.js`, `../image/favicon.svg`.
 - Set `<html lang="…" data-i18n-base="../">` so `js/custom.js` resolves `fetch('../i18n/en.json')` instead of looking next to the sub-page.
 - Mirror the no-FOUC inline theme/lang script from the root `index.html` `<head>` so first paint matches.
 - Add new sub-page strings under a namespaced prefix in **both** `i18n/en.json` and `i18n/es.json` (e.g. `frnk.hero.title`), and mirror them in `FALLBACK.en` / `FALLBACK.es` inside `js/custom.js`.

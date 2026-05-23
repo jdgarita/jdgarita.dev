@@ -1,6 +1,6 @@
 {
   "_comment": "English strings. Keys are flat dot-paths referenced by [data-i18n] in index.html. Mirror every key in es.json. Keep es.json in sync when editing.",
-  "meta.title": "Juan Diego Garita — Senior Android / KMP Engineer",
+  "meta.title": "JD Garita · Sr Mobile Engineer",
   "meta.description": "Senior mobile engineer with 10+ years of experience building Android and Kotlin Multiplatform apps.",
   "a11y.themeToggle": "Toggle light / dark theme",
   "a11y.langToggle": "Switch language",

@@ -23,9 +23,36 @@
     <meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)" />
 
+    <!--
+      Open Graph / Twitter Card. Scrapers don't run JS — the hard-coded English `content`
+      is canonical; data-i18n-attr only syncs the live DOM. Reuses frnk.meta.* keys.
+    -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="jdgarita.dev" />
+    <meta property="og:url" content="https://jdgarita.dev/frnk/" />
+    <meta property="og:title" content="frnk — Kotlin Multiplatform client toolkit" data-i18n-attr="content:frnk.meta.title" />
+    <meta property="og:description" content="frnk is a modular Kotlin Multiplatform + Compose Multiplatform toolkit with headless UI, pluggable Supabase and Firebase backends, MVI architecture, SQLDelight persistence, and RevenueCat monetization — built for indie and small-team mobile devs." data-i18n-attr="content:frnk.meta.description" />
+    <meta property="og:image" content="https://jdgarita.dev/image/og-frnk.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="frnk — Kotlin Multiplatform client toolkit" data-i18n-attr="content:frnk.meta.title" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="frnk — Kotlin Multiplatform client toolkit" data-i18n-attr="content:frnk.meta.title" />
+    <meta name="twitter:description" content="frnk is a modular Kotlin Multiplatform + Compose Multiplatform toolkit with headless UI, pluggable Supabase and Firebase backends, MVI architecture, SQLDelight persistence, and RevenueCat monetization — built for indie and small-team mobile devs." data-i18n-attr="content:frnk.meta.description" />
+    <meta name="twitter:image" content="https://jdgarita.dev/image/og-frnk.jpg" />
+    <meta name="twitter:image:alt" content="frnk — Kotlin Multiplatform client toolkit" data-i18n-attr="content:frnk.meta.title" />
+
     <title data-i18n="frnk.meta.title">frnk — Kotlin Multiplatform client toolkit</title>
 
-    <link rel="shortcut icon" href="../image/android.ico" />
+    <!-- JD brand-mark favicon. SVG (theme-aware) for modern browsers, PNG/ICO fallbacks. -->
+    <link rel="icon" href="../image/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="../image/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="../image/favicon-16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="../image/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="../image/favicon.ico" />
 
     <!-- Google Fonts: Inter for UI, JetBrains Mono for accent/mono text -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
