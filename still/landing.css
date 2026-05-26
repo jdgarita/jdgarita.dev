@@ -599,18 +599,7 @@ img, svg { display: block; }
   font: 400 14px/1.55 var(--font-sans);
   color: var(--on-surface-variant);
 }
-.cr-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
-  background: var(--surface);
-  border: 1px solid var(--outline-variant);
-  border-radius: 999px;
-  font: 500 13px var(--font-sans);
-  color: var(--on-surface);
-}
-.cr-pill svg { border-radius: 2px; }
+.footer__flag svg { display: block; border-radius: 3px; }
 /* Bottom row: compact legal links + copyright */
 .footer__bottom {
   margin-top: 28px;
