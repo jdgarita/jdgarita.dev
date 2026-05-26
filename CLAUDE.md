@@ -17,7 +17,7 @@ Page sections, in order: Hero → About → Experience → Projects → Skills �
 Tracked, load-bearing:
 - `index.html` — single-page site, all sections inline, semantic landmarks
 - `frnk/index.html` — sub-page for the frnk project, reuses the root `css/` and `js/`
-- `still/` — standalone legal mini-site for the **Still** app: `still/index.html` (hub) + `still/privacy-policy/` + `still/terms-and-conditions/`. Self-contained — its own `still/still.css`, **no** shared JS/i18n/analytics. See "Sub-pages" for why it deviates.
+- `still/` — standalone mini-site for the **Still** app. `still/index.html` is the **marketing landing page** (own sheet `still/landing.css`, ported from the app's "Culinary Arc" design tokens); `still/privacy-policy/` + `still/terms-and-conditions/` are the legal docs (own sheet `still/still.css`), linked from the landing footer. Self-contained — **no** shared JS/i18n/analytics. See "Sub-pages" for why it deviates.
 - `css/custom.css` — token-driven stylesheet (CSS custom properties)
 - `js/custom.js` — theme toggle, language toggle, i18n loader, mobile nav
 - `i18n/en.json`, `i18n/es.json` — all user-visible copy (root + sub-pages share one dictionary)
@@ -73,13 +73,14 @@ For project pages that should feel like part of the main site. They reuse the ro
 
 ### Standalone pattern (`still/`)
 
-For content that should be **decoupled** from the main site — currently the **Still** app's legal mini-site (privacy policy, terms). These pages deliberately break the rules above, and that is intentional:
+For content that should be **decoupled** from the main site — the **Still** app's mini-site: the marketing landing page (`still/index.html`) plus its legal docs (privacy policy, terms). These pages deliberately break the rules above, and that is intentional:
 
-- **Own stylesheet** (`still/still.css`), not `css/custom.css`. The "styles belong in `css/custom.css`" rule does **not** apply here — the mini-site owns its look so the personal site's palette can change independently.
-- **No i18n** — English-only, with the long-form legal prose inline in the HTML. The "route everything through i18n" rule does **not** apply: per-string dot-path keys are the wrong tool for multi-section legal documents.
-- **No analytics and no external JS.** The only script is a one-line inline stamp that keeps the footer copyright year current; it degrades to a literal year if JS is off. Light/dark follows the OS via `prefers-color-scheme` (no toggle).
-- **Clean URLs** come from directory + `index.html` (`still/privacy-policy/index.html` → `/still/privacy-policy`).
-- Contact / GDPR-controller email is `hello@jdgarita.dev`. Bump the `Effective date` in a page's `<head>` comment and body when its content changes.
+- **Own stylesheets**, not `css/custom.css`: `still/landing.css` for the landing page, `still/still.css` for the legal docs. The "styles belong in `css/custom.css`" rule does **not** apply here — the mini-site owns its look so the personal site's palette can change independently. `landing.css` carries its own copy of the app's design tokens (green brand + Culinary Arc palette, system fonts); the two sheets are independent and the legal pages reference `../still.css`.
+- **i18n**: the **legal docs are English-only** (long-form prose inline, no i18n). The **landing page is bilingual EN/ES** but does **not** use the root site's `i18n/*.json` or `js/custom.js` — it carries its own self-contained EN/ES dictionary inside a small inline `<script>` at the bottom of `still/index.html`, with `data-i18n` / `data-i18n-attr` / `data-i18n-html` attributes on the marketing copy. The **phone mock-ups stay English** (illustrative product screenshots). When editing landing copy, update **both** the hard-coded English in the HTML (the no-JS fallback) **and** the matching EN+ES keys in that inline dictionary.
+- **No analytics and no third-party JS.** The legal pages' only script is the one-line year stamp. The landing's only script is the same self-contained inline block (year stamp + EN/ES i18n + light/dark theme toggle, persisted to `localStorage` keys `still-lang` / `still-theme`); there are **no external/CDN dependencies**. The landing's **theme toggle** sets `data-theme` on `<html>` (a no-FOUC head script applies the stored/OS choice before paint); the **legal pages have no toggle and follow the OS** via `prefers-color-scheme`. The phone mock-ups are pure static HTML/CSS (inline SVG sprite — Lucide line icons + the app's food glyphs), so the page still renders with JS disabled (English, OS theme).
+- **Clean URLs** come from directory + `index.html` (`still/privacy-policy/index.html` → `/still/privacy-policy`). The landing replaced the old bare legal hub at `/still/`; the root site's Projects "Still" card links here.
+- **Store buttons**: Google Play is live (`dev.jdgarita.freshtrack`); the App Store button is a non-linking "Coming soon" state until iOS ships. Keep marketing claims honest — no fabricated user counts / savings / ratings.
+- Contact / GDPR-controller email is `hello@jdgarita.dev`. Bump the `Effective date` in a legal page's `<head>` comment and body when its content changes.
 
 ## Theme & language toggles
 
