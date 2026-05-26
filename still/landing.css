@@ -366,7 +366,7 @@ img, svg { display: block; }
   transition: transform var(--dur-short) var(--ease-emphasized), opacity var(--dur-short) var(--ease-emphasized);
 }
 .store-btn:hover { transform: translateY(-2px); }
-.store-btn__icon { width: 22px; height: 26px; flex: 0 0 auto; }
+.store-btn__icon { width: 22px; height: 22px; flex: 0 0 auto; }
 .store-btn__text { line-height: 1.1; }
 .store-btn__sub { display: block; font: 400 11px var(--font-sans); opacity: 0.75; }
 .store-btn__main { display: block; font: 600 17px var(--font-sans); letter-spacing: -0.2px; }
