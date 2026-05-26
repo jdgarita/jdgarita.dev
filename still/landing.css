@@ -814,7 +814,7 @@ img, svg { display: block; }
 
 /* bottom nav */
 .botnav {
-  padding: 10px 16px 14px;
+  padding: 6px 16px 10px;
   background: var(--background);
   flex: 0 0 auto;
   display: flex;
@@ -825,17 +825,17 @@ img, svg { display: block; }
   background: var(--surface);
   border: 1px solid var(--outline-variant);
   border-radius: 999px;
-  padding: 6px;
-  gap: 6px;
+  padding: 5px;
+  gap: 4px;
   box-shadow: 0 2px 12px color-mix(in oklch, var(--on-surface) 6%, transparent);
 }
 .botnav__btn {
-  width: 48px; height: 48px;
+  width: 36px; height: 36px;
   display: inline-flex; align-items: center; justify-content: center;
   border-radius: 999px;
   color: var(--on-surface-variant);
 }
-.botnav__btn .ic { width: 20px; height: 20px; stroke-width: 1.6; }
+.botnav__btn .ic { width: 18px; height: 18px; stroke-width: 1.6; }
 .botnav__btn.is-active {
   background: color-mix(in oklch, var(--primary) 14%, var(--surface));
   color: var(--primary);
