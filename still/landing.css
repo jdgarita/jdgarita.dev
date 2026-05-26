@@ -1,0 +1,950 @@
+/*
+  Still — marketing landing page stylesheet
+  ============================================================
+  Standalone, self-contained styling for the Still app's landing
+  page at /still/. Like still.css (the legal-pages sheet) this is
+  intentionally NOT coupled to the root site's css/custom.css — the
+  Still mini-site owns its own look.
+
+  The palette, type scale and radii are ported from the app's own
+  design tokens (the "Culinary Arc" system) so the website and the
+  mobile app read as one product. Light/dark follows the OS via
+  prefers-color-scheme (no toggle, matching the rest of the
+  mini-site). No web fonts, no JavaScript framework — only a one-line
+  inline year stamp in the footer.
+*/
+
+/* ============================================================
+   1. DESIGN TOKENS  (ported from the app's tokens.css)
+   ============================================================ */
+:root {
+  /* Green scale (brand) */
+  --green-50:  #e8f5eb;
+  --green-100: #c6e6ce;
+  --green-200: #a0d6ad;
+  --green-300: #79c68c;
+  --green-400: #5db973;
+  --green-500: #50a064;   /* primary brand */
+  --green-600: #48925c;
+  --green-700: #3d7a4d;
+  --green-800: #346540;
+  --green-900: #254a2e;
+
+  /* Neutral scale */
+  --neutral-0:   #ffffff;
+  --neutral-50:  #fafafa;
+  --neutral-100: #f6f8f6;
+  --neutral-200: #eeeeee;
+  --neutral-300: #e0e0e0;
+  --neutral-400: #bdbdbd;
+  --neutral-500: #9e9e9e;
+  --neutral-600: #757575;
+  --neutral-700: #616161;
+  --neutral-800: #424242;
+  --neutral-900: #212121;
+  --neutral-950: #121212;
+
+  --orange-400: #ffb74d;
+  --orange-500: #ffa500;
+
+  /* Semantic — light theme */
+  --primary: var(--green-500);
+  --on-primary: var(--neutral-0);
+  --primary-container: var(--green-100);
+  --on-primary-container: var(--green-900);
+
+  --background: var(--neutral-50);
+  --surface: var(--neutral-0);
+  --on-surface: var(--neutral-900);
+  --surface-variant: var(--neutral-100);
+  --on-surface-variant: var(--neutral-700);
+
+  --outline: var(--neutral-300);
+  --outline-variant: var(--neutral-200);
+
+  /* Culinary Arc — positive-value status palette */
+  --arc-resting: #8fa39a;   /* desaturated sage-mint — recedes */
+  --arc-peak:    var(--green-500); /* vibrant brand green — the reward */
+  --arc-action:  #c97a52;   /* warm terracotta — urgent but elegant */
+
+  /* Shape */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* Elevation */
+  --elev-1: 0 1px 2px rgba(0,0,0,0.08), 0 1px 1px rgba(0,0,0,0.04);
+  --elev-2: 0 2px 4px rgba(0,0,0,0.10), 0 1px 2px rgba(0,0,0,0.06);
+
+  /* Motion */
+  --dur-short: 200ms;
+  --ease-emphasized: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Type families — the app uses the platform system font on both
+     iOS & Android; we mirror that with a system stack so the web
+     feels native and loads instantly. */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+               "Segoe UI", Roboto, "Helvetica Neue", Arial,
+               "Noto Sans", sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+                  "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --maxw: 1200px;
+}
+
+/* Dark theme. Two triggers, same tokens:
+   1. the OS prefers dark AND the user hasn't manually forced light, or
+   2. the in-page toggle set data-theme="dark".
+   The no-FOUC head script always sets data-theme for JS users; the media
+   query is the graceful fallback when JS is off. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --primary: var(--green-300);
+    --on-primary: var(--green-900);
+    --primary-container: var(--green-700);
+    --on-primary-container: var(--green-100);
+
+    --background: var(--neutral-950);
+    --surface: var(--neutral-900);
+    --on-surface: var(--neutral-100);
+    --surface-variant: var(--neutral-800);
+    --on-surface-variant: var(--neutral-300);
+
+    --outline: var(--neutral-700);
+    --outline-variant: var(--neutral-800);
+
+    --arc-resting: #6e8079;
+    --arc-peak:    var(--green-300);
+    --arc-action:  #d68a64;
+
+    --elev-1: 0 1px 2px rgba(0,0,0,0.5);
+    --elev-2: 0 2px 6px rgba(0,0,0,0.55);
+  }
+}
+:root[data-theme="dark"] {
+  --primary: var(--green-300);
+  --on-primary: var(--green-900);
+  --primary-container: var(--green-700);
+  --on-primary-container: var(--green-100);
+
+  --background: var(--neutral-950);
+  --surface: var(--neutral-900);
+  --on-surface: var(--neutral-100);
+  --surface-variant: var(--neutral-800);
+  --on-surface-variant: var(--neutral-300);
+
+  --outline: var(--neutral-700);
+  --outline-variant: var(--neutral-800);
+
+  --arc-resting: #6e8079;
+  --arc-peak:    var(--green-300);
+  --arc-action:  #d68a64;
+
+  --elev-1: 0 1px 2px rgba(0,0,0,0.5);
+  --elev-2: 0 2px 6px rgba(0,0,0,0.55);
+}
+
+/* ============================================================
+   2. BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--on-surface);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; }
+img, svg { display: block; }
+::selection { background: color-mix(in oklch, var(--primary) 30%, transparent); }
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--primary);
+  color: var(--on-primary);
+  padding: 10px 16px;
+  border-radius: 0 0 var(--radius-md) 0;
+  z-index: 200;
+  font: 600 14px var(--font-sans);
+}
+.skip-link:focus { left: 0; }
+
+.container {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.eyebrow {
+  font: 500 11px var(--font-sans);
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  margin: 0;
+}
+
+/* shared inline icon */
+.ic {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: 0 0 auto;
+}
+.ic--food { stroke-width: 1.6; }
+
+/* ============================================================
+   3. NAV
+   ============================================================ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: color-mix(in oklch, var(--background) 88%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid color-mix(in oklch, var(--outline-variant) 70%, transparent);
+}
+.nav__inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 32px;
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+.wordmark {
+  font: 500 22px var(--font-display);
+  color: var(--on-surface);
+  letter-spacing: -0.5px;
+  text-decoration: none;
+  flex: 0 0 auto;
+}
+.wordmark .dot { color: var(--primary); }
+.nav__links {
+  flex: 1;
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  font: 500 14px var(--font-sans);
+  color: var(--on-surface-variant);
+}
+.nav__links a { text-decoration: none; transition: color var(--dur-short) var(--ease-emphasized); }
+.nav__links a:hover { color: var(--on-surface); }
+
+/* Nav utility controls: language picker + theme toggle */
+.nav__utils { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 6px; }
+.nav__util {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 8px 12px;
+  background: var(--surface);
+  color: var(--on-surface);
+  border: 1px solid var(--outline-variant);
+  border-radius: 999px;
+  cursor: pointer;
+  font: 600 12px var(--font-sans);
+  letter-spacing: 0.4px;
+  transition: border-color var(--dur-short) var(--ease-emphasized), background var(--dur-short) var(--ease-emphasized);
+}
+.nav__util:hover { border-color: color-mix(in oklch, var(--primary) 40%, var(--outline-variant)); }
+.nav__util--icon { padding: 8px 10px; }
+.nav__util .ic { width: 16px; height: 16px; stroke-width: 1.7; }
+/* EN/ES picker — active language highlighted */
+.lang-toggle .lang-seg { color: var(--on-surface-variant); transition: color var(--dur-short) var(--ease-emphasized); }
+.lang-toggle .lang-sep { color: var(--outline); margin: 0 1px; }
+:root[lang="en"] .lang-toggle .lang-en,
+:root:not([lang="es"]) .lang-toggle .lang-en { color: var(--primary); }
+:root[lang="es"] .lang-toggle .lang-es { color: var(--primary); }
+:root[lang="es"] .lang-toggle .lang-en { color: var(--on-surface-variant); }
+/* Theme toggle — show the icon for the action the click performs */
+.theme-toggle .ic-sun { display: none; }
+.theme-toggle .ic-moon { display: block; }
+:root[data-theme="dark"] .theme-toggle .ic-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .ic-moon { display: none; }
+
+/* ============================================================
+   4. HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--background);
+}
+.hero__blobs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 50% at 15% 20%, color-mix(in oklch, var(--arc-peak) 12%, transparent) 0%, transparent 60%),
+    radial-gradient(50% 40% at 90% 80%, color-mix(in oklch, var(--arc-action) 10%, transparent) 0%, transparent 60%);
+}
+.hero__inner {
+  position: relative;
+  padding: 72px 32px;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.hero__title {
+  margin: 20px 0 18px;
+  font: 500 clamp(40px, 7vw, 64px)/1.05 var(--font-display);
+  color: var(--on-surface);
+  letter-spacing: -2px;
+  text-wrap: balance;
+  max-width: 600px;
+}
+.hero__title .accent { color: var(--primary); }
+.hero__lede {
+  margin: 0 0 32px;
+  font: 400 18px/1.55 var(--font-sans);
+  color: var(--on-surface-variant);
+  max-width: 520px;
+  text-wrap: pretty;
+}
+.hero__cta-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* hero phone stack */
+.hero__phones {
+  position: relative;
+  height: 640px;
+}
+.hero__phones .phone-pos {
+  position: absolute;
+}
+.hero__phones .phone-pos--back { left: 6%; top: 40px; transform: rotate(-6deg); }
+.hero__phones .phone-pos--front { right: 0; top: 0; transform: rotate(4deg); }
+@media (prefers-reduced-motion: no-preference) {
+  .hero__phones .phone-pos--back { animation: floatA 9s var(--ease-emphasized) infinite; }
+  .hero__phones .phone-pos--front { animation: floatB 11s var(--ease-emphasized) infinite; }
+  @keyframes floatA { 0%,100% { transform: rotate(-6deg) translateY(0); } 50% { transform: rotate(-6deg) translateY(-12px); } }
+  @keyframes floatB { 0%,100% { transform: rotate(4deg) translateY(0); } 50% { transform: rotate(4deg) translateY(10px); } }
+}
+
+/* ============================================================
+   5. STORE BUTTONS
+   ============================================================ */
+.store-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  background: var(--on-surface);
+  color: var(--background);
+  border-radius: 14px;
+  text-decoration: none;
+  min-width: 170px;
+  transition: transform var(--dur-short) var(--ease-emphasized), opacity var(--dur-short) var(--ease-emphasized);
+}
+.store-btn:hover { transform: translateY(-2px); }
+.store-btn__icon { width: 22px; height: 26px; flex: 0 0 auto; }
+.store-btn__text { line-height: 1.1; }
+.store-btn__sub { display: block; font: 400 11px var(--font-sans); opacity: 0.75; }
+.store-btn__main { display: block; font: 600 17px var(--font-sans); letter-spacing: -0.2px; }
+.store-btn.is-soon {
+  background: transparent;
+  color: var(--on-surface-variant);
+  border: 1px solid var(--outline);
+  cursor: default;
+}
+.store-btn.is-soon:hover { transform: none; }
+
+/* ============================================================
+   6. SECTION SCAFFOLD
+   ============================================================ */
+.section { padding: 96px 0; background: var(--background); }
+.section--alt {
+  background: var(--surface-variant);
+  border-top: 1px solid var(--outline-variant);
+  border-bottom: 1px solid var(--outline-variant);
+}
+.section__head { max-width: 640px; margin-bottom: 48px; }
+.section__head--center { margin-left: auto; margin-right: auto; text-align: center; }
+.section__title {
+  margin: 14px 0 12px;
+  font: 500 clamp(32px, 5vw, 44px)/1.1 var(--font-display);
+  color: var(--on-surface);
+  letter-spacing: -1.2px;
+  text-wrap: balance;
+}
+.section__sub {
+  margin: 0;
+  font: 400 17px/1.55 var(--font-sans);
+  color: var(--on-surface-variant);
+  text-wrap: pretty;
+}
+
+/* ============================================================
+   7. BENEFITS GRID
+   ============================================================ */
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.benefit {
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--outline-variant);
+  border-radius: 20px;
+  transition: transform var(--dur-short) var(--ease-emphasized), border-color var(--dur-short) var(--ease-emphasized);
+}
+.benefit:hover { transform: translateY(-3px); border-color: color-mix(in oklch, var(--primary) 35%, var(--outline-variant)); }
+.benefit__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.benefit__icon .ic { width: 20px; height: 20px; stroke-width: 1.8; }
+.benefit__title {
+  margin: 18px 0 0;
+  font: 600 19px var(--font-display);
+  color: var(--on-surface);
+  letter-spacing: -0.3px;
+}
+.benefit__body {
+  margin: 8px 0 0;
+  font: 400 14px/1.6 var(--font-sans);
+  color: var(--on-surface-variant);
+  text-wrap: pretty;
+}
+/* per-benefit hues */
+.hue-peak    { --hue: var(--arc-peak); }
+.hue-fresh   { --hue: var(--green-700); }
+.hue-rest    { --hue: var(--arc-resting); }
+.hue-action  { --hue: var(--arc-action); }
+.hue-neutral { --hue: var(--neutral-700); }
+.benefit__icon {
+  background: color-mix(in oklch, var(--hue) 14%, var(--surface));
+  border: 1px solid color-mix(in oklch, var(--hue) 28%, transparent);
+  color: var(--hue);
+}
+
+/* ============================================================
+   8. CULINARY ARC SHOWCASE
+   ============================================================ */
+.showcase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.showcase__phone { display: flex; justify-content: center; }
+.showcase__copy-lede {
+  margin: 0 0 28px;
+  font: 400 16px/1.6 var(--font-sans);
+  color: var(--on-surface-variant);
+  max-width: 460px;
+  text-wrap: pretty;
+}
+.arc-rows { display: flex; flex-direction: column; gap: 14px; }
+.arc-row {
+  padding: 16px 20px;
+  background: var(--surface);
+  border-radius: 14px;
+  border: 1px solid var(--outline-variant);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.arc-row__rail {
+  width: 3px;
+  align-self: stretch;
+  border-radius: 2px;
+  background: var(--hue);
+}
+.arc-row__title { font: 600 15px var(--font-sans); color: var(--on-surface); }
+.arc-row__body { margin-top: 2px; font: 400 13px/1.5 var(--font-sans); color: var(--on-surface-variant); }
+
+/* ============================================================
+   9. IMPACT  (globe banner only — stat cards removed)
+   ============================================================ */
+.impact-banner {
+  padding: 28px 32px;
+  background: var(--surface);
+  border: 1px solid var(--outline-variant);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.impact-banner__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  flex: 0 0 auto;
+  background: color-mix(in oklch, var(--arc-resting) 18%, var(--surface));
+  border: 1px solid color-mix(in oklch, var(--arc-resting) 30%, transparent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--arc-resting);
+}
+.impact-banner__icon .ic { width: 24px; height: 24px; stroke-width: 1.6; }
+.impact-banner__title { font: 600 18px var(--font-display); color: var(--on-surface); letter-spacing: -0.3px; }
+.impact-banner__body { margin-top: 4px; font: 400 14px/1.5 var(--font-sans); color: var(--on-surface-variant); }
+
+/* ============================================================
+   10. PREVIEW STRIP
+   ============================================================ */
+.previews {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.preview-item { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.preview-item__label {
+  font: 500 13px var(--font-sans);
+  color: var(--on-surface-variant);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   11. DOWNLOAD CTA
+   ============================================================ */
+.download-card {
+  position: relative;
+  overflow: hidden;
+  padding: 64px 56px;
+  border-radius: 28px;
+  background: linear-gradient(135deg,
+    color-mix(in oklch, var(--arc-peak) 16%, var(--surface)) 0%,
+    var(--surface) 60%,
+    color-mix(in oklch, var(--arc-resting) 12%, var(--surface)) 100%);
+  border: 1px solid var(--outline-variant);
+}
+.download-card__arcs { position: absolute; right: -100px; top: -100px; opacity: 0.35; pointer-events: none; }
+.download-card__content { position: relative; max-width: 620px; }
+.download-card__title {
+  margin: 14px 0 16px;
+  font: 500 clamp(38px, 6vw, 52px)/1.05 var(--font-display);
+  color: var(--on-surface);
+  letter-spacing: -1.6px;
+  text-wrap: balance;
+}
+.download-card__lede {
+  margin: 0 0 32px;
+  font: 400 18px/1.55 var(--font-sans);
+  color: var(--on-surface-variant);
+  max-width: 480px;
+}
+.download-card__meta {
+  margin-top: 26px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font: 500 12px var(--font-sans);
+  color: var(--on-surface-variant);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  flex-wrap: wrap;
+}
+.download-card__meta span { display: inline-flex; align-items: center; gap: 6px; }
+.download-card__meta .ic { width: 14px; height: 14px; }
+
+/* ============================================================
+   12. FOOTER
+   ============================================================ */
+.footer {
+  padding: 56px 0 40px;
+  background: var(--background);
+  border-top: 1px solid var(--outline-variant);
+}
+/* Top row: brand + tagline on the left, Costa Rica pill on the right */
+.footer__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.footer__brand .wordmark { font-size: 24px; }
+.footer__tagline {
+  margin: 10px 0 0;
+  max-width: 380px;
+  font: 400 14px/1.55 var(--font-sans);
+  color: var(--on-surface-variant);
+}
+.cr-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: var(--surface);
+  border: 1px solid var(--outline-variant);
+  border-radius: 999px;
+  font: 500 13px var(--font-sans);
+  color: var(--on-surface);
+}
+.cr-pill svg { border-radius: 2px; }
+/* Bottom row: compact legal links + copyright */
+.footer__bottom {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--outline-variant);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font: 400 12px var(--font-sans);
+  color: var(--on-surface-variant);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer__legal { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.footer__legal a { color: var(--on-surface-variant); text-decoration: none; transition: color var(--dur-short) var(--ease-emphasized); }
+.footer__legal a:hover { color: var(--on-surface); }
+.footer__legal .sep { opacity: 0.5; }
+
+/* ============================================================
+   13. PHONE FRAME + APP SCREENS
+   ------------------------------------------------------------
+   Faithful static re-creation of the app screens shown in the
+   design (compact Home dashboard, FIFO, Stats). Sizes are the
+   literal px values from the prototype components; content fills
+   the frame width so the same markup reads correctly at
+   260 / 280 / 300 px frames. The screen content is padded down
+   38px so the top bar clears the dynamic island.
+   ============================================================ */
+.phone {
+  background: var(--neutral-900);
+  border-radius: 38px;
+  padding: 8px;
+  flex: 0 0 auto;
+  box-shadow:
+    0 30px 60px -20px color-mix(in oklch, var(--neutral-900) 45%, transparent),
+    0 10px 24px -8px color-mix(in oklch, var(--neutral-900) 35%, transparent),
+    0 0 0 1px color-mix(in oklch, var(--neutral-900) 14%, transparent);
+}
+.phone__screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  overflow: hidden;
+  background: var(--background);
+  padding-top: 38px; /* dynamic-island clearance */
+}
+.phone__notch {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 22px;
+  background: var(--neutral-900);
+  border-radius: 999px;
+  z-index: 10;
+}
+.scr {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+  overflow: hidden;
+}
+
+/* topbar */
+.scr__topbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 18px 10px;
+  min-height: 52px;
+  background: var(--background);
+  border-bottom: 1px solid var(--outline-variant);
+}
+.scr__brand { flex: 1; font: 500 22px var(--font-display); color: var(--on-surface); letter-spacing: -0.5px; }
+.scr__brand .dot { color: var(--primary); }
+.scr__title { flex: 1; font: 500 22px var(--font-display); color: var(--on-surface); letter-spacing: -0.5px; }
+.scr__iconbtn {
+  width: 36px; height: 36px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 999px; color: var(--on-surface);
+}
+.scr__iconbtn .ic { width: 18px; height: 18px; stroke-width: 1.6; }
+
+/* still hero (count) */
+.scr-hero { padding: 18px 20px 14px; }
+.scr-hero__date {
+  font: 500 11px var(--font-sans);
+  color: var(--on-surface-variant);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+.scr-hero__line {
+  margin-top: 10px;
+  font: 500 28px/1.2 var(--font-display);
+  color: var(--on-surface);
+  letter-spacing: -0.6px;
+}
+.scr-hero__line .peak { color: var(--arc-peak); }
+.scr-hero__line .muted { color: var(--on-surface-variant); font-weight: 400; }
+
+/* section label */
+.scr-label {
+  padding: 20px 20px 8px;
+  font: 500 11px var(--font-sans);
+  color: var(--on-surface-variant);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.scr__body {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0 16px 24px;
+}
+.scr__list { display: flex; flex-direction: column; gap: 8px; }
+
+/* still item card */
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--outline-variant);
+  padding: 16px 18px 16px 22px;
+  gap: 14px;
+  overflow: hidden;
+}
+.item__rail {
+  position: absolute;
+  left: 0; top: 10px; bottom: 10px;
+  width: 3px;
+  border-radius: 0 2px 2px 0;
+  background: var(--hue);
+}
+.item__glyph {
+  width: 36px; height: 36px;
+  border-radius: 999px;
+  flex: 0 0 auto;
+  background: var(--surface-variant);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.item__glyph .ic { width: 18px; height: 18px; }
+.item__main { flex: 1; min-width: 0; }
+.item__name {
+  font: 500 16px var(--font-display);
+  color: var(--on-surface);
+  letter-spacing: -0.2px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.item__meta {
+  margin-top: 4px;
+  display: flex; align-items: center; gap: 6px;
+  font: 400 12px var(--font-sans);
+  color: var(--on-surface-variant);
+  letter-spacing: 0.1px;
+}
+.item__meta .ic { width: 12px; height: 12px; stroke-width: 1.6; }
+.item__meta .sep { opacity: 0.4; }
+.item__peak {
+  font: 500 13px var(--font-sans);
+  color: var(--hue);
+  letter-spacing: -0.1px;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+/* Compact density — used inside the small landing phone previews so
+   short item names sit on one line (mirrors StillItemRow density="compact"). */
+.scr-hero--compact .scr-hero__line { font-size: 24px; letter-spacing: -0.5px; }
+.scr-label--preview { padding: 14px 20px 8px; }
+.scr__body--preview { padding: 0 16px 8px; }
+.scr__list--compact { gap: 6px; }
+.item--compact { padding: 11px 14px 11px 18px; gap: 11px; }
+.item--compact .item__rail { top: 8px; bottom: 8px; }
+.item--compact .item__glyph { width: 30px; height: 30px; }
+.item--compact .item__glyph .ic { width: 16px; height: 16px; }
+.item--compact .item__name { font-size: 14px; }
+.item--compact .item__meta { margin-top: 3px; font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.item--compact .item__meta .ic { width: 11px; height: 11px; }
+.item--compact .item__peak { font-size: 12px; }
+
+/* fifo banner */
+.fifo-banner {
+  margin: 8px 0 6px;
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 12px;
+  background: color-mix(in oklch, var(--arc-action) 8%, var(--surface));
+  border: 1px solid color-mix(in oklch, var(--arc-action) 25%, transparent);
+  border-radius: var(--radius-sm);
+  font: 400 12px/1.4 var(--font-sans);
+  color: var(--on-surface-variant);
+}
+.fifo-banner .ic { width: 12px; height: 12px; color: var(--arc-action); }
+.fifo-banner--compact { margin: 2px 0; }
+
+/* bottom nav */
+.botnav {
+  padding: 10px 16px 14px;
+  background: var(--background);
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.botnav__pill {
+  display: inline-flex;
+  background: var(--surface);
+  border: 1px solid var(--outline-variant);
+  border-radius: 999px;
+  padding: 6px;
+  gap: 6px;
+  box-shadow: 0 2px 12px color-mix(in oklch, var(--on-surface) 6%, transparent);
+}
+.botnav__btn {
+  width: 48px; height: 48px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 999px;
+  color: var(--on-surface-variant);
+}
+.botnav__btn .ic { width: 20px; height: 20px; stroke-width: 1.6; }
+.botnav__btn.is-active {
+  background: color-mix(in oklch, var(--primary) 14%, var(--surface));
+  color: var(--primary);
+}
+.botnav__btn.is-active .ic { stroke-width: 2; }
+
+/* Stats screen cards */
+.scr__body--stats { padding: 16px 16px 4px; display: flex; flex-direction: column; gap: 12px; overflow: hidden; }
+.statcard {
+  background: var(--surface);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-md);
+  padding: 18px;
+}
+.statcard__label {
+  font: 500 11px var(--font-sans);
+  color: var(--on-surface-variant);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+.statcard__metric { margin-top: 8px; display: flex; align-items: baseline; gap: 10px; }
+.statcard__big { font: 500 44px/1 var(--font-display); color: var(--on-surface); letter-spacing: -1px; }
+.statcard__unit { font: 500 14px var(--font-sans); color: var(--on-surface-variant); }
+.statcard__trend {
+  margin-top: 10px;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px; border-radius: 999px;
+  background: color-mix(in oklch, var(--arc-peak) 12%, var(--surface));
+  color: var(--arc-peak);
+  font: 600 12px var(--font-sans);
+}
+.statcard__trend .ic { width: 12px; height: 12px; }
+
+/* Bars use explicit pixel heights (max 72px) so they render reliably
+   at any container size — matches the app's SparkBars fix. */
+.spark { margin-top: 14px; display: flex; align-items: flex-end; gap: 8px; height: 94px; }
+.spark__col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px; height: 100%; }
+.spark__bar {
+  width: 100%;
+  background: var(--surface-variant);
+  border: 1px solid var(--outline-variant);
+  border-radius: 6px;
+}
+.spark__bar.is-today { background: var(--arc-peak); border: 0; }
+.spark__day { font: 400 11px var(--font-sans); color: var(--on-surface-variant); }
+.spark__day.is-today { font-weight: 600; color: var(--primary); }
+
+.streak { display: flex; align-items: center; gap: 14px; }
+.streak__icon {
+  width: 44px; height: 44px; border-radius: 999px; flex: 0 0 auto;
+  background: color-mix(in oklch, var(--arc-peak) 14%, var(--surface));
+  border: 1px solid color-mix(in oklch, var(--arc-peak) 28%, transparent);
+  color: var(--arc-peak);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.streak__icon .ic { width: 20px; height: 20px; stroke-width: 1.8; }
+.streak__title { font: 600 16px var(--font-display); color: var(--on-surface); letter-spacing: -0.2px; }
+.streak__sub { margin-top: 2px; font: 400 13px var(--font-sans); color: var(--on-surface-variant); }
+.streak__chev { color: var(--on-surface-variant); }
+.streak__chev .ic { width: 16px; height: 16px; }
+
+.waste-row + .waste-row { margin-top: 12px; }
+.waste-row__head {
+  display: flex; align-items: center; gap: 10px;
+  font: 500 13px var(--font-sans); color: var(--on-surface);
+}
+.waste-row__name { flex: 1; }
+.waste-row__val { color: var(--on-surface-variant); font-variant: tabular-nums; }
+.waste-row__track { margin-top: 6px; height: 4px; border-radius: 999px; background: var(--outline-variant); overflow: hidden; }
+.waste-row__fill { height: 100%; background: var(--arc-resting); border-radius: 999px; }
+
+/* ============================================================
+   14. RESPONSIVE
+   ============================================================ */
+@media (max-width: 960px) {
+  .hero__inner { grid-template-columns: 1fr; gap: 8px; }
+  .hero__phones {
+    height: 600px;
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+  }
+  .hero__phones .phone-pos--back { display: none; }
+  .hero__phones .phone-pos--front { position: static; transform: rotate(0); animation: none; }
+  .showcase { grid-template-columns: 1fr; gap: 48px; }
+  .showcase__phone { order: -1; }
+}
+
+@media (max-width: 860px) {
+  .benefits { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 760px) {
+  .nav__links { display: none; }
+  .section { padding: 72px 0; }
+  .container { padding: 0 24px; }
+  .nav__inner { padding: 14px 24px; gap: 12px; }
+  .hero__inner { padding: 56px 24px; }
+  .download-card { padding: 44px 28px; }
+}
+
+@media (max-width: 560px) {
+  .benefits { grid-template-columns: 1fr; }
+  .impact-banner { flex-direction: column; align-items: flex-start; }
+  .store-btn { flex: 1; min-width: 0; }
+  .footer__top { align-items: flex-start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation: none !important; transition: none !important; }
+}
