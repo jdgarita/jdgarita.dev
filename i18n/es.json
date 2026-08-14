@@ -12,6 +12,7 @@
   "a11y.frnkViewSource": "Ver frnk en GitHub",
   "a11y.frnkChangelog": "Ver el changelog de frnk en GitHub",
   "a11y.stillLanding": "Landing page de Still",
+  "a11y.faintLanding": "Landing page de Faint",
 
   "nav.about": "Sobre Mí",
   "nav.experience": "Experiencia",
@@ -69,6 +70,8 @@
   "projects.frnk.description": "Una base modular para Kotlin Multiplatform con UI headless, backends intercambiables y arquitectura MVI — pensada para acelerar el desarrollo de apps indie. Código abierto en GitHub.",
   "projects.still.tagline": "Rastreador de caducidad de alimentos",
   "projects.still.description": "Lleva el control de lo que hay en tu refri y alacena, recibe recordatorios antes de que los alimentos caduquen y reduce el desperdicio.",
+  "projects.faint.tagline": "Notas de cata de café",
+  "projects.faint.description": "Diario de café con IA: Escanea las tarjetas de cata, registra tu veredicto y traza el mapa de tu experiencia.",
   "projects.store.getItOn": "Disponible en",
   "projects.store.availableOn": "Disponible en",
   "projects.store.comingSoon": "App Store — Próximamente",
