@@ -39,6 +39,7 @@
             'a11y.frnkViewSource': 'View frnk on GitHub',
             'a11y.stillLanding': 'Still landing page',
             'a11y.faintLanding': 'Faint landing page',
+            'a11y.faintAppStore': 'Faint on the App Store',
             'a11y.frnkChangelog': 'View frnk changelog on GitHub',
             'nav.about': 'About',
             'nav.experience': 'Experience',
@@ -91,6 +92,7 @@
             'projects.faint.tagline': 'Coffee Tasting Notes',
             'projects.faint.description': 'AI coffee journal: Scan tasting cards, log your verdict & map your journey.',
             'projects.store.getItOn': 'Get it on',
+            'projects.store.downloadOn': 'Download on the',
             'projects.store.availableOn': 'Available on',
             'projects.store.comingSoon': 'App Store — Coming soon',
             'projects.store.viewSourceOn': 'View source on',
@@ -152,6 +154,7 @@
             'a11y.frnkViewSource': 'Ver frnk en GitHub',
             'a11y.stillLanding': 'Landing page de Still',
             'a11y.faintLanding': 'Landing page de Faint',
+            'a11y.faintAppStore': 'Faint en el App Store',
             'a11y.frnkChangelog': 'Ver el changelog de frnk en GitHub',
             'nav.about': 'Sobre Mí',
             'nav.experience': 'Experiencia',
@@ -204,6 +207,7 @@
             'projects.faint.tagline': 'Notas de cata de café',
             'projects.faint.description': 'Diario de café con IA: Escanea las tarjetas de cata, registra tu veredicto y traza el mapa de tu experiencia.',
             'projects.store.getItOn': 'Disponible en',
+            'projects.store.downloadOn': 'Descárgala en el',
             'projects.store.availableOn': 'Disponible en',
             'projects.store.comingSoon': 'App Store — Próximamente',
             'projects.store.viewSourceOn': 'Ver código en',
@@ -433,32 +437,28 @@
         });
 
         // Project card outbound links — unified under one content_type so
-        // they group in GA4. content_id still distinguishes each target.
-        $$('.store-btn--play').forEach(function (link) {
-            link.addEventListener('click', function () {
-                logEvent('select_content', {
-                    content_type: 'project_link',
-                    content_id: 'google_play_still'
-                });
-            });
-        });
+        // they group in GA4. content_id is "<target>_<project>", with the
+        // project slug read from the enclosing card's title.
+        function projectSlug(el) {
+            var card = el.closest('.project-card');
+            var title = card && card.querySelector('.project-title');
+            return title ? title.textContent.trim().toLowerCase() : 'unknown';
+        }
 
-        $$('.store-btn--github').forEach(function (link) {
-            link.addEventListener('click', function () {
-                logEvent('select_content', {
-                    content_type: 'project_link',
-                    content_id: 'github_frnk'
+        function trackProjectLinks(selector, target) {
+            $$(selector).forEach(function (link) {
+                link.addEventListener('click', function () {
+                    logEvent('select_content', {
+                        content_type: 'project_link',
+                        content_id: target + '_' + projectSlug(link)
+                    });
                 });
             });
-        });
+        }
 
-        $$('.store-btn--site').forEach(function (link) {
-            link.addEventListener('click', function () {
-                logEvent('select_content', {
-                    content_type: 'project_link',
-                    content_id: 'landing_frnk'
-                });
-            });
-        });
+        trackProjectLinks('.store-btn--play', 'google_play');
+        trackProjectLinks('.store-btn--apple:not(.is-disabled)', 'app_store');
+        trackProjectLinks('.store-btn--github', 'github');
+        trackProjectLinks('.store-btn--site', 'landing');
     });
 })();

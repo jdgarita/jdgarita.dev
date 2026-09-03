@@ -13,6 +13,7 @@
   "a11y.frnkChangelog": "Ver el changelog de frnk en GitHub",
   "a11y.stillLanding": "Landing page de Still",
   "a11y.faintLanding": "Landing page de Faint",
+  "a11y.faintAppStore": "Faint en el App Store",
 
   "nav.about": "Sobre Mí",
   "nav.experience": "Experiencia",
@@ -73,6 +74,7 @@
   "projects.faint.tagline": "Notas de cata de café",
   "projects.faint.description": "Diario de café con IA: Escanea las tarjetas de cata, registra tu veredicto y traza el mapa de tu experiencia.",
   "projects.store.getItOn": "Disponible en",
+  "projects.store.downloadOn": "Descárgala en el",
   "projects.store.availableOn": "Disponible en",
   "projects.store.comingSoon": "App Store — Próximamente",
   "projects.store.viewSourceOn": "Ver código en",
