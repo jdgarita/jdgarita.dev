@@ -559,8 +559,7 @@ ul {
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     object-fit: cover;
-    object-position: center 10%;
-    background: transparent;
+    background: var(--accent-soft);
     border: 0;
     box-shadow: none;
     margin: 0 auto;
