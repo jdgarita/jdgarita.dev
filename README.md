@@ -20,6 +20,12 @@ Edit the source files and refresh — there's nothing to build.
 
 File layout, the i18n (English/Spanish) workflow, theming tokens, sub-page patterns, and the favicon / Open Graph setup are documented in **[CLAUDE.md](CLAUDE.md)**.
 
+For contributors and coding agents:
+
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** — tech stack, hosting, routing, and where things live
+- **[CONVENTIONS.md](CONVENTIONS.md)** — UI, styling, JavaScript, asset, and commit rules
+- **[AGENTS.md](AGENTS.md)** — priorities, commands, validation checklist, and git rules
+
 ## License
 
 Content © Juan Diego Garita. Code is free to reuse as inspiration.

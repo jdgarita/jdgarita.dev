@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-A plain static personal site for `jdgarita.dev`, served by GitHub Pages directly from the repo root. `index.html` is the entry point; everything is hand-written vanilla HTML/CSS/JS. The only third-party CSS loaded is **FontAwesome 4.7.0** (vendored, for icons) and Google Fonts (Inter + JetBrains Mono). There is no Bootstrap, no jQuery, no build step, no package manager, no tests, no CI. Edits to the source files are the deliverable — open `index.html` in a browser to preview.
+A plain static personal site for `jdgarita.dev`, served by GitHub Pages directly from the repo root. `index.html` is the entry point; everything is hand-written vanilla HTML/CSS/JS. The only third-party CSS loaded is **FontAwesome 4.7.0** (vendored, for icons) and Google Fonts (Inter + JetBrains Mono). There is no Bootstrap, no jQuery, no build step, no package manager, no tests, and no lint/test/build CI (the only Actions are the Claude Code review workflows listed below). Edits to the source files are the deliverable — open `index.html` in a browser to preview.
+
+Agent-facing standards live alongside this file: `AGENTS.md` (priorities, commands, git rules), `ARCHITECTURE.md` (stack, routing, where things live), and `CONVENTIONS.md` (UI, styling, JS, asset, and commit rules).
 
 Page sections, in order: Hero → About → Experience → Projects → Skills → Contact. Experience and Skills alternate on the `section-alt` background so the banding stays consistent.
 
