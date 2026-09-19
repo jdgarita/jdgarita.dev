@@ -30,6 +30,18 @@ Every change must preserve or improve, in this order:
 A change that improves one of these at the cost of another needs a stated trade-off and
 owner sign-off.
 
+## Task Management & Plans
+
+Before starting any new task, agents must always check the `docs/plans/` directory for
+active architectural plans, testing strategies, or pending work sessions to ensure
+alignment with ongoing migrations.
+
+- Plans are plain Markdown, numbered in execution order (`NN-short-slug.md`), and
+  tool-agnostic: never store them under `.claude/`, `.cursor/`, or any other
+  agent-specific folder.
+- When a task matches an existing plan, follow it and update the file if the approach
+  changes. When a plan is fully shipped, delete its file in the same PR.
+
 ## Commands
 
 There is **no package manager, no dependency install, and no build step**. The source files
