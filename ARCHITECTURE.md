@@ -111,9 +111,8 @@ JS. Use this for app mini-sites whose branding must evolve independently of the 
 
 ## Known debt
 
-- `node_modules/` contains roughly 11,000 tracked files from the abandoned Firebase
-  experiment, even though `.gitignore` now excludes the directory. They are dead weight in
-  the repository but are not served or referenced. Removing them from the index is a
-  separate, owner-approved cleanup.
+- `node_modules/` (leftover from the abandoned Firebase experiment) was tracked in git
+  until September 2026 and is now untracked and git-ignored. It may still exist on local
+  checkouts; it is not served or referenced by any page. Do not re-add it.
 - The Kobweb leftovers (`site/` and friends) are git-ignored but may still exist on local
   checkouts. Never treat them as the project.
