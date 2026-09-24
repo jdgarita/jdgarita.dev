@@ -90,9 +90,6 @@
 
   "contact.heading": "Hablemos",
   "contact.body": "Abierto a roles senior de Android y Kotlin Multiplatform, trabajo por contrato y colaboraciones interesantes.",
-  "contact.emailLabel": "Correo",
-  "contact.linkedinLabel": "LinkedIn",
-  "contact.githubLabel": "GitHub",
 
   "footer.rights": "Todos los derechos reservados.",
   "notfound.title": "Página no encontrada",
@@ -103,7 +100,6 @@
   "frnk.meta.description": "frnk es un toolkit modular de Kotlin Multiplatform + Compose Multiplatform con UI headless, backends intercambiables de Supabase y Firebase, arquitectura MVI, persistencia con SQLDelight y monetización con RevenueCat — pensado para desarrolladores móviles indie y equipos pequeños.",
   "frnk.hero.logoAlt": "Logo de frnk",
   "frnk.hero.eyebrow": "Toolkit cliente KMP de código abierto",
-  "frnk.hero.statusChip": "v0.1.0 · pre-1.0",
   "frnk.hero.title": "frnk",
   "frnk.hero.tagline": "Un toolkit modular de Kotlin Multiplatform para apps móviles indie y de equipos pequeños.",
   "frnk.hero.description": "UI headless en Compose, backends intercambiables (Supabase + Firebase), presentación MVI, persistencia con SQLDelight y monetización con RevenueCat — conectados con Koin para que el trabajo del día a día se enfoque en funciones, no en plomería.",
