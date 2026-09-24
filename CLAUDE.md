@@ -59,7 +59,7 @@ Structural rules:
 - **Every `data-i18n` element carries its English value as static text** (e.g. `<p data-i18n="about.body">I'm a Google…</p>`). JS replaces it at runtime, but crawlers and link-preview bots that don't run JS read the static text. When you edit an English value in `en.json`, update the matching text in the HTML too (the fallback-text check in `AGENTS.md` flags drift). Keys whose value is intentionally `""` stay empty.
 - **Open Graph / Twitter meta is an exception to the "route through i18n" rule.** Social scrapers don't run JS, so each `<meta property="og:…">` / `name="twitter:…">` carries a hard-coded English `content` value (with `data-i18n-attr` only to sync the live DOM). That means the canonical title/description strings are duplicated across the OG/Twitter block and the `<title>`/`description` tags. When you edit `meta.title` / `meta.description` / `frnk.meta.*` in the JSON, update the matching hard-coded `content` values in the page `<head>` too, or the link preview drifts from the page.
 
-Experience content comes from `resume/jd.pdf` — Swiftly, Mode, BodyBuilding.com, Trusona. Update the JSON when the PDF changes, don't introduce placeholders.
+Experience content comes from `resume/jd.pdf`, newest first: `experience.role1` Experian (Senior Android Engineer, 2026 — Present), `role2` Swiftly (Senior Kotlin Multiplatform Engineer, 2022 — 2026), `role3` Mode (Senior Android Developer, 2021 — 2022), `role4` Trusona (Android Developer, 2017 — 2021). Update the JSON (and the static HTML fallback text) when the PDF changes, and don't introduce placeholders. A new job shifts every `roleN` down one slot.
 
 ## Sub-pages
 
