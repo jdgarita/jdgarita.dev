@@ -54,7 +54,7 @@ in the repo root are what GitHub Pages serves.
 | Production build | *None.* Merging to `main` deploys the raw files. |
 | Validate i18n JSON | `python3 -c "import json; json.load(open('i18n/en.json')); json.load(open('i18n/es.json'))"` |
 | Check EN/ES key parity | `python3 -c "import json; en=set(json.load(open('i18n/en.json'))); es=set(json.load(open('i18n/es.json'))); print('en-only', sorted(en-es)); print('es-only', sorted(es-en))"` |
-| Check static fallback text matches `en.json` | `python3 -c "import json,re,html; en=json.load(open('i18n/en.json')); [print(p,k) for p in ['index.html','frnk/index.html','404.html'] for k,t in re.findall(r'data-i18n=\"([^\"]+)\"[^>]*>([^<]*)<',open(p).read()) if k in en and html.unescape(t)!=en[k]]"` (prints nothing when in sync) |
+| Check `data-i18n` keys exist and static fallback text matches `en.json` | `python3 -c "import json,re,html; en=json.load(open('i18n/en.json')); [print(p,k,'MISSING' if k not in en else 'DRIFT') for p in ['index.html','frnk/index.html','404.html'] for k,t in re.findall(r'data-i18n=\"([^\"]+)\"[^>]*>([^<]*)<',re.sub(r'<!--.*?-->','',open(p).read(),flags=re.S)) if k not in en or html.unescape(t)!=en[k]]"` (prints `MISSING` for keys absent from `en.json`, `DRIFT` for stale HTML text; nothing when clean; HTML comments are ignored) |
 | Lighthouse audit (optional) | Chrome DevTools → Lighthouse, or `npx lighthouse http://localhost:8000 --view` (uses the system `npx`, not a project dependency) |
 
 Serve over HTTP rather than `file://` so `fetch('i18n/*.json')` works the way it does in
