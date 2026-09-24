@@ -95,6 +95,9 @@
   "contact.githubLabel": "GitHub",
 
   "footer.rights": "Todos los derechos reservados.",
+  "notfound.title": "Página no encontrada",
+  "notfound.body": "La página que buscas no existe o se ha movido.",
+  "notfound.cta": "Volver al inicio",
 
   "frnk.meta.title": "frnk — Toolkit cliente para Kotlin Multiplatform",
   "frnk.meta.description": "frnk es un toolkit modular de Kotlin Multiplatform + Compose Multiplatform con UI headless, backends intercambiables de Supabase y Firebase, arquitectura MVI, persistencia con SQLDelight y monetización con RevenueCat — pensado para desarrolladores móviles indie y equipos pequeños.",
