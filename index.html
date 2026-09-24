@@ -32,6 +32,39 @@
     <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)" />
     <link rel="canonical" href="https://jdgarita.dev/" />
 
+    <!-- Structured data (schema.org). English-only by design, like the OG block. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://jdgarita.dev/#person",
+          "name": "Juan Diego Garita",
+          "alternateName": "JD Garita",
+          "jobTitle": "Senior Mobile Engineer",
+          "description": "Senior mobile engineer with 10+ years of experience building Android and Kotlin Multiplatform apps.",
+          "url": "https://jdgarita.dev/",
+          "image": "https://jdgarita.dev/image/jd-avatar.png",
+          "email": "mailto:hello@jdgarita.dev",
+          "knowsAbout": ["Android", "Kotlin", "Kotlin Multiplatform", "Jetpack Compose", "Compose Multiplatform"],
+          "sameAs": [
+            "https://github.com/jdgarita",
+            "https://linkedin.com/in/jdgarita"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://jdgarita.dev/#website",
+          "url": "https://jdgarita.dev/",
+          "name": "jdgarita.dev",
+          "inLanguage": ["en", "es"],
+          "publisher": { "@id": "https://jdgarita.dev/#person" }
+        }
+      ]
+    }
+    </script>
+
     <!--
       Open Graph / Twitter Card (link previews for Slack, iMessage, LinkedIn, X, …).
       Scrapers do NOT run JS, so the hard-coded English `content` is what they read.

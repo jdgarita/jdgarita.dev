@@ -24,6 +24,26 @@
     <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)" />
     <link rel="canonical" href="https://jdgarita.dev/frnk/" />
 
+    <!-- Structured data (schema.org). English-only by design, like the OG block. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      "name": "frnk",
+      "description": "A modular Kotlin Multiplatform + Compose Multiplatform toolkit with headless UI, pluggable Supabase and Firebase backends, MVI architecture, SQLDelight persistence, and RevenueCat monetization.",
+      "url": "https://jdgarita.dev/frnk/",
+      "codeRepository": "https://github.com/jdgarita/frnk",
+      "programmingLanguage": "Kotlin",
+      "image": "https://jdgarita.dev/image/og-frnk.jpg",
+      "author": {
+        "@type": "Person",
+        "@id": "https://jdgarita.dev/#person",
+        "name": "Juan Diego Garita",
+        "url": "https://jdgarita.dev/"
+      }
+    }
+    </script>
+
     <!--
       Open Graph / Twitter Card. Scrapers don't run JS — the hard-coded English `content`
       is canonical; data-i18n-attr only syncs the live DOM. Reuses frnk.meta.* keys.

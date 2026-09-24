@@ -43,6 +43,27 @@
     <meta name="twitter:title" content="Still — Cook at the peak. Waste none." />
     <meta name="twitter:description" content="A quiet, on-device peak-flavor tracker for the food in your kitchen. Free for Android — iOS coming soon." />
 
+    <!-- Structured data (schema.org). Android only until iOS ships; no ratings (keep claims honest). -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      "name": "Still",
+      "description": "A quiet, on-device peak-flavor tracker for the food in your kitchen.",
+      "url": "https://jdgarita.dev/still/",
+      "operatingSystem": "Android",
+      "applicationCategory": "LifestyleApplication",
+      "installUrl": "https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "author": {
+        "@type": "Person",
+        "@id": "https://jdgarita.dev/#person",
+        "name": "Juan Diego Garita",
+        "url": "https://jdgarita.dev/"
+      }
+    }
+    </script>
+
     <link rel="shortcut icon" href="../image/android.ico" />
     <link rel="stylesheet" href="landing.css" />
 
