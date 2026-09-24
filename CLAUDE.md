@@ -39,7 +39,7 @@ If a task mentions Kotlin, Kobweb, Compose, or Firebase, confirm with the user b
 
 - **Preview locally with HTTP** (recommended): `python3 -m http.server 8000` from the repo root, then open `http://localhost:8000`. This matches how GitHub Pages serves the site and lets `fetch('i18n/en.json')` succeed.
 - **Preview via `file://`** also works — `js/custom.js` embeds a fallback dictionary for when `fetch` is blocked by the browser's file-URL policy.
-- Styles belong in `css/custom.css`. The palette, spacing, and type scale are controlled by CSS custom properties on `:root` (light) and `:root[data-theme="dark"]` (dark). Change a token once and the whole site updates.
+- Styles belong in `css/custom.css`. Pages link it as `custom.css?v=YYYY-MM-DD` (root, `frnk/`, `404.html`); bump that date on all three when a CSS change must land together with an HTML change, otherwise returning visitors can pair new markup with a cached old stylesheet for up to 10 minutes (GitHub Pages cache TTL). The palette, spacing, and type scale are controlled by CSS custom properties on `:root` (light) and `:root[data-theme="dark"]` (dark). Change a token once and the whole site updates.
 - Scripts belong in `js/custom.js`. No other JS files should exist.
 
 ## Editing content
