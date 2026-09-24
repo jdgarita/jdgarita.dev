@@ -30,6 +30,40 @@
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)" />
+    <link rel="canonical" href="https://jdgarita.dev/" />
+
+    <!-- Structured data (schema.org). English-only by design, like the OG block. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://jdgarita.dev/#person",
+          "name": "Juan Diego Garita",
+          "alternateName": "JD Garita",
+          "jobTitle": "Senior Mobile Engineer",
+          "description": "Senior mobile engineer with 10+ years of experience building Android and Kotlin Multiplatform apps.",
+          "url": "https://jdgarita.dev/",
+          "image": "https://jdgarita.dev/image/jd-avatar.png",
+          "email": "mailto:hello@jdgarita.dev",
+          "knowsAbout": ["Android", "Kotlin", "Kotlin Multiplatform", "Jetpack Compose", "Compose Multiplatform"],
+          "sameAs": [
+            "https://github.com/jdgarita",
+            "https://linkedin.com/in/jdgarita"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://jdgarita.dev/#website",
+          "url": "https://jdgarita.dev/",
+          "name": "jdgarita.dev",
+          "inLanguage": ["en", "es"],
+          "publisher": { "@id": "https://jdgarita.dev/#person" }
+        }
+      ]
+    }
+    </script>
 
     <!--
       Open Graph / Twitter Card (link previews for Slack, iMessage, LinkedIn, X, …).
@@ -69,8 +103,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 
-    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="css/custom.css?v=2026-09-24" rel="stylesheet" type="text/css" />
 
     <!--
       Inline no-FOUC theme setter.
@@ -94,6 +127,21 @@
     </script>
 </head>
 <body>
+    <!-- Icon sprite: Lucide (ISC) outline icons + Simple Icons (CC0) brand marks, referenced via <use>. -->
+    <svg class="icon-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></symbol>
+        <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol>
+        <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+        <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></symbol>
+        <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></symbol>
+        <symbol id="i-github" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></symbol>
+        <symbol id="i-brand-github" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+        <symbol id="i-brand-google-play" viewBox="0 0 24 24"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.391 1.025v20.101c0 .403.16.762.41 1.032l11.553-11.06L1.337.924zm12.622 10.124l2.98-2.982L2.368.153a1.49 1.49 0 0 0-.896-.153l12.487 11.048zm0 2.065L1.474 24a1.49 1.49 0 0 0 .895-.155l14.56-8.4-2.97-2.932z"/></symbol>
+        <symbol id="i-brand-apple" viewBox="0 0 24 24"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></symbol>
+    </svg>
+
     <!-- =========================== HEADER =========================== -->
     <header class="site-header">
         <div class="container nav-row">
@@ -106,7 +154,7 @@
                 <button type="button" class="nav-toggle" id="nav-toggle"
                         aria-expanded="false" aria-controls="nav-menu"
                         data-i18n-attr="aria-label:a11y.menuToggle">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
+                    <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
                 </button>
 
                 <ul class="nav-menu" id="nav-menu">
@@ -126,8 +174,8 @@
                 </button>
                 <button type="button" class="icon-btn" id="theme-toggle"
                         data-i18n-attr="aria-label:a11y.themeToggle">
-                    <i class="fa fa-moon-o" aria-hidden="true" id="theme-icon-dark"></i>
-                    <i class="fa fa-sun-o"  aria-hidden="true" id="theme-icon-light"></i>
+                    <svg class="icon" aria-hidden="true" id="theme-icon-dark"><use href="#i-moon"/></svg>
+                    <svg class="icon" aria-hidden="true" id="theme-icon-light"><use href="#i-sun"/></svg>
                 </button>
             </div>
         </div>
@@ -161,11 +209,11 @@
                 </div>
                 <div class="about-copy">
                     <h2 id="about-heading" class="section-heading" data-i18n="about.heading">About</h2>
-                    <p class="section-body" data-i18n="about.body"></p>
+                    <p class="section-body" data-i18n="about.body">I'm a Google Certified Associate Android Developer in Kotlin with 10+ years of experience writing clean, well-tested code for startups and large companies. I focus on Kotlin Multiplatform, Jetpack Compose and modern Android, and I care deeply about craftsmanship, collaboration and continuous improvement.</p>
                     <ul class="highlights">
-                        <li><i class="fa fa-check" aria-hidden="true"></i><span data-i18n="about.highlight1"></span></li>
-                        <li><i class="fa fa-check" aria-hidden="true"></i><span data-i18n="about.highlight2"></span></li>
-                        <li><i class="fa fa-check" aria-hidden="true"></i><span data-i18n="about.highlight3"></span></li>
+                        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="about.highlight1">Google Certified Associate Android Developer (Kotlin)</span></li>
+                        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="about.highlight2">Kotlin Multiplatform and Jetpack Compose specialist</span></li>
+                        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="about.highlight3">Agile practitioner — Scrum, Kanban, TDD, pair programming</span></li>
                     </ul>
                 </div>
             </div>
@@ -182,13 +230,13 @@
                         <div class="timeline-dot" aria-hidden="true"></div>
                         <div class="timeline-card">
                             <div class="timeline-meta">
-                                <span class="timeline-dates" data-i18n="experience.role1.dates"></span>
-                                <span class="timeline-company" data-i18n="experience.role1.company"></span>
+                                <span class="timeline-dates" data-i18n="experience.role1.dates">2026 — Present</span>
+                                <span class="timeline-company" data-i18n="experience.role1.company">Experian</span>
                             </div>
-                            <h3 class="timeline-role" data-i18n="experience.role1.role"></h3>
+                            <h3 class="timeline-role" data-i18n="experience.role1.role">Senior Android Engineer</h3>
                             <ul class="timeline-bullets">
-                                <li data-i18n="experience.role1.bullet1"></li>
-                                <li data-i18n="experience.role1.bullet2"></li>
+                                <li data-i18n="experience.role1.bullet1">Drive the Experimentation team, running A/B tests and UI/UX experiments to optimize user engagement and flows across the mobile apps.</li>
+                                <li data-i18n="experience.role1.bullet2">Build cross-platform capabilities, adapting to iOS constraints to ensure feature parity and smooth experiment rollouts.</li>
                             </ul>
                         </div>
                     </li>
@@ -197,14 +245,14 @@
                         <div class="timeline-dot" aria-hidden="true"></div>
                         <div class="timeline-card">
                             <div class="timeline-meta">
-                                <span class="timeline-dates" data-i18n="experience.role2.dates"></span>
-                                <span class="timeline-company" data-i18n="experience.role2.company"></span>
+                                <span class="timeline-dates" data-i18n="experience.role2.dates">2022 — 2026</span>
+                                <span class="timeline-company" data-i18n="experience.role2.company">Swiftly</span>
                             </div>
-                            <h3 class="timeline-role" data-i18n="experience.role2.role"></h3>
+                            <h3 class="timeline-role" data-i18n="experience.role2.role">Senior Kotlin Multiplatform Engineer</h3>
                             <ul class="timeline-bullets">
-                                <li data-i18n="experience.role2.bullet1"></li>
-                                <li data-i18n="experience.role2.bullet2"></li>
-                                <li data-i18n="experience.role2.bullet3"></li>
+                                <li data-i18n="experience.role2.bullet1">Designed a reusable Ads component inside a Kotlin Multiplatform "App Factory", enabling fast rollout of consistent monetization across multiple white-label client apps.</li>
+                                <li data-i18n="experience.role2.bullet2">Integrated the Xandr Mobile SDK into the shared KMP architecture for seamless ad delivery and inventory management.</li>
+                                <li data-i18n="experience.role2.bullet3">Delivered comprehensive monetization across multiple client apps — video ads, interstitials, and banner formats.</li>
                             </ul>
                         </div>
                     </li>
@@ -213,14 +261,14 @@
                         <div class="timeline-dot" aria-hidden="true"></div>
                         <div class="timeline-card">
                             <div class="timeline-meta">
-                                <span class="timeline-dates" data-i18n="experience.role3.dates"></span>
-                                <span class="timeline-company" data-i18n="experience.role3.company"></span>
+                                <span class="timeline-dates" data-i18n="experience.role3.dates">2021 — 2022</span>
+                                <span class="timeline-company" data-i18n="experience.role3.company">Mode</span>
                             </div>
-                            <h3 class="timeline-role" data-i18n="experience.role3.role"></h3>
+                            <h3 class="timeline-role" data-i18n="experience.role3.role">Senior Android Developer</h3>
                             <ul class="timeline-bullets">
-                                <li data-i18n="experience.role3.bullet1"></li>
-                                <li data-i18n="experience.role3.bullet2"></li>
-                                <li data-i18n="experience.role3.bullet3"></li>
+                                <li data-i18n="experience.role3.bullet1">Built features designed to incentivize and grow daily active users on the application.</li>
+                                <li data-i18n="experience.role3.bullet2">Implemented a robust surveys feature that integrated multiple third-party survey providers.</li>
+                                <li data-i18n="experience.role3.bullet3">Authored architecture documentation, partnered with Product on A/B-tested features, and orchestrated releases across teams.</li>
                             </ul>
                         </div>
                     </li>
@@ -229,14 +277,14 @@
                         <div class="timeline-dot" aria-hidden="true"></div>
                         <div class="timeline-card">
                             <div class="timeline-meta">
-                                <span class="timeline-dates" data-i18n="experience.role4.dates"></span>
-                                <span class="timeline-company" data-i18n="experience.role4.company"></span>
+                                <span class="timeline-dates" data-i18n="experience.role4.dates">2017 — 2021</span>
+                                <span class="timeline-company" data-i18n="experience.role4.company">Trusona</span>
                             </div>
-                            <h3 class="timeline-role" data-i18n="experience.role4.role"></h3>
+                            <h3 class="timeline-role" data-i18n="experience.role4.role">Android Developer</h3>
                             <ul class="timeline-bullets">
-                                <li data-i18n="experience.role4.bullet1"></li>
-                                <li data-i18n="experience.role4.bullet2"></li>
-                                <li data-i18n="experience.role4.bullet3"></li>
+                                <li data-i18n="experience.role4.bullet1">Designed and built the Trusona SDK for Android, enabling third-party apps to adopt the Trusona authentication system.</li>
+                                <li data-i18n="experience.role4.bullet2">Designed and developed the official Trusona app for Android.</li>
+                                <li data-i18n="experience.role4.bullet3">Engineered features and automated release pipelines with Kotlin, Java, TDD, and Fastlane in a Kanban workflow.</li>
                             </ul>
                         </div>
                     </li>
@@ -253,8 +301,8 @@
                 <ul class="projects-grid">
                     <li class="project-card">
                         <h3 class="project-title">frnk</h3>
-                        <p class="project-tagline" data-i18n="projects.frnk.tagline"></p>
-                        <p class="project-description" data-i18n="projects.frnk.description"></p>
+                        <p class="project-tagline" data-i18n="projects.frnk.tagline">Open-source KMP toolkit</p>
+                        <p class="project-description" data-i18n="projects.frnk.description">A modular Kotlin Multiplatform foundation with headless UI, pluggable backends, and MVI architecture — built to accelerate indie app development. Open-source on GitHub.</p>
 
                         <div class="project-stores">
                             <a class="store-btn store-btn--site"
@@ -263,7 +311,7 @@
                                rel="noopener noreferrer"
                                aria-label="frnk landing page"
                                data-i18n-attr="aria-label:a11y.frnkLanding">
-                                <i class="fa fa-globe" aria-hidden="true"></i>
+                                <svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg>
                                 <span class="store-btn-labels">
                                     <span class="store-btn-top" data-i18n="projects.store.visit">Visit</span>
                                     <span class="store-btn-main" data-i18n="projects.store.landingPage">Landing page</span>
@@ -276,7 +324,7 @@
                                rel="noopener noreferrer"
                                aria-label="frnk source on GitHub"
                                data-i18n-attr="aria-label:a11y.frnkSource">
-                                <i class="fa fa-github" aria-hidden="true"></i>
+                                <svg class="icon icon--fill" aria-hidden="true"><use href="#i-brand-github"/></svg>
                                 <span class="store-btn-labels">
                                     <span class="store-btn-top" data-i18n="projects.store.viewSourceOn">View source on</span>
                                     <span class="store-btn-main">GitHub</span>
@@ -287,15 +335,15 @@
 
                     <li class="project-card">
                         <h3 class="project-title">Still</h3>
-                        <p class="project-tagline" data-i18n="projects.still.tagline"></p>
-                        <p class="project-description" data-i18n="projects.still.description"></p>
+                        <p class="project-tagline" data-i18n="projects.still.tagline">Food Expiry Tracker</p>
+                        <p class="project-description" data-i18n="projects.still.description">Track what's in your fridge and pantry, get timely reminders before food expires, and cut down on waste.</p>
 
                         <div class="project-stores">
                             <a class="store-btn store-btn--site"
                                href="https://jdgarita.dev/still/"
                                aria-label="Still landing page"
                                data-i18n-attr="aria-label:a11y.stillLanding">
-                                <i class="fa fa-globe" aria-hidden="true"></i>
+                                <svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg>
                                 <span class="store-btn-labels">
                                     <span class="store-btn-top" data-i18n="projects.store.visit">Visit</span>
                                     <span class="store-btn-main" data-i18n="projects.store.landingPage">Landing page</span>
@@ -306,9 +354,7 @@
                                href="https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack"
                                rel="noopener"
                                aria-label="Still on Google Play">
-                                <svg class="store-btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.391 1.025v20.101c0 .403.16.762.41 1.032l11.553-11.06L1.337.924zm12.622 10.124l2.98-2.982L2.368.153a1.49 1.49 0 0 0-.896-.153l12.487 11.048zm0 2.065L1.474 24a1.49 1.49 0 0 0 .895-.155l14.56-8.4-2.97-2.932z"/>
-                                </svg>
+                                <svg class="icon icon--fill" aria-hidden="true"><use href="#i-brand-google-play"/></svg>
                                 <span class="store-btn-labels">
                                     <span class="store-btn-top" data-i18n="projects.store.getItOn">Get it on</span>
                                     <span class="store-btn-main">Google Play</span>
@@ -316,7 +362,7 @@
                             </a>
 
                             <span class="store-btn store-btn--apple is-disabled" aria-disabled="true">
-                                <i class="fa fa-apple" aria-hidden="true"></i>
+                                <svg class="icon icon--fill" aria-hidden="true"><use href="#i-brand-apple"/></svg>
                                 <span class="store-btn-labels">
                                     <span class="store-btn-top" data-i18n="projects.store.availableOn">Available on</span>
                                     <span class="store-btn-main" data-i18n="projects.store.comingSoon">App Store — Coming soon</span>
@@ -327,15 +373,15 @@
 
                     <li class="project-card">
                         <h3 class="project-title">Faint</h3>
-                        <p class="project-tagline" data-i18n="projects.faint.tagline"></p>
-                        <p class="project-description" data-i18n="projects.faint.description"></p>
+                        <p class="project-tagline" data-i18n="projects.faint.tagline">Coffee Tasting Notes</p>
+                        <p class="project-description" data-i18n="projects.faint.description">AI coffee journal: Scan tasting cards, log your verdict &amp; map your journey.</p>
 
                         <div class="project-stores">
                             <a class="store-btn store-btn--site"
                                href="https://faint.coffee"
                                aria-label="Faint landing page"
                                data-i18n-attr="aria-label:a11y.faintLanding">
-                                <i class="fa fa-globe" aria-hidden="true"></i>
+                                <svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg>
                                 <span class="store-btn-labels">
                                     <span class="store-btn-top" data-i18n="projects.store.visit">Visit</span>
                                     <span class="store-btn-main" data-i18n="projects.store.landingPage">Landing page</span>
@@ -346,9 +392,7 @@
                                href="https://play.google.com/store/apps/details?id=dev.jdgarita.faint"
                                rel="noopener"
                                aria-label="Faint on Google Play">
-                                <svg class="store-btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.391 1.025v20.101c0 .403.16.762.41 1.032l11.553-11.06L1.337.924zm12.622 10.124l2.98-2.982L2.368.153a1.49 1.49 0 0 0-.896-.153l12.487 11.048zm0 2.065L1.474 24a1.49 1.49 0 0 0 .895-.155l14.56-8.4-2.97-2.932z"/>
-                                </svg>
+                                <svg class="icon icon--fill" aria-hidden="true"><use href="#i-brand-google-play"/></svg>
                                 <span class="store-btn-labels">
                                     <span class="store-btn-top" data-i18n="projects.store.getItOn">Get it on</span>
                                     <span class="store-btn-main">Google Play</span>
@@ -360,7 +404,7 @@
                                rel="noopener"
                                aria-label="Faint on the App Store"
                                data-i18n-attr="aria-label:a11y.faintAppStore">
-                                <i class="fa fa-apple" aria-hidden="true"></i>
+                                <svg class="icon icon--fill" aria-hidden="true"><use href="#i-brand-apple"/></svg>
                                 <span class="store-btn-labels">
                                     <span class="store-btn-top" data-i18n="projects.store.downloadOn">Download on the</span>
                                     <span class="store-btn-main">App Store</span>
@@ -432,24 +476,24 @@
         <section id="contact" class="section" aria-labelledby="contact-heading">
             <div class="container contact-inner">
                 <h2 id="contact-heading" class="section-heading" data-i18n="contact.heading">Let's talk</h2>
-                <p class="section-body" data-i18n="contact.body"></p>
+                <p class="section-body" data-i18n="contact.body">Open to senior Android and Kotlin Multiplatform roles, contract work and interesting collaborations.</p>
 
                 <ul class="contact-list">
                     <li>
                         <a href="mailto:hello@jdgarita.dev" class="contact-link">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
                             <span>hello@jdgarita.dev</span>
                         </a>
                     </li>
                     <li>
                         <a href="https://linkedin.com/in/jdgarita" class="contact-link" rel="noopener">
-                            <i class="fa fa-linkedin" aria-hidden="true"></i>
+                            <svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg>
                             <span>linkedin.com/in/jdgarita</span>
                         </a>
                     </li>
                     <li>
                         <a href="https://github.com/jdgarita" class="contact-link" rel="noopener">
-                            <i class="fa fa-github" aria-hidden="true"></i>
+                            <svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>
                             <span>github.com/jdgarita</span>
                         </a>
                     </li>

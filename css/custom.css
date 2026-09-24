@@ -183,6 +183,36 @@ ul {
     padding: 0 var(--s-5);
 }
 
+/* ---------- Icons ----------
+   Inline SVG sprite (.icon-sprite) in each page's <body>, used via
+   <svg class="icon"><use href="#i-…"/></svg>. Icons are 1em square and
+   inherit color, so font-size and color set their size and tint.
+   Lucide icons are outline (stroke); Simple Icons brand marks use .icon--fill. */
+.icon-sprite {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.icon {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.icon--fill {
+    fill: currentColor;
+    stroke: none;
+}
+
 /* ---------- Header / nav ---------- */
 .site-header {
     position: sticky;
@@ -328,7 +358,7 @@ ul {
     color: var(--accent);
 }
 
-.icon-btn .fa {
+.icon-btn .icon {
     font-size: var(--fs-md);
 }
 
@@ -588,7 +618,7 @@ ul {
     color: var(--fg);
 }
 
-.highlights li .fa {
+.highlights li .icon {
     color: var(--accent);
     margin-top: 0.35em;
 }
@@ -791,15 +821,8 @@ ul {
     box-shadow: var(--shadow-md);
 }
 
-.store-btn .fa {
+.store-btn .icon {
     font-size: var(--fs-xl);
-    line-height: 1;
-}
-
-.store-btn-icon {
-    width: var(--fs-xl);
-    height: var(--fs-xl);
-    flex-shrink: 0;
 }
 
 .store-btn-labels {
@@ -915,10 +938,9 @@ ul {
     color: var(--accent);
 }
 
-.contact-link .fa {
+.contact-link .icon {
     width: 24px;
     font-size: var(--fs-lg);
-    text-align: center;
 }
 
 /* ---------- Footer ---------- */

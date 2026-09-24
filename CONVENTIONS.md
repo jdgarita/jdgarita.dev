@@ -100,7 +100,7 @@ There is no component framework. "Components" are **markup patterns + CSS classe
   - Keep existing basenames (`jd-avatar.webp`, `og-image.jpg`, …). GitHub Pages is
     case-sensitive and pages reference these paths exactly.
 - **Fonts.** Google Fonts with `preconnect` + `display=swap`, limited to the weights
-  actually used. Vendored icon fonts must include `.woff2`.
+  actually used. No icon fonts: icons are inline SVG (see CLAUDE.md → Icons).
 - **Bundle size.** There is no bundle, so the budget is the raw file: keep
   `css/custom.css` under ~30 KB and `js/custom.js` under ~40 KB uncompressed.
   Remove dead rules and dead code when you touch a file.

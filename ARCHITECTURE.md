@@ -10,7 +10,7 @@ instructions see `AGENTS.md`; for exhaustive per-file guidance see `CLAUDE.md`.
 | Framework | **None.** Hand-written HTML5. | No Astro, Next.js, React, or Kotlin/JS. A Kobweb rewrite was attempted and abandoned; its leftovers (`site/`, `build/`, `.gradle/`, `kotlin-js-store/`) are git-ignored. |
 | Styling | **Vanilla CSS with custom properties** (`css/custom.css`) | Design tokens on `:root` (light) and `:root[data-theme="dark"]` (dark). No Tailwind, Sass, or PostCSS. |
 | Scripting | **Vanilla JavaScript, ES5 syntax** (`js/custom.js`) | Single IIFE, `'use strict'`, `var` only, no modules, no TypeScript, no bundler. |
-| Icons | FontAwesome 4.7.0, vendored (`css/font-awesome.min.css`, `fonts/`) | Brand icons FA4 lacks (e.g. Google Play) are inline SVG paths using `currentColor`. |
+| Icons | Inline SVG sprite per page: Lucide (ISC) UI icons + Simple Icons (CC0) brand marks | No icon library, no icon font; `.icon` uses `currentColor`. See CLAUDE.md → Icons. |
 | Fonts | Google Fonts: Inter + JetBrains Mono | Loaded with `preconnect` and `display=swap`. |
 | i18n | Flat JSON dictionaries (`i18n/en.json`, `i18n/es.json`) | Applied at runtime via `data-i18n` / `data-i18n-attr`; embedded fallback copy in `js/custom.js`. |
 | Analytics | Firebase Analytics (GA4) via compat CDN v11.6.0 | Firebase project `jdgarita-site`. Guarded so the site works when the SDK is blocked. |
@@ -39,7 +39,10 @@ Routing is the filesystem. Each directory with an `index.html` is a clean URL:
 | `/still/privacy-policy/` | `still/privacy-policy/index.html` | Standalone legal doc |
 | `/still/terms-and-conditions/` | `still/terms-and-conditions/index.html` | Standalone legal doc |
 
-Adding a page means adding a directory with an `index.html`. There is no client-side
+Any other path serves `404.html` (GitHub Pages behavior; it uses root-absolute asset URLs and is
+`noindex`). Crawlers are pointed at `sitemap.xml` by `robots.txt`.
+
+Adding a page means adding a directory with an `index.html` (and a `<url>` entry in `sitemap.xml`). There is no client-side
 router; in-page navigation on the root uses `#hero`, `#about`, `#experience`, `#projects`,
 `#skills`, `#contact` anchors.
 
@@ -59,8 +62,7 @@ JS. Use this for app mini-sites whose branding must evolve independently of the 
 .
 ├── index.html                 Root page: Hero → About → Experience → Projects → Skills → Contact
 ├── css/
-│   ├── custom.css             All root + frnk styles; tokens on :root / :root[data-theme="dark"]
-│   └── font-awesome.min.css   Vendored FA 4.7.0
+│   └── custom.css             All root + frnk styles; tokens on :root / :root[data-theme="dark"]
 ├── js/
 │   └── custom.js              Theme toggle, lang toggle, i18n loader, mobile nav, analytics
 ├── i18n/
@@ -68,7 +70,6 @@ JS. Use this for app mini-sites whose branding must evolve independently of the 
 │   └── es.json                Spanish mirror; keys must match en.json exactly
 ├── image/                     Avatar (webp+png), favicons (svg source + raster fallbacks),
 │                              OG cards (1200×630 jpg), project logos
-├── fonts/                     FontAwesome webfonts (woff2 included)
 ├── resume/jd.pdf              Downloadable résumé; source of truth for Experience content
 ├── frnk/index.html            Shared-shell sub-page for the frnk app
 ├── still/
@@ -77,6 +78,9 @@ JS. Use this for app mini-sites whose branding must evolve independently of the 
 │   ├── still.css              Legal-doc styles
 │   ├── privacy-policy/index.html
 │   └── terms-and-conditions/index.html
+├── 404.html                   Not-found page (shared shell, root-absolute paths, noindex)
+├── robots.txt                 Allows all crawlers; points to sitemap.xml
+├── sitemap.xml                The five public URLs with <lastmod>
 ├── CNAME                      Custom domain for GitHub Pages
 ├── .github/workflows/         Claude Code review + mention automation
 ├── CLAUDE.md                  Detailed editing guide
@@ -93,7 +97,7 @@ JS. Use this for app mini-sites whose branding must evolve independently of the 
 | User-visible copy | `i18n/en.json` + `i18n/es.json` (root, frnk) · inline `<script>` dictionary in `still/index.html` (Still landing) · inline prose in `still/*/index.html` (legal docs) |
 | Design tokens (color, type, spacing, radius, motion) | `:root` block at the top of `css/custom.css`; dark overrides under `:root[data-theme="dark"]` |
 | Theme / language state | `localStorage.theme` and `localStorage.lang`, reflected on `<html data-theme>` / `<html lang>`; no-FOUC inline script in each page `<head>` |
-| Static assets | `image/`, `fonts/`, `resume/` |
+| Static assets | `image/`, `resume/` |
 | Portfolio entries | Projects section markup in `index.html` + `projects.*` keys in i18n. There are no Markdown/MDX content files or a blog. |
 | SEO / social meta | Hard-coded in each page `<head>` (OG/Twitter must be static because scrapers don't run JS) |
 | Analytics events | `logEvent` helper inside the IIFE in `js/custom.js` |

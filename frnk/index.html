@@ -22,6 +22,27 @@
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)" />
+    <link rel="canonical" href="https://jdgarita.dev/frnk/" />
+
+    <!-- Structured data (schema.org). English-only by design, like the OG block. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      "name": "frnk",
+      "description": "A modular Kotlin Multiplatform + Compose Multiplatform toolkit with headless UI, pluggable Supabase and Firebase backends, MVI architecture, SQLDelight persistence, and RevenueCat monetization.",
+      "url": "https://jdgarita.dev/frnk/",
+      "codeRepository": "https://github.com/jdgarita/frnk",
+      "programmingLanguage": "Kotlin",
+      "image": "https://jdgarita.dev/image/og-frnk.jpg",
+      "author": {
+        "@type": "Person",
+        "@id": "https://jdgarita.dev/#person",
+        "name": "Juan Diego Garita",
+        "url": "https://jdgarita.dev/"
+      }
+    }
+    </script>
 
     <!--
       Open Graph / Twitter Card. Scrapers don't run JS — the hard-coded English `content`
@@ -59,8 +80,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 
-    <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="../css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="../css/custom.css?v=2026-09-24" rel="stylesheet" type="text/css" />
 
     <!--
       Inline no-FOUC theme + lang setter (mirrors /index.html).
@@ -83,6 +103,12 @@
     </script>
 </head>
 <body>
+    <!-- Icon sprite: Lucide (ISC) outline icons + Simple Icons (CC0) brand marks, referenced via <use>. -->
+    <svg class="icon-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol>
+        <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></symbol>
+    </svg>
+
     <!-- =========================== HEADER =========================== -->
     <header class="site-header">
         <div class="container nav-row">
@@ -98,8 +124,8 @@
                 </button>
                 <button type="button" class="icon-btn" id="theme-toggle"
                         data-i18n-attr="aria-label:a11y.themeToggle">
-                    <i class="fa fa-moon-o" aria-hidden="true" id="theme-icon-dark"></i>
-                    <i class="fa fa-sun-o"  aria-hidden="true" id="theme-icon-light"></i>
+                    <svg class="icon" aria-hidden="true" id="theme-icon-dark"><use href="#i-moon"/></svg>
+                    <svg class="icon" aria-hidden="true" id="theme-icon-light"><use href="#i-sun"/></svg>
                 </button>
             </div>
         </div>
@@ -109,15 +135,18 @@
         <!-- =========================== HERO =========================== -->
         <section id="hero" class="hero" aria-labelledby="hero-title">
             <div class="container hero-inner">
-                <img class="frnk-hero-logo"
-                     src="../image/frnk.png"
-                     alt="frnk"
-                     data-i18n-attr="alt:frnk.hero.logoAlt"
-                     width="160" height="160" decoding="async" />
+                <picture>
+                    <source srcset="../image/frnk.webp" type="image/webp" />
+                    <img class="frnk-hero-logo"
+                         src="../image/frnk.png"
+                         alt="frnk"
+                         data-i18n-attr="alt:frnk.hero.logoAlt"
+                         width="160" height="252" decoding="async" />
+                </picture>
                 <p class="hero-eyebrow" data-i18n="frnk.hero.eyebrow">Open-source KMP client toolkit</p>
                 <h1 id="hero-title" class="hero-title" data-i18n="frnk.hero.title">frnk</h1>
-                <p class="hero-tagline" data-i18n="frnk.hero.tagline"></p>
-                <p class="hero-description" data-i18n="frnk.hero.description"></p>
+                <p class="hero-tagline" data-i18n="frnk.hero.tagline">A modular Kotlin Multiplatform toolkit for indie and small-team mobile apps.</p>
+                <p class="hero-description" data-i18n="frnk.hero.description">Headless Compose UI, pluggable Supabase + Firebase backends, MVI presentation, SQLDelight persistence, and RevenueCat monetization — wired together via Koin so day-to-day work stays on features, not plumbing.</p>
 
                 <div class="hero-ctas">
                     <a class="btn btn-primary"
@@ -135,7 +164,7 @@
         <section id="about" class="section" aria-labelledby="frnk-about-heading">
             <div class="container">
                 <h2 id="frnk-about-heading" class="section-heading" data-i18n="frnk.about.heading">Why frnk</h2>
-                <p class="section-body" data-i18n="frnk.about.body"></p>
+                <p class="section-body" data-i18n="frnk.about.body">frnk gives indie / small-team apps a fast-compiling foundation with a clean architecture, aggressive modularization, and a standardized MVI presentation layer — so the day-to-day work stays on features and business logic.</p>
             </div>
         </section>
 
@@ -146,36 +175,36 @@
 
                 <ul class="feature-grid">
                     <li class="feature-card">
-                        <h3 class="feature-title" data-i18n="frnk.features.mvi.title"></h3>
-                        <p class="feature-body" data-i18n="frnk.features.mvi.body"></p>
+                        <h3 class="feature-title" data-i18n="frnk.features.mvi.title">MVI presentation engine</h3>
+                        <p class="feature-body" data-i18n="frnk.features.mvi.body">MviContract, MviViewModel&lt;S, A, E&gt;, and ObserveAsEvents ship in shared-ui-atoms. New screens subclass MviViewModel and stay consistent across the toolkit.</p>
                     </li>
                     <li class="feature-card">
-                        <h3 class="feature-title" data-i18n="frnk.features.ui.title"></h3>
-                        <p class="feature-body" data-i18n="frnk.features.ui.body"></p>
+                        <h3 class="feature-title" data-i18n="frnk.features.ui.title">Headless Compose UI</h3>
+                        <p class="feature-body" data-i18n="frnk.features.ui.body">Built on compose-unstyled so consuming apps bring their own design system instead of fighting opinionated defaults.</p>
                     </li>
                     <li class="feature-card">
-                        <h3 class="feature-title" data-i18n="frnk.features.backends.title"></h3>
-                        <p class="feature-body" data-i18n="frnk.features.backends.body"></p>
+                        <h3 class="feature-title" data-i18n="frnk.features.backends.title">Pluggable backends</h3>
+                        <p class="feature-body" data-i18n="frnk.features.backends.body">Supabase and Firebase implementations sit behind capability interfaces. Pick one at runtime via BackendChoice without touching feature code.</p>
                     </li>
                     <li class="feature-card">
-                        <h3 class="feature-title" data-i18n="frnk.features.modularity.title"></h3>
-                        <p class="feature-body" data-i18n="frnk.features.modularity.body"></p>
+                        <h3 class="feature-title" data-i18n="frnk.features.modularity.title">Strict api / impl modules</h3>
+                        <p class="feature-body" data-i18n="frnk.features.modularity.body">*-api modules expose only interfaces and DTOs; *-impl modules carry the concrete bindings — wired via Koin and swappable per project.</p>
                     </li>
                     <li class="feature-card">
-                        <h3 class="feature-title" data-i18n="frnk.features.di.title"></h3>
-                        <p class="feature-body" data-i18n="frnk.features.di.body"></p>
+                        <h3 class="feature-title" data-i18n="frnk.features.di.title">One-shot Koin bootstrap</h3>
+                        <p class="feature-body" data-i18n="frnk.features.di.body">frnkModules(BackendChoice) and initializeFrnk() set up DI in one call so host apps stand up the toolkit in their Application class.</p>
                     </li>
                     <li class="feature-card">
-                        <h3 class="feature-title" data-i18n="frnk.features.persistence.title"></h3>
-                        <p class="feature-body" data-i18n="frnk.features.persistence.body"></p>
+                        <h3 class="feature-title" data-i18n="frnk.features.persistence.title">SQLDelight persistence</h3>
+                        <p class="feature-body" data-i18n="frnk.features.persistence.body">Multiplatform driver factory and Multiplatform Settings key/value store. The toolkit owns the driver; your host app owns the schema.</p>
                     </li>
                     <li class="feature-card">
-                        <h3 class="feature-title" data-i18n="frnk.features.monetization.title"></h3>
-                        <p class="feature-body" data-i18n="frnk.features.monetization.body"></p>
+                        <h3 class="feature-title" data-i18n="frnk.features.monetization.title">RevenueCat monetization</h3>
+                        <p class="feature-body" data-i18n="frnk.features.monetization.body">Entitlement and feature-gate interfaces with a RevenueCat implementation behind them — paywall logic stays out of feature modules.</p>
                     </li>
                     <li class="feature-card">
-                        <h3 class="feature-title" data-i18n="frnk.features.ci.title"></h3>
-                        <p class="feature-body" data-i18n="frnk.features.ci.body"></p>
+                        <h3 class="feature-title" data-i18n="frnk.features.ci.title">Fast CI + pre-commit ktlint</h3>
+                        <p class="feature-body" data-i18n="frnk.features.ci.body">A single CI job runs compileAndroidMain and testDebugUnitTest; ktlint formatting is enforced via an auto-installed git pre-commit hook.</p>
                     </li>
                 </ul>
             </div>
@@ -206,7 +235,7 @@
             <div class="container">
                 <h2 id="frnk-status-heading" class="section-heading" data-i18n="frnk.status.heading">Project status</h2>
                 <div class="status-card">
-                    <p data-i18n="frnk.status.body"></p>
+                    <p data-i18n="frnk.status.body">Early / pre-1.0. APIs may shift between minor versions — pre-1.0 policy is that 0.x.0 may break API while 0.x.y stays additive and fix-only.</p>
                     <a href="https://github.com/jdgarita/frnk/blob/main/CHANGELOG.md"
                        target="_blank"
                        rel="noopener noreferrer"
