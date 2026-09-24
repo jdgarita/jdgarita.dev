@@ -39,7 +39,10 @@ Routing is the filesystem. Each directory with an `index.html` is a clean URL:
 | `/still/privacy-policy/` | `still/privacy-policy/index.html` | Standalone legal doc |
 | `/still/terms-and-conditions/` | `still/terms-and-conditions/index.html` | Standalone legal doc |
 
-Adding a page means adding a directory with an `index.html`. There is no client-side
+Any other path serves `404.html` (GitHub Pages behavior; it uses root-absolute asset URLs and is
+`noindex`). Crawlers are pointed at `sitemap.xml` by `robots.txt`.
+
+Adding a page means adding a directory with an `index.html` (and a `<url>` entry in `sitemap.xml`). There is no client-side
 router; in-page navigation on the root uses `#hero`, `#about`, `#experience`, `#projects`,
 `#skills`, `#contact` anchors.
 
@@ -77,6 +80,9 @@ JS. Use this for app mini-sites whose branding must evolve independently of the 
 │   ├── still.css              Legal-doc styles
 │   ├── privacy-policy/index.html
 │   └── terms-and-conditions/index.html
+├── 404.html                   Not-found page (shared shell, root-absolute paths, noindex)
+├── robots.txt                 Allows all crawlers; points to sitemap.xml
+├── sitemap.xml                The five public URLs with <lastmod>
 ├── CNAME                      Custom domain for GitHub Pages
 ├── .github/workflows/         Claude Code review + mention automation
 ├── CLAUDE.md                  Detailed editing guide
