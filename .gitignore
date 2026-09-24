@@ -16,3 +16,6 @@ site/
 build/
 .gradle/
 kotlin-js-store/
+
+# Local agent spawner (includes ~/.agents/Makefile.spawners) — machine-specific
+Makefile
