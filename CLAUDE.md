@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-A plain static personal site for `jdgarita.dev`, served by GitHub Pages directly from the repo root. `index.html` is the entry point; everything is hand-written vanilla HTML/CSS/JS. The only third-party CSS loaded is **FontAwesome 4.7.0** (vendored, for icons) and Google Fonts (Inter + JetBrains Mono). There is no Bootstrap, no jQuery, no build step, no package manager, no tests, and no lint/test/build CI (the only Actions are the Claude Code review workflows listed below). Edits to the source files are the deliverable — open `index.html` in a browser to preview.
+A plain static personal site for `jdgarita.dev`, served by GitHub Pages directly from the repo root. `index.html` is the entry point; everything is hand-written vanilla HTML/CSS/JS. The only third-party CSS loaded is Google Fonts (Inter + JetBrains Mono). Icons are an inline SVG sprite (Lucide + Simple Icons); there is no icon library or icon font. There is no Bootstrap, no jQuery, no build step, no package manager, no tests, and no lint/test/build CI (the only Actions are the Claude Code review workflows listed below). Edits to the source files are the deliverable — open `index.html` in a browser to preview.
 
 Agent-facing standards live alongside this file: `AGENTS.md` (priorities, commands, git rules), `ARCHITECTURE.md` (stack, routing, where things live), and `CONVENTIONS.md` (UI, styling, JS, asset, and commit rules).
 
@@ -23,7 +23,6 @@ Tracked, load-bearing:
 - `css/custom.css` — token-driven stylesheet (CSS custom properties)
 - `js/custom.js` — theme toggle, language toggle, i18n loader, mobile nav
 - `i18n/en.json`, `i18n/es.json` — all user-visible copy (root + sub-pages share one dictionary)
-- `css/font-awesome.min.css` + `fonts/fontawesome-webfont.{woff2,woff}` — FontAwesome 4.7.0, trimmed to woff2 + woff only (no eot/ttf/svg/otf; every supported browser takes woff2)
 - `image/jd-avatar.webp` + `image/jd-avatar.png`, `image/frnk.webp` + `image/frnk.png` — illustrated profile avatar (800×800, **transparent background**, served via `<picture>` with WebP first and PNG fallback; the circle behind it is painted by CSS with `--accent-soft` so it follows the theme) and frnk logo (320×504, 2× its 160 px display width, same `<picture>` WebP-first pattern; sub-pages reference these via `../image/…`). The avatar source is the cartoon portrait; regenerate both files from it (and keep the same basenames) rather than swapping in a differently named file, since `index.html` references them exactly and GitHub Pages serves on a case-sensitive filesystem.
 - **Favicon** — the JD brand-mark. `image/favicon.svg` is the source of truth (theme-aware via an embedded `prefers-color-scheme` rule: `#6E56CF` light / `#9F85FF` dark, with a `fill` presentation-attribute fallback so it never renders black) for modern browsers; `favicon-32.png`, `favicon-16.png`, `apple-touch-icon.png`, and `favicon.ico` are rasterized fallbacks generated from it. Every page (root, `frnk/`, `still/`, `404.html`) links the full set in `<head>`.
 - **Social cards** — `image/og-image.jpg` (root) and `image/og-frnk.jpg` (frnk), both 1200×630, referenced by **absolute** URL from the Open Graph / Twitter meta. Regenerate them if the brand, name, or tagline changes (they don't auto-update from i18n).
@@ -108,4 +107,14 @@ Firebase Analytics (GA4 backend) is loaded via the **compat CDN** (v11.6.0) — 
 
 ## Icons
 
-FontAwesome 4.7.0 covers almost everything (`fa-github`, `fa-linkedin`, `fa-apple`, `fa-envelope`, `fa-bars`, `fa-moon-o` / `fa-sun-o`, etc.). **`fa-google-play` does not exist in the FA4 line** — not even 4.7.0. The Google Play button uses an inline SVG path (from Simple Icons) that inherits `currentColor`. If you need another brand icon that FA4 lacks, follow the same inline-SVG pattern rather than upgrading the icon library.
+No icon library. Each page (`index.html`, `frnk/index.html`, `404.html`) has a hidden inline sprite, `<svg class="icon-sprite">`, as the first child of `<body>`, holding only the `<symbol>`s that page uses. Use an icon with:
+
+```html
+<svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>              <!-- outline (Lucide) -->
+<svg class="icon icon--fill" aria-hidden="true"><use href="#i-brand-apple"/></svg> <!-- filled brand (Simple Icons) -->
+```
+
+- `.icon` (in `css/custom.css`) is `1em` square and uses `currentColor`, so size and tint come from `font-size` / `color` on the icon or its parent.
+- **UI and contact icons are [Lucide](https://lucide.dev)** (ISC): `i-menu`, `i-sun`, `i-moon`, `i-check`, `i-globe`, `i-mail`, `i-linkedin`, `i-github`. This is the same set the `still/` landing sprite uses.
+- **Store-button brand marks are [Simple Icons](https://simpleicons.org)** (CC0), filled: `i-brand-apple`, `i-brand-google-play`, `i-brand-github`. Prefix brand symbols with `i-brand-`.
+- **Adding an icon:** copy the inner `<path>`/`<circle>`/`<rect>` markup from the official package SVG (`cdn.jsdelivr.net/npm/lucide-static/icons/<name>.svg` or `cdn.jsdelivr.net/npm/simple-icons/icons/<name>.svg`) into a new `<symbol id="i-…" viewBox="0 0 24 24">`, only on pages that use it. Never hand-draw or guess path data. Icon-only buttons still need a translated `aria-label`; decorative icons keep `aria-hidden="true"`.
