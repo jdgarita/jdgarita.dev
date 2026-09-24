@@ -71,7 +71,7 @@ JS. Use this for app mini-sites whose branding must evolve independently of the 
 │   └── es.json                Spanish mirror; keys must match en.json exactly
 ├── image/                     Avatar (webp+png), favicons (svg source + raster fallbacks),
 │                              OG cards (1200×630 jpg), project logos
-├── fonts/                     FontAwesome webfonts (woff2 included)
+├── fonts/                     FontAwesome webfonts (woff2 + woff only)
 ├── resume/jd.pdf              Downloadable résumé; source of truth for Experience content
 ├── frnk/index.html            Shared-shell sub-page for the frnk app
 ├── still/
