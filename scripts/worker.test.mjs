@@ -70,6 +70,7 @@ test('a page view is relayed to PostHog with query strings stripped', async () =
   assert.equal(event, '$pageview');
   assert.equal(distinct_id, 'v1');
   assert.equal(properties.site, 'jdgarita.dev');
+  assert.equal(properties.$host, 'jdgarita.dev');
   assert.equal(properties.$current_url, `${SITE}/still/`);
   assert.equal(properties.$pathname, '/still/');
   assert.equal(properties.$referrer, 'https://www.reddit.com/r/Android/comments/abc/');
@@ -97,7 +98,8 @@ test('each event keeps only its allowlisted properties', async () => {
   await call(beacon({ e: 'file_download', vid: 'v1', url: SITE, file_name: 'jd.pdf', link_location: 'nav' }));
   await call(beacon({ e: 'store_click', vid: 'v1', url: `${SITE}/still/`, platform: 'android', placement: 'hero' }));
   await call(beacon({ e: 'theme_toggle', vid: 'v1', url: SITE, theme: 'dark', content_id: 'sneaky' }));
-  const [select, download, store, theme] = sent.map((s) => s.body);
+  await call(beacon({ e: 'select_content', vid: 'v1', url: SITE, content_type: 'experience_app', content_id: 'experian' }));
+  const [select, download, store, theme, experience] = sent.map((s) => s.body);
   assert.equal(select.event, 'select_content');
   assert.equal(select.properties.content_type, 'project_link');
   assert.equal(select.properties.content_id, 'google_play_faint');
@@ -109,6 +111,8 @@ test('each event keeps only its allowlisted properties', async () => {
   assert.equal(store.properties.placement, 'hero');
   assert.equal(theme.properties.theme, 'dark');
   assert.equal(theme.properties.content_id, undefined);
+  assert.equal(experience.properties.content_type, 'experience_app');
+  assert.equal(experience.properties.content_id, 'experian');
 });
 
 test('invalid property values are dropped, not relayed', async () => {

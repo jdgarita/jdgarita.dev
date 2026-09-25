@@ -45,17 +45,17 @@
             'a11y.techStack': 'Tech stack',
             'a11y.frnkChangelog': 'View frnk changelog on GitHub',
             'nav.about': 'About',
-            'nav.apps': 'Apps',
+            'nav.apps': 'Indie Apps',
             'nav.openSource': 'Open Source',
             'nav.experience': 'Experience',
             'nav.skills': 'Skills',
             'nav.contact': 'Contact',
-            'nav.resume': 'Résumé',
+            'nav.resume': 'Resume',
             'hero.eyebrow': 'Senior Mobile Engineer',
             'hero.title': 'Juan Diego Garita',
             'hero.tagline': 'I build polished, reliable mobile apps with Kotlin Multiplatform.',
             'hero.description': '10+ years shipping production mobile apps for startups and large companies across ads and authentication.',
-            'hero.ctaPrimary': 'Download résumé',
+            'hero.ctaPrimary': 'Download resume',
             'hero.ctaSecondary': 'Get in touch',
             'about.heading': 'About',
             'about.body': "I'm a Google Certified Associate Android Developer in Kotlin with 10+ years of experience writing clean, well-tested code for startups and large companies. I focus on Kotlin Multiplatform, Jetpack Compose and modern Android, and I care deeply about craftsmanship, collaboration and continuous improvement.",
@@ -168,7 +168,7 @@
             'a11y.techStack': 'Stack tecnológico',
             'a11y.frnkChangelog': 'Ver el changelog de frnk en GitHub',
             'nav.about': 'Sobre Mí',
-            'nav.apps': 'Apps',
+            'nav.apps': 'Apps indie',
             'nav.openSource': 'Código abierto',
             'nav.experience': 'Experiencia',
             'nav.skills': 'Habilidades',
@@ -512,5 +512,17 @@
         trackProjectLinks('.store-btn--apple:not(.is-disabled)', 'app_store');
         trackProjectLinks('.store-btn--github', 'github');
         trackProjectLinks('.store-btn--site', 'landing');
+
+        // Experience download badges → the employer app's Play listing.
+        // content_id is the company slug read from the enclosing card.
+        $$('.timeline-app').forEach(function (link) {
+            link.addEventListener('click', function () {
+                var company = link.closest('.timeline-card') && link.closest('.timeline-card').querySelector('.timeline-company');
+                logEvent('select_content', {
+                    content_type: 'experience_app',
+                    content_id: company ? company.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-') : 'unknown'
+                });
+            });
+        });
     });
 })();
