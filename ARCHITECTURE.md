@@ -88,7 +88,6 @@ carries its own inline copy of the analytics beacon; the legal docs have none). 
 ├── wrangler.jsonc             Worker config (static assets, run_worker_first, 404-page)
 ├── .assetsignore · _headers   Non-public paths · noindex for *.workers.dev
 ├── scripts/worker.test.mjs    Worker tests (Node built-in runner)
-├── CNAME · .nojekyll          GitHub Pages leftovers (delete after the Workers cutover)
 ├── .github/workflows/         Claude Code review + mention automation
 ├── CLAUDE.md                  Detailed editing guide
 ├── AGENTS.md · ARCHITECTURE.md · CONVENTIONS.md
