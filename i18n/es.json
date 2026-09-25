@@ -45,6 +45,7 @@
   "experience.role1.company": "Experian",
   "experience.role1.role": "Ingeniero Android Senior",
   "experience.role1.dates": "2026 — Presente",
+  "experience.role1.reach": "App de Experian® · más de 10M de descargas en Google Play",
   "experience.role1.bullet1": "Impulso el equipo de Experimentación móvil, lanzando pruebas A/B y experimentos de UI/UX que afinan la interacción y los flujos clave de las apps.",
   "experience.role1.bullet2": "Construyo capacidades de experimentación multiplataforma que respetan las restricciones de iOS, manteniendo la paridad entre Android e iOS para lanzamientos sin fricciones.",
 
@@ -58,6 +59,7 @@
   "experience.role3.company": "Mode",
   "experience.role3.role": "Desarrollador Android Senior",
   "experience.role3.dates": "2021 — 2022",
+  "experience.role3.reach": "App de Mode · más de 50M de descargas en Google Play",
   "experience.role3.bullet1": "Construí funciones de engagement pensadas para que los usuarios volvieran cada día y aumentaran los usuarios activos diarios.",
   "experience.role3.bullet2": "Lancé una robusta función de encuestas que reunió a múltiples proveedores de encuestas de terceros en una sola experiencia.",
   "experience.role3.bullet3": "Redacté la documentación de arquitectura, validé funciones con Producto mediante pruebas A/B y coordiné lanzamientos entre equipos.",
@@ -65,6 +67,7 @@
   "experience.role4.company": "Trusona",
   "experience.role4.role": "Desarrollador Android",
   "experience.role4.dates": "2017 — 2021",
+  "experience.role4.reach": "App de Trusona · más de 10K descargas en Google Play",
   "experience.role4.bullet1": "Diseñé y construí el SDK de Trusona para Android, permitiendo a apps de terceros adoptar el sistema de autenticación de Trusona.",
   "experience.role4.bullet2": "Diseñé y construí la app oficial de Trusona para Android.",
   "experience.role4.bullet3": "Automaticé pipelines de publicación con Fastlane y desarrollé funciones en Kotlin y Java, guiadas por TDD, en un flujo Kanban.",
