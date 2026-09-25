@@ -71,7 +71,7 @@
   "experience.role4.bullet1": "Diseñé y construí el SDK de Trusona para Android, permitiendo a apps de terceros adoptar el sistema de autenticación de Trusona.",
   "experience.role4.bullet2": "Diseñé y construí la app oficial de Trusona para Android.",
   "experience.role4.bullet3": "Automaticé pipelines de publicación con Fastlane y desarrollé funciones en Kotlin y Java, guiadas por TDD, en un flujo Kanban.",
-  "apps.heading": "Apps independientes",
+  "apps.heading": "Apps indie",
   "apps.subheading": "Apps móviles multiplataforma, enfocadas y listas para producción, creadas y mantenidas de forma independiente.",
   "openSource.heading": "Código abierto y herramientas",
   "openSource.subheading": "Frameworks arquitectónicos, plantillas y librerías reutilizables creados para acelerar el desarrollo móvil moderno.",

@@ -61,7 +61,7 @@
   "experience.role4.bullet1": "Designed and built the Trusona Android SDK, letting third-party apps adopt Trusona's authentication system.",
   "experience.role4.bullet2": "Designed and built Trusona's official Android app.",
   "experience.role4.bullet3": "Automated release pipelines with Fastlane and shipped features in Kotlin and Java, test-first with TDD, in a Kanban flow.",
-  "apps.heading": "Independent Apps",
+  "apps.heading": "Indie Apps",
   "apps.subheading": "Focused, production-ready cross-platform mobile apps built and maintained independently.",
   "openSource.heading": "Open Source & Tooling",
   "openSource.subheading": "Reusable architectural frameworks, templates, and libraries created to speed up modern mobile development.",
