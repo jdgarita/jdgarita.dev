@@ -722,6 +722,27 @@ ul {
     margin: 0 0 var(--s-3);
 }
 
+.timeline-app {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+    margin-bottom: var(--s-3);
+    padding: var(--s-1) var(--s-3);
+    border: 1px solid var(--border);
+    border-radius: var(--r-pill);
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    text-decoration: none;
+    transition: border-color var(--t-fast) var(--ease);
+}
+
+.timeline-app:hover {
+    border-color: var(--accent);
+}
+
 .timeline-bullets {
     display: grid;
     gap: var(--s-2);
@@ -788,6 +809,10 @@ ul {
 .project-description {
     color: var(--fg-muted);
     font-size: var(--fs-md);
+    margin-bottom: var(--s-5);
+}
+
+.project-tech {
     margin-bottom: var(--s-5);
 }
 

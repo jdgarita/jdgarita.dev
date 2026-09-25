@@ -83,8 +83,9 @@ There is no component framework. "Components" are **markup patterns + CSS classe
 - **No new external dependencies** (CDN scripts, analytics vendors, fonts) without owner
   approval. Each one is a render-blocking or privacy cost.
 - **Analytics events** use the existing `logEvent` helper and the established event
-  names (`select_content`, `file_download`, `theme_toggle`, `lang_toggle`,
-  `mobile_nav_toggle`). Do not log personal data.
+  names (`pageview`, `select_content`, `file_download`, `store_click`, `theme_toggle`,
+  `lang_toggle`, `mobile_nav_toggle`). A new event or property must also be added to
+  `EVENTS` in `worker.js` (with a test), or the Worker drops it. Do not log personal data.
 
 ## 5. Asset management
 
@@ -97,7 +98,7 @@ There is no component framework. "Components" are **markup patterns + CSS classe
   - Social cards are exactly 1200×630 JPEG, ≤ 80 KB, referenced by absolute URL.
   - Favicons are generated from `image/favicon.svg`; never hand-edit the raster
     fallbacks.
-  - Keep existing basenames (`jd-avatar.webp`, `og-image.jpg`, …). GitHub Pages is
+  - Keep existing basenames (`jd-avatar.webp`, `og-image.jpg`, …). The host is
     case-sensitive and pages reference these paths exactly.
 - **Fonts.** Google Fonts with `preconnect` + `display=swap`, limited to the weights
   actually used. No icon fonts: icons are inline SVG (see CLAUDE.md → Icons).

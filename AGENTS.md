@@ -45,13 +45,15 @@ alignment with ongoing migrations.
 ## Commands
 
 There is **no package manager, no dependency install, and no build step**. The source files
-in the repo root are what GitHub Pages serves.
+in the repo root are what Cloudflare Workers Static Assets serves (minus `.assetsignore`).
 
 | Task | Command |
 | --- | --- |
 | Install dependencies | *None.* Do not add `package.json`, `pnpm`, `yarn`, or Gradle. |
-| Local dev server | `python3 -m http.server 8000` from the repo root, then open <http://localhost:8000> |
-| Production build | *None.* Merging to `main` deploys the raw files. |
+| Local dev server | `python3 -m http.server 8000` from the repo root, then open <http://localhost:8000> (pages only; `/e` beacons fail silently) |
+| Local dev with the Worker | `npx wrangler dev` from the repo root, then open <http://localhost:8787> (production parity; beacons answer 204 and are never relayed) |
+| Worker tests | `node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test scripts/worker.test.mjs` |
+| Production build | *None.* Merging to `main` deploys the raw files (Cloudflare Workers Builds). |
 | Validate i18n JSON | `python3 -c "import json; json.load(open('i18n/en.json')); json.load(open('i18n/es.json'))"` |
 | Check EN/ES key parity | `python3 -c "import json; en=set(json.load(open('i18n/en.json'))); es=set(json.load(open('i18n/es.json'))); print('en-only', sorted(en-es)); print('es-only', sorted(es-en))"` |
 | Check `data-i18n` keys exist and static fallback text matches `en.json` | `python3 -c "import json,re,html; en=json.load(open('i18n/en.json')); [print(p,k,'MISSING' if k not in en else 'DRIFT') for p in ['index.html','frnk/index.html','404.html'] for k,t in re.findall(r'data-i18n=\"([^\"]+)\"[^>]*>([^<]*)<',re.sub(r'<!--.*?-->','',open(p).read(),flags=re.S)) if k not in en or html.unescape(t)!=en[k]]"` (prints `MISSING` for keys absent from `en.json`, `DRIFT` for stale HTML text; nothing when clean; HTML comments are ignored) |
@@ -87,8 +89,8 @@ Kotlin, Kobweb, Compose, or Firebase hosting, confirm with the owner before touc
 - **Commit frequently** at logical checkpoints with intent-based messages
   (`feat(projects): …`, `fix(i18n): …`, `docs: …`). Small, reviewable commits over one
   large one.
-- **Merging to `main` is a production deployment.** GitHub Pages publishes the merge
-  commit within minutes. Never push to `main`, merge a PR, tag, or otherwise trigger a
+- **Merging to `main` is a production deployment.** Cloudflare Workers Builds publishes the
+  merge commit within minutes. Never push to `main`, merge a PR, tag, or otherwise trigger a
   deploy without the owner's explicit approval in that turn.
 - Never `git push --force`, rewrite shared history, or delete branches you did not create.
 - Pull requests are reviewed automatically by the Claude Code GitHub Action

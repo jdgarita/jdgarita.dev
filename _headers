@@ -1,0 +1,7 @@
+# Workers Static Assets custom headers (parsed by Workers, never served as a file).
+#
+# Keep workers.dev hosts out of search results: the Worker's own URL, its version URLs and the
+# Workers Builds PR preview URLs all serve this same site, and only jdgarita.dev should be
+# indexed. A host placeholder never matches a ".", so this rule cannot touch jdgarita.dev.
+https://:worker.:subdomain.workers.dev/*
+  X-Robots-Tag: noindex

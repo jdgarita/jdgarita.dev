@@ -29,8 +29,8 @@
        i18n/en.json and i18n/es.json. ---------- */
     var FALLBACK = {
         en: {
-            'meta.title': 'JD Garita · Sr Mobile Engineer',
-            'meta.description': 'Senior mobile engineer with 10+ years of experience building Android and Kotlin Multiplatform apps.',
+            'meta.title': 'Juan Diego Garita · Indie Mobile Developer & Kotlin Multiplatform Specialist',
+            'meta.description': 'Indie mobile developer and Kotlin Multiplatform specialist building Faint and Still, plus the open-source frnk toolkit. 10+ years of senior Android experience.',
             'a11y.themeToggle': 'Toggle light / dark theme',
             'a11y.langToggle': 'Switch language',
             'a11y.menuToggle': 'Toggle navigation menu',
@@ -40,10 +40,14 @@
             'a11y.stillLanding': 'Still landing page',
             'a11y.faintLanding': 'Faint landing page',
             'a11y.faintAppStore': 'Faint on the App Store',
+            'a11y.faintPlay': 'Faint on Google Play',
+            'a11y.stillPlay': 'Still on Google Play',
+            'a11y.techStack': 'Tech stack',
             'a11y.frnkChangelog': 'View frnk changelog on GitHub',
             'nav.about': 'About',
+            'nav.apps': 'Apps',
+            'nav.openSource': 'Open Source',
             'nav.experience': 'Experience',
-            'nav.projects': 'Projects',
             'nav.skills': 'Skills',
             'nav.contact': 'Contact',
             'nav.resume': 'Résumé',
@@ -63,34 +67,39 @@
             'experience.role1.company': 'Experian',
             'experience.role1.role': 'Senior Android Engineer',
             'experience.role1.dates': '2026 — Present',
-            'experience.role1.bullet1': 'Drive the Experimentation team, running A/B tests and UI/UX experiments to optimize user engagement and flows across the mobile apps.',
-            'experience.role1.bullet2': 'Build cross-platform capabilities, adapting to iOS constraints to ensure feature parity and smooth experiment rollouts.',
+            'experience.role1.reach': 'Experian® app · 10M+ downloads on Google Play',
+            'experience.role1.bullet1': 'Drive the mobile Experimentation team, shipping A/B tests and UI/UX experiments that tune engagement and key user flows across the apps.',
+            'experience.role1.bullet2': 'Build cross-platform experiment capabilities that work within iOS constraints, keeping Android and iOS at feature parity for smooth rollouts.',
             'experience.role2.company': 'Swiftly',
             'experience.role2.role': 'Senior Kotlin Multiplatform Engineer',
             'experience.role2.dates': '2022 — 2026',
-            'experience.role2.bullet1': 'Designed a reusable Ads component inside a Kotlin Multiplatform "App Factory", enabling fast rollout of consistent monetization across multiple white-label client apps.',
-            'experience.role2.bullet2': 'Integrated the Xandr Mobile SDK into the shared KMP architecture for seamless ad delivery and inventory management.',
-            'experience.role2.bullet3': 'Delivered comprehensive monetization across multiple client apps — video ads, interstitials, and banner formats.',
+            'experience.role2.bullet1': 'Helped build a Kotlin Multiplatform "App Factory" that streamlines shipping client apps to both Android and iOS.',
+            'experience.role2.bullet2': 'Designed and built a reusable ads component powered by the Xandr Mobile SDK — one integration, reused across client apps.',
+            'experience.role2.bullet3': 'Shipped end-to-end monetization — video, interstitial, and banner ads — across multiple client apps.',
             'experience.role3.company': 'Mode',
             'experience.role3.role': 'Senior Android Developer',
             'experience.role3.dates': '2021 — 2022',
-            'experience.role3.bullet1': 'Built features designed to incentivize and grow daily active users on the application.',
-            'experience.role3.bullet2': 'Implemented a robust surveys feature that integrated multiple third-party survey providers.',
-            'experience.role3.bullet3': 'Authored architecture documentation, partnered with Product on A/B-tested features, and orchestrated releases across teams.',
+            'experience.role3.reach': 'Mode app · 50M+ downloads on Google Play',
+            'experience.role3.bullet1': 'Built engagement features designed to bring users back every day and grow daily active users.',
+            'experience.role3.bullet2': 'Shipped a robust surveys feature that brought multiple third-party survey providers into a single experience.',
+            'experience.role3.bullet3': 'Wrote the architecture docs, validated features with Product through A/B tests, and orchestrated cross-team releases.',
             'experience.role4.company': 'Trusona',
             'experience.role4.role': 'Android Developer',
             'experience.role4.dates': '2017 — 2021',
-            'experience.role4.bullet1': 'Designed and built the Trusona SDK for Android, enabling third-party apps to adopt the Trusona authentication system.',
-            'experience.role4.bullet2': 'Designed and developed the official Trusona app for Android.',
-            'experience.role4.bullet3': 'Engineered features and automated release pipelines with Kotlin, Java, TDD, and Fastlane in a Kanban workflow.',
-            'projects.heading': 'Personal Projects',
-            'projects.subheading': '',
-            'projects.frnk.tagline': 'Open-source KMP toolkit',
-            'projects.frnk.description': 'A modular Kotlin Multiplatform foundation with headless UI, pluggable backends, and MVI architecture — built to accelerate indie app development. Open-source on GitHub.',
-            'projects.still.tagline': 'Food Expiry Tracker',
-            'projects.still.description': "Track what's in your fridge and pantry, get timely reminders before food expires, and cut down on waste.",
-            'projects.faint.tagline': 'Coffee Tasting Notes',
-            'projects.faint.description': 'AI coffee journal: Scan tasting cards, log your verdict & map your journey.',
+            'experience.role4.reach': 'Trusona app · 10K+ downloads on Google Play',
+            'experience.role4.bullet1': 'Designed and built the Trusona Android SDK, letting third-party apps adopt Trusona\'s authentication system.',
+            'experience.role4.bullet2': 'Designed and built Trusona\'s official Android app.',
+            'experience.role4.bullet3': 'Automated release pipelines with Fastlane and shipped features in Kotlin and Java, test-first with TDD, in a Kanban flow.',
+            'apps.heading': 'Indie Apps',
+            'apps.subheading': 'Focused, production-ready cross-platform mobile apps built and maintained independently.',
+            'openSource.heading': 'Open Source & Tooling',
+            'openSource.subheading': 'Reusable architectural frameworks, templates, and libraries created to speed up modern mobile development.',
+            'projects.frnk.tagline': 'Modular Kotlin Multiplatform Toolkit',
+            'projects.frnk.description': 'An opinionated, production-grade architectural foundation for Kotlin Multiplatform apps. Features headless UI contracts, pluggable backends, and strict MVI pattern implementations to launch new mobile products in days.',
+            'projects.still.tagline': 'Smart Food Freshness & Waste Tracker',
+            'projects.still.description': 'Keep track of fridge and pantry contents with predictive shelf-life tracking and proactive reminders before food expires.',
+            'projects.faint.tagline': 'AI-Powered Coffee Tasting Journal',
+            'projects.faint.description': 'A companion app for specialty coffee lovers. Scan roaster tasting cards, track flavor profiles, log brewing parameters, and build a personalized coffee map.',
             'projects.store.getItOn': 'Get it on',
             'projects.store.downloadOn': 'Download on the',
             'projects.store.availableOn': 'Available on',
@@ -143,8 +152,8 @@
             'frnk.status.changelogLink': 'View CHANGELOG on GitHub'
         },
         es: {
-            'meta.title': 'JD Garita · Ingeniero Móvil Senior',
-            'meta.description': 'Ingeniero móvil senior con más de 10 años de experiencia construyendo apps Android y Kotlin Multiplatform.',
+            'meta.title': 'Juan Diego Garita · Desarrollador Móvil Indie y Especialista en Kotlin Multiplatform',
+            'meta.description': 'Desarrollador móvil indie y especialista en Kotlin Multiplatform, creador de Faint y Still y del toolkit de código abierto frnk. Más de 10 años de experiencia senior en Android.',
             'a11y.themeToggle': 'Cambiar tema claro / oscuro',
             'a11y.langToggle': 'Cambiar idioma',
             'a11y.menuToggle': 'Abrir menú de navegación',
@@ -154,10 +163,14 @@
             'a11y.stillLanding': 'Landing page de Still',
             'a11y.faintLanding': 'Landing page de Faint',
             'a11y.faintAppStore': 'Faint en el App Store',
+            'a11y.faintPlay': 'Faint en Google Play',
+            'a11y.stillPlay': 'Still en Google Play',
+            'a11y.techStack': 'Stack tecnológico',
             'a11y.frnkChangelog': 'Ver el changelog de frnk en GitHub',
             'nav.about': 'Sobre Mí',
+            'nav.apps': 'Apps',
+            'nav.openSource': 'Código abierto',
             'nav.experience': 'Experiencia',
-            'nav.projects': 'Proyectos',
             'nav.skills': 'Habilidades',
             'nav.contact': 'Contacto',
             'nav.resume': 'Currículum',
@@ -177,34 +190,39 @@
             'experience.role1.company': 'Experian',
             'experience.role1.role': 'Ingeniero Android Senior',
             'experience.role1.dates': '2026 — Presente',
-            'experience.role1.bullet1': 'Lidero el equipo de Experimentación, ejecutando A/B tests y experimentos de UI/UX para optimizar el engagement y los flujos en las apps móviles.',
-            'experience.role1.bullet2': 'Desarrollo capacidades multiplataforma, adaptándome a las restricciones de iOS para asegurar paridad de funciones y despliegues de experimentos sin fricciones.',
+            'experience.role1.reach': 'App de Experian® · más de 10M de descargas en Google Play',
+            'experience.role1.bullet1': 'Impulso el equipo de Experimentación móvil, lanzando pruebas A/B y experimentos de UI/UX que afinan la interacción y los flujos clave de las apps.',
+            'experience.role1.bullet2': 'Construyo capacidades de experimentación multiplataforma que respetan las restricciones de iOS, manteniendo la paridad entre Android e iOS para lanzamientos sin fricciones.',
             'experience.role2.company': 'Swiftly',
             'experience.role2.role': 'Ingeniero Senior de Kotlin Multiplatform',
             'experience.role2.dates': '2022 — 2026',
-            'experience.role2.bullet1': 'Diseñé un componente de anuncios reutilizable dentro de un "App Factory" de Kotlin Multiplatform, permitiendo lanzar de forma rápida funciones de monetización consistentes en múltiples apps white-label.',
-            'experience.role2.bullet2': 'Integré el SDK móvil de Xandr en la arquitectura KMP compartida para una entrega de anuncios e inventario sin fricciones.',
-            'experience.role2.bullet3': 'Entregué funciones de monetización integrales en múltiples apps cliente — video ads, interstitials y banners.',
+            'experience.role2.bullet1': 'Ayudé a construir un "App Factory" en Kotlin Multiplatform que agiliza el lanzamiento de apps cliente en Android e iOS.',
+            'experience.role2.bullet2': 'Diseñé y construí un componente de anuncios reutilizable basado en el SDK móvil de Xandr — una sola integración, reutilizada en las apps cliente.',
+            'experience.role2.bullet3': 'Entregué monetización de punta a punta — anuncios de video, intersticiales y banners — en múltiples apps cliente.',
             'experience.role3.company': 'Mode',
             'experience.role3.role': 'Desarrollador Android Senior',
             'experience.role3.dates': '2021 — 2022',
-            'experience.role3.bullet1': 'Desarrollé funciones diseñadas para incentivar y aumentar los usuarios activos diarios de la aplicación.',
-            'experience.role3.bullet2': 'Implementé una robusta función de encuestas que integró múltiples proveedores de encuestas de terceros.',
-            'experience.role3.bullet3': 'Redacté documentación de arquitectura, colaboré con Producto en funciones validadas con A/B testing y coordiné releases entre equipos.',
+            'experience.role3.reach': 'App de Mode · más de 50M de descargas en Google Play',
+            'experience.role3.bullet1': 'Construí funciones de engagement pensadas para que los usuarios volvieran cada día y aumentaran los usuarios activos diarios.',
+            'experience.role3.bullet2': 'Lancé una robusta función de encuestas que reunió a múltiples proveedores de encuestas de terceros en una sola experiencia.',
+            'experience.role3.bullet3': 'Redacté la documentación de arquitectura, validé funciones con Producto mediante pruebas A/B y coordiné lanzamientos entre equipos.',
             'experience.role4.company': 'Trusona',
             'experience.role4.role': 'Desarrollador Android',
             'experience.role4.dates': '2017 — 2021',
+            'experience.role4.reach': 'App de Trusona · más de 10K descargas en Google Play',
             'experience.role4.bullet1': 'Diseñé y construí el SDK de Trusona para Android, permitiendo a apps de terceros adoptar el sistema de autenticación de Trusona.',
-            'experience.role4.bullet2': 'Diseñé y desarrollé la app oficial de Trusona para Android.',
-            'experience.role4.bullet3': 'Desarrollé funciones y automaticé pipelines de publicación con Kotlin, Java, TDD y Fastlane en un flujo Kanban.',
-            'projects.heading': 'Proyectos Personales',
-            'projects.subheading': '',
-            'projects.frnk.tagline': 'Toolkit KMP de código abierto',
-            'projects.frnk.description': 'Una base modular para Kotlin Multiplatform con UI headless, backends intercambiables y arquitectura MVI — pensada para acelerar el desarrollo de apps indie. Código abierto en GitHub.',
-            'projects.still.tagline': 'Rastreador de caducidad de alimentos',
-            'projects.still.description': 'Lleva el control de lo que hay en tu refri y alacena, recibe recordatorios antes de que los alimentos caduquen y reduce el desperdicio.',
-            'projects.faint.tagline': 'Notas de cata de café',
-            'projects.faint.description': 'Diario de café con IA: Escanea las tarjetas de cata, registra tu veredicto y traza el mapa de tu experiencia.',
+            'experience.role4.bullet2': 'Diseñé y construí la app oficial de Trusona para Android.',
+            'experience.role4.bullet3': 'Automaticé pipelines de publicación con Fastlane y desarrollé funciones en Kotlin y Java, guiadas por TDD, en un flujo Kanban.',
+            'apps.heading': 'Apps indie',
+            'apps.subheading': 'Apps móviles multiplataforma, enfocadas y listas para producción, creadas y mantenidas de forma independiente.',
+            'openSource.heading': 'Código abierto y herramientas',
+            'openSource.subheading': 'Frameworks arquitectónicos, plantillas y librerías reutilizables creados para acelerar el desarrollo móvil moderno.',
+            'projects.frnk.tagline': 'Toolkit modular para Kotlin Multiplatform',
+            'projects.frnk.description': 'Una base arquitectónica opinada y lista para producción para apps Kotlin Multiplatform. Incluye contratos de UI headless, backends intercambiables e implementaciones estrictas del patrón MVI para lanzar nuevos productos móviles en días.',
+            'projects.still.tagline': 'Control inteligente de frescura y desperdicio de alimentos',
+            'projects.still.description': 'Lleva el control de lo que hay en tu refri y alacena con seguimiento predictivo de vida útil y recordatorios proactivos antes de que los alimentos caduquen.',
+            'projects.faint.tagline': 'Diario de cata de café con IA',
+            'projects.faint.description': 'Una app compañera para amantes del café de especialidad. Escanea las tarjetas de cata del tostador, sigue perfiles de sabor, registra parámetros de preparación y construye tu mapa cafetero personalizado.',
             'projects.store.getItOn': 'Disponible en',
             'projects.store.downloadOn': 'Descárgala en el',
             'projects.store.availableOn': 'Disponible en',
@@ -258,10 +276,58 @@
         }
     };
 
-    /* ---------- Firebase Analytics ---------- */
-    var analytics = null;
+    /* ---------- Analytics (first-party beacon → /e → PostHog) ----------
+       Each event is POSTed to /e on this site; worker.js validates it and relays
+       it to PostHog server-side. No third-party script, no cookie. The only
+       identifier is a random id in sessionStorage (one tab, gone when it closes);
+       the visit's referrer + UTM tags are kept there too, so a click after an
+       internal navigation still credits where the visit came from.
+       Fire-and-forget: sendBeacon never blocks a click or a navigation. */
+    var beaconBase = null;
+
+    function initBeacon() {
+        if (!window.JSON || !window.Blob || !window.URLSearchParams) return;
+        var vid;
+        try { vid = sessionStorage.getItem('jd_vid'); } catch (e) {}
+        if (!vid) {
+            vid = window.crypto && crypto.randomUUID
+                ? crypto.randomUUID()
+                : Date.now().toString(36) + Math.random().toString(36).slice(2);
+            try { sessionStorage.setItem('jd_vid', vid); } catch (e) {}
+        }
+
+        var query = new URLSearchParams(location.search);
+        var attribution = { ref: document.referrer };
+        var tagged = false;
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (key) {
+            if (query.get(key)) { attribution[key] = query.get(key); tagged = true; }
+        });
+        var internal = false;
+        try { internal = new URL(document.referrer).host === location.host; } catch (e) {}
+        try {
+            var stored = JSON.parse(sessionStorage.getItem('jd_attr'));
+            if (!tagged && internal && stored) attribution = stored;
+            else sessionStorage.setItem('jd_attr', JSON.stringify(attribution));
+        } catch (e) {}
+
+        beaconBase = { vid: vid, url: location.href };
+        for (var key in attribution) beaconBase[key] = attribution[key];
+        // 404.html marks itself so a missing path doesn't read as a real page view.
+        if (document.documentElement.getAttribute('data-page') === '404') beaconBase.nf = true;
+    }
+
     function logEvent(name, params) {
-        if (analytics) { try { analytics.logEvent(name, params); } catch (e) {} }
+        if (!beaconBase) return;
+        var payload = { e: name, lang: document.documentElement.getAttribute('lang') };
+        var key;
+        for (key in beaconBase) payload[key] = beaconBase[key];
+        for (key in params) payload[key] = params[key];
+        var body = JSON.stringify(payload);
+        try {
+            // text/plain keeps it a simple request; worker.js parses the body whatever its type.
+            if (navigator.sendBeacon && navigator.sendBeacon('/e', new Blob([body], { type: 'text/plain' }))) return;
+            if (window.fetch) fetch('/e', { method: 'POST', body: body, keepalive: true }).catch(function () {});
+        } catch (e) {}
     }
 
     /* ---------- Helpers ---------- */
@@ -318,26 +384,14 @@
 
     /* ---------- Boot ---------- */
     document.addEventListener('DOMContentLoaded', function () {
-        // Firebase init (deferred SDK scripts have executed by now)
-        if (typeof firebase !== 'undefined' && firebase.initializeApp) {
-            try {
-                firebase.initializeApp({
-                    apiKey: 'AIzaSyB4OruGxSx4X-AV9OOcwRULNcharw6kNuw',
-                    authDomain: 'jdgarita-site.firebaseapp.com',
-                    projectId: 'jdgarita-site',
-                    storageBucket: 'jdgarita-site.firebasestorage.app',
-                    messagingSenderId: '319136318898',
-                    appId: '1:319136318898:web:88b2842ffefa0e20c250ab',
-                    measurementId: 'G-NYVB5C810D'
-                });
-                analytics = firebase.analytics();
-            } catch (e) {}
-        }
-
         // Initial language (the inline head script already set <html lang>)
         var lang = document.documentElement.getAttribute('lang') || 'en';
         if (lang !== 'en' && lang !== 'es') lang = 'en';
         setLang(lang);
+
+        // Page view, once the language is known (the beacon records it).
+        initBeacon();
+        logEvent('pageview', {});
 
         // Theme toggle
         var themeBtn = $('#theme-toggle');

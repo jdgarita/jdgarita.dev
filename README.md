@@ -5,7 +5,7 @@
 Personal site for **Juan Diego Garita**, a senior mobile engineer.
 Live at **<https://jdgarita.dev>**.
 
-A hand-written static site — vanilla HTML, CSS, and JavaScript, served straight from this repo by GitHub Pages. No build step, no framework. Light/dark theme, English/Spanish, and a few project sub-pages.
+A hand-written static site — vanilla HTML, CSS, and JavaScript, served straight from this repo by Cloudflare Workers Static Assets (plus a tiny Worker for first-party, cookieless analytics). No build step, no framework. Light/dark theme, English/Spanish, and a few project sub-pages.
 
 ## Run it locally
 

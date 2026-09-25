@@ -1,0 +1,40 @@
+{
+  // Cloudflare Workers config for jdgarita.dev (root site, frnk/, still/, 404.html). Run wrangler
+  // from the repo root. Workers Builds deploys `main` on every merge; other branches get a
+  // preview URL (see "previews" below).
+  //
+  // This Worker serves the repo root as static assets (minus .assetsignore). Its one script,
+  // worker.js, runs for `/e` only (run_worker_first below): the analytics beacon, relayed to
+  // PostHog (CLAUDE.md "Analytics"). Every other request never reaches it.
+  //
+  // IMPORTANT: `name` must match the Worker in the Cloudflare dashboard, or a deploy targets /
+  // creates a *different* Worker and the jdgarita.dev custom domain won't update.
+  "name": "jdgarita-dev",
+  "compatibility_date": "2026-09-24",
+  "main": "worker.js",
+  "assets": {
+    "directory": "./",
+    "binding": "ASSETS",
+    // Only the beacon runs the script; everything else is served from the static assets.
+    "run_worker_first": ["/e"],
+    // Unknown paths serve the nearest 404.html (the root one) with status 404, as GitHub Pages did.
+    // html_handling stays at its default, auto-trailing-slash: /still/privacy-policy 307s to
+    // /still/privacy-policy/, the form every canonical and sitemap URL uses.
+    "not_found_handling": "404-page"
+  },
+  // PostHog Cloud US, the frnk project (the same one faint.coffee and the apps report to). The
+  // project's public `phc_` key is a secret, never committed: `npx wrangler secret put
+  // POSTHOG_API_KEY`. Without it — and on any host but jdgarita.dev, so wrangler dev and
+  // previews too — worker.js accepts beacons and drops them.
+  "vars": {
+    "POSTHOG_HOST": "https://us.i.posthog.com"
+  },
+  // Workers Logs, so worker.js's console.error for a rejected or failed PostHog capture is
+  // visible in the dashboard rather than the data just going quiet.
+  "observability": {
+    "enabled": true
+  },
+  // Required by `wrangler preview`, the Preview command Workers Builds runs for every non-main
+  // branch (the PR preview URL). Empty on purpose: previews get no PostHog key.
+  "previews": {}
+}

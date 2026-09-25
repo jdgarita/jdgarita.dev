@@ -1,0 +1,41 @@
+# Files in the repo root that must NOT be uploaded as public static assets.
+# Workers Static Assets serves this directory verbatim, so anything left out of
+# here is world-readable at https://jdgarita.dev/<path>.
+
+# Git and editor/tooling state.
+.git
+.github
+.gitignore
+.DS_Store
+.idea
+.vscode
+.claude
+
+# Agent/developer docs and plans — not pages.
+README.md
+AGENTS.md
+ARCHITECTURE.md
+CLAUDE.md
+CONVENTIONS.md
+docs
+
+# The Worker script (wrangler.jsonc `main`), its config, and its tests — code, not pages.
+worker.js
+wrangler.jsonc
+scripts
+# wrangler writes its cache and temp build files here while it runs (wrangler dev / deploy).
+.wrangler
+# Local secrets for wrangler dev (POSTHOG_API_KEY). Gitignored too.
+.dev.vars
+
+# GitHub Pages leftovers (kept only until the Workers cutover is verified, then deleted).
+CNAME
+.nojekyll
+
+# Untracked leftovers from the abandoned Kobweb / Firebase experiments (see CLAUDE.md).
+site
+build
+.gradle
+kotlin-js-store
+node_modules
+Makefile
