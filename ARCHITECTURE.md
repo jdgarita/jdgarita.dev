@@ -13,19 +13,21 @@ instructions see `AGENTS.md`; for exhaustive per-file guidance see `CLAUDE.md`.
 | Icons | Inline SVG sprite per page: Lucide (ISC) UI icons + Simple Icons (CC0) brand marks | No icon library, no icon font; `.icon` uses `currentColor`. See CLAUDE.md → Icons. |
 | Fonts | Google Fonts: Inter + JetBrains Mono | Loaded with `preconnect` and `display=swap`. |
 | i18n | Flat JSON dictionaries (`i18n/en.json`, `i18n/es.json`) | Applied at runtime via `data-i18n` / `data-i18n-attr`; embedded fallback copy in `js/custom.js`. |
-| Analytics | Firebase Analytics (GA4) via compat CDN v11.6.0 | Firebase project `jdgarita-site`. Guarded so the site works when the SDK is blocked. |
-| Hosting | **GitHub Pages**, served from the root of `main` | Custom domain via `CNAME` (`jdgarita.dev`). |
-| CI | GitHub Actions running Claude Code on PRs and `@claude` mentions | No lint, test, or build jobs. |
+| Analytics | First-party beacon (`POST /e`) relayed server-side to **PostHog** by `worker.js` | frnk project on PostHog Cloud US, `site = jdgarita.dev`. No third-party script, no cookie. See CLAUDE.md → Analytics. |
+| Hosting | **Cloudflare Workers Static Assets** (Worker `jdgarita-dev`), serving the repo root of `main` | Config in `wrangler.jsonc`; `.assetsignore` keeps non-page files private; custom domain `jdgarita.dev` on the Worker. |
+| CI | GitHub Actions running Claude Code on PRs and `@claude` mentions; Cloudflare Workers Builds deploys `main` and previews branches | No lint or build jobs. Worker tests run locally (`scripts/worker.test.mjs`). |
 | Package manager | **None** | No `package.json`, lockfile, or Gradle files at the root. |
 
 ## Deployment model
 
 ```
-feature branch ──PR──▶ main ──GitHub Pages──▶ https://jdgarita.dev
+feature branch ──PR──▶ main ──Cloudflare Workers Builds──▶ https://jdgarita.dev
+      └──────────── Workers preview URL (per branch, beacons not relayed)
 ```
 
-GitHub Pages serves the repository root of `main` as-is. There is no build artifact,
-no `dist/`, and no deploy script. A merge to `main` **is** the production release.
+Workers Static Assets serves the repository root of `main` as-is, minus `.assetsignore`.
+There is no build artifact and no `dist/`. `worker.js` runs only for `POST /e`. A merge to
+`main` **is** the production release.
 
 ## Routing
 
@@ -39,8 +41,9 @@ Routing is the filesystem. Each directory with an `index.html` is a clean URL:
 | `/still/privacy-policy/` | `still/privacy-policy/index.html` | Standalone legal doc |
 | `/still/terms-and-conditions/` | `still/terms-and-conditions/index.html` | Standalone legal doc |
 
-Any other path serves `404.html` (GitHub Pages behavior; it uses root-absolute asset URLs and is
-`noindex`). Crawlers are pointed at `sitemap.xml` by `robots.txt`.
+Any other path serves `404.html` (`not_found_handling: "404-page"` in `wrangler.jsonc`; it uses
+root-absolute asset URLs, is `noindex`, and flags its page views `not_found`). `POST /e` is the
+analytics beacon (`worker.js`). Crawlers are pointed at `sitemap.xml` by `robots.txt`.
 
 Adding a page means adding a directory with an `index.html` (and a `<url>` entry in `sitemap.xml`). There is no client-side
 router; in-page navigation on the root uses `#hero`, `#about`, `#apps`, `#open-source`,
@@ -53,8 +56,8 @@ dictionary. Sets `<html data-i18n-base="../">` so the loader resolves `../i18n/*
 Use this for project pages that should feel like part of the main site.
 
 **Standalone** (`still/`): deliberately decoupled. Own stylesheets (`still/landing.css`,
-`still/still.css`), own inline EN/ES dictionary, own theme toggle, no analytics, no shared
-JS. Use this for app mini-sites whose branding must evolve independently of the portfolio.
+`still/still.css`), own inline EN/ES dictionary, own theme toggle, no shared JS (the landing
+carries its own inline copy of the analytics beacon; the legal docs have none). Use this for app mini-sites whose branding must evolve independently of the portfolio.
 
 ## Project structure
 
@@ -81,7 +84,11 @@ JS. Use this for app mini-sites whose branding must evolve independently of the 
 ├── 404.html                   Not-found page (shared shell, root-absolute paths, noindex)
 ├── robots.txt                 Allows all crawlers; points to sitemap.xml
 ├── sitemap.xml                The five public URLs with <lastmod>
-├── CNAME                      Custom domain for GitHub Pages
+├── worker.js                  Cloudflare Worker: POST /e only (analytics beacon → PostHog)
+├── wrangler.jsonc             Worker config (static assets, run_worker_first, 404-page)
+├── .assetsignore · _headers   Non-public paths · noindex for *.workers.dev
+├── scripts/worker.test.mjs    Worker tests (Node built-in runner)
+├── CNAME · .nojekyll          GitHub Pages leftovers (delete after the Workers cutover)
 ├── .github/workflows/         Claude Code review + mention automation
 ├── CLAUDE.md                  Detailed editing guide
 ├── AGENTS.md · ARCHITECTURE.md · CONVENTIONS.md
@@ -100,7 +107,7 @@ JS. Use this for app mini-sites whose branding must evolve independently of the 
 | Static assets | `image/`, `resume/` |
 | Portfolio entries | Apps (`#apps`) and Open Source (`#open-source`) section markup in `index.html` + `apps.*`, `openSource.*`, and `projects.*` keys in i18n. There are no Markdown/MDX content files or a blog. |
 | SEO / social meta | Hard-coded in each page `<head>` (OG/Twitter must be static because scrapers don't run JS) |
-| Analytics events | `logEvent` helper inside the IIFE in `js/custom.js` |
+| Analytics events | `logEvent` helper inside the IIFE in `js/custom.js` (beacon to `/e`); the allowlist of events/properties is `EVENTS` in `worker.js` |
 
 ## Runtime flow (root page)
 
@@ -109,7 +116,7 @@ JS. Use this for app mini-sites whose branding must evolve independently of the 
 2. `css/custom.css` applies tokens for the resolved theme.
 3. `js/custom.js` runs after parse: fetches `i18n/<lang>.json` (falls back to the embedded
    `FALLBACK` dictionary), walks `[data-i18n]` / `[data-i18n-attr]` nodes, wires the toggles
-   and mobile nav, and initializes Firebase Analytics if the SDK loaded.
+   and mobile nav, and sends a `pageview` beacon to `/e`.
 4. Toggling theme or language updates `<html>` attributes and `localStorage`, then
    re-applies the dictionary in place. No page reload.
 
