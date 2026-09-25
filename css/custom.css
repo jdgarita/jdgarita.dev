@@ -791,6 +791,10 @@ ul {
     margin-bottom: var(--s-5);
 }
 
+.project-tech {
+    margin-bottom: var(--s-5);
+}
+
 .project-stores {
     display: flex;
     flex-wrap: wrap;

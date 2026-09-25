@@ -8,10 +8,12 @@
         1. <header>  Sticky navigation + theme/language toggles
         2. #hero     Name, tagline, CTAs
         3. #about    Bio + highlights
-        4. #experience  Timeline of recent roles
-        5. #skills   Tech-stack chip groups
-        6. #contact  Contact CTA + social links
-        7. <footer>  Year + credits
+        4. #apps     Indie apps (Faint, Still) with store buttons
+        5. #open-source  Open-source tooling (frnk)
+        6. #experience  Timeline of recent roles
+        7. #skills   Tech-stack chip groups
+        8. #contact  Contact CTA + social links
+        9. <footer>  Year + credits
 
       Editing rules:
         - All user-visible copy is driven by [data-i18n] attributes
@@ -26,7 +28,7 @@
     -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Senior mobile engineer with 10+ years of experience building Android and Kotlin Multiplatform apps." data-i18n-attr="content:meta.description" />
+    <meta name="description" content="Indie mobile developer and Kotlin Multiplatform specialist building Faint and Still, plus the open-source frnk toolkit. 10+ years of senior Android experience." data-i18n-attr="content:meta.description" />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)" />
@@ -43,11 +45,11 @@
           "name": "Juan Diego Garita",
           "alternateName": "JD Garita",
           "jobTitle": "Senior Mobile Engineer",
-          "description": "Senior mobile engineer with 10+ years of experience building Android and Kotlin Multiplatform apps.",
+          "description": "Indie mobile developer and Kotlin Multiplatform specialist building Faint and Still, plus the open-source frnk toolkit. 10+ years of senior Android experience.",
           "url": "https://jdgarita.dev/",
           "image": "https://jdgarita.dev/image/jd-avatar.png",
           "email": "mailto:hello@jdgarita.dev",
-          "knowsAbout": ["Android", "Kotlin", "Kotlin Multiplatform", "Jetpack Compose", "Compose Multiplatform"],
+          "knowsAbout": ["Android", "Kotlin", "Kotlin Multiplatform", "Jetpack Compose", "Compose Multiplatform", "Indie app development"],
           "sameAs": [
             "https://github.com/jdgarita",
             "https://linkedin.com/in/jdgarita"
@@ -60,6 +62,36 @@
           "name": "jdgarita.dev",
           "inLanguage": ["en", "es"],
           "publisher": { "@id": "https://jdgarita.dev/#person" }
+        },
+        {
+          "@type": "MobileApplication",
+          "@id": "https://jdgarita.dev/#faint",
+          "name": "Faint",
+          "alternateName": "Faint: Coffee Tasting Notes",
+          "description": "A companion app for specialty coffee lovers. Scan roaster tasting cards, track flavor profiles, log brewing parameters, and build a personalized coffee map.",
+          "url": "https://faint.coffee",
+          "operatingSystem": "Android, iOS",
+          "applicationCategory": "LifestyleApplication",
+          "sameAs": [
+            "https://play.google.com/store/apps/details?id=dev.jdgarita.faint",
+            "https://apps.apple.com/cr/app/faint-coffee-tasting-notes/id6802926949"
+          ],
+          "creator": { "@id": "https://jdgarita.dev/#person" },
+          "author": { "@id": "https://jdgarita.dev/#person" }
+        },
+        {
+          "@type": "MobileApplication",
+          "@id": "https://jdgarita.dev/#still",
+          "name": "Still",
+          "description": "Keep track of fridge and pantry contents with predictive shelf-life tracking and proactive reminders before food expires.",
+          "url": "https://jdgarita.dev/still/",
+          "operatingSystem": "Android",
+          "applicationCategory": "LifestyleApplication",
+          "sameAs": [
+            "https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack"
+          ],
+          "creator": { "@id": "https://jdgarita.dev/#person" },
+          "author": { "@id": "https://jdgarita.dev/#person" }
         }
       ]
     }
@@ -74,22 +106,22 @@
     <meta property="og:type" content="profile" />
     <meta property="og:site_name" content="jdgarita.dev" />
     <meta property="og:url" content="https://jdgarita.dev/" />
-    <meta property="og:title" content="JD Garita · Sr Mobile Engineer" data-i18n-attr="content:meta.title" />
-    <meta property="og:description" content="Senior mobile engineer with 10+ years of experience building Android and Kotlin Multiplatform apps." data-i18n-attr="content:meta.description" />
+    <meta property="og:title" content="Juan Diego Garita · Indie Mobile Developer &amp; Kotlin Multiplatform Specialist" data-i18n-attr="content:meta.title" />
+    <meta property="og:description" content="Indie mobile developer and Kotlin Multiplatform specialist building Faint and Still, plus the open-source frnk toolkit. 10+ years of senior Android experience." data-i18n-attr="content:meta.description" />
     <meta property="og:image" content="https://jdgarita.dev/image/og-image.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="JD Garita · Sr Mobile Engineer" data-i18n-attr="content:meta.title" />
+    <meta property="og:image:alt" content="Juan Diego Garita · Indie Mobile Developer &amp; Kotlin Multiplatform Specialist" data-i18n-attr="content:meta.title" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:locale:alternate" content="es_ES" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="JD Garita · Sr Mobile Engineer" data-i18n-attr="content:meta.title" />
-    <meta name="twitter:description" content="Senior mobile engineer with 10+ years of experience building Android and Kotlin Multiplatform apps." data-i18n-attr="content:meta.description" />
+    <meta name="twitter:title" content="Juan Diego Garita · Indie Mobile Developer &amp; Kotlin Multiplatform Specialist" data-i18n-attr="content:meta.title" />
+    <meta name="twitter:description" content="Indie mobile developer and Kotlin Multiplatform specialist building Faint and Still, plus the open-source frnk toolkit. 10+ years of senior Android experience." data-i18n-attr="content:meta.description" />
     <meta name="twitter:image" content="https://jdgarita.dev/image/og-image.jpg" />
-    <meta name="twitter:image:alt" content="JD Garita · Sr Mobile Engineer" data-i18n-attr="content:meta.title" />
+    <meta name="twitter:image:alt" content="Juan Diego Garita · Indie Mobile Developer &amp; Kotlin Multiplatform Specialist" data-i18n-attr="content:meta.title" />
 
-    <title data-i18n="meta.title">JD Garita · Sr Mobile Engineer</title>
+    <title data-i18n="meta.title">Juan Diego Garita · Indie Mobile Developer &amp; Kotlin Multiplatform Specialist</title>
 
     <!-- JD brand-mark favicon. SVG (theme-aware) for modern browsers, PNG/ICO fallbacks. -->
     <link rel="icon" href="image/favicon.svg" type="image/svg+xml" />
@@ -103,7 +135,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 
-    <link href="css/custom.css?v=2026-09-24" rel="stylesheet" type="text/css" />
+    <link href="css/custom.css?v=2026-09-24.2" rel="stylesheet" type="text/css" />
 
     <!--
       Inline no-FOUC theme setter.
@@ -159,8 +191,9 @@
 
                 <ul class="nav-menu" id="nav-menu">
                     <li><a href="#about"      data-i18n="nav.about">About</a></li>
-                    <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
-                    <li><a href="#projects"   data-i18n="nav.projects">Projects</a></li>
+                    <li><a href="#apps"        data-i18n="nav.apps">Apps</a></li>
+                    <li><a href="#open-source" data-i18n="nav.openSource">Open Source</a></li>
+                    <li><a href="#experience"  data-i18n="nav.experience">Experience</a></li>
                     <li><a href="#skills"     data-i18n="nav.skills">Skills</a></li>
                     <li><a href="#contact"    data-i18n="nav.contact">Contact</a></li>
                     <li><a href="resume/jd.pdf" class="nav-cta" data-i18n="nav.resume">Resume</a></li>
@@ -216,6 +249,161 @@
                         <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="about.highlight3">Agile practitioner — Scrum, Kanban, TDD, pair programming</span></li>
                     </ul>
                 </div>
+            </div>
+        </section>
+
+        <!-- =========================== INDIE APPS =========================== -->
+        <section id="apps" class="section section-alt" aria-labelledby="apps-heading">
+            <div class="container">
+                <h2 id="apps-heading" class="section-heading" data-i18n="apps.heading">Independent Apps</h2>
+                <p class="section-subheading" data-i18n="apps.subheading">Focused, production-ready cross-platform mobile apps built and maintained independently.</p>
+
+                <ul class="projects-grid">
+                    <li class="project-card">
+                        <h3 class="project-title">Faint</h3>
+                        <p class="project-tagline" data-i18n="projects.faint.tagline">AI-Powered Coffee Tasting Journal</p>
+                        <p class="project-description" data-i18n="projects.faint.description">A companion app for specialty coffee lovers. Scan roaster tasting cards, track flavor profiles, log brewing parameters, and build a personalized coffee map.</p>
+
+                        <ul class="chip-list project-tech" aria-label="Tech stack" data-i18n-attr="aria-label:a11y.techStack">
+                            <li class="chip">Kotlin Multiplatform</li>
+                            <li class="chip">Compose Multiplatform</li>
+                            <li class="chip">Cloudflare Workers</li>
+                            <li class="chip">RevenueCat</li>
+                        </ul>
+
+                        <div class="project-stores">
+                            <a class="store-btn store-btn--site"
+                               href="https://faint.coffee"
+                               aria-label="Faint landing page"
+                               data-i18n-attr="aria-label:a11y.faintLanding">
+                                <svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg>
+                                <span class="store-btn-labels">
+                                    <span class="store-btn-top" data-i18n="projects.store.visit">Visit</span>
+                                    <span class="store-btn-main" data-i18n="projects.store.landingPage">Landing page</span>
+                                </span>
+                            </a>
+
+                            <a class="store-btn store-btn--play"
+                               href="https://play.google.com/store/apps/details?id=dev.jdgarita.faint"
+                               rel="noopener"
+                               aria-label="Faint on Google Play"
+                               data-i18n-attr="aria-label:a11y.faintPlay">
+                                <svg class="icon icon--fill" aria-hidden="true"><use href="#i-brand-google-play"/></svg>
+                                <span class="store-btn-labels">
+                                    <span class="store-btn-top" data-i18n="projects.store.getItOn">Get it on</span>
+                                    <span class="store-btn-main">Google Play</span>
+                                </span>
+                            </a>
+
+                            <a class="store-btn store-btn--apple"
+                               href="https://apps.apple.com/cr/app/faint-coffee-tasting-notes/id6802926949"
+                               rel="noopener"
+                               aria-label="Faint on the App Store"
+                               data-i18n-attr="aria-label:a11y.faintAppStore">
+                                <svg class="icon icon--fill" aria-hidden="true"><use href="#i-brand-apple"/></svg>
+                                <span class="store-btn-labels">
+                                    <span class="store-btn-top" data-i18n="projects.store.downloadOn">Download on the</span>
+                                    <span class="store-btn-main">App Store</span>
+                                </span>
+                            </a>
+                        </div>
+                    </li>
+
+                    <li class="project-card">
+                        <h3 class="project-title">Still</h3>
+                        <p class="project-tagline" data-i18n="projects.still.tagline">Smart Food Freshness &amp; Waste Tracker</p>
+                        <p class="project-description" data-i18n="projects.still.description">Keep track of fridge and pantry contents with predictive shelf-life tracking and proactive reminders before food expires.</p>
+
+                        <ul class="chip-list project-tech" aria-label="Tech stack" data-i18n-attr="aria-label:a11y.techStack">
+                            <li class="chip">Kotlin Multiplatform</li>
+                            <li class="chip">Jetpack Compose</li>
+                            <li class="chip">Local-first Storage</li>
+                        </ul>
+
+                        <div class="project-stores">
+                            <a class="store-btn store-btn--site"
+                               href="https://jdgarita.dev/still/"
+                               aria-label="Still landing page"
+                               data-i18n-attr="aria-label:a11y.stillLanding">
+                                <svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg>
+                                <span class="store-btn-labels">
+                                    <span class="store-btn-top" data-i18n="projects.store.visit">Visit</span>
+                                    <span class="store-btn-main" data-i18n="projects.store.landingPage">Landing page</span>
+                                </span>
+                            </a>
+
+                            <a class="store-btn store-btn--play"
+                               href="https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack"
+                               rel="noopener"
+                               aria-label="Still on Google Play"
+                               data-i18n-attr="aria-label:a11y.stillPlay">
+                                <svg class="icon icon--fill" aria-hidden="true"><use href="#i-brand-google-play"/></svg>
+                                <span class="store-btn-labels">
+                                    <span class="store-btn-top" data-i18n="projects.store.getItOn">Get it on</span>
+                                    <span class="store-btn-main">Google Play</span>
+                                </span>
+                            </a>
+
+                            <span class="store-btn store-btn--apple is-disabled" aria-disabled="true">
+                                <svg class="icon icon--fill" aria-hidden="true"><use href="#i-brand-apple"/></svg>
+                                <span class="store-btn-labels">
+                                    <span class="store-btn-top" data-i18n="projects.store.availableOn">Available on</span>
+                                    <span class="store-btn-main" data-i18n="projects.store.comingSoon">App Store — Coming soon</span>
+                                </span>
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- =========================== OPEN SOURCE =========================== -->
+        <section id="open-source" class="section" aria-labelledby="open-source-heading">
+            <div class="container">
+                <h2 id="open-source-heading" class="section-heading" data-i18n="openSource.heading">Open Source &amp; Tooling</h2>
+                <p class="section-subheading" data-i18n="openSource.subheading">Reusable architectural frameworks, templates, and libraries created to speed up modern mobile development.</p>
+
+                <ul class="projects-grid">
+                    <li class="project-card">
+                        <h3 class="project-title">frnk</h3>
+                        <p class="project-tagline" data-i18n="projects.frnk.tagline">Modular Kotlin Multiplatform Toolkit</p>
+                        <p class="project-description" data-i18n="projects.frnk.description">An opinionated, production-grade architectural foundation for Kotlin Multiplatform apps. Features headless UI contracts, pluggable backends, and strict MVI pattern implementations to launch new mobile products in days.</p>
+
+                        <ul class="chip-list project-tech" aria-label="Tech stack" data-i18n-attr="aria-label:a11y.techStack">
+                            <li class="chip">Kotlin Multiplatform</li>
+                            <li class="chip">MVI Architecture</li>
+                            <li class="chip">Multi-Engine DI</li>
+                        </ul>
+
+                        <div class="project-stores">
+                            <a class="store-btn store-btn--site"
+                               href="https://jdgarita.dev/frnk/"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               aria-label="frnk landing page"
+                               data-i18n-attr="aria-label:a11y.frnkLanding">
+                                <svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg>
+                                <span class="store-btn-labels">
+                                    <span class="store-btn-top" data-i18n="projects.store.visit">Visit</span>
+                                    <span class="store-btn-main" data-i18n="projects.store.landingPage">Landing page</span>
+                                </span>
+                            </a>
+
+                            <a class="store-btn store-btn--github"
+                               href="https://github.com/jdgarita/frnk"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               aria-label="frnk source on GitHub"
+                               data-i18n-attr="aria-label:a11y.frnkSource">
+                                <svg class="icon icon--fill" aria-hidden="true"><use href="#i-brand-github"/></svg>
+                                <span class="store-btn-labels">
+                                    <span class="store-btn-top" data-i18n="projects.store.viewSourceOn">View source on</span>
+                                    <span class="store-btn-main">GitHub</span>
+                                </span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </section>
 
@@ -292,132 +480,8 @@
             </div>
         </section>
 
-        <!-- =========================== PROJECTS =========================== -->
-        <section id="projects" class="section" aria-labelledby="projects-heading">
-            <div class="container">
-                <h2 id="projects-heading" class="section-heading" data-i18n="projects.heading">Personal Projects</h2>
-                <p class="section-subheading" data-i18n="projects.subheading"></p>
-
-                <ul class="projects-grid">
-                    <li class="project-card">
-                        <h3 class="project-title">frnk</h3>
-                        <p class="project-tagline" data-i18n="projects.frnk.tagline">Open-source KMP toolkit</p>
-                        <p class="project-description" data-i18n="projects.frnk.description">A modular Kotlin Multiplatform foundation with headless UI, pluggable backends, and MVI architecture — built to accelerate indie app development. Open-source on GitHub.</p>
-
-                        <div class="project-stores">
-                            <a class="store-btn store-btn--site"
-                               href="https://jdgarita.dev/frnk/"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               aria-label="frnk landing page"
-                               data-i18n-attr="aria-label:a11y.frnkLanding">
-                                <svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg>
-                                <span class="store-btn-labels">
-                                    <span class="store-btn-top" data-i18n="projects.store.visit">Visit</span>
-                                    <span class="store-btn-main" data-i18n="projects.store.landingPage">Landing page</span>
-                                </span>
-                            </a>
-
-                            <a class="store-btn store-btn--github"
-                               href="https://github.com/jdgarita/frnk"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               aria-label="frnk source on GitHub"
-                               data-i18n-attr="aria-label:a11y.frnkSource">
-                                <svg class="icon icon--fill" aria-hidden="true"><use href="#i-brand-github"/></svg>
-                                <span class="store-btn-labels">
-                                    <span class="store-btn-top" data-i18n="projects.store.viewSourceOn">View source on</span>
-                                    <span class="store-btn-main">GitHub</span>
-                                </span>
-                            </a>
-                        </div>
-                    </li>
-
-                    <li class="project-card">
-                        <h3 class="project-title">Still</h3>
-                        <p class="project-tagline" data-i18n="projects.still.tagline">Food Expiry Tracker</p>
-                        <p class="project-description" data-i18n="projects.still.description">Track what's in your fridge and pantry, get timely reminders before food expires, and cut down on waste.</p>
-
-                        <div class="project-stores">
-                            <a class="store-btn store-btn--site"
-                               href="https://jdgarita.dev/still/"
-                               aria-label="Still landing page"
-                               data-i18n-attr="aria-label:a11y.stillLanding">
-                                <svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg>
-                                <span class="store-btn-labels">
-                                    <span class="store-btn-top" data-i18n="projects.store.visit">Visit</span>
-                                    <span class="store-btn-main" data-i18n="projects.store.landingPage">Landing page</span>
-                                </span>
-                            </a>
-
-                            <a class="store-btn store-btn--play"
-                               href="https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack"
-                               rel="noopener"
-                               aria-label="Still on Google Play">
-                                <svg class="icon icon--fill" aria-hidden="true"><use href="#i-brand-google-play"/></svg>
-                                <span class="store-btn-labels">
-                                    <span class="store-btn-top" data-i18n="projects.store.getItOn">Get it on</span>
-                                    <span class="store-btn-main">Google Play</span>
-                                </span>
-                            </a>
-
-                            <span class="store-btn store-btn--apple is-disabled" aria-disabled="true">
-                                <svg class="icon icon--fill" aria-hidden="true"><use href="#i-brand-apple"/></svg>
-                                <span class="store-btn-labels">
-                                    <span class="store-btn-top" data-i18n="projects.store.availableOn">Available on</span>
-                                    <span class="store-btn-main" data-i18n="projects.store.comingSoon">App Store — Coming soon</span>
-                                </span>
-                            </span>
-                        </div>
-                    </li>
-
-                    <li class="project-card">
-                        <h3 class="project-title">Faint</h3>
-                        <p class="project-tagline" data-i18n="projects.faint.tagline">Coffee Tasting Notes</p>
-                        <p class="project-description" data-i18n="projects.faint.description">AI coffee journal: Scan tasting cards, log your verdict &amp; map your journey.</p>
-
-                        <div class="project-stores">
-                            <a class="store-btn store-btn--site"
-                               href="https://faint.coffee"
-                               aria-label="Faint landing page"
-                               data-i18n-attr="aria-label:a11y.faintLanding">
-                                <svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg>
-                                <span class="store-btn-labels">
-                                    <span class="store-btn-top" data-i18n="projects.store.visit">Visit</span>
-                                    <span class="store-btn-main" data-i18n="projects.store.landingPage">Landing page</span>
-                                </span>
-                            </a>
-
-                            <a class="store-btn store-btn--play"
-                               href="https://play.google.com/store/apps/details?id=dev.jdgarita.faint"
-                               rel="noopener"
-                               aria-label="Faint on Google Play">
-                                <svg class="icon icon--fill" aria-hidden="true"><use href="#i-brand-google-play"/></svg>
-                                <span class="store-btn-labels">
-                                    <span class="store-btn-top" data-i18n="projects.store.getItOn">Get it on</span>
-                                    <span class="store-btn-main">Google Play</span>
-                                </span>
-                            </a>
-
-                            <a class="store-btn store-btn--apple"
-                               href="https://apps.apple.com/cr/app/faint-coffee-tasting-notes/id6802926949"
-                               rel="noopener"
-                               aria-label="Faint on the App Store"
-                               data-i18n-attr="aria-label:a11y.faintAppStore">
-                                <svg class="icon icon--fill" aria-hidden="true"><use href="#i-brand-apple"/></svg>
-                                <span class="store-btn-labels">
-                                    <span class="store-btn-top" data-i18n="projects.store.downloadOn">Download on the</span>
-                                    <span class="store-btn-main">App Store</span>
-                                </span>
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
         <!-- =========================== SKILLS =========================== -->
-        <section id="skills" class="section section-alt" aria-labelledby="skills-heading">
+        <section id="skills" class="section" aria-labelledby="skills-heading">
             <div class="container">
                 <h2 id="skills-heading" class="section-heading" data-i18n="skills.heading">Tech stack</h2>
                 <p class="section-subheading" data-i18n="skills.subheading"></p>
@@ -473,7 +537,7 @@
         </section>
 
         <!-- =========================== CONTACT =========================== -->
-        <section id="contact" class="section" aria-labelledby="contact-heading">
+        <section id="contact" class="section section-alt" aria-labelledby="contact-heading">
             <div class="container contact-inner">
                 <h2 id="contact-heading" class="section-heading" data-i18n="contact.heading">Let's talk</h2>
                 <p class="section-body" data-i18n="contact.body">Open to senior Android and Kotlin Multiplatform roles, contract work and interesting collaborations.</p>
