@@ -276,10 +276,58 @@
         }
     };
 
-    /* ---------- Firebase Analytics ---------- */
-    var analytics = null;
+    /* ---------- Analytics (first-party beacon → /e → PostHog) ----------
+       Each event is POSTed to /e on this site; worker.js validates it and relays
+       it to PostHog server-side. No third-party script, no cookie. The only
+       identifier is a random id in sessionStorage (one tab, gone when it closes);
+       the visit's referrer + UTM tags are kept there too, so a click after an
+       internal navigation still credits where the visit came from.
+       Fire-and-forget: sendBeacon never blocks a click or a navigation. */
+    var beaconBase = null;
+
+    function initBeacon() {
+        if (!window.JSON || !window.Blob || !window.URLSearchParams) return;
+        var vid;
+        try { vid = sessionStorage.getItem('jd_vid'); } catch (e) {}
+        if (!vid) {
+            vid = window.crypto && crypto.randomUUID
+                ? crypto.randomUUID()
+                : Date.now().toString(36) + Math.random().toString(36).slice(2);
+            try { sessionStorage.setItem('jd_vid', vid); } catch (e) {}
+        }
+
+        var query = new URLSearchParams(location.search);
+        var attribution = { ref: document.referrer };
+        var tagged = false;
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (key) {
+            if (query.get(key)) { attribution[key] = query.get(key); tagged = true; }
+        });
+        var internal = false;
+        try { internal = new URL(document.referrer).host === location.host; } catch (e) {}
+        try {
+            var stored = JSON.parse(sessionStorage.getItem('jd_attr'));
+            if (!tagged && internal && stored) attribution = stored;
+            else sessionStorage.setItem('jd_attr', JSON.stringify(attribution));
+        } catch (e) {}
+
+        beaconBase = { vid: vid, url: location.href };
+        for (var key in attribution) beaconBase[key] = attribution[key];
+        // 404.html marks itself so a missing path doesn't read as a real page view.
+        if (document.documentElement.getAttribute('data-page') === '404') beaconBase.nf = true;
+    }
+
     function logEvent(name, params) {
-        if (analytics) { try { analytics.logEvent(name, params); } catch (e) {} }
+        if (!beaconBase) return;
+        var payload = { e: name, lang: document.documentElement.getAttribute('lang') };
+        var key;
+        for (key in beaconBase) payload[key] = beaconBase[key];
+        for (key in params) payload[key] = params[key];
+        var body = JSON.stringify(payload);
+        try {
+            // text/plain keeps it a simple request; worker.js parses the body whatever its type.
+            if (navigator.sendBeacon && navigator.sendBeacon('/e', new Blob([body], { type: 'text/plain' }))) return;
+            if (window.fetch) fetch('/e', { method: 'POST', body: body, keepalive: true }).catch(function () {});
+        } catch (e) {}
     }
 
     /* ---------- Helpers ---------- */
@@ -336,26 +384,14 @@
 
     /* ---------- Boot ---------- */
     document.addEventListener('DOMContentLoaded', function () {
-        // Firebase init (deferred SDK scripts have executed by now)
-        if (typeof firebase !== 'undefined' && firebase.initializeApp) {
-            try {
-                firebase.initializeApp({
-                    apiKey: 'AIzaSyB4OruGxSx4X-AV9OOcwRULNcharw6kNuw',
-                    authDomain: 'jdgarita-site.firebaseapp.com',
-                    projectId: 'jdgarita-site',
-                    storageBucket: 'jdgarita-site.firebasestorage.app',
-                    messagingSenderId: '319136318898',
-                    appId: '1:319136318898:web:88b2842ffefa0e20c250ab',
-                    measurementId: 'G-NYVB5C810D'
-                });
-                analytics = firebase.analytics();
-            } catch (e) {}
-        }
-
         // Initial language (the inline head script already set <html lang>)
         var lang = document.documentElement.getAttribute('lang') || 'en';
         if (lang !== 'en' && lang !== 'es') lang = 'en';
         setLang(lang);
+
+        // Page view, once the language is known (the beacon records it).
+        initBeacon();
+        logEvent('pageview', {});
 
         // Theme toggle
         var themeBtn = $('#theme-toggle');
