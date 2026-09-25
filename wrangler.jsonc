@@ -17,7 +17,7 @@
     "binding": "ASSETS",
     // Only the beacon runs the script; everything else is served from the static assets.
     "run_worker_first": ["/e"],
-    // Unknown paths serve the nearest 404.html (the root one) with status 404, as GitHub Pages did.
+    // Unknown paths serve the nearest 404.html (the root one) with status 404.
     // html_handling stays at its default, auto-trailing-slash: /still/privacy-policy 307s to
     // /still/privacy-policy/, the form every canonical and sitemap URL uses.
     "not_found_handling": "404-page"

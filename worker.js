@@ -25,7 +25,7 @@ const EVENTS = {
   select_content: {
     name: 'select_content',
     props: {
-      content_type: oneOf('nav_section', 'contact_link', 'project_link'),
+      content_type: oneOf('nav_section', 'contact_link', 'project_link', 'experience_app'),
       content_id: slug,
     },
   },
@@ -133,6 +133,9 @@ async function handleBeacon(request, env, ctx) {
   const referrer = withoutQuery(str(beacon.ref));
   const properties = {
     site: 'jdgarita.dev',
+    // The host the beacon was sent to (jdgarita.dev in production). PostHog's test-account filter
+    // and web analytics key off $host, so without it these events are hidden there.
+    $host: new URL(request.url).hostname,
     $current_url: currentUrl,
     $pathname: currentUrl ? new URL(currentUrl).pathname : undefined,
     $referrer: referrer || '$direct',

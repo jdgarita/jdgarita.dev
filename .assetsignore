@@ -28,9 +28,6 @@ scripts
 # Local secrets for wrangler dev (POSTHOG_API_KEY). Gitignored too.
 .dev.vars
 
-# GitHub Pages leftovers (kept only until the Workers cutover is verified, then deleted).
-CNAME
-.nojekyll
 
 # Untracked leftovers from the abandoned Kobweb / Firebase experiments (see CLAUDE.md).
 site
