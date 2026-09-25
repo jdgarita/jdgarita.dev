@@ -42,7 +42,7 @@
 
     <main class="container doc" id="main" tabindex="-1">
         <h1>Privacy Policy</h1>
-        <p class="doc-meta">Effective date: <time datetime="2026-05-15">May 15, 2026</time></p>
+        <p class="doc-meta">Effective date: <time datetime="2026-09-24">September 24, 2026</time></p>
 
         <h2>Overview</h2>
         <p class="doc-lead">This Privacy Policy explains what data Still ("we", "us", "the app") handles, how it is used, and the choices you have. Still is a Kotlin Multiplatform mobile application for Android and iOS that helps you track product expiration dates and reminders.</p>
@@ -71,8 +71,8 @@
         <p>RevenueCat's privacy practices are governed by their own privacy policy: <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">revenuecat.com/privacy</a>.</p>
         <p>You can restore previous purchases at any time from Settings &gt; Restore Purchases, and you can manage or cancel your subscription from Settings &gt; Manage Subscription.</p>
 
-        <h2>3. Analytics and Crash Reporting (Android Only)</h2>
-        <p>On Android, Still uses two services from Google.</p>
+        <h2>3. Analytics and Crash Reporting</h2>
+        <p>On Android, the Still app uses two services from Google.</p>
         <p><strong>Firebase Analytics.</strong> We log anonymous, aggregated events about how the app is used so we can understand which features are useful and which ones need work. Examples of events we log:</p>
         <ul>
             <li>Screens you view (product list, settings, paywall, onboarding, archived products).</li>
@@ -84,6 +84,7 @@
         <p><strong>Firebase Crashlytics.</strong> When the app crashes or hits an unexpected error, Crashlytics records non-personal diagnostic information so we can fix the bug — typically the stack trace, the device model, the operating system version, and the Still app version. It does not capture the contents of the screen you were on or the products you had entered.</p>
         <p>The iOS version of Still does not currently use Firebase Analytics or Crashlytics. Nothing is sent to any analytics or crash-reporting service from iOS.</p>
         <p>Google's handling of Firebase data is governed by the Firebase Privacy and Security policy: <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">firebase.google.com/support/privacy</a>. You can opt out of Google Analytics on Android via your device's Google account settings.</p>
+        <p><strong>Website analytics (jdgarita.dev/still).</strong> This applies to the Still web page, not the app. The landing page records each page view and each click on its Google Play button, so we can see how visitors find Still and whether they head to the store. Each event includes the page address (without its query string), the referring site, any campaign tags in the link (UTM parameters), the page language, and the country derived by our hosting provider. The only identifier is a random ID stored in your browser's session storage for that one tab; it is deleted when the tab closes. No cookie is set, and no third-party script is loaded. Events go first to our own server on jdgarita.dev, which forwards them to PostHog without your IP address. The privacy policy and terms pages do not record anything.</p>
 
         <h2>4. Reminders and Notifications</h2>
         <p>Still can send local notifications to remind you about expiring products — both a weekly digest (free and Pro) and per-product reminders (Pro only).</p>
@@ -131,6 +132,14 @@
             </ul>
         </div>
         <div class="svc">
+            <h3>PostHog</h3>
+            <ul>
+                <li>Purpose: Anonymous page-view and store-click analytics for the Still web page (jdgarita.dev/still). Not used by the app.</li>
+                <li>Platforms: Website only.</li>
+                <li>Privacy policy: <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">posthog.com/privacy</a></li>
+            </ul>
+        </div>
+        <div class="svc">
             <h3>Firebase Crashlytics</h3>
             <ul>
                 <li>Purpose: Crash and error reporting.</li>
@@ -144,6 +153,7 @@
             <li>On-device data (your products, settings, reminders) is retained as long as Still is installed. Uninstalling the app deletes it from the device. It may also be included in Android's Google Auto Backup if you have that enabled in your Google account.</li>
             <li>Subscription records held by Google Play and RevenueCat are retained per their respective policies and are required for billing, refunds, and entitlement validation.</li>
             <li>Analytics and crash data sent to Firebase (Android only) are retained according to Google's Firebase data retention policy.</li>
+            <li>Website analytics events sent to PostHog are retained according to PostHog's data retention settings for our project.</li>
         </ul>
         <p>Because Still does not have an account system, there is no Still account to delete. To remove your local data, uninstall the app. To remove subscription records, contact Google Play or RevenueCat directly.</p>
 
