@@ -375,8 +375,9 @@ ul {
     display: inline;
 }
 
-/* Desktop nav */
-@media (min-width: 768px) {
+/* Desktop nav — from 1024px. Seven links + the full brand name need ~1030px,
+   so tablets (768–1023px) keep the hamburger menu instead of wrapping. */
+@media (min-width: 1024px) {
     .nav-toggle {
         display: none;
     }
@@ -395,6 +396,21 @@ ul {
 
     .brand-name {
         font-size: var(--fs-base);
+    }
+
+    .nav-menu a {
+        white-space: nowrap;
+    }
+}
+
+/* Narrow desktops: tighten link padding so the menu stays on one row. */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .nav-menu {
+        gap: var(--s-1);
+    }
+
+    .nav-menu a {
+        padding: var(--s-2) var(--s-3);
     }
 }
 
