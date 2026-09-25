@@ -8,7 +8,7 @@ A plain static personal site for `jdgarita.dev`, served by GitHub Pages directly
 
 Agent-facing standards live alongside this file: `AGENTS.md` (priorities, commands, git rules), `ARCHITECTURE.md` (stack, routing, where things live), and `CONVENTIONS.md` (UI, styling, JS, asset, and commit rules).
 
-Page sections, in order: Hero → About → Experience → Projects → Skills → Contact. Experience and Skills alternate on the `section-alt` background so the banding stays consistent.
+Page sections, in order: Hero → About → Apps (`#apps`) → Open Source (`#open-source`) → Experience → Skills → Contact. Backgrounds alternate: Apps, Experience, and Contact sit on `section-alt`; About, Open Source, and Skills are plain. Keep that alternation if sections move. Both project sections reuse the `.project-card` markup (analytics reads `.project-title` for the GA4 slug) and share the `projects.<app>.*` / `projects.store.*` i18n keys; section headings live under `apps.*` and `openSource.*`.
 
 ## Branches
 

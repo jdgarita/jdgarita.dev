@@ -43,8 +43,8 @@ Any other path serves `404.html` (GitHub Pages behavior; it uses root-absolute a
 `noindex`). Crawlers are pointed at `sitemap.xml` by `robots.txt`.
 
 Adding a page means adding a directory with an `index.html` (and a `<url>` entry in `sitemap.xml`). There is no client-side
-router; in-page navigation on the root uses `#hero`, `#about`, `#experience`, `#projects`,
-`#skills`, `#contact` anchors.
+router; in-page navigation on the root uses `#hero`, `#about`, `#apps`, `#open-source`,
+`#experience`, `#skills`, `#contact` anchors.
 
 ### Two sub-page patterns
 
@@ -98,7 +98,7 @@ JS. Use this for app mini-sites whose branding must evolve independently of the 
 | Design tokens (color, type, spacing, radius, motion) | `:root` block at the top of `css/custom.css`; dark overrides under `:root[data-theme="dark"]` |
 | Theme / language state | `localStorage.theme` and `localStorage.lang`, reflected on `<html data-theme>` / `<html lang>`; no-FOUC inline script in each page `<head>` |
 | Static assets | `image/`, `resume/` |
-| Portfolio entries | Projects section markup in `index.html` + `projects.*` keys in i18n. There are no Markdown/MDX content files or a blog. |
+| Portfolio entries | Apps (`#apps`) and Open Source (`#open-source`) section markup in `index.html` + `apps.*`, `openSource.*`, and `projects.*` keys in i18n. There are no Markdown/MDX content files or a blog. |
 | SEO / social meta | Hard-coded in each page `<head>` (OG/Twitter must be static because scrapers don't run JS) |
 | Analytics events | `logEvent` helper inside the IIFE in `js/custom.js` |
 
