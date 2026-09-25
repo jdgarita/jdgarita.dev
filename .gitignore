@@ -19,3 +19,7 @@ kotlin-js-store/
 
 # Local agent spawner (includes ~/.agents/Makefile.spawners) — machine-specific
 Makefile
+
+# Cloudflare Workers (wrangler) local state and secrets
+.wrangler/
+.dev.vars
