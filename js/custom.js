@@ -43,6 +43,7 @@
             'a11y.faintPlay': 'Faint on Google Play',
             'a11y.stillPlay': 'Still on Google Play',
             'a11y.techStack': 'Tech stack',
+            'a11y.aknghtStudios': 'AKnght Studios website (external site)',
             'a11y.frnkChangelog': 'View frnk changelog on GitHub',
             'nav.about': 'About',
             'nav.apps': 'Indie Apps',
@@ -115,6 +116,10 @@
             'skills.group.architecture': 'Architecture',
             'contact.heading': "Let's talk",
             'contact.body': 'Open to senior Android and Kotlin Multiplatform roles, contract work and interesting collaborations.',
+            'friends.heading': 'Friends & fellow makers',
+            'friends.subheading': 'Independent studios run by friends of mine. Each one is its own business, unaffiliated with me.',
+            'friends.aknght.description': 'Games, apps and tools for writers, from a small team that has always worked remotely.',
+            'friends.disclaimer': "Shared as a courtesy: no payment, partnership, or business relationship. External sites are operated independently, and I'm not responsible for their content.",
             'footer.rights': 'All rights reserved.',
             'notfound.title': 'Page not found',
             'notfound.body': "The page you're looking for doesn't exist or has moved.",
@@ -166,6 +171,7 @@
             'a11y.faintPlay': 'Faint en Google Play',
             'a11y.stillPlay': 'Still en Google Play',
             'a11y.techStack': 'Stack tecnológico',
+            'a11y.aknghtStudios': 'Sitio web de AKnght Studios (sitio externo)',
             'a11y.frnkChangelog': 'Ver el changelog de frnk en GitHub',
             'nav.about': 'Sobre Mí',
             'nav.apps': 'Apps indie',
@@ -238,6 +244,10 @@
             'skills.group.architecture': 'Arquitectura',
             'contact.heading': 'Hablemos',
             'contact.body': 'Abierto a roles senior de Android y Kotlin Multiplatform, trabajo por contrato y colaboraciones interesantes.',
+            'friends.heading': 'Amigos y otros creadores',
+            'friends.subheading': 'Estudios independientes de amigos míos. Cada uno es un negocio propio, sin afiliación conmigo.',
+            'friends.aknght.description': 'Juegos, apps y herramientas para escritores, de un pequeño equipo que siempre ha trabajado de forma remota.',
+            'friends.disclaimer': 'Compartido como cortesía: sin pago, alianza ni relación comercial. Los sitios externos se operan de forma independiente y no soy responsable de su contenido.',
             'footer.rights': 'Todos los derechos reservados.',
             'notfound.title': 'Página no encontrada',
             'notfound.body': 'La página que buscas no existe o se ha movido.',
@@ -484,6 +494,16 @@
                 logEvent('select_content', {
                     content_type: 'contact_link',
                     content_id: type
+                });
+            });
+        });
+
+        // Friends section — outbound links to independent studios.
+        $$('.friend-link').forEach(function (link) {
+            link.addEventListener('click', function () {
+                logEvent('select_content', {
+                    content_type: 'friend_link',
+                    content_id: link.getAttribute('data-friend') || 'unknown'
                 });
             });
         });

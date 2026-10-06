@@ -99,7 +99,8 @@ test('each event keeps only its allowlisted properties', async () => {
   await call(beacon({ e: 'store_click', vid: 'v1', url: `${SITE}/still/`, platform: 'android', placement: 'hero' }));
   await call(beacon({ e: 'theme_toggle', vid: 'v1', url: SITE, theme: 'dark', content_id: 'sneaky' }));
   await call(beacon({ e: 'select_content', vid: 'v1', url: SITE, content_type: 'experience_app', content_id: 'experian' }));
-  const [select, download, store, theme, experience] = sent.map((s) => s.body);
+  await call(beacon({ e: 'select_content', vid: 'v1', url: SITE, content_type: 'friend_link', content_id: 'aknght-studios' }));
+  const [select, download, store, theme, experience, friend] = sent.map((s) => s.body);
   assert.equal(select.event, 'select_content');
   assert.equal(select.properties.content_type, 'project_link');
   assert.equal(select.properties.content_id, 'google_play_faint');
@@ -113,6 +114,8 @@ test('each event keeps only its allowlisted properties', async () => {
   assert.equal(theme.properties.content_id, undefined);
   assert.equal(experience.properties.content_type, 'experience_app');
   assert.equal(experience.properties.content_id, 'experian');
+  assert.equal(friend.properties.content_type, 'friend_link');
+  assert.equal(friend.properties.content_id, 'aknght-studios');
 });
 
 test('invalid property values are dropped, not relayed', async () => {

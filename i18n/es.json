@@ -17,6 +17,7 @@
   "a11y.faintPlay": "Faint en Google Play",
   "a11y.stillPlay": "Still en Google Play",
   "a11y.techStack": "Stack tecnológico",
+  "a11y.aknghtStudios": "Sitio web de AKnght Studios (sitio externo)",
 
   "nav.about": "Sobre Mí",
   "nav.apps": "Apps indie",
@@ -98,6 +99,11 @@
 
   "contact.heading": "Hablemos",
   "contact.body": "Abierto a roles senior de Android y Kotlin Multiplatform, trabajo por contrato y colaboraciones interesantes.",
+
+  "friends.heading": "Amigos y otros creadores",
+  "friends.subheading": "Estudios independientes de amigos míos. Cada uno es un negocio propio, sin afiliación conmigo.",
+  "friends.aknght.description": "Juegos, apps y herramientas para escritores, de un pequeño equipo que siempre ha trabajado de forma remota.",
+  "friends.disclaimer": "Compartido como cortesía: sin pago, alianza ni relación comercial. Los sitios externos se operan de forma independiente y no soy responsable de su contenido.",
 
   "footer.rights": "Todos los derechos reservados.",
   "notfound.title": "Página no encontrada",

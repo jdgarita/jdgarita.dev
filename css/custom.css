@@ -946,6 +946,59 @@ ul {
     color: var(--accent);
 }
 
+/* ---------- Friends ---------- */
+/* Deliberately quieter than .project-card: these are other people's
+   studios, not JD's own work. */
+.friends-inner {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.friends-list {
+    display: grid;
+    gap: var(--s-4);
+}
+
+.friend-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    padding: var(--s-5) var(--s-6);
+}
+
+.friend-name {
+    font-size: var(--fs-lg);
+    margin: 0 0 var(--s-2);
+}
+
+.friend-link {
+    color: var(--fg);
+}
+
+.friend-link:hover {
+    color: var(--accent);
+}
+
+.friend-description {
+    color: var(--fg-muted);
+    margin-bottom: var(--s-3);
+}
+
+.friend-domain {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--fg-muted);
+    margin: 0;
+}
+
+.friends-disclaimer {
+    color: var(--fg-muted);
+    font-size: var(--fs-sm);
+    text-align: center;
+    max-width: 60ch;
+    margin: var(--s-6) auto 0;
+}
+
 /* ---------- Contact ---------- */
 .contact-inner {
     max-width: 720px;
