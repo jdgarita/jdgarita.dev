@@ -25,7 +25,7 @@ const EVENTS = {
   select_content: {
     name: 'select_content',
     props: {
-      content_type: oneOf('nav_section', 'contact_link', 'project_link', 'experience_app'),
+      content_type: oneOf('nav_section', 'contact_link', 'project_link', 'experience_app', 'friend_link'),
       content_id: slug,
     },
   },
