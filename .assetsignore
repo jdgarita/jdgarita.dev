@@ -28,11 +28,6 @@ scripts
 # Local secrets for wrangler dev (POSTHOG_API_KEY). Gitignored too.
 .dev.vars
 
-
-# Untracked leftovers from the abandoned Kobweb / Firebase experiments (see CLAUDE.md).
-site
-build
-.gradle
-kotlin-js-store
+# Local-only files that are git-ignored but would still be uploaded if present.
 node_modules
 Makefile

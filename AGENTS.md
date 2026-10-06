@@ -62,9 +62,9 @@ in the repo root are what Cloudflare Workers Static Assets serves (minus `.asset
 Serve over HTTP rather than `file://` so `fetch('i18n/*.json')` works the way it does in
 production. `file://` previews fall back to the embedded dictionary in `js/custom.js`.
 
-Ignore these untracked or legacy directories entirely; they are not the project:
-`site/`, `build/`, `.gradle/`, `kotlin-js-store/`, `node_modules/`. If a task mentions
-Kotlin, Kobweb, Compose, or Firebase hosting, confirm with the owner before touching `site/`.
+A Kobweb (Kotlin/JS) rewrite and a Firebase hosting experiment were abandoned and removed.
+If a task mentions Kotlin/JS, Kobweb, or Firebase hosting for the site, confirm with the owner
+before reintroducing either.
 
 ## Validation checklist before finishing
 

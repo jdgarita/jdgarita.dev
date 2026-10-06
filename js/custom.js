@@ -489,7 +489,7 @@
         });
 
         // Project card outbound links — unified under one content_type so
-        // they group in GA4. content_id is "<target>_<project>", with the
+        // they group in PostHog. content_id is "<target>_<project>", with the
         // project slug read from the enclosing card's title.
         function projectSlug(el) {
             var card = el.closest('.project-card');
