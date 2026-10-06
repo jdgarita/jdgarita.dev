@@ -7,7 +7,7 @@ instructions see `AGENTS.md`; for exhaustive per-file guidance see `CLAUDE.md`.
 
 | Concern | Choice | Notes |
 | --- | --- | --- |
-| Framework | **None.** Hand-written HTML5. | No Astro, Next.js, React, or Kotlin/JS. A Kobweb rewrite was attempted and abandoned; its leftovers (`site/`, `build/`, `.gradle/`, `kotlin-js-store/`) are git-ignored. |
+| Framework | **None.** Hand-written HTML5. | No Astro, Next.js, React, or Kotlin/JS. A Kobweb rewrite was attempted and abandoned; its leftovers have been removed. |
 | Styling | **Vanilla CSS with custom properties** (`css/custom.css`) | Design tokens on `:root` (light) and `:root[data-theme="dark"]` (dark). No Tailwind, Sass, or PostCSS. |
 | Scripting | **Vanilla JavaScript, ES5 syntax** (`js/custom.js`) | Single IIFE, `'use strict'`, `var` only, no modules, no TypeScript, no bundler. |
 | Icons | Inline SVG sprite per page: Lucide (ISC) UI icons + Simple Icons (CC0) brand marks | No icon library, no icon font; `.icon` uses `currentColor`. See CLAUDE.md → Icons. |
@@ -118,11 +118,3 @@ carries its own inline copy of the analytics beacon; the legal docs have none). 
    and mobile nav, and sends a `pageview` beacon to `/e`.
 4. Toggling theme or language updates `<html>` attributes and `localStorage`, then
    re-applies the dictionary in place. No page reload.
-
-## Known debt
-
-- `node_modules/` (leftover from the abandoned Firebase experiment) was tracked in git
-  until September 2026 and is now untracked and git-ignored. It may still exist on local
-  checkouts; it is not served or referenced by any page. Do not re-add it.
-- The Kobweb leftovers (`site/` and friends) are git-ignored but may still exist on local
-  checkouts. Never treat them as the project.

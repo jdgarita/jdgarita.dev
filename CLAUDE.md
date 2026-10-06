@@ -8,7 +8,7 @@ A plain static personal site for `jdgarita.dev`, served by **Cloudflare Workers 
 
 Agent-facing standards live alongside this file: `AGENTS.md` (priorities, commands, git rules), `ARCHITECTURE.md` (stack, routing, where things live), and `CONVENTIONS.md` (UI, styling, JS, asset, and commit rules).
 
-Page sections, in order: Hero → About → Apps (`#apps`) → Open Source (`#open-source`) → Experience → Skills → Contact. Backgrounds alternate: Apps, Experience, and Contact sit on `section-alt`; About, Open Source, and Skills are plain. Keep that alternation if sections move. Both project sections reuse the `.project-card` markup (analytics reads `.project-title` for the GA4 slug) and share the `projects.<app>.*` / `projects.store.*` i18n keys; section headings live under `apps.*` and `openSource.*`.
+Page sections, in order: Hero → About → Apps (`#apps`) → Open Source (`#open-source`) → Experience → Skills → Contact. Backgrounds alternate: Apps, Experience, and Contact sit on `section-alt`; About, Open Source, and Skills are plain. Keep that alternation if sections move. Both project sections reuse the `.project-card` markup (analytics reads `.project-title` for the `content_id` slug) and share the `projects.<app>.*` / `projects.store.*` i18n keys; section headings live under `apps.*` and `openSource.*`.
 
 ## Branches
 
@@ -20,7 +20,7 @@ Tracked, load-bearing:
 - `index.html` — single-page site, all sections inline, semantic landmarks
 - `frnk/index.html` — sub-page for the frnk project, reuses the root `css/` and `js/`
 - `still/` — standalone mini-site for the **Still** app. `still/index.html` is the **marketing landing page** (own sheet `still/landing.css`, ported from the app's "Culinary Arc" design tokens); `still/privacy-policy/` + `still/terms-and-conditions/` are the legal docs (own sheet `still/still.css`), linked from the landing footer. Self-contained — **no** shared JS/i18n; the landing has its own inline copy of the analytics beacon. See "Sub-pages" for why it deviates.
-- `worker.js` + `wrangler.jsonc` + `.assetsignore` + `_headers` — the Cloudflare Worker: `worker.js` runs only for `POST /e` (validates analytics beacons and relays them to PostHog); everything else is served as static assets. **`.assetsignore` lists every path that must never be public** (docs, `worker.js`, `wrangler.jsonc`, `scripts/`, `.github`, the untracked Kobweb leftovers…) — Workers uploads the repo root verbatim, so add any new non-page file there. `_headers` keeps `*.workers.dev` URLs `noindex`.
+- `worker.js` + `wrangler.jsonc` + `.assetsignore` + `_headers` — the Cloudflare Worker: `worker.js` runs only for `POST /e` (validates analytics beacons and relays them to PostHog); everything else is served as static assets. **`.assetsignore` lists every path that must never be public** (docs, `worker.js`, `wrangler.jsonc`, `scripts/`, `.github`…) — Workers uploads the repo root verbatim, so add any new non-page file there. `_headers` keeps `*.workers.dev` URLs `noindex`.
 - `scripts/worker.test.mjs` — Worker tests (`node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test scripts/worker.test.mjs`).
 - `css/custom.css` — token-driven stylesheet (CSS custom properties)
 - `js/custom.js` — theme toggle, language toggle, i18n loader, mobile nav
@@ -32,10 +32,7 @@ Tracked, load-bearing:
 - **SEO files** — `robots.txt` (allow all, points to the sitemap), `sitemap.xml` (the five public URLs; bump a page's `<lastmod>` when its content changes materially, add an entry for any new page), and `404.html` (served by the Worker's `not_found_handling: "404-page"` for any missing path at any depth; `<html data-page="404">` flags its page views as `not_found`, so it uses root-absolute `/css/…`, `/js/…` URLs and `data-i18n-base="/"`; `noindex`). Every public page has a `<link rel="canonical">` and a JSON-LD block (`Person` + `WebSite` on root, `SoftwareSourceCode` on frnk, `MobileApplication` on the Still landing). Like OG meta, JSON-LD is English-only and hard-coded; keep it in sync with the copy and never add ratings/review counts that aren't real.
 - `.github/workflows/claude-code-review.yml`, `claude.yml` — GitHub Actions that run Claude Code on PRs (no app-side CI)
 
-Untracked and **should be ignored** — leftovers from an abandoned Kobweb (Kotlin/JS) rewrite and an old Firebase experiment. Do not treat these as the project:
-- `site/`, `build/`, `.gradle/`, `kotlin-js-store/`, `node_modules/`
-
-If a task mentions Kotlin, Kobweb, Compose, or Firebase, confirm with the user before touching `site/` — it's stale and the likely intent is the static site at the repo root.
+A Kobweb (Kotlin/JS) rewrite and a Firebase hosting experiment were both abandoned and their leftovers removed. If a task mentions Kotlin/JS, Kobweb, or Firebase hosting for the site, confirm with the user — the intent is almost always the static site at the repo root.
 
 ## Working on the site
 

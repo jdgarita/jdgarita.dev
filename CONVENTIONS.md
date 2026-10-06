@@ -107,7 +107,7 @@ There is no component framework. "Components" are **markup patterns + CSS classe
   Remove dead rules and dead code when you touch a file.
 - **Documents.** `resume/jd.pdf` stays under ~100 KB; compress before committing.
 - **Nothing binary that isn't served.** Do not commit design sources, screenshots, or
-  build output. `node_modules/` and Kobweb artifacts are legacy and must not grow.
+  build output. Never commit `node_modules/` or build artifacts.
 
 ## 6. SEO and social metadata
 
