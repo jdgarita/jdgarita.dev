@@ -26,7 +26,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="description" content="Still is a quiet, on-device peak-flavor tracker for the food in your kitchen. Track the peak, cook calmly, and waste nothing. Free for Android — iOS coming soon." />
+    <meta name="description" content="Still is a quiet, on-device peak-flavor tracker for the food in your kitchen. Track the peak, cook calmly, and waste nothing. On iOS and Android, free for 7 days." />
     <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
 
@@ -38,12 +38,12 @@
     <meta property="og:site_name" content="Still" />
     <meta property="og:url" content="https://jdgarita.dev/still/" />
     <meta property="og:title" content="Still — Cook at the peak. Waste none." />
-    <meta property="og:description" content="A quiet, on-device peak-flavor tracker for the food in your kitchen. Free for Android — iOS coming soon." />
+    <meta property="og:description" content="A quiet, on-device peak-flavor tracker for the food in your kitchen. On iOS and Android, free for 7 days." />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Still — Cook at the peak. Waste none." />
-    <meta name="twitter:description" content="A quiet, on-device peak-flavor tracker for the food in your kitchen. Free for Android — iOS coming soon." />
+    <meta name="twitter:description" content="A quiet, on-device peak-flavor tracker for the food in your kitchen. On iOS and Android, free for 7 days." />
 
-    <!-- Structured data (schema.org). Android only until iOS ships; no ratings (keep claims honest). -->
+    <!-- Structured data (schema.org). No ratings or prices (keep claims honest; prices vary by region and store). -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -51,10 +51,9 @@
       "name": "Still",
       "description": "A quiet, on-device peak-flavor tracker for the food in your kitchen.",
       "url": "https://jdgarita.dev/still/",
-      "operatingSystem": "Android",
+      "operatingSystem": "Android, iOS",
       "applicationCategory": "LifestyleApplication",
       "installUrl": "https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "author": {
         "@type": "Person",
         "@id": "https://jdgarita.dev/#person",
@@ -163,13 +162,13 @@
                     <h1 id="hero-title" class="hero__title" data-i18n-html="hero.h1">Track the peak.<br/>Cook <span class="accent">calmly</span>.<br/>Waste nothing.</h1>
                     <p class="hero__lede" data-i18n="hero.lede">Still follows every ingredient through its Culinary Arc — from resting, to peak, to action — so you cook each one at its best and never throw food away again.</p>
                     <div class="hero__cta-row">
-                        <span class="store-btn is-soon" aria-disabled="true">
+                        <a class="store-btn" data-store="ios" data-placement="hero" href="https://apps.apple.com/app/id6819700105" target="_blank" rel="noopener noreferrer" aria-label="Download Still on the App Store" data-i18n-attr="aria-label:a11y.appstore">
                             <svg class="store-btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
                             <span class="store-btn__text">
-                                <span class="store-btn__sub" data-i18n="store.appstoreSub">Coming soon to the</span>
+                                <span class="store-btn__sub" data-i18n="store.appstoreSub">Download on the</span>
                                 <span class="store-btn__main">App Store</span>
                             </span>
-                        </span>
+                        </a>
                         <a class="store-btn" data-store="android" data-placement="hero" href="https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack" target="_blank" rel="noopener noreferrer" aria-label="Get Still on Google Play" data-i18n-attr="aria-label:a11y.play">
                             <svg class="store-btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#00D2FF" d="M3.609 1.814 13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92z"/><path fill="#FFBC00" d="m17.698 9.51 2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.39 12l2.308-2.49z"/><path fill="#FF3A44" d="M14.499 12.707 5.864 21.342l10.937-6.333-2.302-2.302z"/><path fill="#00C24A" d="M5.864 2.658 16.802 8.99l-2.303 2.303L5.864 2.658z"/></svg>
                             <span class="store-btn__text">
@@ -517,17 +516,17 @@
                         <circle cx="200" cy="200" r="80" fill="none" stroke="var(--arc-resting)" stroke-width="1" stroke-dasharray="3 8"/>
                     </svg>
                     <div class="download-card__content">
-                        <p class="eyebrow" data-i18n="dl.eyebrow">Free to download</p>
+                        <p class="eyebrow" data-i18n="dl.eyebrow">Free for 7 days</p>
                         <h2 id="download-title" class="download-card__title" data-i18n="dl.title">Start cooking at peak.</h2>
                         <p class="download-card__lede" data-i18n="dl.lede">Add your first ingredient in under ten seconds. No account, no email — just open and tap.</p>
                         <div class="hero__cta-row">
-                            <span class="store-btn is-soon" aria-disabled="true">
+                            <a class="store-btn" data-store="ios" data-placement="download" href="https://apps.apple.com/app/id6819700105" target="_blank" rel="noopener noreferrer" aria-label="Download Still on the App Store" data-i18n-attr="aria-label:a11y.appstore">
                                 <svg class="store-btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
                                 <span class="store-btn__text">
-                                    <span class="store-btn__sub" data-i18n="store.appstoreSub">Coming soon to the</span>
+                                    <span class="store-btn__sub" data-i18n="store.appstoreSub">Download on the</span>
                                     <span class="store-btn__main">App Store</span>
                                 </span>
-                            </span>
+                            </a>
                             <a class="store-btn" data-store="android" data-placement="download" href="https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack" target="_blank" rel="noopener noreferrer" aria-label="Get Still on Google Play" data-i18n-attr="aria-label:a11y.play">
                                 <svg class="store-btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#00D2FF" d="M3.609 1.814 13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92z"/><path fill="#FFBC00" d="m17.698 9.51 2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.39 12l2.308-2.49z"/><path fill="#FF3A44" d="M14.499 12.707 5.864 21.342l10.937-6.333-2.302-2.302z"/><path fill="#00C24A" d="M5.864 2.658 16.802 8.99l-2.303 2.303L5.864 2.658z"/></svg>
                                 <span class="store-btn__text">
@@ -584,6 +583,7 @@
             'a11y.lang': 'Switch language',
             'a11y.theme': 'Toggle light / dark theme',
             'a11y.play': 'Get Still on Google Play',
+            'a11y.appstore': 'Download Still on the App Store',
             'nav.features': 'Features',
             'nav.how': 'How it works',
             'nav.impact': 'Impact',
@@ -591,7 +591,7 @@
             'hero.eyebrow': 'Peak-flavor tracker · iOS · Android',
             'hero.h1': 'Track the peak.<br>Cook <span class="accent">calmly</span>.<br>Waste nothing.',
             'hero.lede': "Still follows every ingredient through its Culinary Arc — from resting, to peak, to action — so you cook each one at its best and never throw food away again.",
-            'store.appstoreSub': 'Coming soon to the',
+            'store.appstoreSub': 'Download on the',
             'store.playSub': 'Get it on',
             'benefits.eyebrow': 'Why Still',
             'benefits.title': 'A calmer relationship with the food in your kitchen.',
@@ -626,7 +626,7 @@
             'prev.label1': 'Home · peak dashboard',
             'prev.label2': 'FIFO instance tracking',
             'prev.label3': 'Weekly impact stats',
-            'dl.eyebrow': 'Free to download',
+            'dl.eyebrow': 'Free for 7 days',
             'dl.title': 'Start cooking at peak.',
             'dl.lede': 'Add your first ingredient in under ten seconds. No account, no email — just open and tap.',
             'dl.meta1': 'On-device & private',
@@ -641,6 +641,7 @@
             'a11y.lang': 'Cambiar idioma',
             'a11y.theme': 'Cambiar tema claro / oscuro',
             'a11y.play': 'Consigue Still en Google Play',
+            'a11y.appstore': 'Descarga Still en la App Store',
             'nav.features': 'Funciones',
             'nav.how': 'Cómo funciona',
             'nav.impact': 'Impacto',
@@ -648,7 +649,7 @@
             'hero.eyebrow': 'Tracker del punto justo · iOS · Android',
             'hero.h1': 'Sigue el punto.<br>Cocina con <span class="accent">calma</span>.<br>No desperdicies nada.',
             'hero.lede': 'Still acompaña cada ingrediente a lo largo de su Arco Culinario — de reposo, a punto, a acción — para que cocines cada uno en su mejor momento y nunca tires comida.',
-            'store.appstoreSub': 'Próximamente en la',
+            'store.appstoreSub': 'Descárgalo en la',
             'store.playSub': 'Disponible en',
             'benefits.eyebrow': 'Por qué Still',
             'benefits.title': 'Una relación más tranquila con la comida de tu cocina.',
@@ -683,7 +684,7 @@
             'prev.label1': 'Inicio · panel de punto',
             'prev.label2': 'Seguimiento FIFO por lote',
             'prev.label3': 'Estadísticas semanales',
-            'dl.eyebrow': 'Descarga gratis',
+            'dl.eyebrow': 'Gratis por 7 días',
             'dl.title': 'Empieza a cocinar en su punto.',
             'dl.lede': 'Agrega tu primer ingrediente en menos de diez segundos. Sin cuenta, sin correo — solo abre y toca.',
             'dl.meta1': 'En tu dispositivo y privado',
