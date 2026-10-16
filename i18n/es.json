@@ -16,6 +16,7 @@
   "a11y.faintAppStore": "Faint en el App Store",
   "a11y.faintPlay": "Faint en Google Play",
   "a11y.stillPlay": "Still en Google Play",
+  "a11y.stillAppStore": "Still en el App Store",
   "a11y.techStack": "Stack tecnológico",
   "a11y.aknghtStudios": "Sitio web de AKnght Studios (sitio externo)",
 
@@ -78,8 +79,8 @@
   "openSource.subheading": "Frameworks arquitectónicos, plantillas y librerías reutilizables creados para acelerar el desarrollo móvil moderno.",
   "projects.frnk.tagline": "Toolkit modular para Kotlin Multiplatform",
   "projects.frnk.description": "Una base arquitectónica opinada y lista para producción para apps Kotlin Multiplatform. Incluye contratos de UI headless, backends intercambiables e implementaciones estrictas del patrón MVI para lanzar nuevos productos móviles en días.",
-  "projects.still.tagline": "Control inteligente de frescura y desperdicio de alimentos",
-  "projects.still.description": "Lleva el control de lo que hay en tu refri y alacena con seguimiento predictivo de vida útil y recordatorios proactivos antes de que los alimentos caduquen.",
+  "projects.still.tagline": "Refri y despensa al día",
+  "projects.still.description": "Registra tu comida en 3 toques: categoría, alimento y lugar. Still calcula cuándo usar cada uno, muestra la cocina de un vistazo y avisa el día antes. Sin cuenta; todo queda en el teléfono.",
   "projects.faint.tagline": "Diario de cata de café con IA",
   "projects.faint.description": "Una app compañera para amantes del café de especialidad. Escanea las tarjetas de cata del tostador, sigue perfiles de sabor, registra parámetros de preparación y construye tu mapa cafetero personalizado.",
   "projects.store.getItOn": "Disponible en",
