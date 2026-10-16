@@ -7,9 +7,10 @@
   its own look, so changing jdgarita.dev's palette never alters
   these pages and vice versa.
 
-  No JavaScript and no web fonts — these pages follow the OS
-  light/dark preference via prefers-color-scheme and use the
-  system font stack so they load instantly and offline.
+  No web fonts — these pages follow the OS light/dark preference
+  via prefers-color-scheme and use the system font stack so they
+  load instantly and offline. The only JS is the year stamp and
+  the EN/ES toggle (see "Language" below).
 */
 
 :root {
@@ -118,6 +119,36 @@ body {
   font-weight: 600;
 }
 
+/* ---------- Language (EN / ES) ----------
+   Each page carries both languages ([data-lang]); <html lang> shows one.
+   Without JS the page stays lang="en" and the toggle stays hidden. */
+html[lang="es"] [data-lang="en"],
+html:not([lang="es"]) [data-lang="es"] { display: none; }
+
+.lang-toggle {
+  display: none;
+  align-items: center;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+html.js .lang-toggle { display: inline-flex; }
+.lang-toggle:hover { border-color: var(--accent); }
+.lang-toggle .lang-sep { margin: 0 3px; opacity: 0.6; }
+html:not([lang="es"]) .lang-toggle .lang-en,
+html[lang="es"] .lang-toggle .lang-es { color: var(--accent); }
+.lang-toggle:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
 /* ---------- Document body ---------- */
 main.doc {
   padding-top: 40px;
@@ -169,6 +200,15 @@ main.doc {
   border: 1px solid var(--border);
   border-radius: 5px;
   padding: 1px 5px;
+}
+
+/* The Spanish courtesy-translation notice under the title. */
+.doc-note {
+  color: var(--muted);
+  font-size: 0.9rem;
+  border-left: 3px solid var(--border);
+  padding-left: 12px;
+  margin: 8px 0 0;
 }
 
 /* Definition-style block for the third-party services list */
@@ -284,11 +324,14 @@ main[tabindex="-1"] {
   .doc h1 { font-size: 1.6rem; }
   .hub h1 { font-size: 2rem; }
   .doc-nav { gap: 14px; }
+  /* Wordmark and EN/ES share the first row; the document links take the second. */
+  .lang-toggle { order: 1; margin-left: auto; }
+  .doc-nav { order: 2; margin-left: 0; width: 100%; }
 }
 
 /* ---------- Print ---------- */
 @media print {
-  .doc-header, .doc-footer, .skip-link { display: none; }
+  .doc-header, .doc-footer, .skip-link, .lang-toggle { display: none; }
   body { font-size: 12pt; color: #000; background: #fff; }
   .doc a { color: #000; text-decoration: underline; }
   main.doc { padding-top: 0; }

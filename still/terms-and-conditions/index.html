@@ -6,8 +6,11 @@
       ============================================================
       Standalone legal page. Long-form prose is inline here by
       design (NOT routed through the root site's per-string i18n
-      system, which is built for short UI labels). Own stylesheet,
-      no JS, follows OS light/dark via prefers-color-scheme.
+      system, which is built for short UI labels). Bilingual: the
+      English text and a Spanish courtesy translation sit side by
+      side ([data-lang]); <html lang> picks one (EN without JS).
+      Own stylesheet, follows OS light/dark via prefers-color-scheme.
+      Edit BOTH languages when the text changes.
       When the terms change, bump the "Effective date" below.
     -->
     <meta charset="utf-8" />
@@ -26,138 +29,285 @@
     <link rel="apple-touch-icon" href="../../image/apple-touch-icon.png" />
     <link rel="shortcut icon" href="../../image/favicon.ico" />
     <link rel="stylesheet" href="../still.css" />
+    <script>
+      // Language before first paint: ?lang=en|es (what the app links with), else the visitor's
+      // choice (localStorage "still-lang", shared with the landing), else the browser language.
+      (function () {
+        var d = document.documentElement, l = null;
+        try { l = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+        if (l !== 'en' && l !== 'es') { try { l = localStorage.getItem('still-lang'); } catch (e) {} }
+        if (l !== 'en' && l !== 'es') { l = (navigator.language || 'en').toLowerCase().indexOf('es') === 0 ? 'es' : 'en'; }
+        d.setAttribute('lang', l);
+        d.className += ' js';
+      })();
+    </script>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main"><span data-lang="en">Skip to content</span><span data-lang="es" lang="es">Ir al contenido</span></a>
 
     <header class="doc-header">
         <div class="container">
             <a class="wordmark" href="../">Still</a>
             <nav class="doc-nav" aria-label="Legal documents">
-                <a href="../privacy-policy/">Privacy Policy</a>
-                <a href="../terms-and-conditions/" aria-current="page">Terms</a>
+                <a href="../privacy-policy/"><span data-lang="en">Privacy Policy</span><span data-lang="es" lang="es">Política de privacidad</span></a>
+                <a href="../terms-and-conditions/" aria-current="page"><span data-lang="en">Terms</span><span data-lang="es" lang="es">Términos</span></a>
             </nav>
+            <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch language">
+                <span class="lang-seg lang-en">EN</span><span class="lang-sep">/</span><span class="lang-seg lang-es">ES</span>
+            </button>
         </div>
     </header>
 
     <main class="container doc" id="main" tabindex="-1">
-        <h1>Terms and Conditions</h1>
-        <p class="doc-meta">Effective date: <time datetime="2026-10-08">October 8, 2026</time></p>
+        <div data-lang="en" lang="en">
+            <h1>Terms and Conditions</h1>
+            <p class="doc-meta">Effective date: <time datetime="2026-10-08">October 8, 2026</time></p>
 
-        <h2>1. Acceptance of These Terms</h2>
-        <p class="doc-lead">These Terms and Conditions ("Terms") govern your use of the Still mobile application for Android and iOS ("Still", "the app", "we", "us"). By downloading, installing, or using Still, you agree to be bound by these Terms. If you do not agree, do not use the app.</p>
-        <p>These Terms should be read together with the Still Privacy Policy at <a href="../privacy-policy/">https://jdgarita.dev/still/privacy-policy</a>, which describes how the app handles data.</p>
+            <h2>1. Acceptance of These Terms</h2>
+            <p class="doc-lead">These Terms and Conditions ("Terms") govern your use of the Still mobile application for Android and iOS ("Still", "the app", "we", "us"). By downloading, installing, or using Still, you agree to be bound by these Terms. If you do not agree, do not use the app.</p>
+            <p>These Terms should be read together with the Still Privacy Policy at <a href="../privacy-policy/">https://jdgarita.dev/still/privacy-policy</a>, which describes how the app handles data.</p>
 
-        <h2>2. License to Use the App</h2>
-        <p>We grant you a personal, non-exclusive, non-transferable, revocable license to download and use Still on devices that you own or control, solely for your personal, non-commercial use, in accordance with these Terms and the rules of the app store from which you obtained the app (Google Play or the Apple App Store).</p>
-        <p>You may not:</p>
-        <ul>
-            <li>License, sell, rent, lease, sublicense, distribute, or otherwise transfer the app to any third party.</li>
-            <li>Modify, translate, adapt, merge, or create derivative works of the app, except as expressly permitted by applicable law.</li>
-            <li>Reverse engineer, decompile, disassemble, or otherwise attempt to derive the source code of the app, except as expressly permitted by applicable law.</li>
-            <li>Remove, alter, or obscure any proprietary notices (including copyright and trademark notices) on or in the app.</li>
-            <li>Use the app for any unlawful purpose, or in a way that interferes with the rights of others or the operation of the app.</li>
-        </ul>
+            <h2>2. License to Use the App</h2>
+            <p>We grant you a personal, non-exclusive, non-transferable, revocable license to download and use Still on devices that you own or control, solely for your personal, non-commercial use, in accordance with these Terms and the rules of the app store from which you obtained the app (Google Play or the Apple App Store).</p>
+            <p>You may not:</p>
+            <ul>
+                <li>License, sell, rent, lease, sublicense, distribute, or otherwise transfer the app to any third party.</li>
+                <li>Modify, translate, adapt, merge, or create derivative works of the app, except as expressly permitted by applicable law.</li>
+                <li>Reverse engineer, decompile, disassemble, or otherwise attempt to derive the source code of the app, except as expressly permitted by applicable law.</li>
+                <li>Remove, alter, or obscure any proprietary notices (including copyright and trademark notices) on or in the app.</li>
+                <li>Use the app for any unlawful purpose, or in a way that interferes with the rights of others or the operation of the app.</li>
+            </ul>
 
-        <h2>3. Account and Data</h2>
-        <p>Still does not require you to create an account. The items you log (category, item, storage place) and the dates Still calculates for them are stored only on your device. You are responsible for keeping backups of any data that is important to you (for example through your device's own backup). If you uninstall the app, your local data is removed by the operating system. See the <a href="../privacy-policy/">Privacy Policy</a> for details.</p>
+            <h2>3. Account and Data</h2>
+            <p>Still does not require you to create an account. The items you log (category, item, storage place) and the dates Still calculates for them are stored only on your device. You are responsible for keeping backups of any data that is important to you (for example through your device's own backup). If you uninstall the app, your local data is removed by the operating system. See the <a href="../privacy-policy/">Privacy Policy</a> for details.</p>
 
-        <h2>4. Pro, Purchases, Cancellation, and Refunds</h2>
+            <h2>4. Pro, Purchases, Cancellation, and Refunds</h2>
 
-        <h3>4.1 Pro</h3>
-        <p>Using Still requires Pro. Pro is offered as an auto-renewing monthly subscription, which may start with a free trial, or as a one-time lifetime purchase. The available plans, their prices, the billing period and the length of any free trial are shown on the in-app paywall before you confirm a purchase.</p>
-        <p>Purchases are processed by Google Play on Android and by the Apple App Store on iOS, through your store account. We do not receive or store your payment details. We use RevenueCat to validate purchases and unlock Pro.</p>
+            <h3>4.1 Pro</h3>
+            <p>Using Still requires Pro. Pro is offered as an auto-renewing monthly subscription, which may start with a free trial, or as a one-time lifetime purchase. The available plans, their prices, the billing period and the length of any free trial are shown on the in-app paywall before you confirm a purchase.</p>
+            <p>Purchases are processed by Google Play on Android and by the Apple App Store on iOS, through your store account. We do not receive or store your payment details. We use RevenueCat to validate purchases and unlock Pro.</p>
 
-        <h3>4.2 Auto-renewal (monthly subscription)</h3>
-        <p>The monthly subscription renews automatically. Unless you cancel at least 24 hours before the end of the current period, it renews at the end of that period for the same length at the then-current price. Payment is charged to your Google Play or Apple account at confirmation of purchase (or, with a free trial, when the trial ends) and again at each renewal. Your store account shows the renewal price and date before any renewal charge.</p>
+            <h3>4.2 Auto-renewal (monthly subscription)</h3>
+            <p>The monthly subscription renews automatically. Unless you cancel at least 24 hours before the end of the current period, it renews at the end of that period for the same length at the then-current price. Payment is charged to your Google Play or Apple account at confirmation of purchase (or, with a free trial, when the trial ends) and again at each renewal. Your store account shows the renewal price and date before any renewal charge.</p>
 
-        <h3>4.3 Free trials</h3>
-        <p>If the monthly subscription starts with a free trial, the paywall shows the trial length and the price that applies after it. The trial converts automatically into a paid subscription when it ends unless you cancel at least 24 hours before the end of the trial. If you cancel during the trial, Pro stays available until the trial ends. Any unused portion of a free trial is forfeited when you purchase another plan, where your store's rules provide for it.</p>
+            <h3>4.3 Free trials</h3>
+            <p>If the monthly subscription starts with a free trial, the paywall shows the trial length and the price that applies after it. The trial converts automatically into a paid subscription when it ends unless you cancel at least 24 hours before the end of the trial. If you cancel during the trial, Pro stays available until the trial ends. Any unused portion of a free trial is forfeited when you purchase another plan, where your store's rules provide for it.</p>
 
-        <h3>4.4 Cancellation</h3>
-        <p>You can cancel the monthly subscription at any time:</p>
-        <ul>
-            <li>From inside Still: Settings &gt; Manage Subscription (this opens your Google Play or App Store subscriptions page).</li>
-            <li>On Android, on the web: <a href="https://play.google.com/store/account/subscriptions" target="_blank" rel="noopener noreferrer">play.google.com/store/account/subscriptions</a></li>
-            <li>On iOS: Settings &gt; [your name] &gt; Subscriptions, or <a href="https://apps.apple.com/account/subscriptions" target="_blank" rel="noopener noreferrer">apps.apple.com/account/subscriptions</a></li>
-        </ul>
-        <p>Cancellation takes effect at the end of the current period. You keep Pro until then and are not charged again. Because Still requires Pro, the app cannot be used once the period ends, until you subscribe again or buy the lifetime plan. Deleting the app does not cancel a subscription.</p>
+            <h3>4.4 Cancellation</h3>
+            <p>You can cancel the monthly subscription at any time:</p>
+            <ul>
+                <li>From inside Still: Settings &gt; Manage Subscription (this opens your Google Play or App Store subscriptions page).</li>
+                <li>On Android, on the web: <a href="https://play.google.com/store/account/subscriptions" target="_blank" rel="noopener noreferrer">play.google.com/store/account/subscriptions</a></li>
+                <li>On iOS: Settings &gt; [your name] &gt; Subscriptions, or <a href="https://apps.apple.com/account/subscriptions" target="_blank" rel="noopener noreferrer">apps.apple.com/account/subscriptions</a></li>
+            </ul>
+            <p>Cancellation takes effect at the end of the current period. You keep Pro until then and are not charged again. Because Still requires Pro, the app cannot be used once the period ends, until you subscribe again or buy the lifetime plan. Deleting the app does not cancel a subscription.</p>
 
-        <h3>4.5 Lifetime purchase</h3>
-        <p>The lifetime plan is a single, non-renewing payment that unlocks Pro for as long as Still is offered on your platform, on devices signed in to the same store account. It is not a subscription and is never charged again.</p>
+            <h3>4.5 Lifetime purchase</h3>
+            <p>The lifetime plan is a single, non-renewing payment that unlocks Pro for as long as Still is offered on your platform, on devices signed in to the same store account. It is not a subscription and is never charged again.</p>
 
-        <h3>4.6 Refunds</h3>
-        <p>Refunds are handled by the store that processed the payment, under its own policy: Google Play (<a href="https://support.google.com/googleplay/answer/2479637" target="_blank" rel="noopener noreferrer">support.google.com/googleplay/answer/2479637</a>) or Apple (<a href="https://reportaproblem.apple.com" target="_blank" rel="noopener noreferrer">reportaproblem.apple.com</a>). Because the store processes the payment, we cannot issue refunds directly. If you have a concern about Still itself, contact us at the email below and we will work with you to address it.</p>
+            <h3>4.6 Refunds</h3>
+            <p>Refunds are handled by the store that processed the payment, under its own policy: Google Play (<a href="https://support.google.com/googleplay/answer/2479637" target="_blank" rel="noopener noreferrer">support.google.com/googleplay/answer/2479637</a>) or Apple (<a href="https://reportaproblem.apple.com" target="_blank" rel="noopener noreferrer">reportaproblem.apple.com</a>). Because the store processes the payment, we cannot issue refunds directly. If you have a concern about Still itself, contact us at the email below and we will work with you to address it.</p>
 
-        <h3>4.7 Restore purchases</h3>
-        <p>If you reinstall Still or switch devices, tap Settings &gt; Restore Purchases (or Restore on the paywall) to unlock Pro again. This looks up your existing purchase through your store account and RevenueCat. Purchases restore only on the same platform and store account they were made with.</p>
+            <h3>4.7 Restore purchases</h3>
+            <p>If you reinstall Still or switch devices, tap Settings &gt; Restore Purchases (or Restore on the paywall) to unlock Pro again. This looks up your existing purchase through your store account and RevenueCat. Purchases restore only on the same platform and store account they were made with.</p>
 
-        <h3>4.8 Price changes</h3>
-        <p>We may change prices for new purchases at any time. For existing subscribers, any renewal price change is communicated by Google Play or Apple under their policies, and you can accept the new price or cancel before it takes effect.</p>
+            <h3>4.8 Price changes</h3>
+            <p>We may change prices for new purchases at any time. For existing subscribers, any renewal price change is communicated by Google Play or Apple under their policies, and you can accept the new price or cancel before it takes effect.</p>
 
-        <h2>5. Intellectual Property</h2>
-        <p>Still, including its design, code, content, logos, and trademarks, is owned by Juan Diego Garita and is protected by copyright, trademark, and other intellectual property laws. These Terms grant you a license to use the app — they do not transfer any ownership of the app or its content to you.</p>
+            <h2>5. Intellectual Property</h2>
+            <p>Still, including its design, code, content, logos, and trademarks, is owned by Juan Diego Garita and is protected by copyright, trademark, and other intellectual property laws. These Terms grant you a license to use the app — they do not transfer any ownership of the app or its content to you.</p>
 
-        <h2>6. Disclaimers</h2>
-        <p>Still is provided "AS IS" and "AS AVAILABLE", with all faults and defects, and without warranty of any kind, whether express, implied, statutory, or otherwise, including (without limitation) implied warranties of merchantability, fitness for a particular purpose, title, and non-infringement. We do not warrant that the app will be uninterrupted, error-free, secure, or free of viruses.</p>
-        <p>Still is a kitchen organization tool, not a food safety, nutrition, or medical service. The "use by" dates Still shows are estimates calculated from a general shelf-life guide and the date you logged each item; they do not account for how a particular item was produced, packaged, handled or stored, and they are not the manufacturer's dates. Reminder notifications depend on operating system features (background scheduling, notification delivery) that can be delayed or suppressed by the operating system, by power-saving modes, or by the permissions you grant. Do not rely on Still as the sole source of truth for whether food is safe to eat. Always check the package date, inspect items in person, and follow the guidance of the manufacturer or a qualified professional.</p>
+            <h2>6. Disclaimers</h2>
+            <p>Still is provided "AS IS" and "AS AVAILABLE", with all faults and defects, and without warranty of any kind, whether express, implied, statutory, or otherwise, including (without limitation) implied warranties of merchantability, fitness for a particular purpose, title, and non-infringement. We do not warrant that the app will be uninterrupted, error-free, secure, or free of viruses.</p>
+            <p>Still is a kitchen organization tool, not a food safety, nutrition, or medical service. The "use by" dates Still shows are estimates calculated from a general shelf-life guide and the date you logged each item; they do not account for how a particular item was produced, packaged, handled or stored, and they are not the manufacturer's dates. Reminder notifications depend on operating system features (background scheduling, notification delivery) that can be delayed or suppressed by the operating system, by power-saving modes, or by the permissions you grant. Do not rely on Still as the sole source of truth for whether food is safe to eat. Always check the package date, inspect items in person, and follow the guidance of the manufacturer or a qualified professional.</p>
 
-        <h2>7. Limitation of Liability</h2>
-        <p>To the maximum extent permitted by applicable law, in no event will Still, Juan Diego Garita, or our suppliers and licensors be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits, revenues, data, or goodwill, arising out of or in connection with your use of (or inability to use) the app, even if we have been advised of the possibility of such damages.</p>
-        <p>To the maximum extent permitted by applicable law, our total aggregate liability arising out of or relating to these Terms or your use of the app will not exceed the amount you paid (through Google Play or the Apple App Store) for Still in the twelve (12) months preceding the event giving rise to the claim, or USD $50, whichever is greater.</p>
-        <p>Some jurisdictions do not allow certain limitations of liability, so some of the above may not apply to you.</p>
+            <h2>7. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by applicable law, in no event will Still, Juan Diego Garita, or our suppliers and licensors be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits, revenues, data, or goodwill, arising out of or in connection with your use of (or inability to use) the app, even if we have been advised of the possibility of such damages.</p>
+            <p>To the maximum extent permitted by applicable law, our total aggregate liability arising out of or relating to these Terms or your use of the app will not exceed the amount you paid (through Google Play or the Apple App Store) for Still in the twelve (12) months preceding the event giving rise to the claim, or USD $50, whichever is greater.</p>
+            <p>Some jurisdictions do not allow certain limitations of liability, so some of the above may not apply to you.</p>
 
-        <h2>8. Termination</h2>
-        <p>You can stop using Still and uninstall the app at any time. We may suspend or terminate your access to the app, or stop providing the app, at any time, with or without cause and with or without notice, including (without limitation) if you violate these Terms or if continued provision becomes commercially or legally impractical.</p>
-        <p>If your access is terminated, you remain responsible for any subscription charges already incurred. Cancelling a subscription does not delete the app or your local data.</p>
+            <h2>8. Termination</h2>
+            <p>You can stop using Still and uninstall the app at any time. We may suspend or terminate your access to the app, or stop providing the app, at any time, with or without cause and with or without notice, including (without limitation) if you violate these Terms or if continued provision becomes commercially or legally impractical.</p>
+            <p>If your access is terminated, you remain responsible for any subscription charges already incurred. Cancelling a subscription does not delete the app or your local data.</p>
 
-        <h2>9. Governing Law and Dispute Resolution</h2>
+            <h2>9. Governing Law and Dispute Resolution</h2>
 
-        <h3>9.1 Governing law</h3>
-        <p>These Terms, and any dispute arising out of or related to them or to your use of Still, are governed by the laws of the Republic of Costa Rica, without regard to its conflict of laws principles, except as required by mandatory consumer protection laws of your country of residence.</p>
+            <h3>9.1 Governing law</h3>
+            <p>These Terms, and any dispute arising out of or related to them or to your use of Still, are governed by the laws of the Republic of Costa Rica, without regard to its conflict of laws principles, except as required by mandatory consumer protection laws of your country of residence.</p>
 
-        <h3>9.2 Informal resolution</h3>
-        <p>Before filing a formal claim, you agree to first contact us at the email below and attempt to resolve the dispute informally for a period of at least sixty (60) days.</p>
+            <h3>9.2 Informal resolution</h3>
+            <p>Before filing a formal claim, you agree to first contact us at the email below and attempt to resolve the dispute informally for a period of at least sixty (60) days.</p>
 
-        <h3>9.3 Arbitration</h3>
-        <p>If the dispute cannot be resolved informally within sixty (60) days, both you and we agree that the dispute will be resolved by binding individual arbitration under the rules of the American Arbitration Association (AAA), and not by court trial, except where such an arbitration agreement is unenforceable under your local law. You and we waive any right to a jury trial and to participate in a class action, to the extent permitted by law.</p>
-        <p>If arbitration is unenforceable in your jurisdiction, the dispute will be resolved by the competent courts of San José, Costa Rica.</p>
+            <h3>9.3 Arbitration</h3>
+            <p>If the dispute cannot be resolved informally within sixty (60) days, both you and we agree that the dispute will be resolved by binding individual arbitration under the rules of the American Arbitration Association (AAA), and not by court trial, except where such an arbitration agreement is unenforceable under your local law. You and we waive any right to a jury trial and to participate in a class action, to the extent permitted by law.</p>
+            <p>If arbitration is unenforceable in your jurisdiction, the dispute will be resolved by the competent courts of San José, Costa Rica.</p>
 
-        <h2>10. Additional Terms for the Apple App Store</h2>
-        <p>If you obtained Still from the Apple App Store, the following also applies:</p>
-        <ul>
-            <li>These Terms are between you and Juan Diego Garita only, not Apple Inc. ("Apple"). We, not Apple, are solely responsible for Still and its content.</li>
-            <li>Your license is limited to using Still on Apple-branded products that you own or control, as permitted by the Usage Rules in the Apple Media Services Terms and Conditions.</li>
-            <li>Apple has no obligation to provide any maintenance or support for Still.</li>
-            <li>If Still fails to conform to any applicable warranty, you may notify Apple, and Apple will refund the purchase price (if any) for Still; to the maximum extent permitted by law, Apple has no other warranty obligation with respect to Still.</li>
-            <li>We, not Apple, are responsible for addressing any claims by you or a third party relating to Still, including product liability claims, claims that Still fails to conform to legal or regulatory requirements, and consumer protection or privacy claims.</li>
-            <li>If a third party claims that Still or your use of it infringes their intellectual property rights, we, not Apple, are responsible for the investigation, defense, settlement and discharge of that claim.</li>
-            <li>You represent that you are not located in a country subject to a U.S. Government embargo or designated as a "terrorist supporting" country, and that you are not on any U.S. Government list of prohibited or restricted parties.</li>
-            <li>Apple and its subsidiaries are third-party beneficiaries of these Terms and, once you accept them, Apple may enforce them against you.</li>
-        </ul>
+            <h2>10. Additional Terms for the Apple App Store</h2>
+            <p>If you obtained Still from the Apple App Store, the following also applies:</p>
+            <ul>
+                <li>These Terms are between you and Juan Diego Garita only, not Apple Inc. ("Apple"). We, not Apple, are solely responsible for Still and its content.</li>
+                <li>Your license is limited to using Still on Apple-branded products that you own or control, as permitted by the Usage Rules in the Apple Media Services Terms and Conditions.</li>
+                <li>Apple has no obligation to provide any maintenance or support for Still.</li>
+                <li>If Still fails to conform to any applicable warranty, you may notify Apple, and Apple will refund the purchase price (if any) for Still; to the maximum extent permitted by law, Apple has no other warranty obligation with respect to Still.</li>
+                <li>We, not Apple, are responsible for addressing any claims by you or a third party relating to Still, including product liability claims, claims that Still fails to conform to legal or regulatory requirements, and consumer protection or privacy claims.</li>
+                <li>If a third party claims that Still or your use of it infringes their intellectual property rights, we, not Apple, are responsible for the investigation, defense, settlement and discharge of that claim.</li>
+                <li>You represent that you are not located in a country subject to a U.S. Government embargo or designated as a "terrorist supporting" country, and that you are not on any U.S. Government list of prohibited or restricted parties.</li>
+                <li>Apple and its subsidiaries are third-party beneficiaries of these Terms and, once you accept them, Apple may enforce them against you.</li>
+            </ul>
 
-        <h2>11. Changes to These Terms</h2>
-        <p>We may update these Terms from time to time. The "Effective date" at the top of this page reflects the most recent revision. If we make material changes, we will surface them in the app or otherwise provide reasonable notice. Your continued use of Still after the changes take effect constitutes acceptance of the updated Terms.</p>
+            <h2>11. Changes to These Terms</h2>
+            <p>We may update these Terms from time to time. The "Effective date" at the top of this page reflects the most recent revision. If we make material changes, we will surface them in the app or otherwise provide reasonable notice. Your continued use of Still after the changes take effect constitutes acceptance of the updated Terms.</p>
 
-        <h2>12. Severability</h2>
-        <p>If any provision of these Terms is held to be invalid or unenforceable, that provision will be enforced to the maximum extent permitted, and the remaining provisions will remain in full force and effect.</p>
+            <h2>12. Severability</h2>
+            <p>If any provision of these Terms is held to be invalid or unenforceable, that provision will be enforced to the maximum extent permitted, and the remaining provisions will remain in full force and effect.</p>
 
-        <h2>13. Contact</h2>
-        <p>For questions about these Terms or about Still:</p>
-        <p>Email: <a href="mailto:hello@jdgarita.dev">hello@jdgarita.dev</a></p>
+            <h2>13. Contact</h2>
+            <p>For questions about these Terms or about Still:</p>
+            <p>Email: <a href="mailto:hello@jdgarita.dev">hello@jdgarita.dev</a></p>
+        </div>
+        <div data-lang="es" lang="es">
+            <h1>Términos y condiciones</h1>
+            <p class="doc-meta">Fecha de entrada en vigor: <time datetime="2026-10-08">8 de octubre de 2026</time></p>
+            <p class="doc-note">Esta es una traducción de cortesía. Si hay alguna diferencia entre esta versión y la versión en inglés, prevalece la versión en inglés.</p>
+
+            <h2>1. Aceptación de estos Términos</h2>
+            <p class="doc-lead">Estos Términos y condiciones ("Términos") rigen tu uso de la aplicación móvil Still para Android e iOS ("Still", "la app", "nosotros"). Al descargar, instalar o usar Still, aceptas quedar obligado por estos Términos. Si no estás de acuerdo, no uses la app.</p>
+            <p>Estos Términos deben leerse junto con la Política de privacidad de Still en <a href="../privacy-policy/">https://jdgarita.dev/still/privacy-policy</a>, que describe cómo la app maneja los datos.</p>
+
+            <h2>2. Licencia de uso de la app</h2>
+            <p>Te otorgamos una licencia personal, no exclusiva, intransferible y revocable para descargar y usar Still en dispositivos que te pertenezcan o que controles, únicamente para tu uso personal y no comercial, de acuerdo con estos Términos y con las reglas de la tienda de la que obtuviste la app (Google Play o la App Store de Apple).</p>
+            <p>No puedes:</p>
+            <ul>
+                <li>Licenciar, vender, alquilar, arrendar, sublicenciar, distribuir ni transferir de otra forma la app a terceros.</li>
+                <li>Modificar, traducir, adaptar, combinar ni crear obras derivadas de la app, salvo en lo que la ley aplicable permita expresamente.</li>
+                <li>Aplicar ingeniería inversa, descompilar, desensamblar ni intentar obtener de otra forma el código fuente de la app, salvo en lo que la ley aplicable permita expresamente.</li>
+                <li>Eliminar, alterar u ocultar avisos de propiedad (incluidos los de derechos de autor y marcas) en la app.</li>
+                <li>Usar la app con fines ilícitos, o de una forma que interfiera con los derechos de otras personas o con el funcionamiento de la app.</li>
+            </ul>
+
+            <h2>3. Cuenta y datos</h2>
+            <p>Still no requiere que crees una cuenta. Los alimentos que registras (categoría, alimento, lugar de almacenamiento) y las fechas que Still calcula para ellos se guardan solo en tu dispositivo. Eres responsable de respaldar los datos que sean importantes para ti (por ejemplo, con la copia de seguridad de tu propio dispositivo). Si desinstalas la app, el sistema operativo elimina tus datos locales. Consulta la <a href="../privacy-policy/">Política de privacidad</a> para más detalles.</p>
+
+            <h2>4. Pro, compras, cancelación y reembolsos</h2>
+
+            <h3>4.1 Pro</h3>
+            <p>Usar Still requiere Pro. Pro se ofrece como una suscripción mensual con renovación automática, que puede comenzar con una prueba gratuita, o como una compra única de por vida. Los planes disponibles, sus precios, el período de facturación y la duración de cualquier prueba gratuita se muestran en el paywall de la app antes de que confirmes una compra.</p>
+            <p>Las compras las procesa Google Play en Android y la App Store de Apple en iOS, con tu cuenta de la tienda. No recibimos ni guardamos tus datos de pago. Usamos RevenueCat para validar las compras y activar Pro.</p>
+
+            <h3>4.2 Renovación automática (suscripción mensual)</h3>
+            <p>La suscripción mensual se renueva automáticamente. Salvo que la canceles al menos 24 horas antes de que termine el período en curso, se renueva al final de ese período por la misma duración y al precio vigente en ese momento. El pago se carga a tu cuenta de Google Play o de Apple al confirmar la compra (o, con una prueba gratuita, cuando termina la prueba) y de nuevo en cada renovación. Tu cuenta de la tienda muestra el precio y la fecha de renovación antes de cualquier cargo por renovación.</p>
+
+            <h3>4.3 Pruebas gratuitas</h3>
+            <p>Si la suscripción mensual comienza con una prueba gratuita, el paywall muestra la duración de la prueba y el precio que aplica después. La prueba se convierte automáticamente en una suscripción de pago al terminar, salvo que la canceles al menos 24 horas antes de que termine. Si cancelas durante la prueba, Pro sigue disponible hasta que la prueba termine. Cualquier parte no usada de una prueba gratuita se pierde al comprar otro plan, cuando las reglas de tu tienda así lo prevén.</p>
+
+            <h3>4.4 Cancelación</h3>
+            <p>Puedes cancelar la suscripción mensual en cualquier momento:</p>
+            <ul>
+                <li>Desde Still: Ajustes &gt; Administrar suscripción (abre la página de suscripciones de Google Play o de la App Store).</li>
+                <li>En Android, desde la web: <a href="https://play.google.com/store/account/subscriptions" target="_blank" rel="noopener noreferrer">play.google.com/store/account/subscriptions</a></li>
+                <li>En iOS: Ajustes &gt; [tu nombre] &gt; Suscripciones, o <a href="https://apps.apple.com/account/subscriptions" target="_blank" rel="noopener noreferrer">apps.apple.com/account/subscriptions</a></li>
+            </ul>
+            <p>La cancelación surte efecto al final del período en curso. Conservas Pro hasta entonces y no se te vuelve a cobrar. Como Still requiere Pro, la app no puede usarse una vez que termina el período, hasta que vuelvas a suscribirte o compres el plan de por vida. Borrar la app no cancela una suscripción.</p>
+
+            <h3>4.5 Compra de por vida</h3>
+            <p>El plan de por vida es un pago único, sin renovación, que activa Pro mientras Still se ofrezca en tu plataforma, en los dispositivos con la misma cuenta de la tienda. No es una suscripción y nunca se vuelve a cobrar.</p>
+
+            <h3>4.6 Reembolsos</h3>
+            <p>Los reembolsos los gestiona la tienda que procesó el pago, según su propia política: Google Play (<a href="https://support.google.com/googleplay/answer/2479637" target="_blank" rel="noopener noreferrer">support.google.com/googleplay/answer/2479637</a>) o Apple (<a href="https://reportaproblem.apple.com" target="_blank" rel="noopener noreferrer">reportaproblem.apple.com</a>). Como la tienda procesa el pago, no podemos emitir reembolsos directamente. Si tienes alguna inquietud sobre Still, escríbenos al correo de abajo y buscaremos contigo una solución.</p>
+
+            <h3>4.7 Restaurar compras</h3>
+            <p>Si reinstalas Still o cambias de dispositivo, toca Ajustes &gt; Restaurar compras (o Restaurar en el paywall) para volver a activar Pro. Esto busca tu compra existente a través de tu cuenta de la tienda y RevenueCat. Las compras solo se restauran en la misma plataforma y cuenta de la tienda con que se hicieron.</p>
+
+            <h3>4.8 Cambios de precio</h3>
+            <p>Podemos cambiar los precios de las compras nuevas en cualquier momento. Para quienes ya están suscritos, cualquier cambio en el precio de renovación lo comunica Google Play o Apple según sus políticas, y puedes aceptar el nuevo precio o cancelar antes de que entre en vigor.</p>
+
+            <h2>5. Propiedad intelectual</h2>
+            <p>Still, incluidos su diseño, código, contenido, logotipos y marcas, pertenece a Juan Diego Garita y está protegida por las leyes de derechos de autor, marcas y demás propiedad intelectual. Estos Términos te otorgan una licencia de uso de la app; no te transfieren la propiedad de la app ni de su contenido.</p>
+
+            <h2>6. Exenciones de responsabilidad</h2>
+            <p>Still se ofrece "TAL CUAL" y "SEGÚN DISPONIBILIDAD", con todos sus fallos y defectos, y sin garantía de ningún tipo, ya sea expresa, implícita, legal o de otra índole, incluidas (sin limitación) las garantías implícitas de comerciabilidad, idoneidad para un propósito particular, titularidad y no infracción. No garantizamos que la app funcione sin interrupciones, sin errores, de forma segura o libre de virus.</p>
+            <p>Still es una herramienta para organizar la cocina, no un servicio de inocuidad alimentaria, nutrición ni salud. Las fechas de "usar antes de" que muestra Still son estimaciones calculadas a partir de una guía general de conservación y de la fecha en que registraste cada alimento; no consideran cómo se produjo, empacó, manipuló o almacenó un alimento en particular, y no son las fechas del fabricante. Las notificaciones de recordatorio dependen de funciones del sistema operativo (programación en segundo plano, entrega de notificaciones) que el sistema, los modos de ahorro de energía o los permisos que concedas pueden retrasar o suprimir. No uses Still como única fuente para decidir si un alimento es seguro para comer. Revisa siempre la fecha del empaque, inspecciona los alimentos en persona y sigue las indicaciones del fabricante o de un profesional calificado.</p>
+
+            <h2>7. Limitación de responsabilidad</h2>
+            <p>En la máxima medida permitida por la ley aplicable, en ningún caso Still, Juan Diego Garita ni nuestros proveedores y licenciantes serán responsables por daños indirectos, incidentales, especiales, consecuentes o punitivos, ni por pérdida de ganancias, ingresos, datos o reputación, que surjan de o en relación con tu uso de la app (o la imposibilidad de usarla), aun si se nos advirtió de la posibilidad de tales daños.</p>
+            <p>En la máxima medida permitida por la ley aplicable, nuestra responsabilidad total acumulada derivada de o relacionada con estos Términos o con tu uso de la app no excederá el monto que pagaste (a través de Google Play o la App Store de Apple) por Still en los doce (12) meses anteriores al hecho que dio origen al reclamo, o USD $50, lo que sea mayor.</p>
+            <p>Algunas jurisdicciones no permiten ciertas limitaciones de responsabilidad, por lo que algunas de las anteriores podrían no aplicarte.</p>
+
+            <h2>8. Terminación</h2>
+            <p>Puedes dejar de usar Still y desinstalar la app en cualquier momento. Podemos suspender o terminar tu acceso a la app, o dejar de ofrecerla, en cualquier momento, con o sin causa y con o sin aviso, incluido (sin limitación) si incumples estos Términos o si seguir ofreciéndola resulta comercial o legalmente inviable.</p>
+            <p>Si se termina tu acceso, sigues siendo responsable de los cargos de suscripción ya generados. Cancelar una suscripción no borra la app ni tus datos locales.</p>
+
+            <h2>9. Ley aplicable y resolución de disputas</h2>
+
+            <h3>9.1 Ley aplicable</h3>
+            <p>Estos Términos, y cualquier disputa que surja de ellos o se relacione con ellos o con tu uso de Still, se rigen por las leyes de la República de Costa Rica, sin considerar sus normas sobre conflicto de leyes, salvo lo que exijan las leyes imperativas de protección al consumidor de tu país de residencia.</p>
+
+            <h3>9.2 Resolución informal</h3>
+            <p>Antes de presentar un reclamo formal, aceptas contactarnos primero al correo de abajo e intentar resolver la disputa de manera informal durante al menos sesenta (60) días.</p>
+
+            <h3>9.3 Arbitraje</h3>
+            <p>Si la disputa no puede resolverse de manera informal en sesenta (60) días, tú y nosotros aceptamos que se resuelva mediante arbitraje individual vinculante según las reglas de la American Arbitration Association (AAA), y no mediante juicio, salvo cuando dicho acuerdo de arbitraje no sea exigible según tu ley local. Tú y nosotros renunciamos a cualquier derecho a un juicio con jurado y a participar en una acción colectiva, en la medida en que la ley lo permita.</p>
+            <p>Si el arbitraje no es exigible en tu jurisdicción, la disputa la resolverán los tribunales competentes de San José, Costa Rica.</p>
+
+            <h2>10. Términos adicionales para la App Store de Apple</h2>
+            <p>Si obtuviste Still en la App Store de Apple, también aplica lo siguiente:</p>
+            <ul>
+                <li>Estos Términos son entre tú y Juan Diego Garita únicamente, no con Apple Inc. ("Apple"). Nosotros, y no Apple, somos los únicos responsables de Still y de su contenido.</li>
+                <li>Tu licencia se limita a usar Still en productos de la marca Apple que te pertenezcan o controles, según lo permiten las Reglas de uso de los Términos y condiciones de los Servicios multimedia de Apple.</li>
+                <li>Apple no tiene obligación alguna de dar mantenimiento ni soporte a Still.</li>
+                <li>Si Still no cumple con alguna garantía aplicable, puedes notificarlo a Apple, y Apple te reembolsará el precio de compra (si lo hubo) de Still; en la máxima medida permitida por la ley, Apple no tiene ninguna otra obligación de garantía respecto de Still.</li>
+                <li>Nosotros, y no Apple, somos responsables de atender cualquier reclamo tuyo o de terceros relacionado con Still, incluidos los reclamos por responsabilidad del producto, los reclamos de que Still no cumple con requisitos legales o regulatorios, y los reclamos de protección al consumidor o de privacidad.</li>
+                <li>Si un tercero alega que Still o tu uso de ella infringe sus derechos de propiedad intelectual, nosotros, y no Apple, somos responsables de la investigación, defensa, arreglo y resolución de ese reclamo.</li>
+                <li>Declaras que no te encuentras en un país sujeto a un embargo del Gobierno de EE. UU. ni designado como país que "apoya el terrorismo", y que no figuras en ninguna lista del Gobierno de EE. UU. de partes prohibidas o restringidas.</li>
+                <li>Apple y sus subsidiarias son terceros beneficiarios de estos Términos y, una vez que los aceptes, Apple podrá hacerlos valer frente a ti.</li>
+            </ul>
+
+            <h2>11. Cambios a estos Términos</h2>
+            <p>Podemos actualizar estos Términos de vez en cuando. La "Fecha de entrada en vigor" al inicio de esta página indica la revisión más reciente. Si hacemos cambios importantes, los mostraremos en la app o te daremos un aviso razonable por otro medio. Seguir usando Still después de que los cambios entren en vigor implica que aceptas los Términos actualizados.</p>
+
+            <h2>12. Divisibilidad</h2>
+            <p>Si alguna disposición de estos Términos se considera inválida o no exigible, esa disposición se aplicará en la máxima medida permitida, y las demás disposiciones seguirán plenamente vigentes.</p>
+
+            <h2>13. Contacto</h2>
+            <p>Para preguntas sobre estos Términos o sobre Still:</p>
+            <p>Correo: <a href="mailto:hello@jdgarita.dev">hello@jdgarita.dev</a></p>
+        </div>
     </main>
 
     <footer class="doc-footer">
         <div class="container">
             <p>© <span id="footer-year">2026</span> Juan Diego Garita</p>
-            <p><a href="../privacy-policy/">Privacy Policy</a> · <a href="../">Still</a></p>
+            <p><a href="../privacy-policy/"><span data-lang="en">Privacy Policy</span><span data-lang="es" lang="es">Política de privacidad</span></a> · <a href="../">Still</a></p>
         </div>
     </footer>
 
     <script>
-      // Keep the footer copyright year current — no external dependency.
-      var y = document.getElementById('footer-year');
-      if (y) { y.textContent = String(new Date().getFullYear()); }
+      // Year stamp + the EN/ES toggle. No external dependency; nothing is sent anywhere.
+      (function () {
+        var y = document.getElementById('footer-year');
+        if (y) { y.textContent = String(new Date().getFullYear()); }
+        var d = document.documentElement;
+        var TITLES = { en: 'Still — Terms and Conditions', es: 'Still — Términos y condiciones' };
+        var LABELS = { en: 'Switch language', es: 'Cambiar idioma' };
+        var NAV = { en: 'Legal documents', es: 'Documentos legales' };
+        var btn = document.getElementById('lang-toggle');
+        var nav = document.querySelector('.doc-nav');
+        function apply(l) {
+          d.setAttribute('lang', l);
+          document.title = TITLES[l];
+          if (btn) { btn.setAttribute('aria-label', LABELS[l]); }
+          if (nav) { nav.setAttribute('aria-label', NAV[l]); }
+        }
+        var lang = d.getAttribute('lang') === 'es' ? 'es' : 'en';
+        apply(lang);
+        if (btn) {
+          btn.addEventListener('click', function () {
+            lang = lang === 'es' ? 'en' : 'es';
+            try { localStorage.setItem('still-lang', lang); } catch (e) {}
+            apply(lang);
+          });
+        }
+      })();
     </script>
 </body>
 </html>
