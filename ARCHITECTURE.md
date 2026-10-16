@@ -77,7 +77,9 @@ carries its own inline copy of the analytics beacon; the legal docs have none). 
 ├── frnk/index.html            Shared-shell sub-page for the frnk app
 ├── still/
 │   ├── index.html             Standalone landing page (bilingual, inline dictionary)
-│   ├── landing.css            Landing tokens ("Culinary Arc" palette)
+│   ├── landing.css            Landing tokens (the app's Still × Faint palette, light + dark)
+│   ├── fonts/                 Inter Tight, Latin-subset WOFF (400/600/700/800)
+│   ├── img/                   App icon + Avo (WebP), link-preview icon (JPEG)
 │   ├── still.css              Legal-doc styles
 │   ├── privacy-policy/index.html
 │   └── terms-and-conditions/index.html

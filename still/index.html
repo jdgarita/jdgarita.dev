@@ -4,44 +4,49 @@
     <!--
       Still — landing page (/still/)
       ============================================================
-      Marketing landing page for the Still app, implemented from the
-      Claude Design handoff ("Still Landing.html"). Standalone
-      mini-site: own stylesheet (landing.css) and its own small inline
-      i18n + theme script — NOT the root site's css/custom.css or
-      js/custom.js.
+      Marketing page for Still, the fridge & pantry tracker, in the
+      app's Still × Faint look (bone paper, ink, brand green, amber,
+      Inter Tight, Avo, the hand-inked food drawings). Standalone
+      mini-site: own stylesheet (landing.css), self-hosted fonts
+      (fonts/), images (img/) and its own small inline i18n + theme
+      script — NOT the root site's css/custom.css or js/custom.js.
 
-      Bilingual (EN/ES) + light/dark, both via the nav toggles. The
-      palette/type/radii are ported from the app's "Culinary Arc"
-      tokens so web and app read as one product. The phone mock-ups
-      are faithful static re-creations of real app screens (compact
-      Home dashboard, FIFO instance tracking, Stats) — pure HTML/CSS,
-      no images/canvas/framework. They stay in English (product
-      screenshots); the surrounding marketing copy is translated.
+      Bilingual (EN/ES) + light/dark via the nav toggles. The phone
+      mock-ups are static HTML/CSS re-creations of the real screens
+      (Home's kitchen, the Add sheet's save card, a reminder), drawn
+      at the app's 390 × 844 pt and scaled; they stay in English
+      (product screenshots). The food drawings are the app's own
+      (mobile/shared/art/food in the Still repo), inlined as symbols.
 
       Degradation: with JS off, the hard-coded English copy shows,
-      theme follows the OS via prefers-color-scheme, and the toggles
-      simply don't act. Legal docs live at privacy-policy/ +
-      terms-and-conditions/ and are linked from the footer.
+      the theme follows the OS via prefers-color-scheme, and the
+      toggles don't act. Legal docs: privacy-policy/ and
+      terms-and-conditions/, linked from the footer.
     -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="description" content="Still is a quiet, on-device peak-flavor tracker for the food in your kitchen. Track the peak, cook calmly, and waste nothing. On iOS and Android, free for 7 days." />
-    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
+    <meta name="description" content="Still is a fridge and pantry tracker for iOS and Android. Log food in 3 taps, see your kitchen at a glance, and get one reminder the day before. No account: your kitchen stays on your phone." />
+    <meta name="theme-color" content="#EDEAE4" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0B0B0C" media="(prefers-color-scheme: dark)" />
 
-    <title>Still — Cook at the peak. Waste none.</title>
+    <title>Still — Fridge &amp; pantry tracker. Log food in 3 taps.</title>
     <link rel="canonical" href="https://jdgarita.dev/still/" />
 
-    <!-- Open Graph / Twitter (scrapers don't run JS — text-only card; no OG image asset yet) -->
+    <!-- Open Graph / Twitter (scrapers don't run JS, so this English copy is what they read). -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Still" />
     <meta property="og:url" content="https://jdgarita.dev/still/" />
-    <meta property="og:title" content="Still — Cook at the peak. Waste none." />
-    <meta property="og:description" content="A quiet, on-device peak-flavor tracker for the food in your kitchen. On iOS and Android, free for 7 days." />
+    <meta property="og:title" content="Still — Fridge &amp; pantry tracker" />
+    <meta property="og:description" content="Log food in 3 taps and waste less. Your kitchen at a glance, one reminder the day before, no account. On iOS and Android." />
+    <meta property="og:image" content="https://jdgarita.dev/still/img/still-icon-512.jpg" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="Still's app icon: Avo, a hand-drawn avocado, waving." />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Still — Cook at the peak. Waste none." />
-    <meta name="twitter:description" content="A quiet, on-device peak-flavor tracker for the food in your kitchen. On iOS and Android, free for 7 days." />
+    <meta name="twitter:title" content="Still — Fridge &amp; pantry tracker" />
+    <meta name="twitter:description" content="Log food in 3 taps and waste less. Your kitchen at a glance, one reminder the day before, no account. On iOS and Android." />
+    <meta name="twitter:image" content="https://jdgarita.dev/still/img/still-icon-512.jpg" />
 
     <!-- Structured data (schema.org). No ratings or prices (keep claims honest; prices vary by region and store). -->
     <script type="application/ld+json">
@@ -49,11 +54,17 @@
       "@context": "https://schema.org",
       "@type": "MobileApplication",
       "name": "Still",
-      "description": "A quiet, on-device peak-flavor tracker for the food in your kitchen.",
+      "alternateName": "Fridge & Pantry Tracker: Still",
+      "description": "A fridge and pantry tracker: log food in 3 taps, see your kitchen at a glance, and get one reminder the day before. No account; your kitchen stays on your phone.",
       "url": "https://jdgarita.dev/still/",
+      "image": "https://jdgarita.dev/still/img/still-icon-512.jpg",
       "operatingSystem": "Android, iOS",
       "applicationCategory": "LifestyleApplication",
       "installUrl": "https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack",
+      "sameAs": [
+        "https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack",
+        "https://apps.apple.com/app/id6819700105"
+      ],
       "author": {
         "@type": "Person",
         "@id": "https://jdgarita.dev/#person",
@@ -68,7 +79,8 @@
     <link rel="icon" href="../image/favicon-16.png" sizes="16x16" type="image/png" />
     <link rel="apple-touch-icon" href="../image/apple-touch-icon.png" />
     <link rel="shortcut icon" href="../image/favicon.ico" />
-    <link rel="stylesheet" href="landing.css" />
+    <link rel="preload" href="fonts/inter-tight-800.woff" as="font" type="font/woff" crossorigin />
+    <link rel="stylesheet" href="landing.css?v=2026-10-16" />
 
     <!-- No-FOUC: set theme + language before first paint. -->
     <script>
@@ -89,58 +101,78 @@
 <body>
     <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
 
-    <!-- ====================================================== -->
-    <!-- Inline SVG icon sprite (Lucide-style line icons +      -->
-    <!-- hand-drawn food glyphs ported from the app).           -->
-    <!-- ====================================================== -->
+    <!-- Inline SVG sprite: Lucide line icons, store marks, and the app's hand-inked food drawings
+         (two-tone: ink = currentColor, paper = --art-paper). -->
     <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" focusable="false">
-        <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
-        <symbol id="i-sort" viewBox="0 0 24 24"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></symbol>
-        <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
-        <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol>
-        <symbol id="i-chart" viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></symbol>
         <symbol id="i-settings" viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></symbol>
+        <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+        <symbol id="i-sort" viewBox="0 0 24 24"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></symbol>
+        <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+        <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
         <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol>
         <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></symbol>
-        <symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
-        <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></symbol>
-        <symbol id="i-trending-up" viewBox="0 0 24 24"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></symbol>
-        <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
-        <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol>
-        <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
-        <symbol id="i-sprout" viewBox="0 0 24 24"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6c-.9 1-1.4 2.6-1.4 4 1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></symbol>
-        <symbol id="i-recycle" viewBox="0 0 24 24"><path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"/><path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12"/><path d="m14 16-3 3 3 3"/><path d="M8.293 13.596 7.196 9.5 3.1 10.598"/><path d="m9.344 5.811 1.093-1.892A1.83 1.83 0 0 1 11.985 3a1.784 1.784 0 0 1 1.546.888l3.943 6.843"/><path d="m13.378 9.633 4.096 1.098 1.097-4.096"/></symbol>
-        <symbol id="i-piggy-bank" viewBox="0 0 24 24"><path d="M11 17h3v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3a3.16 3.16 0 0 0 2-2h1a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-1a5 5 0 0 0-2-3V3a4 4 0 0 0-3.2 1.6l-.3.4H11a6 6 0 0 0-6 6v1a5 5 0 0 0 2 4v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1z"/><path d="M16 10h.01"/><path d="M2 8v1a2 2 0 0 0 2 2h1"/></symbol>
-        <symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
-        <symbol id="i-fridge" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M6 10h12"/><path d="M9.5 5.5v2"/><path d="M9.5 13v3"/></symbol>
-        <symbol id="i-utensils" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2s2-.9 2-2V2"/><path d="M5 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></symbol>
-        <!-- food glyphs -->
-        <symbol id="i-tomato" viewBox="0 0 24 24"><circle cx="12" cy="14" r="6.5"/><path d="M12 7.5c-1-1.4-2.4-1.2-3.2-.5"/><path d="M12 7.5c1-1.4 2.4-1.2 3.2-.5"/><path d="M12 7.5v-2"/></symbol>
-        <symbol id="i-fish" viewBox="0 0 24 24"><path d="M3 12c3-5 9-6 14-6 2 0 4 2 4 6s-2 6-4 6c-5 0-11-1-14-6z"/><path d="M3 12c0-1 1-2 2-3M3 12c0 1 1 2 2 3"/><circle cx="16" cy="11" r=".7"/></symbol>
-        <symbol id="i-bread" viewBox="0 0 24 24"><path d="M4 12c0-3 4-5 8-5s8 2 8 5v5c0 1-1 2-2 2H6c-1 0-2-1-2-2z"/><path d="M9 9v8M15 9v8" opacity=".6"/></symbol>
-        <symbol id="i-steak" viewBox="0 0 24 24"><path d="M5 9c2-3 7-4 11-3s5 3 4 6c-1 4-5 6-9 5-4 0-7-4-6-8z"/><path d="M10 10c2-1 5-1 7 0" opacity=".7"/></symbol>
-        <symbol id="i-cheese" viewBox="0 0 24 24"><path d="M4 17l16-7v6H4z"/><circle cx="9" cy="14" r=".7"/><circle cx="14" cy="13" r=".7"/></symbol>
-        <symbol id="i-avocado" viewBox="0 0 24 24"><path d="M12 4c-3 0-5 3-5 7 0 3-2 4-2 6 0 2 3 4 7 4s7-2 7-4c0-2-2-3-2-6 0-4-2-7-5-7z"/><circle cx="12" cy="14" r="2.5"/></symbol>
-        <symbol id="i-berry" viewBox="0 0 24 24"><circle cx="9" cy="14" r="3"/><circle cx="15" cy="14" r="3"/><circle cx="12" cy="10" r="3"/><path d="M12 7V4l2-1"/></symbol>
+        <symbol id="i-fridge" viewBox="0 0 24 24"><path d="M5 6a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path d="M5 10h14"/><path d="M15 7v6"/></symbol>
+        <symbol id="i-snowflake" viewBox="0 0 24 24"><path d="M2 12h20"/><path d="M12 2v20"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></symbol>
+        <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></symbol>
+        <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></symbol>
+        <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></symbol>
+        <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
+        <symbol id="i-smartphone" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></symbol>
+        <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></symbol>
+        <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M8 16H3v5"/></symbol>
+        <symbol id="i-user-x" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m17 8 5 5"/><path d="m22 8-5 5"/></symbol>
+        <symbol id="i-cloud-off" viewBox="0 0 24 24"><path d="m2 2 20 20"/><path d="M5.782 5.782A7 7 0 0 0 9 19h8.5a4.5 4.5 0 0 0 1.307-.193"/><path d="M21.532 16.5A4.5 4.5 0 0 0 17.5 10h-1.79A7.008 7.008 0 0 0 10 5.07"/></symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+        <symbol id="i-brand-google-play" viewBox="0 0 24 24"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.391 1.025v20.101c0 .403.16.762.41 1.032l11.553-11.06L1.337.924zm12.622 10.124l2.98-2.982L2.368.153a1.49 1.49 0 0 0-.896-.153l12.487 11.048zm0 2.065L1.474 24a1.49 1.49 0 0 0 .895-.155l14.56-8.4-2.97-2.932z"/></symbol>
+        <symbol id="i-brand-apple" viewBox="0 0 24 24"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></symbol>
+        <symbol id="f-salmon" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9.6 30.8C14.4 20 30 13.6 44 15.8 50.8 16.8 55.6 20.6 55.8 26.6 56 36 47.6 46.4 36.6 49.4 25.4 52.4 13.8 48.2 9.8 39.4 8.6 36.6 8.4 33.4 9.6 30.8Z"></path><path d="M12.4 24.8C26 19.8 40.6 18.8 54.8 21.6" stroke-width="2.2"></path><g stroke-width="1.6"><path d="M17.8 27.2C21.4 33.6 25.4 39.8 30.4 47.8M27.4 24.6C30.6 30.2 34.6 36.6 40.4 46.6M37.8 23.4C40.6 28 44.6 33.8 49 40.6"></path></g></symbol>
+        <symbol id="f-strawberries" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M32 23C19.8 22.6 12.2 30.6 13.8 40.4 15.4 50.4 25.6 58.4 32.2 58.2 38.8 58 48.6 50 50.2 40 51.8 30.4 44 23.2 32 23Z"></path><path d="M17.6 24.6C21.8 18.4 27.6 20.4 32 15.8 36.2 20.6 42.2 18.4 46.6 24.6 40.6 26.8 36.4 27 32 27 27.6 27 23.4 26.8 17.6 24.6Z"></path><path d="M32 15.8 32.4 8.6"></path><g fill="currentColor" stroke="none"><ellipse cx="25" cy="35" rx="1.3" ry="1.8"></ellipse><ellipse cx="39" cy="35" rx="1.3" ry="1.8"></ellipse><ellipse cx="32" cy="43" rx="1.3" ry="1.8"></ellipse><ellipse cx="23" cy="46" rx="1.3" ry="1.8"></ellipse><ellipse cx="41" cy="46" rx="1.3" ry="1.8"></ellipse><ellipse cx="32" cy="52" rx="1.3" ry="1.8"></ellipse></g></symbol>
+        <symbol id="f-mushrooms" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9.8 34.4C9.6 21.4 18.8 12 32.4 12 46 12 55.2 21.4 55 34.4 47.6 36.4 40.4 37.2 32.4 37.2 24.4 37.2 17.2 36.4 9.8 34.4Z"></path><path d="M26.8 37C26.4 44.6 25.8 50.2 25 55.6 27.4 57.2 36.8 57.2 39.4 55.6 38.6 50.2 38 44.6 37.6 37"></path><g fill="currentColor" stroke="none"><circle cx="22" cy="22" r="1.4"></circle><circle cx="33" cy="18.4" r="1.4"></circle><circle cx="43" cy="24.4" r="1.4"></circle><circle cx="31" cy="28" r="1.4"></circle></g></symbol>
+        <symbol id="f-spinach" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M32 44.6 30.8 57.8"></path><path d="M32 44.6C21 44.2 13.6 36.4 13.8 25.2 14 17 20 10.4 32.2 7.2 44.4 10.4 50.4 17 50.6 25.2 50.8 36.4 43 44.2 32 44.6Z"></path><g stroke-width="1.6"><path d="M32.2 10.6 32 44.6M31.8 22C27.4 24 24 27.4 22.2 32M32.4 22C36.8 24 40.2 27.4 42 32"></path></g></symbol>
+        <symbol id="f-milk" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24.6 6.4 39.6 6.6 39.4 14.2C39.4 18.6 45.6 22.4 45.4 29.4L45.2 54.2C45.2 56.4 43.6 57.8 41.4 57.8L22.6 57.6C20.4 57.6 18.8 56.2 18.8 54L19 29.6C19 22.6 24.8 18.8 24.8 14.4Z"></path><path d="M19.2 30.2C27.8 28 36.4 28 45.2 30.2" stroke-width="1.6"></path><path d="M24.4 14.6C29.4 13.4 34.6 13.4 39.6 14.6" stroke-width="1.6"></path></symbol>
+        <symbol id="f-yogurt" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.2 22.4 18.4 54.4C18.6 56.4 20 57.6 22.2 57.6L41.8 57.6C44 57.6 45.4 56.4 45.6 54.4L49.8 22.4Z"></path><path d="M12.4 22.4C23.4 20 40.6 20 51.6 22.4" stroke-width="2.4"></path><path d="M12.4 22.4 35.6 22.4C42 20.6 48 16.2 52.4 10.4 54 14.8 54.4 19 51.6 22.4"></path></symbol>
+        <symbol id="f-avocado" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M32 6C22.5 5.6 12 20 12.4 36.2 12.7 50 21 58.3 32.2 58 43 57.8 52.2 50 51.8 35.8 51.4 20 42 6.4 32 6Z"></path><path d="M32 14C26 13.8 18.6 24 18.8 36.4 19 46 25 51.4 32 51.2 39 51 45.4 46 45.2 36.2 45 24 38 14.2 32 14Z" stroke-width="1.8"></path><path d="M32.4 31C36.8 31.2 40.2 34.6 40 39.2 39.8 43.6 36.2 46.8 31.8 46.6 27.4 46.4 24 42.8 24.2 38.6 24.4 34.2 28 30.8 32.4 31Z"></path><g fill="currentColor" stroke="none"><circle cx="30" cy="37" r=".9"></circle><circle cx="34.5" cy="36" r=".9"></circle><circle cx="32.5" cy="41" r=".9"></circle><circle cx="28.4" cy="41.4" r=".9"></circle><circle cx="36.2" cy="40.4" r=".9"></circle></g></symbol>
+        <symbol id="f-banana" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9.6 22.4C12 37.8 24.4 49.8 43.8 52 50 52.6 54.2 50.6 56.4 46.2 50.2 48.2 44.2 47.2 38.2 45.2 26.4 41.2 18.4 32.4 14.4 20.4 13.4 17.4 9.2 18.6 9.6 22.4Z"></path><path d="M14.4 20.4 12.6 13.8" stroke-width="3"></path><path d="M17 26.2C22.6 37 31.4 43.6 44.6 47.6" stroke-width="1.6"></path><path d="M53.2 50.4 56.4 46.2" stroke-width="3"></path></symbol>
+        <symbol id="f-onion" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M32 16.4C42.4 20 52.8 30 52.6 41.2 52.4 51.4 43.4 57.8 32.2 57.6 21 57.4 11.6 51 11.4 41 11.2 30 21.6 20 32 16.4Z"></path><path d="M28.6 17.8C26.8 11.6 29.6 7.4 32 5.6 34.4 7.4 37.4 11.6 35.6 17.8"></path><g stroke-width="1.6"><path d="M32 18.8C25 26.4 22.6 38.4 24.6 55.6M32 18.8C39.2 26.4 41.4 38.4 39.6 55.6M32 19.4 32 57.4"></path></g></symbol>
+        <symbol id="f-tomato" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M32 18.2C44.4 17.6 54.2 26 54 37.4 53.8 49 44 58.2 32 58 20 57.8 10.2 49 10.4 37.2 10.6 25.6 20 18.8 32 18.2Z"></path><path d="M32 18.2C33.6 13.4 36.8 10.8 41 10.4 38.2 14.2 37 16.4 36.6 19.2 41.6 18 45.6 19 48.4 21.4 44 21.8 40.6 23 38 25.4 36.2 22 33.8 19.8 32 18.2 30.2 19.8 27.8 22 26 25.4 23.4 23 20 21.8 15.6 21.4 18.4 19 22.4 18 27.4 19.2 27 16.4 25.8 14.2 23 10.4 27.2 10.8 30.4 13.4 32 18.2Z"></path><path d="M32 18.2 32 7.6" stroke-width="2.2"></path></symbol>
+        <symbol id="f-potato" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16.2 22.4C22 13.6 36.4 12 46.6 18.2 56.6 24.4 56 39.2 50.4 46.6 44.6 54.2 32.6 56.8 22.4 52.2 12.6 47.8 10.2 31.6 16.2 22.4Z"></path><g fill="currentColor" stroke="none"><ellipse cx="25" cy="30" rx="1.3" ry="1.9" transform="rotate(-30 25 30)"></ellipse><ellipse cx="38" cy="25" rx="1.3" ry="1.9" transform="rotate(20 38 25)"></ellipse><ellipse cx="44" cy="38" rx="1.3" ry="1.9" transform="rotate(-20 44 38)"></ellipse><ellipse cx="30" cy="43" rx="1.3" ry="1.9" transform="rotate(30 30 43)"></ellipse><ellipse cx="22" cy="47.2" rx="1.1" ry="1.6"></ellipse></g></symbol>
+        <symbol id="f-walnuts" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M32 10.4C45.4 10.2 54.6 20.6 54.4 33.6 54.2 46.8 44.8 56.2 32 56.4 19.2 56.6 9.6 46.8 9.6 33.6 9.6 20.4 18.6 10.6 32 10.4Z"></path><path d="M32 10.4C30.4 26 30.6 41 32 56.4" stroke-width="2.4"></path><g stroke-width="1.6"><path d="M16.4 22.2C20.4 24.2 22.8 22.8 24.6 19.2M14.2 32.4C18.4 31.8 21.4 33.6 22.8 37.6M15.8 44.6C19.2 42 22.6 42.8 25 46.4M47.6 22.2C43.6 24.2 41.2 22.8 39.4 19.2M49.8 32.4C45.6 31.8 42.6 33.6 41.2 37.6M48.2 44.6C44.8 42 41.4 42.8 39 46.4M24.2 27.8C26.2 29.6 27.4 31.6 27.6 34.4M39.8 27.8C37.8 29.6 36.6 31.6 36.4 34.4"></path></g></symbol>
+        <symbol id="f-almonds" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.2 11.4C29.2 10.6 36.6 20.2 37.4 32 38 42 32.4 50.8 24.6 51.2 16.6 51.6 11.4 44 11 33.6 10.6 23.6 13.2 12 20.2 11.4Z"></path><path d="M42.4 24.8C49.6 24.6 55.4 31.6 55.4 40.6 55.4 48.4 50.6 55.2 44.6 55.2 38.6 55.2 34.2 49 34.2 41 34.2 32.6 36.8 25 42.4 24.8Z"></path><g stroke-width="1.6"><path d="M19 22.4 18.6 33M24.6 20.2 24.4 36.6M29.8 26.4 29.6 36.4M44.2 34.2 44 43.6M48.8 35.6 48.6 44"></path></g></symbol>
+        <symbol id="f-ground-beef" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 36.4 56 36.4 52 56.6 12 56.6Z"></path><path d="M14.4 36.4C15.4 31.6 20 28.8 24 30.8 25.6 25.6 32.6 23.6 36.2 27.6 39.8 23.6 46.4 25 47.8 30 51.2 29.4 53.2 32.4 51.6 36.4"></path><g stroke-width="1.6"><path d="M20.6 33.6C22 32.4 23.6 32.6 24.6 33.8M30 29.8C31.4 28.6 33 28.8 34 30M40.8 30.4C42.2 29.2 43.8 29.4 44.8 30.6M26.2 34.8C27.6 33.6 29.2 33.8 30.2 35M36.4 34.6C37.8 33.4 39.4 33.6 40.4 34.8"></path></g><path d="M8 36.4C24 39 40 39 56 36.4" stroke-width="1.6"></path></symbol>
+        <symbol id="f-blueberries" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M31.6 20.6C34.6 15.4 40.4 15 44.6 16 42 20.6 36.6 23 31.6 20.6Z"></path><path d="M31.6 20.6 28.4 13.6"></path><circle cx="20.4" cy="40.2" r="10.2"></circle><circle cx="44" cy="40.6" r="10.2"></circle><circle cx="32.2" cy="25.4" r="9.8"></circle><g stroke-width="2"><path d="M18.4 38.2 22.6 42 M22.6 38.2 18.4 42"></path><path d="M42 38.6 46.2 42.4 M46.2 38.6 42 42.4"></path><path d="M30.2 23.4 34.4 27.2 M34.4 23.4 30.2 27.2"></path></g></symbol>
+        <symbol id="f-butter" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.6 38.2 36.4 25.6 55.4 33.6 27.6 46.4Z"></path><path d="M8.6 38.2 8.8 46.6 27.8 54.8 27.6 46.4M55.4 33.6 55.2 42.2 27.8 54.8"></path><path d="M36.4 25.6 36.2 17.8 15.2 27.4 8.6 38.2" stroke-width="2.2"></path><path d="M36.2 17.8 44.4 21.4 45.2 29.4" stroke-width="2.2"></path><path d="M19.6 33 29 29" stroke-width="1.6"></path></symbol>
+        <symbol id="f-eggs" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M38.8 20.8C46.8 20.4 54.6 32.4 54.4 43.2 54.2 51.6 48 57.2 40.2 57 32.4 56.8 26.6 51 26.8 42.6 27 32 31 21.2 38.8 20.8Z"></path><path d="M19.8 10.4C27.6 10 35 21.6 34.8 32.4 34.6 40.6 28.8 46.4 21.2 46.2 13.6 46 8 40.4 8.2 32.2 8.4 21.6 12.2 10.8 19.8 10.4Z"></path><path d="M15 22.4C13.6 25.6 13 28.8 13.2 32" stroke-width="1.6"></path></symbol>
+        <symbol id="f-apple" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M32 18.4C26 12.2 12 14 12.2 32 12.4 46 20.2 58.2 27 58 29.6 58 30.6 56.4 32 56.4 33.4 56.4 34.6 58.2 37.2 58 44 57.6 52.2 46 51.8 31.6 51.4 14 38.2 12.4 32 18.4Z"></path><path d="M32 18.4C32.2 13.6 33.4 10.4 35.4 7"></path><path d="M33.4 14.4C36 8.6 43.6 6.8 48 9.2 45.8 15 39.2 17.2 33.4 14.4Z"></path></symbol>
+        <symbol id="f-carrot" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M40 24.2C44.6 28.4 44 36 38.2 42.6 31.6 50.2 20.6 58.4 12.4 56.8 11.6 48.4 19.4 37.4 27 30.6 33.4 24.8 36.4 21 40 24.2Z"></path><path d="M40 24.2C40 16 44.4 11.4 52 8.2 50 15.6 46.2 21 40 24.2Z"></path><path d="M40 24.2C34.2 22.2 29.6 16.4 28.2 8.6 34.8 11.8 38.6 17.4 40 24.2Z"></path><g stroke-width="1.6"><path d="M30.8 34.4 34.8 36M24.4 42.2 28 43.6M18.4 49.6 21.6 50.8"></path></g></symbol>
+        <symbol id="f-broccoli" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M27.2 42.6 24.8 56.8 36.4 56.6 35.2 42.6"></path><path d="M20.6 20.4C21.6 13.8 28.8 10.8 33.6 14.6 38.4 10.6 46.4 13.4 46.4 20.2 52.6 21.4 54.6 29.4 49.4 33.2 50.8 39.6 44 44.4 38.2 41.2 34.4 44.6 27.8 44.2 24.8 40.4 18.4 42.2 12.6 36 15.2 30.2 10.6 25.6 14.4 19.6 20.6 20.4Z"></path><g stroke-width="1.6"><path d="M23 28.4C26 29.6 27.4 31.8 27.6 34.6M41.6 25.8C38.8 27.4 37.6 29.8 37.6 32.8M31 42.4 31.2 49.2"></path></g></symbol>
+        <symbol id="f-lemon" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.4 32.2C10 22 20 15.6 32 15.4 43.6 15.2 52 21.4 53.2 30.8L58 32 53.2 33.6C51.6 43.4 42.6 49.2 32 49 21.4 48.8 11.8 43.6 10.8 34L6 32.4 10.4 32.2Z"></path><path d="M22.6 16.6C19.6 11.6 13.8 10.6 10 11.8 12.6 16.4 17.8 18.6 22.6 16.6Z"></path><g fill="currentColor" stroke="none"><circle cx="20" cy="38" r=".9"></circle><circle cx="26" cy="42" r=".9"></circle><circle cx="33" cy="43" r=".9"></circle></g></symbol>
+        <symbol id="f-pineapple" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24.2 27C24 19 22.4 12.8 19.6 8.2 25.6 12 29 16.4 30.2 21 30 12.6 31 8 32.2 3.8 33.4 8 34.2 12.6 34 21 35.4 16.6 38.6 12 44.4 8.2 41.6 13 40 19 39.8 27Z"></path><path d="M32 24.4C22.4 24.2 16 32 16.2 42 16.4 52 23 58.2 32.2 58 41.4 57.8 48.2 51.6 48 41.8 47.8 32 41.6 24.6 32 24.4Z"></path><g stroke-width="1.6"><path d="M20 32.6 44.4 55.2M26 26.6 46.6 46.4M16.4 42 32.4 57.6M44 32.6 19.6 55.2M38 26.6 17.4 46.4M47.6 42 31.6 57.6"></path></g></symbol>
+        <symbol id="f-steak" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.2 28.4C9.6 19.6 18 13.4 27.6 15.6 33.6 17 37.8 15.4 43.2 14 51.2 12 57.4 18.4 55.6 26.2 54.4 31.6 49.6 34.8 48.4 40.4 47 47.6 39.8 51.6 32.4 49.8 26.2 48.2 21 49.6 15.6 46.6 10 43.6 9.4 36.2 10.2 28.4Z"></path><path d="M27.6 15.6C26.2 24 28.4 33 30.8 47.4" stroke-width="2.4"></path><path d="M28 29.6C34.6 29.8 41.8 27.6 48.2 25" stroke-width="2.4"></path><g stroke-width="1.6"><path d="M16.4 25.2C18.8 27.8 19.4 32 18.6 36.6M38.8 34.8C41.2 37.6 42 41.4 41.4 44.6"></path></g></symbol>
+        <symbol id="f-shrimp" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 14.4C33.8 8.6 48.2 12.6 53.6 24.8 59 37.4 52.8 50.8 40.6 55 32.2 57.8 23.6 56.4 17.8 51.4 23.4 52.2 28.4 51.8 32.4 50 27.8 48.6 24.4 46.2 22 42.8 28.2 44.6 34 44 38.4 40.8 32.2 40 27.4 37 25 31.6 31.4 33.8 37.6 32.2 41.4 27.4 38 23.8 32.2 22 26.2 22.8 21 21.8 17 17.6 20.8 14.4Z"></path><path d="M22 42.8C14.6 46.2 8.6 45.6 7.4 41.4 11.6 39.6 15.6 40.2 18.2 42" stroke-width="2.2"></path><path d="M17.8 51.4C11.2 54.4 7.2 54.2 6.8 51.8 9.6 50.4 13.6 50.2 17.8 51.4" stroke-width="2.2"></path><circle cx="22.4" cy="18.4" r="1.4" fill="currentColor" stroke="none"></circle><path d="M20.8 14.4C17.6 12.2 14.4 11 10.6 10.8" stroke-width="1.6"></path></symbol>
+        <symbol id="f-basil" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M32 58C32 44 32.6 34 33.6 26.4" stroke-width="2.2"></path><path d="M33.6 26.4C26.4 24.4 20 18.6 19 8.6 28.2 9.4 34.6 15 33.6 26.4Z"></path><path d="M33.6 26.4C34.4 15.4 40.8 10 49.6 9.6 48.8 19.8 42.4 25.2 33.6 26.4Z"></path><path d="M32.4 44.2C25.4 44.2 18.8 40.2 15.2 31.6 23 30.8 29.8 35.2 32.4 44.2Z"></path><path d="M32.8 44.2C35.4 35.2 41.6 30.8 49.4 31.8 45.8 40.6 39.6 44.4 32.8 44.2Z"></path></symbol>
+        <symbol id="f-kale" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M31.2 43.4 30 58"></path><path d="M12 30.2C8.6 25.4 12.4 20.4 16.8 22.4 14.6 17 20.4 12.6 24.6 16 24.6 10.4 31.8 8.6 34.4 13.4 38.2 8.4 46 11.4 44.8 17.4 50.8 16.6 54 23 50 26.8 55.6 29.6 54 37.4 48.2 37.8 50.2 43.6 43.6 48.4 38.8 44.6 36.8 50 29 50.2 26.8 44.8 21.6 48.6 14.2 44 16.6 38.4 10.4 37 9.2 31.6 12 30.2Z"></path><g stroke-width="1.6"><path d="M31.4 43.4 32 18.6M31.6 30.4C27 31.8 23.8 28.6 20.8 27.4M31.8 35.6C36.4 36.6 39.8 33.2 43.4 32.6"></path></g></symbol>
+        <symbol id="f-cheddar-cheese" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.8 44.8 40.2 14.4 56.4 22.2 55.8 43.4C40.2 50.4 23.6 50.8 7.8 44.8Z"></path><path d="M7.8 44.8 40.6 23 56.4 22.2" stroke-width="2.2"></path><path d="M40.6 23 40.2 14.4" stroke-width="2.2"></path><g stroke-width="1.6"><circle cx="24" cy="38.6" r="2.4"></circle><circle cx="37.6" cy="40.4" r="1.8"></circle><circle cx="30" cy="31.6" r="1.6"></circle><circle cx="47.6" cy="32.6" r="2"></circle></g></symbol>
+        <symbol id="f-bell-pepper" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M32 18.4C27.4 14 20.6 14.2 15.6 19.6 9.4 26.4 10 42.6 14.4 50.4 17.8 56.6 24.2 58.4 27.2 54.8 29 56.6 35 56.6 36.8 54.8 39.8 58.4 46.2 56.6 49.6 50.4 54 42.6 54.6 26.4 48.4 19.6 43.4 14.2 36.6 14 32 18.4Z"></path><path d="M32 18.4C31.4 14.2 32.8 10 36.8 6.8" stroke-width="2.2"></path><path d="M32 18.4C29.4 20 27.4 23.4 27.2 28.4" stroke-width="1.6"></path><path d="M32 18.4C34.6 20 36.6 23.4 36.8 28.4" stroke-width="1.6"></path></symbol>
+        <symbol id="f-mango" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.4 12.4C30 8.2 42 14 47.8 26 53.8 38.4 53.6 52 42.2 56 30.4 60 16.4 50.4 12.2 36 9.4 26 12.8 15.6 20.4 12.4Z"></path><path d="M20.4 12.4 18.4 6.6"></path><path d="M21 11.8C23.4 6.2 29.4 4.2 34.6 6.2 31.4 11.4 25.8 13.4 21 11.8Z"></path><path d="M20.6 22.4C19.4 25.4 19.8 28.4 21.4 31" stroke-width="1.6"></path></symbol>
+        <symbol id="f-pistachios" viewBox="0 0 64 64" style="fill:var(--art-paper)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M32.4 20.4C37.2 15.6 42.6 16.6 44.6 23.4 46.6 30.4 44.2 39.8 38.6 46 36.2 48.6 33 47.6 31.8 44.6 29.6 38.6 29.4 27.6 32.4 20.4Z"></path><path d="M27.8 11.4C17.4 11.8 10.4 23.2 10.6 35.4 10.8 46.8 18 55.8 27.2 56.6 29.8 56.8 30.6 54.2 29.6 51.8 25.8 42.6 25.6 24.6 29.4 14.4 30.2 12.4 29.6 11.4 27.8 11.4Z"></path><path d="M36.6 11.4C47 11.8 54 23.2 53.8 35.4 53.6 46.8 46.4 55.8 37.2 56.6 34.6 56.8 33.8 54.2 34.8 51.8 38.6 42.6 38.8 24.6 35 14.4 34.2 12.4 34.8 11.4 36.6 11.4Z"></path><path d="M19.6 25.2C18 29.4 17.8 36 19.2 41.6M44.4 25.2C46 29.4 46.2 36 44.8 41.6" stroke-width="1.6"></path></symbol>
     </svg>
 
-    <!-- ====================================================== -->
-    <!-- NAV                                                    -->
-    <!-- ====================================================== -->
+    <!-- ================= NAV ================= -->
     <header class="nav">
         <div class="nav__inner">
-            <a class="wordmark" href="#top">Still<span class="dot">.</span></a>
-            <nav class="nav__links" aria-label="Primary">
-                <a href="#features" data-i18n="nav.features">Features</a>
-                <a href="#peak" data-i18n="nav.how">How it works</a>
-                <a href="#impact" data-i18n="nav.impact">Impact</a>
-                <a href="#download" data-i18n="nav.download">Download</a>
+            <a class="wordmark" href="#top" aria-label="Still home" data-i18n-attr="aria-label:a11y.home"><img src="img/still-icon.webp" width="32" height="32" alt="" />Still</a>
+            <nav class="nav__links" aria-label="Primary" data-i18n-attr="aria-label:a11y.primary">
+                <a href="#how" data-i18n="nav.how">How it works</a>
+                <a href="#kitchen" data-i18n="nav.kitchen">Your kitchen</a>
+                <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
+                <a href="#pro" data-i18n="nav.pro">Pricing</a>
             </nav>
             <div class="nav__utils">
                 <button id="lang-toggle" class="nav__util lang-toggle" type="button" aria-label="Switch language" data-i18n-attr="aria-label:a11y.lang">
                     <span class="lang-seg lang-en">EN</span><span class="lang-sep">/</span><span class="lang-seg lang-es">ES</span>
                 </button>
-                <button id="theme-toggle" class="nav__util nav__util--icon theme-toggle" type="button" aria-label="Toggle light / dark theme" data-i18n-attr="aria-label:a11y.theme">
+                <button id="theme-toggle" class="nav__util theme-toggle" type="button" aria-label="Toggle light / dark theme" data-i18n-attr="aria-label:a11y.theme">
                     <svg class="ic ic-moon" aria-hidden="true"><use href="#i-moon"/></svg>
                     <svg class="ic ic-sun" aria-hidden="true"><use href="#i-sun"/></svg>
                 </button>
@@ -148,550 +180,582 @@
         </div>
     </header>
 
-    <main id="main">
+    <main id="main" tabindex="-1">
         <span id="top"></span>
 
-        <!-- ================================================== -->
-        <!-- HERO                                               -->
-        <!-- ================================================== -->
+        <!-- ================= HERO ================= -->
         <section class="hero" aria-labelledby="hero-title">
-            <div class="hero__blobs" aria-hidden="true"></div>
-            <div class="hero__inner container">
-                <div>
-                    <p class="eyebrow" data-i18n="hero.eyebrow">Peak-flavor tracker · iOS · Android</p>
-                    <h1 id="hero-title" class="hero__title" data-i18n-html="hero.h1">Track the peak.<br/>Cook <span class="accent">calmly</span>.<br/>Waste nothing.</h1>
-                    <p class="hero__lede" data-i18n="hero.lede">Still follows every ingredient through its Culinary Arc — from resting, to peak, to action — so you cook each one at its best and never throw food away again.</p>
-                    <div class="hero__cta-row">
-                        <a class="store-btn" data-store="ios" data-placement="hero" href="https://apps.apple.com/app/id6819700105" target="_blank" rel="noopener noreferrer" aria-label="Download Still on the App Store" data-i18n-attr="aria-label:a11y.appstore">
-                            <svg class="store-btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-                            <span class="store-btn__text">
-                                <span class="store-btn__sub" data-i18n="store.appstoreSub">Download on the</span>
-                                <span class="store-btn__main">App Store</span>
-                            </span>
-                        </a>
-                        <a class="store-btn" data-store="android" data-placement="hero" href="https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack" target="_blank" rel="noopener noreferrer" aria-label="Get Still on Google Play" data-i18n-attr="aria-label:a11y.play">
-                            <svg class="store-btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#00D2FF" d="M3.609 1.814 13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92z"/><path fill="#FFBC00" d="m17.698 9.51 2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.39 12l2.308-2.49z"/><path fill="#FF3A44" d="M14.499 12.707 5.864 21.342l10.937-6.333-2.302-2.302z"/><path fill="#00C24A" d="M5.864 2.658 16.802 8.99l-2.303 2.303L5.864 2.658z"/></svg>
-                            <span class="store-btn__text">
-                                <span class="store-btn__sub" data-i18n="store.playSub">Get it on</span>
-                                <span class="store-btn__main">Google Play</span>
-                            </span>
-                        </a>
+            <div class="container hero__grid">
+                <div class="hero__copy">
+                    <p class="eyebrow mono" data-i18n="hero.eyebrow">Fridge &amp; pantry tracker · iOS · Android</p>
+                    <h1 id="hero-title" class="display" data-i18n-html="hero.h1">Log food in 3&nbsp;taps.<br />Waste <span class="accent">less</span>.</h1>
+                    <p class="lede" data-i18n="hero.lede">Tap a category, an item and where you put it. Still works out when each one needs using, lays out your kitchen at a glance, and nudges you the day before.</p>
+                    <div>
+                        <div class="stores">
+                            <a class="store" data-store="ios" data-placement="hero" href="https://apps.apple.com/app/id6819700105" target="_blank" rel="noopener noreferrer" aria-label="Download Still on the App Store" data-i18n-attr="aria-label:a11y.appstore">
+                                <svg aria-hidden="true"><use href="#i-brand-apple"/></svg>
+                                <span class="store__labels"><span class="store__top" data-i18n="store.downloadOn">Download on the</span><span class="store__main">App Store</span></span>
+                            </a>
+                            <a class="store" data-store="android" data-placement="hero" href="https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack" target="_blank" rel="noopener noreferrer" aria-label="Get Still on Google Play" data-i18n-attr="aria-label:a11y.play">
+                                <svg aria-hidden="true"><use href="#i-brand-google-play"/></svg>
+                                <span class="store__labels"><span class="store__top" data-i18n="store.getItOn">Get it on</span><span class="store__main">Google Play</span></span>
+                            </a>
+                        </div>
+                        <p class="stores__note" data-i18n="store.note">Start with 7 days free on the monthly plan, or buy Lifetime once.</p>
                     </div>
+                    <ul class="facts">
+                        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="hero.f1">No typing</span></li>
+                        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="hero.f2">No barcodes</span></li>
+                        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="hero.f3">No account</span></li>
+                        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="hero.f4">Stays on your phone</span></li>
+                    </ul>
                 </div>
 
-                <div class="hero__phones" aria-hidden="true">
-                    <!-- back phone: Stats -->
-                    <div class="phone-pos phone-pos--back">
-                        <div class="phone" style="width:260px;height:540px">
-                            <div class="phone__screen">
-                                <div class="phone__notch"></div>
-                                <!-- STATS SCREEN -->
-                                <div class="scr">
-                                    <div class="scr__topbar">
-                                        <div class="scr__title">Stats</div>
-                                    </div>
-                                    <div class="scr__body scr__body--stats">
-                                        <div class="statcard">
-                                            <div class="statcard__label">This week</div>
-                                            <div class="statcard__metric"><span class="statcard__big">33</span><span class="statcard__unit">items at peak</span></div>
-                                            <div class="statcard__trend"><svg class="ic"><use href="#i-trending-up"/></svg><span>+18% vs last week</span></div>
-                                        </div>
-                                        <div class="statcard">
-                                            <div class="statcard__label">Peaks per day</div>
-                                            <div class="spark">
-                                                <div class="spark__col"><div class="spark__bar" style="height:27px"></div><div class="spark__day">M</div></div>
-                                                <div class="spark__col"><div class="spark__bar" style="height:45px"></div><div class="spark__day">T</div></div>
-                                                <div class="spark__col"><div class="spark__bar" style="height:18px"></div><div class="spark__day">W</div></div>
-                                                <div class="spark__col"><div class="spark__bar" style="height:54px"></div><div class="spark__day">T</div></div>
-                                                <div class="spark__col"><div class="spark__bar is-today" style="height:36px"></div><div class="spark__day is-today">F</div></div>
-                                                <div class="spark__col"><div class="spark__bar" style="height:72px"></div><div class="spark__day">S</div></div>
-                                                <div class="spark__col"><div class="spark__bar" style="height:45px"></div><div class="spark__day">S</div></div>
-                                            </div>
-                                        </div>
-                                        <div class="statcard">
-                                            <div class="streak">
-                                                <span class="streak__icon"><svg class="ic"><use href="#i-flame"/></svg></span>
-                                                <div style="flex:1;min-width:0"><div class="streak__title">12-day streak</div><div class="streak__sub">Every item caught at peak</div></div>
-                                                <span class="streak__chev"><svg class="ic"><use href="#i-chevron-right"/></svg></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="botnav"><div class="botnav__pill"><span class="botnav__btn"><svg class="ic"><use href="#i-home"/></svg></span><span class="botnav__btn is-active"><svg class="ic"><use href="#i-chart"/></svg></span><span class="botnav__btn"><svg class="ic"><use href="#i-settings"/></svg></span></div></div>
+                <div class="hero__visual">
+                    <div class="phone" role="img" aria-label="Still's Home: the kitchen drawn as four places, Fridge, Counter, Pantry and Freezer, with salmon at its peak in the fridge." data-i18n-attr="aria-label:a11y.kitchenMock">
+                        <div class="phone__glass">
+                            <div class="screen" aria-hidden="true">
+                                <div class="status"><span>9:41</span><span class="status__icons"><b></b><i></i></span></div>
+                                <div class="topbar">
+                                    <svg class="ic topbar__muted"><use href="#i-settings"/></svg>
+                                    <div class="topbar__title">Still</div>
+                                    <div class="pro">PRO</div>
+                                    <svg class="ic"><use href="#i-plus"/></svg>
+                                    <svg class="ic"><use href="#i-sort"/></svg>
                                 </div>
+                                <div class="ribbon">
+                                    <div class="day is-on"><span>Today</span><i class="amber"></i></div>
+                                    <div class="day"><span>Sat 17</span><i class="amber"></i></div>
+                                    <div class="day"><span>Sun 18</span><i class="green"></i></div>
+                                    <div class="day"><span>Mon 19</span><i class="green"></i></div>
+                                    <div class="day"><span>Tue 20</span><i class="green"></i></div>
+                                </div>
+                                <div class="counts"><span class="mono">16 items · 1 at peak</span><span class="mono">4 places</span></div>
+                                <div class="places">
+                                    <div class="place is-peak">
+                                        <div class="place__name"><span class="mono">Fridge</span><span class="mono">(6)</span></div>
+                                        <span class="tag tag--peak"><b>!</b>1 peak today</span>
+                                        <div class="stamps">
+                                            <div class="stamp is-peak"><svg class="art"><use href="#f-salmon"/></svg></div>
+                                            <div class="stamp"><svg class="art"><use href="#f-strawberries"/></svg></div>
+                                            <div class="stamp"><svg class="art"><use href="#f-mushrooms"/></svg></div>
+                                            <div class="stamp stamp--more">+3</div>
+                                        </div>
+                                    </div>
+                                    <div class="place">
+                                        <div class="place__name"><span class="mono">Counter</span><span class="mono">(4)</span></div>
+                                        <span class="tag tag--safe">All safe</span>
+                                        <div class="stamps">
+                                            <div class="stamp"><svg class="art"><use href="#f-avocado"/></svg></div>
+                                            <div class="stamp"><svg class="art"><use href="#f-banana"/></svg></div>
+                                            <div class="stamp"><svg class="art"><use href="#f-onion"/></svg></div>
+                                            <div class="stamp"><svg class="art"><use href="#f-tomato"/></svg></div>
+                                        </div>
+                                    </div>
+                                    <div class="place">
+                                        <div class="place__name"><span class="mono">Pantry</span><span class="mono">(4)</span></div>
+                                        <span class="tag tag--safe">All safe</span>
+                                        <div class="stamps">
+                                            <div class="stamp"><svg class="art"><use href="#f-potato"/></svg></div>
+                                            <div class="stamp"><svg class="art"><use href="#f-walnuts"/></svg></div>
+                                            <div class="stamp"><svg class="art"><use href="#f-almonds"/></svg></div>
+                                            <div class="stamp"><svg class="art"><use href="#f-pistachios"/></svg></div>
+                                        </div>
+                                    </div>
+                                    <div class="place">
+                                        <div class="place__name"><span class="mono">Freezer</span><span class="mono">(2)</span></div>
+                                        <span class="tag tag--safe">All safe</span>
+                                        <div class="stamps">
+                                            <div class="stamp"><svg class="art"><use href="#f-spinach"/></svg></div>
+                                            <div class="stamp"><svg class="art"><use href="#f-ground-beef"/></svg></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hint"><span class="mono">Tap any compartment to inspect</span></div>
                             </div>
                         </div>
                     </div>
-                    <!-- front phone: compact Home dashboard -->
-                    <div class="phone-pos phone-pos--front">
-                        <div class="phone" style="width:280px;height:580px">
-                            <div class="phone__screen">
-                                <div class="phone__notch"></div>
-                                <!-- HOME (compact) -->
-                                <div class="scr">
-                                    <div class="scr__topbar">
-                                        <div class="scr__brand">Still<span class="dot">.</span></div>
-                                        <span class="scr__iconbtn"><svg class="ic"><use href="#i-search"/></svg></span>
-                                        <span class="scr__iconbtn"><svg class="ic"><use href="#i-sort"/></svg></span>
-                                        <span class="scr__iconbtn"><svg class="ic" style="width:20px;height:20px"><use href="#i-plus"/></svg></span>
-                                    </div>
-                                    <div class="scr-hero scr-hero--compact">
-                                        <div class="scr-hero__date">Tue, May 26</div>
-                                        <div class="scr-hero__line"><span class="peak">2</span><span class="muted"> at peak today,</span><br/>4 <span class="muted">still resting</span></div>
-                                    </div>
-                                    <div class="scr__body scr__body--preview">
-                                        <div class="scr-label scr-label--preview">Use first</div>
-                                        <div class="scr__list scr__list--compact">
-                                            <div class="item item--compact hue-peak"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--green-700)"><use href="#i-tomato"/></svg></span><div class="item__main"><div class="item__name">Tomatoes</div><div class="item__meta"><svg class="ic"><use href="#i-utensils"/></svg><span>Counter</span></div></div><div class="item__peak">Peak today</div></div>
-                                            <div class="item item--compact hue-peak"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--neutral-700)"><use href="#i-fish"/></svg></span><div class="item__main"><div class="item__name">Salmon</div><div class="item__meta"><svg class="ic"><use href="#i-fridge"/></svg><span>Fridge</span></div></div><div class="item__peak">Peak today</div></div>
-                                            <div class="item item--compact hue-action"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--green-700)"><use href="#i-avocado"/></svg></span><div class="item__main"><div class="item__name">Avocados</div><div class="item__meta"><svg class="ic"><use href="#i-utensils"/></svg><span>Counter</span></div></div><div class="item__peak">Peak: 2d</div></div>
-                                            <div class="item item--compact hue-action"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--neutral-700)"><use href="#i-bread"/></svg></span><div class="item__main"><div class="item__name">Sourdough</div><div class="item__meta"><svg class="ic"><use href="#i-utensils"/></svg><span>Counter</span></div></div><div class="item__peak">Peak: 2d</div></div>
-                                        </div>
-                                        <div class="scr-label scr-label--preview">Resting</div>
-                                        <div class="scr__list scr__list--compact">
-                                            <div class="item item--compact hue-rest"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--neutral-700)"><use href="#i-steak"/></svg></span><div class="item__main"><div class="item__name">Ribeye</div><div class="item__meta"><svg class="ic"><use href="#i-fridge"/></svg><span>Fridge</span></div></div><div class="item__peak">Peak: 4d</div></div>
-                                            <div class="item item--compact hue-rest"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--neutral-700)"><use href="#i-cheese"/></svg></span><div class="item__main"><div class="item__name">Comté</div><div class="item__meta"><svg class="ic"><use href="#i-fridge"/></svg><span>Fridge</span></div></div><div class="item__peak">Peak: 5d</div></div>
-                                        </div>
-                                    </div>
-                                    <div class="botnav"><div class="botnav__pill"><span class="botnav__btn is-active"><svg class="ic"><use href="#i-home"/></svg></span><span class="botnav__btn"><svg class="ic"><use href="#i-chart"/></svg></span><span class="botnav__btn"><svg class="ic"><use href="#i-settings"/></svg></span></div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <img class="hero__avo" src="img/avo-peak.webp" width="180" height="178" alt="" />
                 </div>
             </div>
         </section>
 
-        <!-- ================================================== -->
-        <!-- BENEFITS                                           -->
-        <!-- ================================================== -->
-        <section id="features" class="section" aria-labelledby="features-title">
+        <!-- ================= HOW IT WORKS ================= -->
+        <section id="how" class="section section--card" aria-labelledby="how-title">
             <div class="container">
                 <div class="section__head">
-                    <p class="eyebrow" data-i18n="benefits.eyebrow">Why Still</p>
-                    <h2 id="features-title" class="section__title" data-i18n="benefits.title">A calmer relationship with the food in your kitchen.</h2>
-                    <p class="section__sub" data-i18n="benefits.sub">Six ways Still changes how you cook — and what you throw out.</p>
+                    <p class="eyebrow mono" data-i18n="how.eyebrow">How it works</p>
+                    <h2 id="how-title" class="h2" data-i18n="how.h2">Three taps. Zero typing.</h2>
+                    <p class="lede" data-i18n="how.lede">No date pickers, no barcodes, no keyboard. Logging a whole grocery run takes seconds.</p>
                 </div>
-                <div class="benefits">
-                    <article class="benefit hue-peak">
-                        <span class="benefit__icon"><svg class="ic" aria-hidden="true"><use href="#i-flame"/></svg></span>
-                        <h3 class="benefit__title" data-i18n="b1.title">Cook at the peak</h3>
-                        <p class="benefit__body" data-i18n="b1.body">Every ingredient has a window when its flavor is at its absolute best. Still tells you when that is — for each item, each storage, each day.</p>
-                    </article>
-                    <article class="benefit hue-fresh">
-                        <span class="benefit__icon"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg></span>
-                        <h3 class="benefit__title" data-i18n="b2.title">Stay always fresh</h3>
-                        <p class="benefit__body" data-i18n="b2.body">Quiet guidance, never alarms. A calm feed that surfaces what to eat, what is resting, and what is defrosting — without the anxiety.</p>
-                    </article>
-                    <article class="benefit hue-rest">
-                        <span class="benefit__icon"><svg class="ic" aria-hidden="true"><use href="#i-sprout"/></svg></span>
-                        <h3 class="benefit__title" data-i18n="b3.title">Save the environment</h3>
-                        <p class="benefit__body" data-i18n="b3.body">A third of food produced globally is wasted. Tracking freshness on-device prevents the most preventable kind — the kind in your fridge.</p>
-                    </article>
-                    <article class="benefit hue-action">
-                        <span class="benefit__icon"><svg class="ic" aria-hidden="true"><use href="#i-recycle"/></svg></span>
-                        <h3 class="benefit__title" data-i18n="b4.title">Reduce waste</h3>
-                        <p class="benefit__body" data-i18n="b4.body">FIFO instance tracking handles duplicates by date so the older batch always gets used first. No more “is this still good?” guessing.</p>
-                    </article>
-                    <article class="benefit hue-fresh">
-                        <span class="benefit__icon"><svg class="ic" aria-hidden="true"><use href="#i-piggy-bank"/></svg></span>
-                        <h3 class="benefit__title" data-i18n="b5.title">Save money</h3>
-                        <p class="benefit__body" data-i18n="b5.body">Catch ingredients at their peak instead of letting them quietly expire in the back of the fridge — and watch your grocery budget go further.</p>
-                    </article>
-                    <article class="benefit hue-neutral">
-                        <span class="benefit__icon"><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg></span>
-                        <h3 class="benefit__title" data-i18n="b6.title">On-device &amp; private</h3>
-                        <p class="benefit__body" data-i18n="b6.body">Your kitchen is yours. Still runs entirely on your phone — no cloud, no accounts, no data sold. Your groceries are not a profile.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
+                <div class="how__grid">
+                    <ol class="steps">
+                        <li class="step">
+                            <span class="step__num" aria-hidden="true">1</span>
+                            <div><span class="mono" data-i18n="how.s1.k">Tap 1</span><h3 class="h3" data-i18n="how.s1.t">Category</h3><p class="body" data-i18n="how.s1.b">Fruit, vegetables, leafy greens and herbs, dairy and eggs, meat and seafood, nuts and seeds.</p></div>
+                        </li>
+                        <li class="step">
+                            <span class="step__num" aria-hidden="true">2</span>
+                            <div><span class="mono" data-i18n="how.s2.k">Tap 2</span><h3 class="h3" data-i18n="how.s2.t">Item</h3><p class="body" data-i18n="how.s2.b">Pick it from a hand-drawn grid: blueberries, salmon, spinach, walnuts…</p></div>
+                        </li>
+                        <li class="step">
+                            <span class="step__num" aria-hidden="true">3</span>
+                            <div><span class="mono" data-i18n="how.s3.k">Tap 3</span><h3 class="h3" data-i18n="how.s3.t">Location</h3><p class="body" data-i18n="how.s3.b">Counter, fridge, freezer or pantry. Still only offers the places that food can be kept.</p></div>
+                        </li>
+                        <li class="step">
+                            <span class="step__num" aria-hidden="true"><svg class="ic"><use href="#i-check"/></svg></span>
+                            <div><span class="mono" data-i18n="how.s4.k">Done</span><h3 class="h3" data-i18n="how.s4.t">Still does the math</h3><p class="body" data-i18n="how.s4.b">A built-in shelf-life guide works out its peak, how long it stays good, and when to remind you.</p></div>
+                        </li>
+                    </ol>
 
-        <!-- ================================================== -->
-        <!-- CULINARY ARC SHOWCASE                              -->
-        <!-- ================================================== -->
-        <section id="peak" class="section section--alt" aria-labelledby="peak-title">
-            <div class="container">
-                <div class="showcase">
-                    <div class="showcase__phone">
-                        <div class="phone" style="width:300px;height:620px" aria-hidden="true">
-                            <div class="phone__screen">
-                                <div class="phone__notch"></div>
-                                <!-- HOME (compact, large frame) -->
-                                <div class="scr">
-                                    <div class="scr__topbar">
-                                        <div class="scr__brand">Still<span class="dot">.</span></div>
-                                        <span class="scr__iconbtn"><svg class="ic"><use href="#i-search"/></svg></span>
-                                        <span class="scr__iconbtn"><svg class="ic"><use href="#i-sort"/></svg></span>
-                                        <span class="scr__iconbtn"><svg class="ic" style="width:20px;height:20px"><use href="#i-plus"/></svg></span>
+                    <div class="phone" role="img" aria-label="Still's Add sheet: blueberries in the fridge, at their peak in 7 days and still good for 10, with an Add to Kitchen button." data-i18n-attr="aria-label:a11y.addMock">
+                        <div class="phone__glass">
+                            <div class="screen screen--dim" aria-hidden="true">
+                                <div class="status"><span>9:41</span><span class="status__icons"><b></b><i></i></span></div>
+                                <div class="topbar">
+                                    <svg class="ic topbar__muted"><use href="#i-settings"/></svg>
+                                    <div class="topbar__title">Still</div>
+                                    <svg class="ic"><use href="#i-plus"/></svg>
+                                </div>
+                                <div class="sheet">
+                                    <div class="sheet__grip"></div>
+                                    <div class="sheet__head"><div class="sheet__title">Add Product</div><svg class="ic"><use href="#i-x"/></svg></div>
+                                    <div class="chips">
+                                        <span class="chip mono"><svg class="art"><use href="#f-apple"/></svg>Fruits</span>
+                                        <span class="chip"><svg class="art"><use href="#f-blueberries"/></svg>Blueberries</span>
+                                        <span class="chip mono"><svg class="ic"><use href="#i-fridge"/></svg>Fridge</span>
                                     </div>
-                                    <div class="scr-hero scr-hero--compact">
-                                        <div class="scr-hero__date">Tue, May 26</div>
-                                        <div class="scr-hero__line"><span class="peak">2</span><span class="muted"> at peak today,</span><br/>4 <span class="muted">still resting</span></div>
-                                    </div>
-                                    <div class="scr__body scr__body--preview">
-                                        <div class="scr-label scr-label--preview">Use first</div>
-                                        <div class="scr__list scr__list--compact">
-                                            <div class="item item--compact hue-peak"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--green-700)"><use href="#i-tomato"/></svg></span><div class="item__main"><div class="item__name">Tomatoes</div><div class="item__meta"><svg class="ic"><use href="#i-utensils"/></svg><span>Counter</span></div></div><div class="item__peak">Peak today</div></div>
-                                            <div class="item item--compact hue-peak"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--neutral-700)"><use href="#i-fish"/></svg></span><div class="item__main"><div class="item__name">Salmon</div><div class="item__meta"><svg class="ic"><use href="#i-fridge"/></svg><span>Fridge</span></div></div><div class="item__peak">Peak today</div></div>
-                                            <div class="item item--compact hue-action"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--green-700)"><use href="#i-avocado"/></svg></span><div class="item__main"><div class="item__name">Avocados</div><div class="item__meta"><svg class="ic"><use href="#i-utensils"/></svg><span>Counter</span></div></div><div class="item__peak">Peak: 2d</div></div>
-                                            <div class="item item--compact hue-action"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--neutral-700)"><use href="#i-bread"/></svg></span><div class="item__main"><div class="item__name">Sourdough</div><div class="item__meta"><svg class="ic"><use href="#i-utensils"/></svg><span>Counter</span></div></div><div class="item__peak">Peak: 2d</div></div>
+                                    <div class="save">
+                                        <div class="save__row"><span class="mono">Tracked · Today</span><span class="peak-tag">Peak: 7 days</span></div>
+                                        <div class="save__item">
+                                            <div class="save__tile"><svg class="art"><use href="#f-blueberries"/></svg></div>
+                                            <div><div class="save__name">Blueberries</div><span class="loc-chip">Fridge</span></div>
                                         </div>
-                                        <div class="scr-label scr-label--preview">Resting</div>
-                                        <div class="scr__list scr__list--compact">
-                                            <div class="item item--compact hue-rest"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--neutral-700)"><use href="#i-steak"/></svg></span><div class="item__main"><div class="item__name">Ribeye</div><div class="item__meta"><svg class="ic"><use href="#i-fridge"/></svg><span>Fridge</span></div></div><div class="item__peak">Peak: 4d</div></div>
-                                            <div class="item item--compact hue-rest"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--neutral-700)"><use href="#i-cheese"/></svg></span><div class="item__main"><div class="item__name">Comté</div><div class="item__meta"><svg class="ic"><use href="#i-fridge"/></svg><span>Fridge</span></div></div><div class="item__peak">Peak: 5d</div></div>
-                                        </div>
+                                        <p class="save__body">Added in 3 taps. Still good for 10 days.</p>
+                                        <div class="save__cta">Add to Kitchen <svg class="ic"><use href="#i-arrow-right"/></svg></div>
+                                        <p class="save__fine">Saves locally. No data ever leaves your phone.</p>
                                     </div>
-                                    <div class="botnav"><div class="botnav__pill"><span class="botnav__btn is-active"><svg class="ic"><use href="#i-home"/></svg></span><span class="botnav__btn"><svg class="ic"><use href="#i-chart"/></svg></span><span class="botnav__btn"><svg class="ic"><use href="#i-settings"/></svg></span></div></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= YOUR KITCHEN ================= -->
+        <section id="kitchen" class="section" aria-labelledby="kitchen-title">
+            <div class="container">
+                <div class="section__head">
+                    <p class="eyebrow mono" data-i18n="kitchen.eyebrow">Your kitchen</p>
+                    <h2 id="kitchen-title" class="h2" data-i18n="kitchen.h2">Your kitchen, at a glance.</h2>
+                    <p class="lede" data-i18n="kitchen.lede">Home is your kitchen, drawn: four places, what's in each, and what needs using first.</p>
+                </div>
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature__icon"><svg class="ic" aria-hidden="true"><use href="#i-fridge"/></svg></div>
+                        <h3 class="h3" data-i18n="k1.t">Four places, like your kitchen</h3>
+                        <p class="body" data-i18n="k1.b">Fridge, counter, pantry and freezer. Tap one to look inside its drawn shelves.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature__icon"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg></div>
+                        <h3 class="h3" data-i18n="k2.t">Peek ahead</h3>
+                        <p class="body" data-i18n="k2.b">The day ribbon shows the week. Pick Saturday and see everything due by then.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature__icon feature__icon--amber"><svg class="art" aria-hidden="true"><use href="#f-salmon"/></svg></div>
+                        <h3 class="h3" data-i18n="k3.t">What's at its peak comes first</h3>
+                        <p class="body" data-i18n="k3.b">Food at its peak turns amber and rises to the top, so you cook it while it's best.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature__icon"><svg class="ic" aria-hidden="true"><use href="#i-trash"/></svg></div>
+                        <h3 class="h3" data-i18n="k4.t">Knows when it's gone bad</h3>
+                        <p class="body" data-i18n="k4.b">Past its window, an item tells you to toss it instead of lingering forever.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature__icon"><svg class="ic" aria-hidden="true"><use href="#i-undo"/></svg></div>
+                        <h3 class="h3" data-i18n="k5.t">Used or tossed</h3>
+                        <p class="body" data-i18n="k5.b">Mark it when it's gone, with undo if your thumb slips.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature__icon"><svg class="ic" aria-hidden="true"><use href="#i-snowflake"/></svg></div>
+                        <h3 class="h3" data-i18n="k6.t">Dates that fit where you keep it</h3>
+                        <p class="body" data-i18n="k6.b">The same food gets a different date on the counter, in the fridge or in the freezer.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= REMINDER ================= -->
+        <section class="section section--card" aria-labelledby="remind-title">
+            <div class="container remind__grid">
+                <div>
+                    <p class="eyebrow mono" data-i18n="remind.eyebrow">Reminders</p>
+                    <h2 id="remind-title" class="h2" data-i18n="remind.h2">One gentle reminder.</h2>
+                    <p class="lede" data-i18n="remind.lede">The day before something needs using, Still sends one notification. Nothing to set up, no daily nagging.</p>
+                    <ul class="points">
+                        <li><svg class="ic" aria-hidden="true"><use href="#i-smartphone"/></svg><span data-i18n-html="remind.p1"><strong>Scheduled on your phone.</strong> Reminders are local; nothing goes to a server.</span></li>
+                        <li><svg class="ic" aria-hidden="true"><use href="#i-layers"/></svg><span data-i18n-html="remind.p2"><strong>Grouped.</strong> Several items due the same day arrive as one quiet notification.</span></li>
+                        <li><svg class="ic" aria-hidden="true"><use href="#i-refresh"/></svg><span data-i18n-html="remind.p3"><strong>Survives restarts.</strong> Pending reminders come back after your phone reboots.</span></li>
+                    </ul>
+                </div>
+                <div class="lock" role="img" aria-label="A lock screen with a Still notification: Use soon, Salmon, Strawberries." data-i18n-attr="aria-label:a11y.lockMock">
+                    <div aria-hidden="true">
+                        <div class="lock__time">9:41</div>
+                        <div class="lock__date">Friday, October 16</div>
+                        <div class="notif">
+                            <img src="img/still-icon.webp" width="38" height="38" alt="" />
+                            <div class="notif__body"><div class="notif__top"><span>STILL</span><span>now</span></div><strong>Use soon</strong>Salmon, Strawberries</div>
+                        </div>
+                        <div class="notif">
+                            <img src="img/still-icon.webp" width="38" height="38" alt="" />
+                            <div class="notif__body"><div class="notif__top"><span>STILL</span><span>Tue</span></div><strong>Use soon</strong>Milk, Spinach +2</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= FOODS ================= -->
+        <section class="section" aria-labelledby="foods-title">
+            <div class="container">
+                <div class="section__head">
+                    <p class="eyebrow mono" data-i18n="foods.eyebrow">The food that spoils first</p>
+                    <h2 id="foods-title" class="h2" data-i18n="foods.h2">Made for fresh food.</h2>
+                    <p class="lede" data-i18n="foods.lede">Loose produce, butcher-counter meat and bulk-bin nuts: the food that spoils fastest, and that barcode scanners can't read. Each one drawn by hand.</p>
+                </div>
+                <div class="foods" aria-hidden="true">
+                    <div class="food"><svg class="art"><use href="#f-strawberries"/></svg></div>
+                    <div class="food"><svg class="art"><use href="#f-broccoli"/></svg></div>
+                    <div class="food"><svg class="art"><use href="#f-salmon"/></svg></div>
+                    <div class="food"><svg class="art"><use href="#f-eggs"/></svg></div>
+                    <div class="food"><svg class="art"><use href="#f-kale"/></svg></div>
+                    <div class="food"><svg class="art"><use href="#f-pineapple"/></svg></div>
+                    <div class="food"><svg class="art"><use href="#f-walnuts"/></svg></div>
+                    <div class="food"><svg class="art"><use href="#f-steak"/></svg></div>
+                    <div class="food"><svg class="art"><use href="#f-carrot"/></svg></div>
+                    <div class="food"><svg class="art"><use href="#f-cheddar-cheese"/></svg></div>
+                    <div class="food"><svg class="art"><use href="#f-lemon"/></svg></div>
+                    <div class="food"><svg class="art"><use href="#f-basil"/></svg></div>
+                    <div class="food"><svg class="art"><use href="#f-shrimp"/></svg></div>
+                    <div class="food"><svg class="art"><use href="#f-bell-pepper"/></svg></div>
+                    <div class="food"><svg class="art"><use href="#f-yogurt"/></svg></div>
+                    <div class="food"><svg class="art"><use href="#f-mango"/></svg></div>
+                    <div class="food"><svg class="art"><use href="#f-avocado"/></svg></div>
+                    <div class="food"><svg class="art"><use href="#f-butter"/></svg></div>
+                    <div class="food"><svg class="art"><use href="#f-milk"/></svg></div>
+                    <div class="food"><svg class="art"><use href="#f-blueberries"/></svg></div>
+                </div>
+                <div class="cats">
+                    <span class="mono" data-i18n="cat.fruits">Fruits</span>
+                    <span class="mono" data-i18n="cat.vegetables">Vegetables</span>
+                    <span class="mono" data-i18n="cat.greens">Leafy greens &amp; herbs</span>
+                    <span class="mono" data-i18n="cat.dairy">Dairy &amp; eggs</span>
+                    <span class="mono" data-i18n="cat.meat">Meat &amp; seafood</span>
+                    <span class="mono" data-i18n="cat.nuts">Nuts &amp; seeds</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PRIVACY ================= -->
+        <section id="privacy" class="section section--card" aria-labelledby="privacy-title">
+            <div class="container">
+                <div class="section__head">
+                    <p class="eyebrow mono" data-i18n="privacy.eyebrow">Private by design</p>
+                    <h2 id="privacy-title" class="h2" data-i18n="privacy.h2">Your kitchen stays on your phone.</h2>
+                    <p class="lede" data-i18n="privacy.lede">No account, no cloud, no sign-in. What you log is stored on your device and nowhere else.</p>
+                </div>
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature__icon"><svg class="ic" aria-hidden="true"><use href="#i-user-x"/></svg></div>
+                        <h3 class="h3" data-i18n="p1.t">No account</h3>
+                        <p class="body" data-i18n="p1.b">Open it and start. There's nothing to sign up for.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature__icon"><svg class="ic" aria-hidden="true"><use href="#i-cloud-off"/></svg></div>
+                        <h3 class="h3" data-i18n="p2.t">No cloud</h3>
+                        <p class="body" data-i18n="p2.b">Your items, dates and places never leave the device. There's no server that could hold them.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature__icon"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg></div>
+                        <h3 class="h3" data-i18n="p3.t">No ads</h3>
+                        <p class="body"><span data-i18n="p3.b">No ads and no tracking across other apps; only anonymous usage stats and crash reports, to make Still better.</span> <a href="privacy-policy/" data-i18n="privacy.link">Read the privacy policy</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PRO ================= -->
+        <section id="pro" class="section" aria-labelledby="pro-title">
+            <div class="container">
+                <div class="section__head">
+                    <p class="eyebrow mono" data-i18n="pro.eyebrow">Still Pro</p>
+                    <h2 id="pro-title" class="h2" data-i18n="pro.h2">Try it free for 7 days.</h2>
+                    <p class="lede" data-i18n="pro.lede">Still is a Pro app with two simple ways in. Your store shows the price before you confirm.</p>
+                </div>
+                <div class="plans">
+                    <div class="plan is-featured">
+                        <span class="plan__badge" data-i18n="pro.m.badge">7 days free</span>
+                        <h3 class="h3" data-i18n="pro.m.t">Monthly</h3>
+                        <ul>
+                            <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="pro.m.l1">7-day free trial</span></li>
+                            <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="pro.m.l2">Billed monthly after the trial</span></li>
+                            <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="pro.m.l3">Cancel anytime in your store account</span></li>
+                        </ul>
+                    </div>
+                    <div class="plan">
+                        <h3 class="h3" data-i18n="pro.l.t">Lifetime</h3>
+                        <ul>
+                            <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="pro.l.l1">Pay once, keep Pro</span></li>
+                            <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="pro.l.l2">No subscription, ever</span></li>
+                            <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="pro.l.l3">Restores on your devices with the same store account</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="fine" data-i18n="pro.fine">Subscriptions renew automatically unless cancelled at least 24 hours before the period ends. Manage them in your Google Play or App Store account.</p>
+            </div>
+        </section>
+
+        <!-- ================= DOWNLOAD ================= -->
+        <section id="download" class="section" style="padding-top:0" aria-labelledby="dl-title">
+            <div class="container">
+                <div class="cta">
                     <div>
-                        <p class="eyebrow" data-i18n="arc.eyebrow">The Culinary Arc</p>
-                        <h2 id="peak-title" class="section__title" data-i18n="arc.title">Three states. No traffic lights.</h2>
-                        <p class="showcase__copy-lede" data-i18n="arc.lede">Other apps shout red when food is “expiring.” Still does the opposite — it tracks the positive arc of flavor, so you know exactly when to cook each item.</p>
-                        <div class="arc-rows">
-                            <div class="arc-row hue-peak"><span class="arc-row__rail"></span><div><div class="arc-row__title" data-i18n="arc.peak.title">Peak</div><div class="arc-row__body" data-i18n="arc.peak.body">Optimal time to consume — flavor at its absolute best.</div></div></div>
-                            <div class="arc-row hue-action"><span class="arc-row__rail"></span><div><div class="arc-row__title" data-i18n="arc.action.title">Action</div><div class="arc-row__body" data-i18n="arc.action.body">Nearing the end of peak. Cook today, freeze, or share.</div></div></div>
-                            <div class="arc-row hue-rest"><span class="arc-row__rail"></span><div><div class="arc-row__title" data-i18n="arc.rest.title">Resting</div><div class="arc-row__body" data-i18n="arc.rest.body">Building flavor. Leave alone — it'll be ready soon.</div></div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================================================== -->
-        <!-- IMPACT (globe banner only)                         -->
-        <!-- ================================================== -->
-        <section id="impact" class="section" aria-labelledby="impact-title">
-            <div class="container">
-                <div class="section__head section__head--center">
-                    <p class="eyebrow" style="color:var(--arc-resting)" data-i18n="impact.eyebrow">Why it matters</p>
-                    <h2 id="impact-title" class="section__title" data-i18n="impact.title">A quieter kitchen, a smaller footprint.</h2>
-                </div>
-                <div class="impact-banner">
-                    <span class="impact-banner__icon"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg></span>
-                    <div>
-                        <div class="impact-banner__title" data-i18n="impact.bannerTitle">One third of all food is wasted before it's eaten.</div>
-                        <div class="impact-banner__body" data-i18n="impact.bannerBody">Most of that is household waste — the kind that quietly expires in your fridge. It's the easiest waste in the world to prevent, and it's exactly what Still is for.</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================================================== -->
-        <!-- PREVIEW STRIP                                      -->
-        <!-- ================================================== -->
-        <section class="section section--alt" aria-labelledby="preview-title">
-            <div class="container">
-                <div class="section__head section__head--center">
-                    <p class="eyebrow" data-i18n="prev.eyebrow">What you'll see</p>
-                    <h2 id="preview-title" class="section__title" data-i18n="prev.title">Designed to be glanced at, not stared at.</h2>
-                </div>
-                <div class="previews">
-                    <!-- Preview 1: compact Home -->
-                    <div class="preview-item">
-                        <div class="phone" style="width:260px;height:540px" aria-hidden="true">
-                            <div class="phone__screen">
-                                <div class="phone__notch"></div>
-                                <div class="scr">
-                                    <div class="scr__topbar">
-                                        <div class="scr__brand">Still<span class="dot">.</span></div>
-                                        <span class="scr__iconbtn"><svg class="ic"><use href="#i-search"/></svg></span>
-                                        <span class="scr__iconbtn"><svg class="ic"><use href="#i-sort"/></svg></span>
-                                        <span class="scr__iconbtn"><svg class="ic" style="width:20px;height:20px"><use href="#i-plus"/></svg></span>
-                                    </div>
-                                    <div class="scr-hero scr-hero--compact">
-                                        <div class="scr-hero__date">Tue, May 26</div>
-                                        <div class="scr-hero__line"><span class="peak">2</span><span class="muted"> at peak today,</span><br/>4 <span class="muted">still resting</span></div>
-                                    </div>
-                                    <div class="scr__body scr__body--preview">
-                                        <div class="scr-label scr-label--preview">Use first</div>
-                                        <div class="scr__list scr__list--compact">
-                                            <div class="item item--compact hue-peak"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--green-700)"><use href="#i-tomato"/></svg></span><div class="item__main"><div class="item__name">Tomatoes</div><div class="item__meta"><svg class="ic"><use href="#i-utensils"/></svg><span>Counter</span></div></div><div class="item__peak">Peak today</div></div>
-                                            <div class="item item--compact hue-peak"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--neutral-700)"><use href="#i-fish"/></svg></span><div class="item__main"><div class="item__name">Salmon</div><div class="item__meta"><svg class="ic"><use href="#i-fridge"/></svg><span>Fridge</span></div></div><div class="item__peak">Peak today</div></div>
-                                            <div class="item item--compact hue-action"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--green-700)"><use href="#i-avocado"/></svg></span><div class="item__main"><div class="item__name">Avocados</div><div class="item__meta"><svg class="ic"><use href="#i-utensils"/></svg><span>Counter</span></div></div><div class="item__peak">Peak: 2d</div></div>
-                                            <div class="item item--compact hue-action"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--neutral-700)"><use href="#i-bread"/></svg></span><div class="item__main"><div class="item__name">Sourdough</div><div class="item__meta"><svg class="ic"><use href="#i-utensils"/></svg><span>Counter</span></div></div><div class="item__peak">Peak: 2d</div></div>
-                                        </div>
-                                        <div class="scr-label scr-label--preview">Resting</div>
-                                        <div class="scr__list scr__list--compact">
-                                            <div class="item item--compact hue-rest"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--neutral-700)"><use href="#i-steak"/></svg></span><div class="item__main"><div class="item__name">Ribeye</div><div class="item__meta"><svg class="ic"><use href="#i-fridge"/></svg><span>Fridge</span></div></div><div class="item__peak">Peak: 4d</div></div>
-                                        </div>
-                                    </div>
-                                    <div class="botnav"><div class="botnav__pill"><span class="botnav__btn is-active"><svg class="ic"><use href="#i-home"/></svg></span><span class="botnav__btn"><svg class="ic"><use href="#i-chart"/></svg></span><span class="botnav__btn"><svg class="ic"><use href="#i-settings"/></svg></span></div></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="preview-item__label" data-i18n="prev.label1">Home · peak dashboard</div>
-                    </div>
-
-                    <!-- Preview 2: compact FIFO -->
-                    <div class="preview-item">
-                        <div class="phone" style="width:260px;height:540px" aria-hidden="true">
-                            <div class="phone__screen">
-                                <div class="phone__notch"></div>
-                                <div class="scr">
-                                    <div class="scr__topbar">
-                                        <div class="scr__brand">Still<span class="dot">.</span></div>
-                                        <span class="scr__iconbtn"><svg class="ic"><use href="#i-search"/></svg></span>
-                                        <span class="scr__iconbtn"><svg class="ic"><use href="#i-sort"/></svg></span>
-                                        <span class="scr__iconbtn"><svg class="ic" style="width:20px;height:20px"><use href="#i-plus"/></svg></span>
-                                    </div>
-                                    <div class="scr-hero scr-hero--compact">
-                                        <div class="scr-hero__date">Tue, May 26</div>
-                                        <div class="scr-hero__line"><span class="peak">2</span><span class="muted"> at peak today,</span><br/>3 <span class="muted">still resting</span></div>
-                                    </div>
-                                    <div class="scr__body scr__body--preview">
-                                        <div class="scr-label scr-label--preview">Use first</div>
-                                        <div class="scr__list scr__list--compact">
-                                            <div class="item item--compact hue-peak"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--green-700)"><use href="#i-berry"/></svg></span><div class="item__main"><div class="item__name">Strawberries</div><div class="item__meta"><svg class="ic"><use href="#i-fridge"/></svg><span>Fridge</span><span class="sep">·</span><span style="font-variant:tabular-nums">May 22</span></div></div><div class="item__peak">Peak today</div></div>
-                                            <div class="fifo-banner fifo-banner--compact"><svg class="ic"><use href="#i-arrow-down"/></svg><span>Two batches — eat the older one first</span></div>
-                                            <div class="item item--compact hue-rest"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--green-700)"><use href="#i-berry"/></svg></span><div class="item__main"><div class="item__name">Strawberries</div><div class="item__meta"><svg class="ic"><use href="#i-fridge"/></svg><span>Fridge</span><span class="sep">·</span><span style="font-variant:tabular-nums">May 26</span></div></div><div class="item__peak">Peak: 5d</div></div>
-                                            <div class="item item--compact hue-peak"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--neutral-700)"><use href="#i-fish"/></svg></span><div class="item__main"><div class="item__name">Salmon</div><div class="item__meta"><svg class="ic"><use href="#i-fridge"/></svg><span>Fridge</span></div></div><div class="item__peak">Peak today</div></div>
-                                            <div class="item item--compact hue-action"><span class="item__rail"></span><span class="item__glyph"><svg class="ic ic--food" style="color:var(--green-700)"><use href="#i-avocado"/></svg></span><div class="item__main"><div class="item__name">Avocados</div><div class="item__meta"><svg class="ic"><use href="#i-utensils"/></svg><span>Counter</span></div></div><div class="item__peak">Peak: 2d</div></div>
-                                        </div>
-                                    </div>
-                                    <div class="botnav"><div class="botnav__pill"><span class="botnav__btn is-active"><svg class="ic"><use href="#i-home"/></svg></span><span class="botnav__btn"><svg class="ic"><use href="#i-chart"/></svg></span><span class="botnav__btn"><svg class="ic"><use href="#i-settings"/></svg></span></div></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="preview-item__label" data-i18n="prev.label2">FIFO instance tracking</div>
-                    </div>
-
-                    <!-- Preview 3: Stats -->
-                    <div class="preview-item">
-                        <div class="phone" style="width:260px;height:540px" aria-hidden="true">
-                            <div class="phone__screen">
-                                <div class="phone__notch"></div>
-                                <div class="scr">
-                                    <div class="scr__topbar">
-                                        <div class="scr__title">Stats</div>
-                                    </div>
-                                    <div class="scr__body scr__body--stats">
-                                        <div class="statcard">
-                                            <div class="statcard__label">This week</div>
-                                            <div class="statcard__metric"><span class="statcard__big">33</span><span class="statcard__unit">items at peak</span></div>
-                                            <div class="statcard__trend"><svg class="ic"><use href="#i-trending-up"/></svg><span>+18% vs last week</span></div>
-                                        </div>
-                                        <div class="statcard">
-                                            <div class="statcard__label">Peaks per day</div>
-                                            <div class="spark">
-                                                <div class="spark__col"><div class="spark__bar" style="height:27px"></div><div class="spark__day">M</div></div>
-                                                <div class="spark__col"><div class="spark__bar" style="height:45px"></div><div class="spark__day">T</div></div>
-                                                <div class="spark__col"><div class="spark__bar" style="height:18px"></div><div class="spark__day">W</div></div>
-                                                <div class="spark__col"><div class="spark__bar" style="height:54px"></div><div class="spark__day">T</div></div>
-                                                <div class="spark__col"><div class="spark__bar is-today" style="height:36px"></div><div class="spark__day is-today">F</div></div>
-                                                <div class="spark__col"><div class="spark__bar" style="height:72px"></div><div class="spark__day">S</div></div>
-                                                <div class="spark__col"><div class="spark__bar" style="height:45px"></div><div class="spark__day">S</div></div>
-                                            </div>
-                                        </div>
-                                        <div class="statcard">
-                                            <div class="streak">
-                                                <span class="streak__icon"><svg class="ic"><use href="#i-flame"/></svg></span>
-                                                <div style="flex:1;min-width:0"><div class="streak__title">12-day streak</div><div class="streak__sub">Every item caught at peak</div></div>
-                                                <span class="streak__chev"><svg class="ic"><use href="#i-chevron-right"/></svg></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="botnav"><div class="botnav__pill"><span class="botnav__btn"><svg class="ic"><use href="#i-home"/></svg></span><span class="botnav__btn is-active"><svg class="ic"><use href="#i-chart"/></svg></span><span class="botnav__btn"><svg class="ic"><use href="#i-settings"/></svg></span></div></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="preview-item__label" data-i18n="prev.label3">Weekly impact stats</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================================================== -->
-        <!-- DOWNLOAD CTA                                       -->
-        <!-- ================================================== -->
-        <section id="download" class="section" aria-labelledby="download-title">
-            <div class="container">
-                <div class="download-card">
-                    <svg class="download-card__arcs" width="400" height="400" viewBox="0 0 400 400" aria-hidden="true">
-                        <circle cx="200" cy="200" r="180" fill="none" stroke="var(--arc-peak)" stroke-width="1" stroke-dasharray="3 8"/>
-                        <circle cx="200" cy="200" r="130" fill="none" stroke="var(--arc-action)" stroke-width="1" stroke-dasharray="3 8"/>
-                        <circle cx="200" cy="200" r="80" fill="none" stroke="var(--arc-resting)" stroke-width="1" stroke-dasharray="3 8"/>
-                    </svg>
-                    <div class="download-card__content">
-                        <p class="eyebrow" data-i18n="dl.eyebrow">Free for 7 days</p>
-                        <h2 id="download-title" class="download-card__title" data-i18n="dl.title">Start cooking at peak.</h2>
-                        <p class="download-card__lede" data-i18n="dl.lede">Add your first ingredient in under ten seconds. No account, no email — just open and tap.</p>
-                        <div class="hero__cta-row">
-                            <a class="store-btn" data-store="ios" data-placement="download" href="https://apps.apple.com/app/id6819700105" target="_blank" rel="noopener noreferrer" aria-label="Download Still on the App Store" data-i18n-attr="aria-label:a11y.appstore">
-                                <svg class="store-btn__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-                                <span class="store-btn__text">
-                                    <span class="store-btn__sub" data-i18n="store.appstoreSub">Download on the</span>
-                                    <span class="store-btn__main">App Store</span>
-                                </span>
+                        <h2 id="dl-title" class="h2" data-i18n="dl.h2">Start your 7-day free trial.</h2>
+                        <p class="lede" data-i18n="dl.lede">Log your next grocery run in seconds, and let Still keep track of the rest.</p>
+                        <div class="stores">
+                            <a class="store" data-store="ios" data-placement="download" href="https://apps.apple.com/app/id6819700105" target="_blank" rel="noopener noreferrer" aria-label="Download Still on the App Store" data-i18n-attr="aria-label:a11y.appstore">
+                                <svg aria-hidden="true"><use href="#i-brand-apple"/></svg>
+                                <span class="store__labels"><span class="store__top" data-i18n="store.downloadOn">Download on the</span><span class="store__main">App Store</span></span>
                             </a>
-                            <a class="store-btn" data-store="android" data-placement="download" href="https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack" target="_blank" rel="noopener noreferrer" aria-label="Get Still on Google Play" data-i18n-attr="aria-label:a11y.play">
-                                <svg class="store-btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#00D2FF" d="M3.609 1.814 13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92z"/><path fill="#FFBC00" d="m17.698 9.51 2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.39 12l2.308-2.49z"/><path fill="#FF3A44" d="M14.499 12.707 5.864 21.342l10.937-6.333-2.302-2.302z"/><path fill="#00C24A" d="M5.864 2.658 16.802 8.99l-2.303 2.303L5.864 2.658z"/></svg>
-                                <span class="store-btn__text">
-                                    <span class="store-btn__sub" data-i18n="store.playSub">Get it on</span>
-                                    <span class="store-btn__main">Google Play</span>
-                                </span>
+                            <a class="store" data-store="android" data-placement="download" href="https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack" target="_blank" rel="noopener noreferrer" aria-label="Get Still on Google Play" data-i18n-attr="aria-label:a11y.play">
+                                <svg aria-hidden="true"><use href="#i-brand-google-play"/></svg>
+                                <span class="store__labels"><span class="store__top" data-i18n="store.getItOn">Get it on</span><span class="store__main">Google Play</span></span>
                             </a>
                         </div>
-                        <div class="download-card__meta">
-                            <span><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg> <span data-i18n="dl.meta1">On-device &amp; private</span></span>
-                        </div>
                     </div>
+                    <img class="cta__avo" src="img/avo-rest.webp" width="200" height="209" alt="Avo, Still's avocado mascot, napping." data-i18n-attr="alt:a11y.avo" loading="lazy" />
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- ====================================================== -->
-    <!-- FOOTER                                                 -->
-    <!-- ====================================================== -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer__top">
-                <div class="footer__brand">
-                    <a class="wordmark" href="#top">Still<span class="dot">.</span></a>
-                    <p class="footer__tagline" data-i18n="footer.tagline">A quiet, on-device peak-flavor tracker for the food in your kitchen.</p>
-                </div>
-                <span class="footer__flag" role="img" aria-label="Costa Rica">
-                    <svg width="30" height="19" viewBox="0 0 22 14" aria-hidden="true"><rect width="22" height="14" fill="#0033a0"/><rect y="3" width="22" height="8" fill="#ffffff"/><rect y="5" width="22" height="4" fill="#ce1126"/></svg>
-                </span>
-            </div>
-            <div class="footer__bottom">
-                <span class="footer__legal">
-                    <a href="privacy-policy/" data-i18n="footer.privacy">Privacy Policy</a>
-                    <span class="sep">·</span>
-                    <a href="terms-and-conditions/" data-i18n="footer.terms">Terms &amp; Conditions</a>
-                    <span class="sep">·</span>
-                    <a href="mailto:hello@jdgarita.dev">hello@jdgarita.dev</a>
-                    <span class="sep">·</span>
-                    <a href="../">jdgarita.dev</a>
-                </span>
-                <span>© <span id="footer-year">2026</span> <span data-i18n="footer.rights">Still — All rights reserved.</span></span>
-            </div>
+        <div class="container footer__inner">
+            <div class="footer__brand"><img src="img/still-icon.webp" width="28" height="28" alt="" /><span>© <span id="footer-year">2026</span> <a href="https://jdgarita.dev/">Juan Diego Garita</a></span></div>
+            <nav class="footer__links" aria-label="Legal" data-i18n-attr="aria-label:a11y.legal">
+                <a href="privacy-policy/" data-i18n="footer.privacy">Privacy Policy</a>
+                <a href="terms-and-conditions/" data-i18n="footer.terms">Terms &amp; Conditions</a>
+                <a href="mailto:hello@jdgarita.dev">hello@jdgarita.dev</a>
+            </nav>
         </div>
     </footer>
 
-    <!-- Self-contained i18n + theme toggle + year stamp. No external deps. -->
+    <!-- Self-contained i18n + theme toggle + year stamp + first-party analytics. No external deps. -->
     <script>
       (function () {
         var I18N = {
           en: {
-            'meta.title': 'Still — Cook at the peak. Waste none.',
+            'meta.title': 'Still — Fridge & pantry tracker. Log food in 3 taps.',
             'a11y.skip': 'Skip to content',
+            'a11y.home': 'Still home',
+            'a11y.primary': 'Primary',
+            'a11y.legal': 'Legal',
             'a11y.lang': 'Switch language',
             'a11y.theme': 'Toggle light / dark theme',
-            'a11y.play': 'Get Still on Google Play',
             'a11y.appstore': 'Download Still on the App Store',
-            'nav.features': 'Features',
+            'a11y.play': 'Get Still on Google Play',
+            'a11y.kitchenMock': "Still's Home: the kitchen drawn as four places, Fridge, Counter, Pantry and Freezer, with salmon at its peak in the fridge.",
+            'a11y.addMock': "Still's Add sheet: blueberries in the fridge, at their peak in 7 days and still good for 10, with an Add to Kitchen button.",
+            'a11y.lockMock': 'A lock screen with a Still notification: Use soon, Salmon, Strawberries.',
+            'a11y.avo': "Avo, Still's avocado mascot, napping.",
             'nav.how': 'How it works',
-            'nav.impact': 'Impact',
-            'nav.download': 'Download',
-            'hero.eyebrow': 'Peak-flavor tracker · iOS · Android',
-            'hero.h1': 'Track the peak.<br>Cook <span class="accent">calmly</span>.<br>Waste nothing.',
-            'hero.lede': "Still follows every ingredient through its Culinary Arc — from resting, to peak, to action — so you cook each one at its best and never throw food away again.",
-            'store.appstoreSub': 'Download on the',
-            'store.playSub': 'Get it on',
-            'benefits.eyebrow': 'Why Still',
-            'benefits.title': 'A calmer relationship with the food in your kitchen.',
-            'benefits.sub': 'Six ways Still changes how you cook — and what you throw out.',
-            'b1.title': 'Cook at the peak',
-            'b1.body': 'Every ingredient has a window when its flavor is at its absolute best. Still tells you when that is — for each item, each storage, each day.',
-            'b2.title': 'Stay always fresh',
-            'b2.body': 'Quiet guidance, never alarms. A calm feed that surfaces what to eat, what is resting, and what is defrosting — without the anxiety.',
-            'b3.title': 'Save the environment',
-            'b3.body': 'A third of food produced globally is wasted. Tracking freshness on-device prevents the most preventable kind — the kind in your fridge.',
-            'b4.title': 'Reduce waste',
-            'b4.body': 'FIFO instance tracking handles duplicates by date so the older batch always gets used first. No more “is this still good?” guessing.',
-            'b5.title': 'Save money',
-            'b5.body': 'Catch ingredients at their peak instead of letting them quietly expire in the back of the fridge — and watch your grocery budget go further.',
-            'b6.title': 'On-device & private',
-            'b6.body': 'Your kitchen is yours. Still runs entirely on your phone — no cloud, no accounts, no data sold. Your groceries are not a profile.',
-            'arc.eyebrow': 'The Culinary Arc',
-            'arc.title': 'Three states. No traffic lights.',
-            'arc.lede': 'Other apps shout red when food is “expiring.” Still does the opposite — it tracks the positive arc of flavor, so you know exactly when to cook each item.',
-            'arc.peak.title': 'Peak',
-            'arc.peak.body': 'Optimal time to consume — flavor at its absolute best.',
-            'arc.action.title': 'Action',
-            'arc.action.body': 'Nearing the end of peak. Cook today, freeze, or share.',
-            'arc.rest.title': 'Resting',
-            'arc.rest.body': "Building flavor. Leave alone — it'll be ready soon.",
-            'impact.eyebrow': 'Why it matters',
-            'impact.title': 'A quieter kitchen, a smaller footprint.',
-            'impact.bannerTitle': "One third of all food is wasted before it's eaten.",
-            'impact.bannerBody': "Most of that is household waste — the kind that quietly expires in your fridge. It's the easiest waste in the world to prevent, and it's exactly what Still is for.",
-            'prev.eyebrow': "What you'll see",
-            'prev.title': 'Designed to be glanced at, not stared at.',
-            'prev.label1': 'Home · peak dashboard',
-            'prev.label2': 'FIFO instance tracking',
-            'prev.label3': 'Weekly impact stats',
-            'dl.eyebrow': 'Free for 7 days',
-            'dl.title': 'Start cooking at peak.',
-            'dl.lede': 'Add your first ingredient in under ten seconds. No account, no email — just open and tap.',
-            'dl.meta1': 'On-device & private',
-            'footer.tagline': 'A quiet, on-device peak-flavor tracker for the food in your kitchen.',
+            'nav.kitchen': 'Your kitchen',
+            'nav.privacy': 'Privacy',
+            'nav.pro': 'Pricing',
+            'hero.eyebrow': 'Fridge & pantry tracker · iOS · Android',
+            'hero.h1': 'Log food in 3&nbsp;taps.<br />Waste <span class="accent">less</span>.',
+            'hero.lede': 'Tap a category, an item and where you put it. Still works out when each one needs using, lays out your kitchen at a glance, and nudges you the day before.',
+            'hero.f1': 'No typing',
+            'hero.f2': 'No barcodes',
+            'hero.f3': 'No account',
+            'hero.f4': 'Stays on your phone',
+            'store.downloadOn': 'Download on the',
+            'store.getItOn': 'Get it on',
+            'store.note': 'Start with 7 days free on the monthly plan, or buy Lifetime once.',
+            'how.eyebrow': 'How it works',
+            'how.h2': 'Three taps. Zero typing.',
+            'how.lede': 'No date pickers, no barcodes, no keyboard. Logging a whole grocery run takes seconds.',
+            'how.s1.k': 'Tap 1',
+            'how.s1.t': 'Category',
+            'how.s1.b': 'Fruit, vegetables, leafy greens and herbs, dairy and eggs, meat and seafood, nuts and seeds.',
+            'how.s2.k': 'Tap 2',
+            'how.s2.t': 'Item',
+            'how.s2.b': 'Pick it from a hand-drawn grid: blueberries, salmon, spinach, walnuts…',
+            'how.s3.k': 'Tap 3',
+            'how.s3.t': 'Location',
+            'how.s3.b': 'Counter, fridge, freezer or pantry. Still only offers the places that food can be kept.',
+            'how.s4.k': 'Done',
+            'how.s4.t': 'Still does the math',
+            'how.s4.b': 'A built-in shelf-life guide works out its peak, how long it stays good, and when to remind you.',
+            'kitchen.eyebrow': 'Your kitchen',
+            'kitchen.h2': 'Your kitchen, at a glance.',
+            'kitchen.lede': "Home is your kitchen, drawn: four places, what's in each, and what needs using first.",
+            'k1.t': 'Four places, like your kitchen',
+            'k1.b': 'Fridge, counter, pantry and freezer. Tap one to look inside its drawn shelves.',
+            'k2.t': 'Peek ahead',
+            'k2.b': 'The day ribbon shows the week. Pick Saturday and see everything due by then.',
+            'k3.t': "What's at its peak comes first",
+            'k3.b': "Food at its peak turns amber and rises to the top, so you cook it while it's best.",
+            'k4.t': "Knows when it's gone bad",
+            'k4.b': 'Past its window, an item tells you to toss it instead of lingering forever.',
+            'k5.t': 'Used or tossed',
+            'k5.b': "Mark it when it's gone, with undo if your thumb slips.",
+            'k6.t': 'Dates that fit where you keep it',
+            'k6.b': 'The same food gets a different date on the counter, in the fridge or in the freezer.',
+            'remind.eyebrow': 'Reminders',
+            'remind.h2': 'One gentle reminder.',
+            'remind.lede': 'The day before something needs using, Still sends one notification. Nothing to set up, no daily nagging.',
+            'remind.p1': '<strong>Scheduled on your phone.</strong> Reminders are local; nothing goes to a server.',
+            'remind.p2': '<strong>Grouped.</strong> Several items due the same day arrive as one quiet notification.',
+            'remind.p3': '<strong>Survives restarts.</strong> Pending reminders come back after your phone reboots.',
+            'foods.eyebrow': 'The food that spoils first',
+            'foods.h2': 'Made for fresh food.',
+            'foods.lede': "Loose produce, butcher-counter meat and bulk-bin nuts: the food that spoils fastest, and that barcode scanners can't read. Each one drawn by hand.",
+            'cat.fruits': 'Fruits',
+            'cat.vegetables': 'Vegetables',
+            'cat.greens': 'Leafy greens & herbs',
+            'cat.dairy': 'Dairy & eggs',
+            'cat.meat': 'Meat & seafood',
+            'cat.nuts': 'Nuts & seeds',
+            'privacy.eyebrow': 'Private by design',
+            'privacy.h2': 'Your kitchen stays on your phone.',
+            'privacy.lede': 'No account, no cloud, no sign-in. What you log is stored on your device and nowhere else.',
+            'privacy.link': 'Read the privacy policy',
+            'p1.t': 'No account',
+            'p1.b': "Open it and start. There's nothing to sign up for.",
+            'p2.t': 'No cloud',
+            'p2.b': "Your items, dates and places never leave the device. There's no server that could hold them.",
+            'p3.t': 'No ads',
+            'p3.b': 'No ads and no tracking across other apps; only anonymous usage stats and crash reports, to make Still better.',
+            'pro.eyebrow': 'Still Pro',
+            'pro.h2': 'Try it free for 7 days.',
+            'pro.lede': 'Still is a Pro app with two simple ways in. Your store shows the price before you confirm.',
+            'pro.m.badge': '7 days free',
+            'pro.m.t': 'Monthly',
+            'pro.m.l1': '7-day free trial',
+            'pro.m.l2': 'Billed monthly after the trial',
+            'pro.m.l3': 'Cancel anytime in your store account',
+            'pro.l.t': 'Lifetime',
+            'pro.l.l1': 'Pay once, keep Pro',
+            'pro.l.l2': 'No subscription, ever',
+            'pro.l.l3': 'Restores on your devices with the same store account',
+            'pro.fine': 'Subscriptions renew automatically unless cancelled at least 24 hours before the period ends. Manage them in your Google Play or App Store account.',
+            'dl.h2': 'Start your 7-day free trial.',
+            'dl.lede': 'Log your next grocery run in seconds, and let Still keep track of the rest.',
             'footer.privacy': 'Privacy Policy',
-            'footer.terms': 'Terms & Conditions',
-            'footer.rights': 'Still — All rights reserved.'
+            'footer.terms': 'Terms & Conditions'
           },
           es: {
-            'meta.title': 'Still — Cocina en su punto. Sin desperdicio.',
-            'a11y.skip': 'Saltar al contenido',
+            'meta.title': 'Still — Refri y despensa al día. Registra tu comida en 3 toques.',
+            'a11y.skip': 'Ir al contenido',
+            'a11y.home': 'Inicio de Still',
+            'a11y.primary': 'Principal',
+            'a11y.legal': 'Legal',
             'a11y.lang': 'Cambiar idioma',
             'a11y.theme': 'Cambiar tema claro / oscuro',
+            'a11y.appstore': 'Descarga Still en el App Store',
             'a11y.play': 'Consigue Still en Google Play',
-            'a11y.appstore': 'Descarga Still en la App Store',
-            'nav.features': 'Funciones',
+            'a11y.kitchenMock': 'La pantalla principal de Still: la cocina dibujada en cuatro lugares, refri, mostrador, despensa y congelador, con el salmón en su punto en la refri.',
+            'a11y.addMock': 'La hoja para agregar de Still: arándanos en la refri, en su punto en 7 días y buenos por 10, con el botón Agregar a la cocina.',
+            'a11y.lockMock': 'Una pantalla de bloqueo con una notificación de Still: Usar pronto, salmón, fresas.',
+            'a11y.avo': 'Avo, el aguacate de Still, durmiendo.',
             'nav.how': 'Cómo funciona',
-            'nav.impact': 'Impacto',
-            'nav.download': 'Descargar',
-            'hero.eyebrow': 'Tracker del punto justo · iOS · Android',
-            'hero.h1': 'Sigue el punto.<br>Cocina con <span class="accent">calma</span>.<br>No desperdicies nada.',
-            'hero.lede': 'Still acompaña cada ingrediente a lo largo de su Arco Culinario — de reposo, a punto, a acción — para que cocines cada uno en su mejor momento y nunca tires comida.',
-            'store.appstoreSub': 'Descárgalo en la',
-            'store.playSub': 'Disponible en',
-            'benefits.eyebrow': 'Por qué Still',
-            'benefits.title': 'Una relación más tranquila con la comida de tu cocina.',
-            'benefits.sub': 'Seis maneras en que Still cambia cómo cocinas — y lo que botas.',
-            'b1.title': 'Cocina en su punto',
-            'b1.body': 'Cada ingrediente tiene una ventana en la que su sabor está en su mejor momento. Still te dice cuándo es — para cada producto, cada lugar de guardado, cada día.',
-            'b2.title': 'Siempre fresco',
-            'b2.body': 'Guía discreta, nunca alarmas. Un panel tranquilo que muestra qué comer, qué está en reposo y qué se está descongelando — sin la ansiedad.',
-            'b3.title': 'Cuida el planeta',
-            'b3.body': 'Un tercio de la comida que se produce en el mundo se desperdicia. Llevar el control de la frescura en tu dispositivo evita el desperdicio más evitable: el de tu refri.',
-            'b4.title': 'Reduce el desperdicio',
-            'b4.body': 'El seguimiento FIFO por lote maneja los duplicados por fecha, así el lote más viejo siempre se usa primero. Se acabó el “¿esto todavía sirve?”.',
-            'b5.title': 'Ahorra dinero',
-            'b5.body': 'Aprovecha los ingredientes en su punto en vez de dejar que caduquen al fondo del refri — y haz que el presupuesto del súper rinda más.',
-            'b6.title': 'En tu dispositivo y privado',
-            'b6.body': 'Tu cocina es tuya. Still funciona por completo en tu teléfono — sin nube, sin cuentas, sin vender datos. Tus compras no son un perfil.',
-            'arc.eyebrow': 'El Arco Culinario',
-            'arc.title': 'Tres estados. Sin semáforos.',
-            'arc.lede': 'Otras apps gritan en rojo cuando la comida está “por vencer”. Still hace lo contrario — sigue el arco positivo del sabor, para que sepas exactamente cuándo cocinar cada cosa.',
-            'arc.peak.title': 'Punto',
-            'arc.peak.body': 'Momento óptimo para consumir — el sabor en su mejor punto.',
-            'arc.action.title': 'Acción',
-            'arc.action.body': 'Cerca del final del punto. Cocina hoy, congela o comparte.',
-            'arc.rest.title': 'Reposo',
-            'arc.rest.body': 'Ganando sabor. Déjalo — pronto estará listo.',
-            'impact.eyebrow': 'Por qué importa',
-            'impact.title': 'Una cocina más tranquila, una huella más pequeña.',
-            'impact.bannerTitle': 'Un tercio de toda la comida se desperdicia antes de comerse.',
-            'impact.bannerBody': 'La mayor parte es desperdicio del hogar — el que caduca en silencio en tu refri. Es el desperdicio más fácil de evitar del mundo, y es justo para lo que sirve Still.',
-            'prev.eyebrow': 'Lo que verás',
-            'prev.title': 'Diseñada para una mirada, no para quedarse viéndola.',
-            'prev.label1': 'Inicio · panel de punto',
-            'prev.label2': 'Seguimiento FIFO por lote',
-            'prev.label3': 'Estadísticas semanales',
-            'dl.eyebrow': 'Gratis por 7 días',
-            'dl.title': 'Empieza a cocinar en su punto.',
-            'dl.lede': 'Agrega tu primer ingrediente en menos de diez segundos. Sin cuenta, sin correo — solo abre y toca.',
-            'dl.meta1': 'En tu dispositivo y privado',
-            'footer.tagline': 'Un tracker discreto y en tu dispositivo para la comida de tu cocina.',
+            'nav.kitchen': 'Tu cocina',
+            'nav.privacy': 'Privacidad',
+            'nav.pro': 'Precios',
+            'hero.eyebrow': 'Refri y despensa al día · iOS · Android',
+            'hero.h1': 'Registra en 3&nbsp;toques.<br />Bota <span class="accent">menos</span>.',
+            'hero.lede': 'Toca una categoría, un alimento y dónde lo guardaste. Still calcula cuándo usar cada uno, te muestra tu cocina de un vistazo y te avisa el día antes.',
+            'hero.f1': 'Sin escribir',
+            'hero.f2': 'Sin códigos de barras',
+            'hero.f3': 'Sin cuenta',
+            'hero.f4': 'Todo queda en tu teléfono',
+            'store.downloadOn': 'Descárgalo en el',
+            'store.getItOn': 'Disponible en',
+            'store.note': 'Empieza con 7 días gratis en el plan mensual, o compra Lifetime una sola vez.',
+            'how.eyebrow': 'Cómo funciona',
+            'how.h2': 'Tres toques. Cero escritura.',
+            'how.lede': 'Sin elegir fechas, sin códigos de barras, sin teclado. Registrar todas tus compras toma segundos.',
+            'how.s1.k': 'Toque 1',
+            'how.s1.t': 'Categoría',
+            'how.s1.b': 'Frutas, verduras, hojas y hierbas, lácteos y huevos, carnes y mariscos, frutos secos y semillas.',
+            'how.s2.k': 'Toque 2',
+            'how.s2.t': 'Alimento',
+            'how.s2.b': 'Elígelo de una cuadrícula dibujada a mano: arándanos, salmón, espinaca, nueces…',
+            'how.s3.k': 'Toque 3',
+            'how.s3.t': 'Lugar',
+            'how.s3.b': 'Mostrador, refri, congelador o despensa. Still solo ofrece los lugares donde ese alimento se puede guardar.',
+            'how.s4.k': 'Listo',
+            'how.s4.t': 'Still hace las cuentas',
+            'how.s4.b': 'Una guía de vida útil integrada calcula su mejor momento, cuánto dura bien y cuándo avisarte.',
+            'kitchen.eyebrow': 'Tu cocina',
+            'kitchen.h2': 'Tu cocina, de un vistazo.',
+            'kitchen.lede': 'La pantalla principal es tu cocina, dibujada: cuatro lugares, qué hay en cada uno y qué usar primero.',
+            'k1.t': 'Cuatro lugares, como tu cocina',
+            'k1.b': 'Refri, mostrador, despensa y congelador. Toca uno para ver sus estantes dibujados.',
+            'k2.t': 'Mira hacia adelante',
+            'k2.b': 'La cinta de días muestra la semana. Elige el sábado y ve todo lo que hay que usar para entonces.',
+            'k3.t': 'Lo que está en su punto, primero',
+            'k3.b': 'Lo que está en su punto se pone ámbar y sube primero, para que lo cocines en su mejor momento.',
+            'k4.t': 'Sabe cuándo ya se dañó',
+            'k4.b': 'Pasado su tiempo, un alimento te dice que lo botes en vez de quedarse ahí para siempre.',
+            'k5.t': 'Usado o botado',
+            'k5.b': 'Márcalo cuando se acabe, con deshacer por si te equivocas.',
+            'k6.t': 'Fechas según dónde lo guardas',
+            'k6.b': 'El mismo alimento tiene otra fecha en el mostrador, en la refri o en el congelador.',
+            'remind.eyebrow': 'Recordatorios',
+            'remind.h2': 'Un solo aviso, tranquilo.',
+            'remind.lede': 'El día antes de que algo deba usarse, Still te manda una notificación. Nada que configurar, nada de insistir todos los días.',
+            'remind.p1': '<strong>Programado en tu teléfono.</strong> Los avisos son locales; nada se envía a un servidor.',
+            'remind.p2': '<strong>Agrupados.</strong> Varios alimentos para el mismo día llegan en un solo aviso.',
+            'remind.p3': '<strong>Sobrevive reinicios.</strong> Los avisos pendientes vuelven después de reiniciar el teléfono.',
+            'foods.eyebrow': 'Lo que se daña primero',
+            'foods.h2': 'Hecho para comida fresca.',
+            'foods.lede': 'Frutas y verduras sueltas, carne de carnicería y frutos secos a granel: lo que más rápido se daña y lo que un escáner de códigos no puede leer. Cada uno dibujado a mano.',
+            'cat.fruits': 'Frutas',
+            'cat.vegetables': 'Verduras',
+            'cat.greens': 'Hojas y hierbas',
+            'cat.dairy': 'Lácteos y huevos',
+            'cat.meat': 'Carnes y mariscos',
+            'cat.nuts': 'Frutos secos y semillas',
+            'privacy.eyebrow': 'Privado por diseño',
+            'privacy.h2': 'Tu cocina se queda en tu teléfono.',
+            'privacy.lede': 'Sin cuenta, sin nube, sin iniciar sesión. Lo que registras se guarda en tu dispositivo y en ningún otro lugar.',
+            'privacy.link': 'Lee la política de privacidad',
+            'p1.t': 'Sin cuenta',
+            'p1.b': 'Ábrela y empieza. No hay nada en qué registrarse.',
+            'p2.t': 'Sin nube',
+            'p2.b': 'Tus alimentos, fechas y lugares nunca salen del dispositivo. No hay un servidor que pueda guardarlos.',
+            'p3.t': 'Sin anuncios',
+            'p3.b': 'Sin anuncios y sin rastreo entre apps; solo estadísticas de uso anónimas e informes de fallos, para mejorar Still.',
+            'pro.eyebrow': 'Still Pro',
+            'pro.h2': 'Pruébala gratis 7 días.',
+            'pro.lede': 'Still es una app Pro con dos formas simples de entrar. Tu tienda te muestra el precio antes de confirmar.',
+            'pro.m.badge': '7 días gratis',
+            'pro.m.t': 'Mensual',
+            'pro.m.l1': '7 días de prueba gratis',
+            'pro.m.l2': 'Se cobra cada mes después de la prueba',
+            'pro.m.l3': 'Cancela cuando quieras desde tu tienda',
+            'pro.l.t': 'Lifetime',
+            'pro.l.l1': 'Paga una vez y conserva Pro',
+            'pro.l.l2': 'Sin suscripción, nunca',
+            'pro.l.l3': 'Se restaura en tus dispositivos con la misma cuenta de la tienda',
+            'pro.fine': 'Las suscripciones se renuevan automáticamente salvo que las canceles al menos 24 horas antes de que termine el periodo. Adminístralas en tu cuenta de Google Play o del App Store.',
+            'dl.h2': 'Empieza tus 7 días gratis.',
+            'dl.lede': 'Registra tus próximas compras en segundos y deja que Still lleve la cuenta del resto.',
             'footer.privacy': 'Política de privacidad',
-            'footer.terms': 'Términos y condiciones',
-            'footer.rights': 'Still — Todos los derechos reservados.'
+            'footer.terms': 'Términos y condiciones'
           }
         };
 

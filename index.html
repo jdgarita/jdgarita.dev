@@ -83,12 +83,13 @@
           "@type": "MobileApplication",
           "@id": "https://jdgarita.dev/#still",
           "name": "Still",
-          "description": "Keep track of fridge and pantry contents with predictive shelf-life tracking and proactive reminders before food expires.",
+          "description": "Log food in 3 taps: category, item, location. Still works out when each one needs using, lays out the kitchen at a glance, and sends one reminder the day before. No account; everything stays on the phone.",
           "url": "https://jdgarita.dev/still/",
-          "operatingSystem": "Android",
+          "operatingSystem": "Android, iOS",
           "applicationCategory": "LifestyleApplication",
           "sameAs": [
-            "https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack"
+            "https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack",
+            "https://apps.apple.com/app/id6819700105"
           ],
           "creator": { "@id": "https://jdgarita.dev/#person" },
           "author": { "@id": "https://jdgarita.dev/#person" }
@@ -315,16 +316,16 @@
 
                     <li class="project-card">
                         <h3 class="project-title">Still</h3>
-                        <p class="project-tagline" data-i18n="projects.still.tagline">Smart Food Freshness &amp; Waste Tracker</p>
-                        <p class="project-description" data-i18n="projects.still.description">Keep track of fridge and pantry contents with predictive shelf-life tracking and proactive reminders before food expires.</p>
+                        <p class="project-tagline" data-i18n="projects.still.tagline">Fridge &amp; Pantry Tracker</p>
+                        <p class="project-description" data-i18n="projects.still.description">Log food in 3 taps: category, item, location. Still works out when each one needs using, lays out the kitchen at a glance, and sends one reminder the day before. No account; everything stays on the phone.</p>
 
                         <ul class="chip-list project-tech" aria-label="Tech stack" data-i18n-attr="aria-label:a11y.techStack">
                             <li class="chip">Kotlin Multiplatform</li>
                             <li class="chip">Compose Multiplatform</li>
-                            <li class="chip">SQLDelight</li>
+                            <li class="chip">Room</li>
                             <li class="chip">RevenueCat</li>
-                            <li class="chip">Firebase</li>
-                            <li class="chip">Glance Widgets</li>
+                            <li class="chip">PostHog</li>
+                            <li class="chip">Sentry</li>
                             <li class="chip">frnk</li>
                         </ul>
 
@@ -352,13 +353,17 @@
                                 </span>
                             </a>
 
-                            <span class="store-btn store-btn--apple is-disabled" aria-disabled="true">
+                            <a class="store-btn store-btn--apple"
+                               href="https://apps.apple.com/app/id6819700105"
+                               rel="noopener"
+                               aria-label="Still on the App Store"
+                               data-i18n-attr="aria-label:a11y.stillAppStore">
                                 <svg class="icon icon--fill" aria-hidden="true"><use href="#i-brand-apple"/></svg>
                                 <span class="store-btn-labels">
-                                    <span class="store-btn-top" data-i18n="projects.store.availableOn">Available on</span>
-                                    <span class="store-btn-main" data-i18n="projects.store.comingSoon">App Store — Coming soon</span>
+                                    <span class="store-btn-top" data-i18n="projects.store.downloadOn">Download on the</span>
+                                    <span class="store-btn-main">App Store</span>
                                 </span>
-                            </span>
+                            </a>
                         </div>
                     </li>
                 </ul>
