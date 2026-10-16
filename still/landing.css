@@ -117,7 +117,7 @@ body {
   overflow-x: hidden;
 }
 
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
 a { color: var(--green-text); }
 a:hover { color: var(--ink); }
 
@@ -227,10 +227,13 @@ main { display: block; }
 .section__head .lede { margin-top: 18px; }
 
 /* ---------- Hero ---------- */
-.hero { padding: 72px 0 96px; }
+.hero { padding: 112px 0 96px; }
 .hero__grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; }
 .hero__visual { position: relative; display: flex; justify-content: center; }
-.hero__avo { position: absolute; width: 132px; left: calc(50% - 250px); bottom: 36px; transform: rotate(-8deg); filter: drop-shadow(0 12px 18px rgba(20, 20, 20, .12)); }
+/* Avo is head-only art with a flat bottom edge: it always peeks from behind something, so the cut never shows.
+   In the hero it rises over the phone's top edge from behind the frame. */
+.hero__visual .phone { z-index: 1; }
+.hero__avo { position: absolute; z-index: 0; width: 128px; top: -92px; left: calc(50% + 2px); transform: rotate(7deg); transform-origin: 50% 100%; }
 .facts { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 28px 0 0; padding: 0; list-style: none; color: var(--ink-2); }
 .facts li { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; }
 .facts .ic { width: 18px; height: 18px; color: var(--green-text); stroke-width: 2; }
@@ -400,7 +403,7 @@ main { display: block; }
 
 /* ---------- Download ---------- */
 .cta { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; padding: 48px; background: var(--card); border: 1.5px solid var(--ink); border-radius: var(--inked-3); box-shadow: var(--shadow-card); overflow: hidden; }
-.cta__avo { width: 200px; margin-bottom: -60px; align-self: end; }
+.cta__avo { width: 200px; align-self: end; margin-bottom: -50px; }
 .cta .stores { margin-top: 26px; }
 
 /* ---------- Footer ---------- */
@@ -432,12 +435,12 @@ main:focus { outline: none; }
 /* ---------- Responsive ---------- */
 @media (max-width: 960px) {
   .hero__grid, .how__grid, .remind__grid { grid-template-columns: 1fr; gap: 48px; }
-  .hero__avo { left: auto; right: calc(50% - 230px); bottom: 20px; width: 110px; transform: rotate(8deg); }
+  .hero__visual { margin-top: 84px; }
   .how__grid .phone { justify-self: center; }
   .features { grid-template-columns: 1fr 1fr; }
   .foods { grid-template-columns: repeat(6, 1fr); }
   .cta { grid-template-columns: 1fr; padding: 36px 28px; }
-  .cta__avo { width: 150px; justify-self: end; margin: -20px -8px -48px 0; }
+  .cta__avo { width: 150px; justify-self: end; margin: -12px 0 -38px; }
 }
 @media (max-width: 720px) {
   .nav__links { display: none; }
@@ -448,11 +451,10 @@ main:focus { outline: none; }
   .foods { grid-template-columns: repeat(5, 1fr); gap: 8px; }
   .phone { --inner: 264px; --s: calc(264 / 390); --pad: 9px; border-radius: 44px; }
   .phone__glass { border-radius: 36px; }
-  .hero__avo { right: calc(50% - 195px); width: 92px; }
+  .hero__avo { width: 112px; top: -80px; }
 }
 @media (max-width: 380px) {
   .store { padding: 0 16px 0 12px; }
-  .hero__avo { display: none; }
 }
 
 @media print {
