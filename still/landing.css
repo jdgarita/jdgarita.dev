@@ -402,9 +402,14 @@ main { display: block; }
 .fine { color: var(--muted); font-size: 14px; margin: 22px 0 0; max-width: 820px; }
 
 /* ---------- Download ---------- */
-.cta { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; padding: 48px; background: var(--card); border: 1.5px solid var(--ink); border-radius: var(--inked-3); box-shadow: var(--shadow-card); overflow: hidden; }
-.cta__avo { width: 200px; align-self: end; margin-bottom: -50px; }
-.cta .stores { margin-top: 26px; }
+/* Avo sits in the card's bottom-left corner: the art's leaf tip touches its left edge and its
+   bottom is flat, so both cut edges sit on the card's border (which clips them) and read as
+   Avo leaning in from the corner. The copy fills the right, the store buttons at its foot. */
+.cta { position: relative; display: grid; grid-template-columns: 220px 1fr; gap: 36px; padding: 44px 48px 44px 0; background: var(--card); border: 1.5px solid var(--ink); border-radius: var(--inked-3); box-shadow: var(--shadow-card); overflow: hidden; }
+.cta__avo { width: 220px; align-self: end; margin-bottom: -46px; }
+.cta__body { display: flex; flex-direction: column; min-width: 0; }
+.cta__body .lede { margin-top: 14px; }
+.cta .stores { margin-top: auto; padding-top: 26px; }
 
 /* ---------- Footer ---------- */
 .footer { border-top: 1px solid var(--hair); padding: 36px 0 44px; color: var(--muted); font-size: 14px; }
@@ -439,8 +444,8 @@ main:focus { outline: none; }
   .how__grid .phone { justify-self: center; }
   .features { grid-template-columns: 1fr 1fr; }
   .foods { grid-template-columns: repeat(6, 1fr); }
-  .cta { grid-template-columns: 1fr; padding: 36px 28px; }
-  .cta__avo { width: 150px; justify-self: end; margin: -12px 0 -38px; }
+  .cta { grid-template-columns: 180px 1fr; gap: 28px; padding: 36px 32px 36px 0; }
+  .cta__avo { width: 180px; margin-bottom: -38px; }
 }
 @media (max-width: 720px) {
   .nav__links { display: none; }
@@ -448,6 +453,10 @@ main:focus { outline: none; }
   .section { padding: 72px 0; }
   .hero { padding: 40px 0 64px; }
   .features, .plans { grid-template-columns: 1fr; }
+  /* Phones: the copy and buttons first, Avo below in the same bottom-left corner. */
+  .cta { grid-template-columns: 1fr; gap: 8px; padding: 32px 24px 32px; }
+  .cta__body { order: -1; }
+  .cta__avo { width: 150px; margin: 0 0 -34px -24px; }
   .foods { grid-template-columns: repeat(5, 1fr); gap: 8px; }
   .phone { --inner: 264px; --s: calc(264 / 390); --pad: 9px; border-radius: 44px; }
   .phone__glass { border-radius: 36px; }
