@@ -6,8 +6,11 @@
       ============================================================
       Standalone legal page. Long-form prose is inline here by
       design (NOT routed through the root site's per-string i18n
-      system, which is built for short UI labels). Own stylesheet,
-      no JS, follows OS light/dark via prefers-color-scheme.
+      system, which is built for short UI labels). Bilingual: the
+      English text and a Spanish courtesy translation sit side by
+      side ([data-lang]); <html lang> picks one (EN without JS).
+      Own stylesheet, follows OS light/dark via prefers-color-scheme.
+      Edit BOTH languages when the text changes.
       When the policy changes, bump the "Effective date" below.
     -->
     <meta charset="utf-8" />
@@ -26,166 +29,341 @@
     <link rel="apple-touch-icon" href="../../image/apple-touch-icon.png" />
     <link rel="shortcut icon" href="../../image/favicon.ico" />
     <link rel="stylesheet" href="../still.css" />
+    <script>
+      // Language before first paint: ?lang=en|es (what the app links with), else the visitor's
+      // choice (localStorage "still-lang", shared with the landing), else the browser language.
+      (function () {
+        var d = document.documentElement, l = null;
+        try { l = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+        if (l !== 'en' && l !== 'es') { try { l = localStorage.getItem('still-lang'); } catch (e) {} }
+        if (l !== 'en' && l !== 'es') { l = (navigator.language || 'en').toLowerCase().indexOf('es') === 0 ? 'es' : 'en'; }
+        d.setAttribute('lang', l);
+        d.className += ' js';
+      })();
+    </script>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main"><span data-lang="en">Skip to content</span><span data-lang="es" lang="es">Ir al contenido</span></a>
 
     <header class="doc-header">
         <div class="container">
             <a class="wordmark" href="../">Still</a>
             <nav class="doc-nav" aria-label="Legal documents">
-                <a href="../privacy-policy/" aria-current="page">Privacy Policy</a>
-                <a href="../terms-and-conditions/">Terms</a>
+                <a href="../privacy-policy/" aria-current="page"><span data-lang="en">Privacy Policy</span><span data-lang="es" lang="es">Política de privacidad</span></a>
+                <a href="../terms-and-conditions/"><span data-lang="en">Terms</span><span data-lang="es" lang="es">Términos</span></a>
             </nav>
+            <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch language">
+                <span class="lang-seg lang-en">EN</span><span class="lang-sep">/</span><span class="lang-seg lang-es">ES</span>
+            </button>
         </div>
     </header>
 
     <main class="container doc" id="main" tabindex="-1">
-        <h1>Privacy Policy</h1>
-        <p class="doc-meta">Effective date: <time datetime="2026-10-08">October 8, 2026</time></p>
+        <div data-lang="en" lang="en">
+            <h1>Privacy Policy</h1>
+            <p class="doc-meta">Effective date: <time datetime="2026-10-08">October 8, 2026</time></p>
 
-        <h2>Overview</h2>
-        <p class="doc-lead">This Privacy Policy explains what data Still ("we", "us", "the app") handles, how it is used, and the choices you have. Still is a fridge and pantry tracker for Android and iOS: you log food in three taps, Still works out when each item needs using, and it reminds you the day before.</p>
-        <p>Still is built around a simple principle: the food you log stays on your device. We do not run a server, there is no account or sign-in, and we never receive the names, dates, or storage places of the items you track.</p>
-        <p>The limited data that does leave your device (subscription status, anonymous usage analytics and crash reports) is described in detail below.</p>
+            <h2>Overview</h2>
+            <p class="doc-lead">This Privacy Policy explains what data Still ("we", "us", "the app") handles, how it is used, and the choices you have. Still is a fridge and pantry tracker for Android and iOS: you log food in three taps, Still works out when each item needs using, and it reminds you the day before.</p>
+            <p>Still is built around a simple principle: the food you log stays on your device. We do not run a server, there is no account or sign-in, and we never receive the names, dates, or storage places of the items you track.</p>
+            <p>The limited data that does leave your device (subscription status, anonymous usage analytics and crash reports) is described in detail below.</p>
 
-        <h2>1. Data You Create Stays on Your Device</h2>
-        <p>The items you add (category, item, storage place such as fridge, freezer or pantry, the date you added them and the date Still calculates they should be used by) and your settings are stored only on your device, in a local database (<code>still.db</code>) and the app's preferences, on both Android and iOS.</p>
-        <p>This data is not transmitted to us or to any third party. We do not have a server that could store it.</p>
-        <p>If you uninstall the app, the operating system deletes this local data. On Android, your items and settings may be included in your Google account's automatic backup and in device-to-device transfers if you have those features turned on, so they come back when you restore a device; you can review or disable Auto Backup in your device's Google settings (<a href="https://developer.android.com/identity/data/autobackup" target="_blank" rel="noopener noreferrer">developer.android.com/identity/data/autobackup</a>). On iOS, the app's data is part of your device backup (iCloud or computer) under Apple's backup settings.</p>
+            <h2>1. Data You Create Stays on Your Device</h2>
+            <p>The items you add (category, item, storage place such as fridge, freezer or pantry, the date you added them and the date Still calculates they should be used by) and your settings are stored only on your device, in a local database (<code>still.db</code>) and the app's preferences, on both Android and iOS.</p>
+            <p>This data is not transmitted to us or to any third party. We do not have a server that could store it.</p>
+            <p>If you uninstall the app, the operating system deletes this local data. On Android, your items and settings may be included in your Google account's automatic backup and in device-to-device transfers if you have those features turned on, so they come back when you restore a device; you can review or disable Auto Backup in your device's Google settings (<a href="https://developer.android.com/identity/data/autobackup" target="_blank" rel="noopener noreferrer">developer.android.com/identity/data/autobackup</a>). On iOS, the app's data is part of your device backup (iCloud or computer) under Apple's backup settings.</p>
 
-        <h2>2. Subscriptions and Payments</h2>
-        <p>Still requires Pro, offered as a monthly subscription (with a free trial where shown) or a one-time lifetime purchase. Purchases, billing, renewals and refunds are processed by Google Play on Android and by the Apple App Store on iOS, under your store account. We do not receive or store your payment details (card number, billing address, etc.).</p>
-        <p>To validate purchases and keep Pro unlocked across reinstalls and devices, we use RevenueCat as a subscription and entitlement processor. RevenueCat receives:</p>
-        <ul>
-            <li>A randomly generated app user ID created by RevenueCat (not linked to your name, email, or store account in our records).</li>
-            <li>The purchase receipt or token provided by Google Play or the App Store.</li>
-            <li>Your subscription / entitlement status (trial, active, expired, in grace period, etc.).</li>
-            <li>Standard device metadata (platform, OS and app version, country, IP address used to make the request).</li>
-        </ul>
-        <p>RevenueCat does not receive your name, your email address, or any of the items, dates, or storage places you enter into Still. RevenueCat's privacy policy: <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">revenuecat.com/privacy</a>.</p>
-        <p>You can restore previous purchases at any time from Settings &gt; Restore Purchases, and manage or cancel your subscription from Settings &gt; Manage Subscription (which opens your Google Play or App Store subscriptions page).</p>
-
-        <h2>3. Analytics and Crash Reporting (Android and iOS)</h2>
-        <p><strong>Usage analytics (PostHog).</strong> The app sends usage events so we can understand which features help and where people get stuck. Events are built from fixed labels, counts and durations, for example: onboarding steps completed, an item added with its category and storage place (such as "dairy" and "fridge", never the item's name or dates), an item marked used or tossed, the sort order chosen, paywall shown, plan selected, purchase started or completed, reminders permission granted or denied, and app opened or backgrounded. Each event also carries the device model, operating system, app version and language.</p>
-        <p>Events are tied to a random ID, linked to the RevenueCat app user ID described above; no name, email or contact detail is ever attached. PostHog uses the IP address of each request to derive an approximate location (country and city). It does not receive precise location.</p>
-        <p><strong>Crash and error reporting (Sentry).</strong> When the app crashes or hits an unexpected error, Sentry receives a diagnostic report so we can fix it: the stack trace, recent technical steps leading to the error (such as screens opened), device model, operating system and app version, and the RevenueCat app user ID so related reports can be grouped. Reports do not include the contents of your screen or the items you entered.</p>
-        <p>PostHog's privacy policy: <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">posthog.com/privacy</a>. Sentry's privacy policy: <a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer">sentry.io/privacy</a>.</p>
-        <p><strong>Website analytics (jdgarita.dev/still).</strong> This applies to the Still web page, not the app. The landing page records each page view and each click on its store buttons, so we can see how visitors find Still and whether they head to the store. Each event includes the page address (without its query string), the referring site, any campaign tags in the link (UTM parameters), the page language, and the country derived by our hosting provider. The only identifier is a random ID stored in your browser's session storage for that one tab; it is deleted when the tab closes. No cookie is set, and no third-party script is loaded. Events go first to our own server on jdgarita.dev, which forwards them to PostHog without your IP address. The privacy policy and terms pages do not record anything.</p>
-
-        <h2>4. Reminders and Notifications</h2>
-        <p>Still sends a local notification the day before an item should be used. All reminder scheduling happens on your device through the operating system; the content of every reminder (such as the item's name) stays on the device and is never sent to us or to any third party.</p>
-        <p>To deliver these notifications, Still uses operating system permissions:</p>
-        <ul>
-            <li>Android 13 and above: the app asks for the notifications permission (POST_NOTIFICATIONS) during setup.</li>
-            <li>Android: a boot receiver re-schedules pending reminders after your device restarts or its time zone changes, so you don't miss them.</li>
-            <li>iOS: the app asks for notification authorization during setup.</li>
-        </ul>
-        <p>You can turn reminders off at any time by revoking the notification permission in your device's settings.</p>
-
-        <h2>5. How We Use the Data We Receive</h2>
-        <p>The limited information we (or our processors on our behalf) receive is used only to:</p>
-        <ul>
-            <li>Validate your purchase and unlock Pro (Google Play, Apple App Store, RevenueCat).</li>
-            <li>Diagnose crashes and bugs (Sentry).</li>
-            <li>Understand how the app is used so we can improve it (PostHog).</li>
-        </ul>
-        <p>We do not sell this data. We do not use it for advertising, and we do not track you across other companies' apps or websites. We do not share it with third parties beyond the processors named in this policy and as required by law.</p>
-
-        <h2>6. Third-Party Services We Rely On</h2>
-        <div class="svc">
-            <h3>Google Play Billing</h3>
+            <h2>2. Subscriptions and Payments</h2>
+            <p>Still requires Pro, offered as a monthly subscription (with a free trial where shown) or a one-time lifetime purchase. Purchases, billing, renewals and refunds are processed by Google Play on Android and by the Apple App Store on iOS, under your store account. We do not receive or store your payment details (card number, billing address, etc.).</p>
+            <p>To validate purchases and keep Pro unlocked across reinstalls and devices, we use RevenueCat as a subscription and entitlement processor. RevenueCat receives:</p>
             <ul>
-                <li>Purpose: Purchases, subscription billing and refunds.</li>
-                <li>Platforms: Android.</li>
-                <li>Privacy policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a></li>
+                <li>A randomly generated app user ID created by RevenueCat (not linked to your name, email, or store account in our records).</li>
+                <li>The purchase receipt or token provided by Google Play or the App Store.</li>
+                <li>Your subscription / entitlement status (trial, active, expired, in grace period, etc.).</li>
+                <li>Standard device metadata (platform, OS and app version, country, IP address used to make the request).</li>
             </ul>
-        </div>
-        <div class="svc">
-            <h3>Apple App Store</h3>
+            <p>RevenueCat does not receive your name, your email address, or any of the items, dates, or storage places you enter into Still. RevenueCat's privacy policy: <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">revenuecat.com/privacy</a>.</p>
+            <p>You can restore previous purchases at any time from Settings &gt; Restore Purchases, and manage or cancel your subscription from Settings &gt; Manage Subscription (which opens your Google Play or App Store subscriptions page).</p>
+
+            <h2>3. Analytics and Crash Reporting (Android and iOS)</h2>
+            <p><strong>Usage analytics (PostHog).</strong> The app sends usage events so we can understand which features help and where people get stuck. Events are built from fixed labels, counts and durations, for example: onboarding steps completed, an item added with its category and storage place (such as "dairy" and "fridge", never the item's name or dates), an item marked used or tossed, the sort order chosen, paywall shown, plan selected, purchase started or completed, reminders permission granted or denied, and app opened or backgrounded. Each event also carries the device model, operating system, app version and language.</p>
+            <p>Events are tied to a random ID, linked to the RevenueCat app user ID described above; no name, email or contact detail is ever attached. PostHog uses the IP address of each request to derive an approximate location (country and city). It does not receive precise location.</p>
+            <p><strong>Crash and error reporting (Sentry).</strong> When the app crashes or hits an unexpected error, Sentry receives a diagnostic report so we can fix it: the stack trace, recent technical steps leading to the error (such as screens opened), device model, operating system and app version, and the RevenueCat app user ID so related reports can be grouped. Reports do not include the contents of your screen or the items you entered.</p>
+            <p>PostHog's privacy policy: <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">posthog.com/privacy</a>. Sentry's privacy policy: <a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer">sentry.io/privacy</a>.</p>
+            <p><strong>Website analytics (jdgarita.dev/still).</strong> This applies to the Still web page, not the app. The landing page records each page view and each click on its store buttons, so we can see how visitors find Still and whether they head to the store. Each event includes the page address (without its query string), the referring site, any campaign tags in the link (UTM parameters), the page language, and the country derived by our hosting provider. The only identifier is a random ID stored in your browser's session storage for that one tab; it is deleted when the tab closes. No cookie is set, and no third-party script is loaded. Events go first to our own server on jdgarita.dev, which forwards them to PostHog without your IP address. The privacy policy and terms pages do not record anything.</p>
+
+            <h2>4. Reminders and Notifications</h2>
+            <p>Still sends a local notification the day before an item should be used. All reminder scheduling happens on your device through the operating system; the content of every reminder (such as the item's name) stays on the device and is never sent to us or to any third party.</p>
+            <p>To deliver these notifications, Still uses operating system permissions:</p>
             <ul>
-                <li>Purpose: Purchases, subscription billing and refunds.</li>
-                <li>Platforms: iOS.</li>
-                <li>Privacy policy: <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">apple.com/legal/privacy</a></li>
+                <li>Android 13 and above: the app asks for the notifications permission (POST_NOTIFICATIONS) during setup.</li>
+                <li>Android: a boot receiver re-schedules pending reminders after your device restarts or its time zone changes, so you don't miss them.</li>
+                <li>iOS: the app asks for notification authorization during setup.</li>
             </ul>
-        </div>
-        <div class="svc">
-            <h3>RevenueCat</h3>
+            <p>You can turn reminders off at any time by revoking the notification permission in your device's settings.</p>
+
+            <h2>5. How We Use the Data We Receive</h2>
+            <p>The limited information we (or our processors on our behalf) receive is used only to:</p>
             <ul>
-                <li>Purpose: Purchase validation and entitlements.</li>
-                <li>Platforms: Android, iOS.</li>
-                <li>Privacy policy: <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">revenuecat.com/privacy</a></li>
+                <li>Validate your purchase and unlock Pro (Google Play, Apple App Store, RevenueCat).</li>
+                <li>Diagnose crashes and bugs (Sentry).</li>
+                <li>Understand how the app is used so we can improve it (PostHog).</li>
             </ul>
-        </div>
-        <div class="svc">
-            <h3>PostHog</h3>
+            <p>We do not sell this data. We do not use it for advertising, and we do not track you across other companies' apps or websites. We do not share it with third parties beyond the processors named in this policy and as required by law.</p>
+
+            <h2>6. Third-Party Services We Rely On</h2>
+            <div class="svc">
+                <h3>Google Play Billing</h3>
+                <ul>
+                    <li>Purpose: Purchases, subscription billing and refunds.</li>
+                    <li>Platforms: Android.</li>
+                    <li>Privacy policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a></li>
+                </ul>
+            </div>
+            <div class="svc">
+                <h3>Apple App Store</h3>
+                <ul>
+                    <li>Purpose: Purchases, subscription billing and refunds.</li>
+                    <li>Platforms: iOS.</li>
+                    <li>Privacy policy: <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">apple.com/legal/privacy</a></li>
+                </ul>
+            </div>
+            <div class="svc">
+                <h3>RevenueCat</h3>
+                <ul>
+                    <li>Purpose: Purchase validation and entitlements.</li>
+                    <li>Platforms: Android, iOS.</li>
+                    <li>Privacy policy: <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">revenuecat.com/privacy</a></li>
+                </ul>
+            </div>
+            <div class="svc">
+                <h3>PostHog</h3>
+                <ul>
+                    <li>Purpose: Usage analytics for the app, and page-view analytics for the Still web page.</li>
+                    <li>Platforms: Android, iOS, website.</li>
+                    <li>Privacy policy: <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">posthog.com/privacy</a></li>
+                </ul>
+            </div>
+            <div class="svc">
+                <h3>Sentry</h3>
+                <ul>
+                    <li>Purpose: Crash and error reporting.</li>
+                    <li>Platforms: Android, iOS.</li>
+                    <li>Privacy policy: <a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer">sentry.io/privacy</a></li>
+                </ul>
+            </div>
+            <p>These providers may process data in the United States and other countries where they operate, under their own safeguards for international transfers.</p>
+
+            <h2>7. Data Retention</h2>
             <ul>
-                <li>Purpose: Usage analytics for the app, and page-view analytics for the Still web page.</li>
-                <li>Platforms: Android, iOS, website.</li>
-                <li>Privacy policy: <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">posthog.com/privacy</a></li>
+                <li>On-device data (your items and settings) is kept as long as Still is installed. Uninstalling the app deletes it from the device; copies in your Android or iOS device backups follow those backup settings.</li>
+                <li>Purchase records held by Google Play, the App Store and RevenueCat are kept under their respective policies and are required for billing, refunds and entitlement validation.</li>
+                <li>Analytics events in PostHog and crash reports in Sentry are kept according to the data retention settings of our projects with those services, and then deleted.</li>
             </ul>
-        </div>
-        <div class="svc">
-            <h3>Sentry</h3>
+            <p>Because Still has no account system, there is no Still account to delete. To remove your local data, uninstall the app. To ask us to delete analytics and crash data linked to your app user ID, contact us at the email below (Settings shows nothing personal, so tell us the approximate date you installed the app and your platform). To remove purchase records, contact Google Play, Apple or RevenueCat directly.</p>
+
+            <h2>8. Children's Privacy</h2>
+            <p>Still is not directed to children under the age of 13, and we do not knowingly collect personally identifiable information from anyone under 13. If you believe we have inadvertently received such information, please contact us at the address below and we will take steps to address it.</p>
+
+            <h2>9. Your Rights — GDPR (European Union / EEA / United Kingdom)</h2>
+            <p>If you are located in the European Union, the European Economic Area, or the United Kingdom, the General Data Protection Regulation (GDPR) and equivalent UK legislation give you specific rights over your personal data.</p>
+            <p><strong>Data controller.</strong> The data controller for Still is Juan Diego Garita. You can reach the controller at the contact email below.</p>
+            <p><strong>Legal bases.</strong> Where GDPR applies, our legal bases for processing are:</p>
             <ul>
-                <li>Purpose: Crash and error reporting.</li>
-                <li>Platforms: Android, iOS.</li>
-                <li>Privacy policy: <a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer">sentry.io/privacy</a></li>
+                <li>Performance of a contract — for processing your purchase through Google Play, the App Store and RevenueCat so we can deliver Pro, and for scheduling the reminders on your device.</li>
+                <li>Legitimate interest — for usage analytics and crash reporting, which we keep limited to what is described above, without any content you enter, so we can keep the app working and improve it.</li>
             </ul>
+            <p><strong>Your rights.</strong> You have the right to access, rectify, erase, restrict, port, or object to the processing of your personal data. Because the data you create lives only on your device, the most direct way to exercise these rights over it is to manage it in the app or to uninstall; for analytics and crash data, contact us.</p>
+            <p><strong>Right to lodge a complaint.</strong> You may also lodge a complaint with your local data protection supervisory authority.</p>
+
+            <h2>10. Your Rights — CCPA (California)</h2>
+            <p>If you are a California resident, the California Consumer Privacy Act (CCPA) gives you specific rights:</p>
+            <ul>
+                <li><strong>Right to know.</strong> You can ask us what categories of personal information we have received about you. The categories described in this policy (an app user ID, purchase status, usage events, crash reports, device information and approximate location) are the only categories that apply.</li>
+                <li><strong>Right to delete.</strong> You can ask us to delete personal information we hold about you. Purchase records are held by Google, Apple or RevenueCat; see those services for direct deletion options.</li>
+                <li><strong>Right to opt out of sale or sharing.</strong> We do not sell or share (for cross-context behavioral advertising) the personal information of our users.</li>
+                <li><strong>Right to non-discrimination.</strong> We will not discriminate against you for exercising any CCPA right.</li>
+            </ul>
+            <p>To make a CCPA request, contact us at the email below.</p>
+
+            <h2>11. Changes to This Privacy Policy</h2>
+            <p>We may update this Privacy Policy as the app evolves. The "Effective date" at the top of this page reflects the most recent revision. Material changes will be reflected on this page, which the app links to from Settings and the paywall.</p>
+
+            <h2>12. Contact</h2>
+            <p>If you have questions about this Privacy Policy or how Still handles your data:</p>
+            <p>Email: <a href="mailto:hello@jdgarita.dev">hello@jdgarita.dev</a></p>
         </div>
-        <p>These providers may process data in the United States and other countries where they operate, under their own safeguards for international transfers.</p>
+        <div data-lang="es" lang="es">
+            <h1>Política de privacidad</h1>
+            <p class="doc-meta">Fecha de entrada en vigor: <time datetime="2026-10-08">8 de octubre de 2026</time></p>
+            <p class="doc-note">Esta es una traducción de cortesía. Si hay alguna diferencia entre esta versión y la versión en inglés, prevalece la versión en inglés.</p>
 
-        <h2>7. Data Retention</h2>
-        <ul>
-            <li>On-device data (your items and settings) is kept as long as Still is installed. Uninstalling the app deletes it from the device; copies in your Android or iOS device backups follow those backup settings.</li>
-            <li>Purchase records held by Google Play, the App Store and RevenueCat are kept under their respective policies and are required for billing, refunds and entitlement validation.</li>
-            <li>Analytics events in PostHog and crash reports in Sentry are kept according to the data retention settings of our projects with those services, and then deleted.</li>
-        </ul>
-        <p>Because Still has no account system, there is no Still account to delete. To remove your local data, uninstall the app. To ask us to delete analytics and crash data linked to your app user ID, contact us at the email below (Settings shows nothing personal, so tell us the approximate date you installed the app and your platform). To remove purchase records, contact Google Play, Apple or RevenueCat directly.</p>
+            <h2>Resumen</h2>
+            <p class="doc-lead">Esta Política de privacidad explica qué datos maneja Still ("nosotros", "la app"), cómo se usan y qué opciones tienes. Still es un organizador de refrigerador y despensa para Android e iOS: registras tus alimentos en tres toques, Still calcula cuándo conviene usar cada uno y te avisa el día antes.</p>
+            <p>Still se basa en un principio sencillo: los alimentos que registras se quedan en tu dispositivo. No tenemos un servidor, no hay cuenta ni inicio de sesión, y nunca recibimos los nombres, las fechas ni los lugares de almacenamiento de lo que registras.</p>
+            <p>Los pocos datos que sí salen de tu dispositivo (el estado de tu suscripción, analíticas de uso anónimas e informes de fallos) se describen en detalle más abajo.</p>
 
-        <h2>8. Children's Privacy</h2>
-        <p>Still is not directed to children under the age of 13, and we do not knowingly collect personally identifiable information from anyone under 13. If you believe we have inadvertently received such information, please contact us at the address below and we will take steps to address it.</p>
+            <h2>1. Los datos que creas se quedan en tu dispositivo</h2>
+            <p>Los alimentos que agregas (categoría, alimento, lugar de almacenamiento como refrigerador, congelador o despensa, la fecha en que los agregaste y la fecha en que Still calcula que conviene usarlos) y tus ajustes se guardan solo en tu dispositivo, en una base de datos local (<code>still.db</code>) y en las preferencias de la app, tanto en Android como en iOS.</p>
+            <p>Estos datos no se nos envían a nosotros ni a terceros. No tenemos un servidor que pudiera guardarlos.</p>
+            <p>Si desinstalas la app, el sistema operativo borra estos datos locales. En Android, tus alimentos y ajustes pueden incluirse en la copia de seguridad automática de tu cuenta de Google y en las transferencias entre dispositivos si tienes esas funciones activadas, de modo que vuelven al restaurar un dispositivo; puedes revisar o desactivar la Copia de seguridad automática en los ajustes de Google de tu dispositivo (<a href="https://developer.android.com/identity/data/autobackup" target="_blank" rel="noopener noreferrer">developer.android.com/identity/data/autobackup</a>). En iOS, los datos de la app forman parte de la copia de seguridad de tu dispositivo (iCloud o computadora) según los ajustes de copia de seguridad de Apple.</p>
 
-        <h2>9. Your Rights — GDPR (European Union / EEA / United Kingdom)</h2>
-        <p>If you are located in the European Union, the European Economic Area, or the United Kingdom, the General Data Protection Regulation (GDPR) and equivalent UK legislation give you specific rights over your personal data.</p>
-        <p><strong>Data controller.</strong> The data controller for Still is Juan Diego Garita. You can reach the controller at the contact email below.</p>
-        <p><strong>Legal bases.</strong> Where GDPR applies, our legal bases for processing are:</p>
-        <ul>
-            <li>Performance of a contract — for processing your purchase through Google Play, the App Store and RevenueCat so we can deliver Pro, and for scheduling the reminders on your device.</li>
-            <li>Legitimate interest — for usage analytics and crash reporting, which we keep limited to what is described above, without any content you enter, so we can keep the app working and improve it.</li>
-        </ul>
-        <p><strong>Your rights.</strong> You have the right to access, rectify, erase, restrict, port, or object to the processing of your personal data. Because the data you create lives only on your device, the most direct way to exercise these rights over it is to manage it in the app or to uninstall; for analytics and crash data, contact us.</p>
-        <p><strong>Right to lodge a complaint.</strong> You may also lodge a complaint with your local data protection supervisory authority.</p>
+            <h2>2. Suscripciones y pagos</h2>
+            <p>Still requiere Pro, que se ofrece como suscripción mensual (con prueba gratuita cuando se indica) o como compra única de por vida. Las compras, la facturación, las renovaciones y los reembolsos los procesa Google Play en Android y la App Store de Apple en iOS, con tu cuenta de la tienda. No recibimos ni guardamos tus datos de pago (número de tarjeta, dirección de facturación, etc.).</p>
+            <p>Para validar las compras y mantener Pro activo entre reinstalaciones y dispositivos, usamos RevenueCat como procesador de suscripciones y derechos de acceso. RevenueCat recibe:</p>
+            <ul>
+                <li>Un ID de usuario de la app generado al azar por RevenueCat (que en nuestros registros no está vinculado a tu nombre, correo ni cuenta de la tienda).</li>
+                <li>El recibo o token de compra que proporciona Google Play o la App Store.</li>
+                <li>El estado de tu suscripción o derecho de acceso (prueba, activa, vencida, en período de gracia, etc.).</li>
+                <li>Metadatos estándar del dispositivo (plataforma, versión del sistema operativo y de la app, país y la dirección IP usada para la solicitud).</li>
+            </ul>
+            <p>RevenueCat no recibe tu nombre, tu correo electrónico ni ninguno de los alimentos, fechas o lugares de almacenamiento que ingresas en Still. Política de privacidad de RevenueCat: <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">revenuecat.com/privacy</a>.</p>
+            <p>Puedes restaurar compras anteriores en cualquier momento desde Ajustes &gt; Restaurar compras, y gestionar o cancelar tu suscripción desde Ajustes &gt; Administrar suscripción (que abre la página de suscripciones de Google Play o de la App Store).</p>
 
-        <h2>10. Your Rights — CCPA (California)</h2>
-        <p>If you are a California resident, the California Consumer Privacy Act (CCPA) gives you specific rights:</p>
-        <ul>
-            <li><strong>Right to know.</strong> You can ask us what categories of personal information we have received about you. The categories described in this policy (an app user ID, purchase status, usage events, crash reports, device information and approximate location) are the only categories that apply.</li>
-            <li><strong>Right to delete.</strong> You can ask us to delete personal information we hold about you. Purchase records are held by Google, Apple or RevenueCat; see those services for direct deletion options.</li>
-            <li><strong>Right to opt out of sale or sharing.</strong> We do not sell or share (for cross-context behavioral advertising) the personal information of our users.</li>
-            <li><strong>Right to non-discrimination.</strong> We will not discriminate against you for exercising any CCPA right.</li>
-        </ul>
-        <p>To make a CCPA request, contact us at the email below.</p>
+            <h2>3. Analíticas e informes de fallos (Android e iOS)</h2>
+            <p><strong>Analíticas de uso (PostHog).</strong> La app envía eventos de uso para que entendamos qué funciones ayudan y dónde se traba la gente. Los eventos se construyen con etiquetas fijas, conteos y duraciones, por ejemplo: pasos de la bienvenida completados, un alimento agregado con su categoría y lugar de almacenamiento (como "lácteos" y "refrigerador", nunca el nombre del alimento ni sus fechas), un alimento marcado como usado o desechado, el orden elegido, el paywall mostrado, el plan seleccionado, una compra iniciada o completada, el permiso de recordatorios concedido o denegado, y la app abierta o enviada a segundo plano. Cada evento incluye también el modelo del dispositivo, el sistema operativo, la versión de la app y el idioma.</p>
+            <p>Los eventos se asocian a un ID aleatorio, vinculado al ID de usuario de RevenueCat descrito arriba; nunca se adjunta un nombre, correo ni dato de contacto. PostHog usa la dirección IP de cada solicitud para deducir una ubicación aproximada (país y ciudad). No recibe tu ubicación precisa.</p>
+            <p><strong>Informes de fallos y errores (Sentry).</strong> Cuando la app se cierra inesperadamente o encuentra un error, Sentry recibe un informe de diagnóstico para que podamos corregirlo: el seguimiento de pila (stack trace), los pasos técnicos recientes que llevaron al error (como las pantallas abiertas), el modelo del dispositivo, el sistema operativo, la versión de la app y el ID de usuario de RevenueCat para agrupar informes relacionados. Los informes no incluyen el contenido de tu pantalla ni los alimentos que ingresaste.</p>
+            <p>Política de privacidad de PostHog: <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">posthog.com/privacy</a>. Política de privacidad de Sentry: <a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer">sentry.io/privacy</a>.</p>
+            <p><strong>Analíticas del sitio web (jdgarita.dev/still).</strong> Esto aplica a la página web de Still, no a la app. La página principal registra cada visita y cada clic en sus botones de tienda, para que veamos cómo llegan los visitantes a Still y si van a la tienda. Cada evento incluye la dirección de la página (sin sus parámetros de consulta), el sitio de procedencia, las etiquetas de campaña del enlace (parámetros UTM), el idioma de la página y el país que deduce nuestro proveedor de hosting. El único identificador es un ID aleatorio guardado en el almacenamiento de sesión de tu navegador para esa pestaña; se borra al cerrarla. No se usan cookies ni se cargan scripts de terceros. Los eventos llegan primero a nuestro propio servidor en jdgarita.dev, que los reenvía a PostHog sin tu dirección IP. Las páginas de la política de privacidad y de los términos no registran nada.</p>
 
-        <h2>11. Changes to This Privacy Policy</h2>
-        <p>We may update this Privacy Policy as the app evolves. The "Effective date" at the top of this page reflects the most recent revision. Material changes will be reflected on this page, which the app links to from Settings and the paywall.</p>
+            <h2>4. Recordatorios y notificaciones</h2>
+            <p>Still envía una notificación local el día antes de que convenga usar un alimento. Toda la programación de recordatorios ocurre en tu dispositivo a través del sistema operativo; el contenido de cada recordatorio (como el nombre del alimento) se queda en el dispositivo y nunca se nos envía a nosotros ni a terceros.</p>
+            <p>Para entregar estas notificaciones, Still usa permisos del sistema operativo:</p>
+            <ul>
+                <li>Android 13 y posteriores: la app pide el permiso de notificaciones (POST_NOTIFICATIONS) durante la configuración.</li>
+                <li>Android: un receptor de arranque vuelve a programar los recordatorios pendientes cuando el dispositivo se reinicia o cambia de zona horaria, para que no te los pierdas.</li>
+                <li>iOS: la app pide autorización para notificaciones durante la configuración.</li>
+            </ul>
+            <p>Puedes desactivar los recordatorios en cualquier momento quitando el permiso de notificaciones en los ajustes de tu dispositivo.</p>
 
-        <h2>12. Contact</h2>
-        <p>If you have questions about this Privacy Policy or how Still handles your data:</p>
-        <p>Email: <a href="mailto:hello@jdgarita.dev">hello@jdgarita.dev</a></p>
+            <h2>5. Cómo usamos los datos que recibimos</h2>
+            <p>La poca información que recibimos (nosotros o nuestros procesadores en nuestro nombre) se usa solo para:</p>
+            <ul>
+                <li>Validar tu compra y activar Pro (Google Play, App Store de Apple, RevenueCat).</li>
+                <li>Diagnosticar fallos y errores (Sentry).</li>
+                <li>Entender cómo se usa la app para mejorarla (PostHog).</li>
+            </ul>
+            <p>No vendemos estos datos. No los usamos para publicidad ni te rastreamos a través de apps o sitios web de otras empresas. No los compartimos con terceros más allá de los procesadores mencionados en esta política y de lo que exija la ley.</p>
+
+            <h2>6. Servicios de terceros que usamos</h2>
+            <div class="svc">
+                <h3>Facturación de Google Play</h3>
+                <ul>
+                    <li>Propósito: compras, facturación de suscripciones y reembolsos.</li>
+                    <li>Plataformas: Android.</li>
+                    <li>Política de privacidad: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a></li>
+                </ul>
+            </div>
+            <div class="svc">
+                <h3>App Store de Apple</h3>
+                <ul>
+                    <li>Propósito: compras, facturación de suscripciones y reembolsos.</li>
+                    <li>Plataformas: iOS.</li>
+                    <li>Política de privacidad: <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">apple.com/legal/privacy</a></li>
+                </ul>
+            </div>
+            <div class="svc">
+                <h3>RevenueCat</h3>
+                <ul>
+                    <li>Propósito: validación de compras y derechos de acceso.</li>
+                    <li>Plataformas: Android, iOS.</li>
+                    <li>Política de privacidad: <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">revenuecat.com/privacy</a></li>
+                </ul>
+            </div>
+            <div class="svc">
+                <h3>PostHog</h3>
+                <ul>
+                    <li>Propósito: analíticas de uso de la app y analíticas de visitas de la página web de Still.</li>
+                    <li>Plataformas: Android, iOS, sitio web.</li>
+                    <li>Política de privacidad: <a href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">posthog.com/privacy</a></li>
+                </ul>
+            </div>
+            <div class="svc">
+                <h3>Sentry</h3>
+                <ul>
+                    <li>Propósito: informes de fallos y errores.</li>
+                    <li>Plataformas: Android, iOS.</li>
+                    <li>Política de privacidad: <a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer">sentry.io/privacy</a></li>
+                </ul>
+            </div>
+            <p>Estos proveedores pueden procesar datos en Estados Unidos y en otros países donde operan, con sus propias garantías para las transferencias internacionales.</p>
+
+            <h2>7. Conservación de los datos</h2>
+            <ul>
+                <li>Los datos del dispositivo (tus alimentos y ajustes) se conservan mientras Still esté instalada. Desinstalar la app los borra del dispositivo; las copias en tus respaldos de Android o iOS siguen los ajustes de esos respaldos.</li>
+                <li>Los registros de compra que guardan Google Play, la App Store y RevenueCat se conservan según sus respectivas políticas y son necesarios para la facturación, los reembolsos y la validación de derechos de acceso.</li>
+                <li>Los eventos de analíticas en PostHog y los informes de fallos en Sentry se conservan según los ajustes de retención de datos de nuestros proyectos en esos servicios, y luego se borran.</li>
+            </ul>
+            <p>Como Still no tiene un sistema de cuentas, no hay una cuenta de Still que borrar. Para eliminar tus datos locales, desinstala la app. Para pedirnos que borremos los datos de analíticas y fallos vinculados a tu ID de usuario de la app, escríbenos al correo de abajo (Ajustes no muestra nada personal, así que indícanos la fecha aproximada en que instalaste la app y tu plataforma). Para eliminar registros de compra, contacta directamente a Google Play, Apple o RevenueCat.</p>
+
+            <h2>8. Privacidad de menores</h2>
+            <p>Still no está dirigida a menores de 13 años, y no recopilamos a sabiendas información de identificación personal de menores de 13 años. Si crees que recibimos esa información por error, escríbenos a la dirección de abajo y tomaremos medidas para resolverlo.</p>
+
+            <h2>9. Tus derechos: RGPD (Unión Europea / EEE / Reino Unido)</h2>
+            <p>Si te encuentras en la Unión Europea, el Espacio Económico Europeo o el Reino Unido, el Reglamento General de Protección de Datos (RGPD) y la legislación equivalente del Reino Unido te otorgan derechos específicos sobre tus datos personales.</p>
+            <p><strong>Responsable del tratamiento.</strong> El responsable del tratamiento de Still es Juan Diego Garita. Puedes contactarlo en el correo de abajo.</p>
+            <p><strong>Bases legales.</strong> Cuando aplica el RGPD, nuestras bases legales para el tratamiento son:</p>
+            <ul>
+                <li>Ejecución de un contrato: para procesar tu compra a través de Google Play, la App Store y RevenueCat y así entregarte Pro, y para programar los recordatorios en tu dispositivo.</li>
+                <li>Interés legítimo: para las analíticas de uso y los informes de fallos, que limitamos a lo descrito arriba, sin ningún contenido que ingreses, para mantener la app funcionando y mejorarla.</li>
+            </ul>
+            <p><strong>Tus derechos.</strong> Tienes derecho a acceder, rectificar, suprimir, limitar, portar u oponerte al tratamiento de tus datos personales. Como los datos que creas viven solo en tu dispositivo, la forma más directa de ejercer estos derechos sobre ellos es gestionarlos en la app o desinstalarla; para los datos de analíticas y fallos, escríbenos.</p>
+            <p><strong>Derecho a presentar una reclamación.</strong> También puedes presentar una reclamación ante la autoridad de protección de datos de tu país.</p>
+
+            <h2>10. Tus derechos: CCPA (California)</h2>
+            <p>Si resides en California, la Ley de Privacidad del Consumidor de California (CCPA) te otorga derechos específicos:</p>
+            <ul>
+                <li><strong>Derecho a saber.</strong> Puedes preguntarnos qué categorías de información personal hemos recibido sobre ti. Las categorías descritas en esta política (un ID de usuario de la app, el estado de compra, eventos de uso, informes de fallos, información del dispositivo y ubicación aproximada) son las únicas que aplican.</li>
+                <li><strong>Derecho a eliminar.</strong> Puedes pedirnos que eliminemos la información personal que tengamos sobre ti. Los registros de compra los guardan Google, Apple o RevenueCat; consulta esos servicios para eliminarlos directamente.</li>
+                <li><strong>Derecho a excluirte de la venta o el intercambio.</strong> No vendemos ni compartimos (para publicidad conductual entre contextos) la información personal de nuestros usuarios.</li>
+                <li><strong>Derecho a la no discriminación.</strong> No te discriminaremos por ejercer ningún derecho de la CCPA.</li>
+            </ul>
+            <p>Para hacer una solicitud bajo la CCPA, escríbenos al correo de abajo.</p>
+
+            <h2>11. Cambios a esta Política de privacidad</h2>
+            <p>Podemos actualizar esta Política de privacidad a medida que la app evoluciona. La "Fecha de entrada en vigor" al inicio de esta página indica la revisión más reciente. Los cambios importantes se reflejarán en esta página, a la que la app enlaza desde Ajustes y el paywall.</p>
+
+            <h2>12. Contacto</h2>
+            <p>Si tienes preguntas sobre esta Política de privacidad o sobre cómo Still maneja tus datos:</p>
+            <p>Correo: <a href="mailto:hello@jdgarita.dev">hello@jdgarita.dev</a></p>
+        </div>
     </main>
 
     <footer class="doc-footer">
         <div class="container">
             <p>© <span id="footer-year">2026</span> Juan Diego Garita</p>
-            <p><a href="../terms-and-conditions/">Terms &amp; Conditions</a> · <a href="../">Still</a></p>
+            <p><a href="../terms-and-conditions/"><span data-lang="en">Terms &amp; Conditions</span><span data-lang="es" lang="es">Términos y condiciones</span></a> · <a href="../">Still</a></p>
         </div>
     </footer>
 
     <script>
-      // Keep the footer copyright year current — no external dependency.
-      var y = document.getElementById('footer-year');
-      if (y) { y.textContent = String(new Date().getFullYear()); }
+      // Year stamp + the EN/ES toggle. No external dependency; nothing is sent anywhere.
+      (function () {
+        var y = document.getElementById('footer-year');
+        if (y) { y.textContent = String(new Date().getFullYear()); }
+        var d = document.documentElement;
+        var TITLES = { en: 'Still — Privacy Policy', es: 'Still — Política de privacidad' };
+        var LABELS = { en: 'Switch language', es: 'Cambiar idioma' };
+        var NAV = { en: 'Legal documents', es: 'Documentos legales' };
+        var btn = document.getElementById('lang-toggle');
+        var nav = document.querySelector('.doc-nav');
+        function apply(l) {
+          d.setAttribute('lang', l);
+          document.title = TITLES[l];
+          if (btn) { btn.setAttribute('aria-label', LABELS[l]); }
+          if (nav) { nav.setAttribute('aria-label', NAV[l]); }
+        }
+        var lang = d.getAttribute('lang') === 'es' ? 'es' : 'en';
+        apply(lang);
+        if (btn) {
+          btn.addEventListener('click', function () {
+            lang = lang === 'es' ? 'en' : 'es';
+            try { localStorage.setItem('still-lang', lang); } catch (e) {}
+            apply(lang);
+          });
+        }
+      })();
     </script>
 </body>
 </html>
