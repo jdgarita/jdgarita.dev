@@ -33,6 +33,8 @@ const EVENTS = {
     name: 'store_click',
     props: { platform: oneOf('ios', 'android'), placement: oneOf('hero', 'download') },
   },
+  // The Still landing's web checkout buttons (RevenueCat Web Purchase Links), one per plan.
+  checkout_click: { name: 'checkout_click', props: { plan: oneOf('monthly', 'lifetime') } },
   theme_toggle: { name: 'theme_toggle', props: { theme: oneOf('light', 'dark') } },
   lang_toggle: { name: 'lang_toggle', props: { language: oneOf('en', 'es') } },
   mobile_nav_toggle: { name: 'mobile_nav_toggle', props: { action: oneOf('open', 'close') } },

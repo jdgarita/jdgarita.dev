@@ -192,14 +192,27 @@
                     <p class="lede" data-i18n="hero.lede">Tap a category, an item and where you put it. Still works out when each one needs using, lays out your kitchen at a glance, and nudges you the day before.</p>
                     <div>
                         <div class="stores">
-                            <a class="store" data-store="ios" data-placement="hero" href="https://apps.apple.com/app/id6819700105" target="_blank" rel="noopener noreferrer" aria-label="Download Still on the App Store" data-i18n-attr="aria-label:a11y.appstore">
-                                <svg aria-hidden="true"><use href="#i-brand-apple"/></svg>
-                                <span class="store__labels"><span class="store__top" data-i18n="store.downloadOn">Download on the</span><span class="store__main">App Store</span></span>
-                            </a>
-                            <a class="store" data-store="android" data-placement="hero" href="https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack" target="_blank" rel="noopener noreferrer" aria-label="Get Still on Google Play" data-i18n-attr="aria-label:a11y.play">
-                                <svg aria-hidden="true"><use href="#i-brand-google-play"/></svg>
-                                <span class="store__labels"><span class="store__top" data-i18n="store.getItOn">Get it on</span><span class="store__main">Google Play</span></span>
-                            </a>
+                            <span class="store-qr-caption mono" data-i18n="store.scan">Scan with your phone’s camera</span>
+                            <div class="store-pair">
+                                <picture class="store-qr">
+                                    <source media="(hover: hover) and (pointer: fine) and (min-width: 961px)" srcset="img/qr-app-store.svg" />
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" width="152" height="152" alt="QR code to download Still on the App Store" data-i18n-attr="alt:a11y.qrAppstore" />
+                                </picture>
+                                <a class="store" data-store="ios" data-placement="hero" href="https://apps.apple.com/app/id6819700105" target="_blank" rel="noopener noreferrer" aria-label="Download Still on the App Store" data-i18n-attr="aria-label:a11y.appstore">
+                                    <svg aria-hidden="true"><use href="#i-brand-apple"/></svg>
+                                    <span class="store__labels"><span class="store__top" data-i18n="store.downloadOn">Download on the</span><span class="store__main">App Store</span></span>
+                                </a>
+                            </div>
+                            <div class="store-pair">
+                                <picture class="store-qr">
+                                    <source media="(hover: hover) and (pointer: fine) and (min-width: 961px)" srcset="img/qr-google-play.svg" />
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" width="152" height="152" alt="QR code to download Still on Google Play" data-i18n-attr="alt:a11y.qrPlay" />
+                                </picture>
+                                <a class="store" data-store="android" data-placement="hero" href="https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack" target="_blank" rel="noopener noreferrer" aria-label="Get Still on Google Play" data-i18n-attr="aria-label:a11y.play">
+                                    <svg aria-hidden="true"><use href="#i-brand-google-play"/></svg>
+                                    <span class="store__labels"><span class="store__top" data-i18n="store.getItOn">Get it on</span><span class="store__main">Google Play</span></span>
+                                </a>
+                            </div>
                         </div>
                         <p class="stores__note" data-i18n="store.note">Start with 7 days free on the monthly plan, or buy Lifetime once.</p>
                     </div>
@@ -486,7 +499,10 @@
         </section>
 
         <!-- ================= PRO ================= -->
-        <section id="pro" class="section" aria-labelledby="pro-title">
+        <!-- Web checkout: `pro-coming-soon` hides the two checkout buttons behind "Coming soon". Remove
+             it to start selling once the app version that redeems web purchases is live in both
+             stores, and the hrefs point at the RevenueCat Web Purchase Link (CLAUDE.md "Still web funnel"). -->
+        <section id="pro" class="section pro-coming-soon" aria-labelledby="pro-title">
             <div class="container">
                 <div class="section__head">
                     <p class="eyebrow mono" data-i18n="pro.eyebrow">Still Pro</p>
@@ -513,6 +529,34 @@
                     </div>
                 </div>
                 <p class="fine" data-i18n="pro.fine">Subscriptions renew automatically unless cancelled at least 24 hours before the period ends. Manage them in your Google Play or App Store account.</p>
+
+                <div class="web">
+                    <div class="web__head">
+                        <p class="eyebrow mono" data-i18n="web.eyebrow">Web checkout</p>
+                        <h3 id="web-title" class="h3" data-i18n="web.h3">Or buy Pro on the web.</h3>
+                        <p class="body" data-i18n="web.lede">Pay here with a card, no store account needed. The same Pro, on iPhone or Android.</p>
+                    </div>
+                    <div class="web__plans">
+                        <div class="web__plan">
+                            <p class="web__name" data-i18n="pro.m.t">Monthly</p>
+                            <p class="web__price">$3.99<small data-i18n="web.m.per">/ month</small></p>
+                            <a class="web__buy" data-checkout="monthly" href="#pro" target="_blank" rel="noopener noreferrer" data-i18n="web.m.cta">Subscribe on the web</a>
+                            <span class="web__soon mono" data-i18n="web.soon">Coming soon</span>
+                        </div>
+                        <div class="web__plan">
+                            <p class="web__name" data-i18n="pro.l.t">Lifetime</p>
+                            <p class="web__price">$29.99<small data-i18n="web.l.per">once</small></p>
+                            <a class="web__buy" data-checkout="lifetime" href="#pro" target="_blank" rel="noopener noreferrer" data-i18n="web.l.cta">Buy on the web</a>
+                            <span class="web__soon mono" data-i18n="web.soon">Coming soon</span>
+                        </div>
+                    </div>
+                    <ol class="web__steps">
+                        <li><span class="mono" data-i18n="web.s1.t">01 · Pay</span><span data-i18n="web.s1.b">Pay with a card on our secure checkout. No account, just an email for the receipt.</span></li>
+                        <li><span class="mono" data-i18n="web.s2.t">02 · Open</span><span data-i18n="web.s2.b">We email you a one-time link. Open it on the phone that has Still installed.</span></li>
+                        <li><span class="mono" data-i18n="web.s3.t">03 · Done</span><span data-i18n="web.s3.b">Still opens and Pro is on, with nothing to sign in to.</span></li>
+                    </ol>
+                    <p class="fine" data-i18n="web.fine">Prices in USD, tax included where applicable; in-app prices vary by store and country. Manage or cancel a monthly web subscription from the link in your receipt email; Lifetime never renews. Needs the latest version of Still.</p>
+                </div>
             </div>
         </section>
 
@@ -525,14 +569,27 @@
                         <h2 id="dl-title" class="h2" data-i18n="dl.h2">Start your 7-day free trial.</h2>
                         <p class="lede" data-i18n="dl.lede">Log your next grocery run in seconds, and let Still keep track of the rest.</p>
                         <div class="stores">
-                            <a class="store" data-store="ios" data-placement="download" href="https://apps.apple.com/app/id6819700105" target="_blank" rel="noopener noreferrer" aria-label="Download Still on the App Store" data-i18n-attr="aria-label:a11y.appstore">
-                                <svg aria-hidden="true"><use href="#i-brand-apple"/></svg>
-                                <span class="store__labels"><span class="store__top" data-i18n="store.downloadOn">Download on the</span><span class="store__main">App Store</span></span>
-                            </a>
-                            <a class="store" data-store="android" data-placement="download" href="https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack" target="_blank" rel="noopener noreferrer" aria-label="Get Still on Google Play" data-i18n-attr="aria-label:a11y.play">
-                                <svg aria-hidden="true"><use href="#i-brand-google-play"/></svg>
-                                <span class="store__labels"><span class="store__top" data-i18n="store.getItOn">Get it on</span><span class="store__main">Google Play</span></span>
-                            </a>
+                            <span class="store-qr-caption mono" data-i18n="store.scan">Scan with your phone’s camera</span>
+                            <div class="store-pair">
+                                <picture class="store-qr">
+                                    <source media="(hover: hover) and (pointer: fine) and (min-width: 961px)" srcset="img/qr-app-store.svg" />
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" width="152" height="152" alt="QR code to download Still on the App Store" data-i18n-attr="alt:a11y.qrAppstore" />
+                                </picture>
+                                <a class="store" data-store="ios" data-placement="download" href="https://apps.apple.com/app/id6819700105" target="_blank" rel="noopener noreferrer" aria-label="Download Still on the App Store" data-i18n-attr="aria-label:a11y.appstore">
+                                    <svg aria-hidden="true"><use href="#i-brand-apple"/></svg>
+                                    <span class="store__labels"><span class="store__top" data-i18n="store.downloadOn">Download on the</span><span class="store__main">App Store</span></span>
+                                </a>
+                            </div>
+                            <div class="store-pair">
+                                <picture class="store-qr">
+                                    <source media="(hover: hover) and (pointer: fine) and (min-width: 961px)" srcset="img/qr-google-play.svg" />
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" width="152" height="152" alt="QR code to download Still on Google Play" data-i18n-attr="alt:a11y.qrPlay" />
+                                </picture>
+                                <a class="store" data-store="android" data-placement="download" href="https://play.google.com/store/apps/details?id=dev.jdgarita.freshtrack" target="_blank" rel="noopener noreferrer" aria-label="Get Still on Google Play" data-i18n-attr="aria-label:a11y.play">
+                                    <svg aria-hidden="true"><use href="#i-brand-google-play"/></svg>
+                                    <span class="store__labels"><span class="store__top" data-i18n="store.getItOn">Get it on</span><span class="store__main">Google Play</span></span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -565,6 +622,8 @@
             'a11y.theme': 'Toggle light / dark theme',
             'a11y.appstore': 'Download Still on the App Store',
             'a11y.play': 'Get Still on Google Play',
+            'a11y.qrAppstore': 'QR code to download Still on the App Store',
+            'a11y.qrPlay': 'QR code to download Still on Google Play',
             'a11y.kitchenMock': "Still's Home: the kitchen drawn as four places, Fridge, Counter, Pantry and Freezer, with salmon at its peak in the fridge.",
             'a11y.addMock': "Still's Add sheet: blueberries in the fridge, at their peak in 7 days and still good for 10, with an Add to Kitchen button.",
             'a11y.lockMock': 'A lock screen with a Still notification: Use soon, Salmon, Strawberries.',
@@ -582,6 +641,7 @@
             'hero.f4': 'Stays on your phone',
             'store.downloadOn': 'Download on the',
             'store.getItOn': 'Get it on',
+            'store.scan': 'Scan with your phone’s camera',
             'store.note': 'Start with 7 days free on the monthly plan, or buy Lifetime once.',
             'how.eyebrow': 'How it works',
             'how.h2': 'Three taps. Zero typing.',
@@ -651,6 +711,21 @@
             'pro.l.l2': 'No subscription, ever',
             'pro.l.l3': 'Restores on your devices with the same store account',
             'pro.fine': 'Subscriptions renew automatically unless cancelled at least 24 hours before the period ends. Manage them in your Google Play or App Store account.',
+            'web.eyebrow': 'Web checkout',
+            'web.h3': 'Or buy Pro on the web.',
+            'web.lede': 'Pay here with a card, no store account needed. The same Pro, on iPhone or Android.',
+            'web.m.per': '/ month',
+            'web.l.per': 'once',
+            'web.m.cta': 'Subscribe on the web',
+            'web.l.cta': 'Buy on the web',
+            'web.soon': 'Coming soon',
+            'web.s1.t': '01 · Pay',
+            'web.s1.b': 'Pay with a card on our secure checkout. No account, just an email for the receipt.',
+            'web.s2.t': '02 · Open',
+            'web.s2.b': 'We email you a one-time link. Open it on the phone that has Still installed.',
+            'web.s3.t': '03 · Done',
+            'web.s3.b': 'Still opens and Pro is on, with nothing to sign in to.',
+            'web.fine': 'Prices in USD, tax included where applicable; in-app prices vary by store and country. Manage or cancel a monthly web subscription from the link in your receipt email; Lifetime never renews. Needs the latest version of Still.',
             'dl.h2': 'Start your 7-day free trial.',
             'dl.lede': 'Log your next grocery run in seconds, and let Still keep track of the rest.',
             'footer.privacy': 'Privacy Policy',
@@ -666,6 +741,8 @@
             'a11y.theme': 'Cambiar tema claro / oscuro',
             'a11y.appstore': 'Descarga Still en el App Store',
             'a11y.play': 'Consigue Still en Google Play',
+            'a11y.qrAppstore': 'Código QR para descargar Still en el App Store',
+            'a11y.qrPlay': 'Código QR para descargar Still en Google Play',
             'a11y.kitchenMock': 'La pantalla principal de Still: la cocina dibujada en cuatro lugares, refri, mostrador, despensa y congelador, con el salmón en su punto en la refri.',
             'a11y.addMock': 'La hoja para agregar de Still: arándanos en la refri, en su punto en 7 días y buenos por 10, con el botón Agregar a la cocina.',
             'a11y.lockMock': 'Una pantalla de bloqueo con una notificación de Still: Usar pronto, salmón, fresas.',
@@ -683,6 +760,7 @@
             'hero.f4': 'Todo queda en tu teléfono',
             'store.downloadOn': 'Descárgalo en el',
             'store.getItOn': 'Disponible en',
+            'store.scan': 'Escanea con la cámara de tu teléfono',
             'store.note': 'Empieza con 7 días gratis en el plan mensual, o compra Lifetime una sola vez.',
             'how.eyebrow': 'Cómo funciona',
             'how.h2': 'Tres toques. Cero escritura.',
@@ -752,6 +830,21 @@
             'pro.l.l2': 'Sin suscripción, nunca',
             'pro.l.l3': 'Se restaura en tus dispositivos con la misma cuenta de la tienda',
             'pro.fine': 'Las suscripciones se renuevan automáticamente salvo que las canceles al menos 24 horas antes de que termine el periodo. Adminístralas en tu cuenta de Google Play o del App Store.',
+            'web.eyebrow': 'Pago en la web',
+            'web.h3': 'O compra Pro en la web.',
+            'web.lede': 'Paga aquí con tarjeta, sin cuenta de la tienda. El mismo Pro, en iPhone o Android.',
+            'web.m.per': '/ mes',
+            'web.l.per': 'una vez',
+            'web.m.cta': 'Suscríbete en la web',
+            'web.l.cta': 'Cómpralo en la web',
+            'web.soon': 'Muy pronto',
+            'web.s1.t': '01 · Paga',
+            'web.s1.b': 'Paga con tarjeta en nuestro pago seguro. Sin cuenta, solo un correo para el recibo.',
+            'web.s2.t': '02 · Abre',
+            'web.s2.b': 'Te enviamos un enlace de un solo uso. Ábrelo en el teléfono que tiene Still.',
+            'web.s3.t': '03 · Listo',
+            'web.s3.b': 'Still se abre y Pro queda activo, sin iniciar sesión.',
+            'web.fine': 'Precios en USD, impuestos incluidos donde aplique; los precios dentro de la app varían según la tienda y el país. Administra o cancela una suscripción mensual web desde el enlace del correo con tu recibo; Lifetime nunca se renueva. Requiere la versión más reciente de Still.',
             'dl.h2': 'Empieza tus 7 días gratis.',
             'dl.lede': 'Registra tus próximas compras en segundos y deja que Still lleve la cuenta del resto.',
             'footer.privacy': 'Política de privacidad',
@@ -804,7 +897,8 @@
         if (y) y.textContent = String(new Date().getFullYear());
 
         // Analytics: a first-party beacon to /e (the site's Worker relays it to PostHog), one
-        // per page view and one per click on an a[data-store]. No third-party script, no
+        // per page view, one per click on an a[data-store] and one per a[data-checkout] (the web
+        // checkout's plan buttons). No third-party script, no
         // cookie; the only id is a random one in sessionStorage. Never in the way: the click
         // is not prevented, and without this block the store links are plain links.
         if (!window.JSON || !window.Blob || !window.URLSearchParams) return;
@@ -842,10 +936,41 @@
         }
         send('pageview', {});
 
+        // Campaign links into the stores, so each store counts installs by campaign too (same
+        // as faint.coffee). Only a tagged visit's links change. Google Play takes the UTM tags as
+        // its `referrer` parameter (Play Console acquisition reports); the App Store takes the
+        // exact shape App Store Connect's campaign-link generator produces (App Analytics →
+        // Campaigns): /app/apple-store/id…, the provider token `pt`, a campaign token `ct` of at
+        // most 30 characters.
+        var APPLE_PT = '129331442';
+        if (attribution.utm_source) {
+          var utm = [];
+          ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (key) {
+            if (attribution[key]) utm.push(key + '=' + encodeURIComponent(attribution[key]));
+          });
+          var ct = [attribution.utm_source, attribution.utm_campaign, attribution.utm_content]
+            .filter(Boolean).join('-').replace(/[^A-Za-z0-9._-]/g, '-').slice(0, 30);
+          Array.prototype.forEach.call(document.querySelectorAll('a[data-store]'), function (link) {
+            var href = link.getAttribute('href');
+            if (link.getAttribute('data-store') === 'android') {
+              link.setAttribute('href', href + (href.indexOf('?') < 0 ? '?' : '&') +
+                'referrer=' + encodeURIComponent(utm.join('&')));
+            } else {
+              var id = href.match(/\/id(\d+)/);
+              if (id) link.setAttribute('href', 'https://apps.apple.com/app/apple-store/id' + id[1] +
+                '?pt=' + APPLE_PT + '&ct=' + encodeURIComponent(ct) + '&mt=8');
+            }
+          });
+        }
+
         function onStoreClick(event) {
           if (event.type === 'auxclick' && event.button !== 1) return;
-          var link = event.target.closest && event.target.closest('a[data-store]');
+          var link = event.target.closest && event.target.closest('a[data-store], a[data-checkout]');
           if (!link) return;
+          if (link.hasAttribute('data-checkout')) {
+            send('checkout_click', { plan: link.getAttribute('data-checkout') });
+            return;
+          }
           send('store_click', {
             platform: link.getAttribute('data-store'),
             placement: link.getAttribute('data-placement')

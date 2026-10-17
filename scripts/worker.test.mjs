@@ -118,6 +118,16 @@ test('each event keeps only its allowlisted properties', async () => {
   assert.equal(friend.properties.content_id, 'aknght-studios');
 });
 
+test('checkout_click keeps only a known plan', async () => {
+  await call(beacon({ e: 'checkout_click', vid: 'v1', url: `${SITE}/still/`, plan: 'lifetime' }));
+  await call(beacon({ e: 'checkout_click', vid: 'v1', url: `${SITE}/still/`, plan: 'yearly' }));
+  const [ok, unknown] = sent.map((s) => s.body);
+  assert.equal(ok.event, 'checkout_click');
+  assert.equal(ok.properties.plan, 'lifetime');
+  assert.equal(unknown.event, 'checkout_click');
+  assert.equal(unknown.properties.plan, undefined);
+});
+
 test('invalid property values are dropped, not relayed', async () => {
   await call(beacon({ e: 'select_content', vid: 'v1', url: SITE, content_type: 'evil', content_id: 'Has Spaces!' }));
   assert.equal(sent[0].body.properties.content_type, undefined);
