@@ -617,8 +617,12 @@ ul {
     }
 }
 
-.about-copy .section-body {
-    text-align: justify;
+/* Justified text leaves wide word gaps on narrow screens, so only justify
+   where the column is wide enough. */
+@media (min-width: 768px) {
+    .about-copy .section-body {
+        text-align: justify;
+    }
 }
 
 .highlights {
