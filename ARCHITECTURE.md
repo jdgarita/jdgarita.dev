@@ -63,7 +63,7 @@ carries its own inline copy of the analytics beacon; the legal docs have none). 
 
 ```
 .
-├── index.html                 Root page: Hero → About → Experience → Projects → Skills → Contact
+├── index.html                 Root page: Hero → About → Experience → Skills → Apps → Open Source → Contact → Friends
 ├── css/
 │   └── custom.css             All root + frnk styles; tokens on :root / :root[data-theme="dark"]
 ├── js/

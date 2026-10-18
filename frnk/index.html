@@ -17,7 +17,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description"
-          content="frnk is a modular Kotlin Multiplatform + Compose Multiplatform toolkit with headless UI, pluggable Supabase and Firebase backends, MVI architecture, SQLDelight persistence, and RevenueCat monetization — built for indie and small-team mobile devs."
+          content="frnk is a modular Kotlin Multiplatform + Compose Multiplatform toolkit with headless UI, MVI architecture, Room persistence, PostHog + Sentry observability, and RevenueCat monetization — built for indie and small-team mobile devs."
           data-i18n-attr="content:frnk.meta.description" />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)" />
@@ -30,7 +30,7 @@
       "@context": "https://schema.org",
       "@type": "SoftwareSourceCode",
       "name": "frnk",
-      "description": "A modular Kotlin Multiplatform + Compose Multiplatform toolkit with headless UI, pluggable Supabase and Firebase backends, MVI architecture, SQLDelight persistence, and RevenueCat monetization.",
+      "description": "A modular Kotlin Multiplatform + Compose Multiplatform toolkit with headless UI, MVI architecture, Room persistence, PostHog + Sentry observability, and RevenueCat monetization.",
       "url": "https://jdgarita.dev/frnk/",
       "codeRepository": "https://github.com/jdgarita/frnk",
       "programmingLanguage": "Kotlin",
@@ -52,7 +52,7 @@
     <meta property="og:site_name" content="jdgarita.dev" />
     <meta property="og:url" content="https://jdgarita.dev/frnk/" />
     <meta property="og:title" content="frnk — Kotlin Multiplatform client toolkit" data-i18n-attr="content:frnk.meta.title" />
-    <meta property="og:description" content="frnk is a modular Kotlin Multiplatform + Compose Multiplatform toolkit with headless UI, pluggable Supabase and Firebase backends, MVI architecture, SQLDelight persistence, and RevenueCat monetization — built for indie and small-team mobile devs." data-i18n-attr="content:frnk.meta.description" />
+    <meta property="og:description" content="frnk is a modular Kotlin Multiplatform + Compose Multiplatform toolkit with headless UI, MVI architecture, Room persistence, PostHog + Sentry observability, and RevenueCat monetization — built for indie and small-team mobile devs." data-i18n-attr="content:frnk.meta.description" />
     <meta property="og:image" content="https://jdgarita.dev/image/og-frnk.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
@@ -62,7 +62,7 @@
     <meta property="og:locale:alternate" content="es_ES" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="frnk — Kotlin Multiplatform client toolkit" data-i18n-attr="content:frnk.meta.title" />
-    <meta name="twitter:description" content="frnk is a modular Kotlin Multiplatform + Compose Multiplatform toolkit with headless UI, pluggable Supabase and Firebase backends, MVI architecture, SQLDelight persistence, and RevenueCat monetization — built for indie and small-team mobile devs." data-i18n-attr="content:frnk.meta.description" />
+    <meta name="twitter:description" content="frnk is a modular Kotlin Multiplatform + Compose Multiplatform toolkit with headless UI, MVI architecture, Room persistence, PostHog + Sentry observability, and RevenueCat monetization — built for indie and small-team mobile devs." data-i18n-attr="content:frnk.meta.description" />
     <meta name="twitter:image" content="https://jdgarita.dev/image/og-frnk.jpg" />
     <meta name="twitter:image:alt" content="frnk — Kotlin Multiplatform client toolkit" data-i18n-attr="content:frnk.meta.title" />
 
@@ -80,7 +80,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 
-    <link href="../css/custom.css?v=2026-10-06" rel="stylesheet" type="text/css" />
+    <link href="../css/custom.css?v=2026-10-18" rel="stylesheet" type="text/css" />
 
     <!--
       Inline no-FOUC theme + lang setter (mirrors /index.html).
@@ -146,7 +146,7 @@
                 <p class="hero-eyebrow" data-i18n="frnk.hero.eyebrow">Open-source KMP client toolkit</p>
                 <h1 id="hero-title" class="hero-title" data-i18n="frnk.hero.title">frnk</h1>
                 <p class="hero-tagline" data-i18n="frnk.hero.tagline">A modular Kotlin Multiplatform toolkit for indie and small-team mobile apps.</p>
-                <p class="hero-description" data-i18n="frnk.hero.description">Headless Compose UI, pluggable Supabase + Firebase backends, MVI presentation, SQLDelight persistence, and RevenueCat monetization — wired together via Koin so day-to-day work stays on features, not plumbing.</p>
+                <p class="hero-description" data-i18n="frnk.hero.description">Headless Compose UI, MVI presentation, Room persistence, PostHog + Sentry observability, and RevenueCat monetization — wired together via Koin so day-to-day work stays on features, not plumbing.</p>
 
                 <div class="hero-ctas">
                     <a class="btn btn-primary"
@@ -176,35 +176,35 @@
                 <ul class="feature-grid">
                     <li class="feature-card">
                         <h3 class="feature-title" data-i18n="frnk.features.mvi.title">MVI presentation engine</h3>
-                        <p class="feature-body" data-i18n="frnk.features.mvi.body">MviContract, MviViewModel&lt;S, A, E&gt;, and ObserveAsEvents ship in shared-ui-atoms. New screens subclass MviViewModel and stay consistent across the toolkit.</p>
+                        <p class="feature-body" data-i18n="frnk.features.mvi.body">MviContract, MviViewModel&lt;S, I, E&gt; and UiText ship in core-mvi, with no Compose dependency. New screens subclass MviViewModel and stay consistent across the toolkit.</p>
                     </li>
                     <li class="feature-card">
                         <h3 class="feature-title" data-i18n="frnk.features.ui.title">Headless Compose UI</h3>
                         <p class="feature-body" data-i18n="frnk.features.ui.body">Built on compose-unstyled so consuming apps bring their own design system instead of fighting opinionated defaults.</p>
                     </li>
                     <li class="feature-card">
-                        <h3 class="feature-title" data-i18n="frnk.features.backends.title">Pluggable backends</h3>
-                        <p class="feature-body" data-i18n="frnk.features.backends.body">Supabase and Firebase implementations sit behind capability interfaces. Pick one at runtime via BackendChoice without touching feature code.</p>
+                        <h3 class="feature-title" data-i18n="frnk.features.backends.title">PostHog + Sentry observability</h3>
+                        <p class="feature-body" data-i18n="frnk.features.backends.body">Analytics and crash reporting sit behind AnalyticsTracker and CrashReporter interfaces, with PostHog and Sentry implementations installed in one call: frnkModules { observability(…) }.</p>
                     </li>
                     <li class="feature-card">
                         <h3 class="feature-title" data-i18n="frnk.features.modularity.title">Strict api / impl modules</h3>
                         <p class="feature-body" data-i18n="frnk.features.modularity.body">*-api modules expose only interfaces and DTOs; *-impl modules carry the concrete bindings — wired via Koin and swappable per project.</p>
                     </li>
                     <li class="feature-card">
-                        <h3 class="feature-title" data-i18n="frnk.features.di.title">One-shot Koin bootstrap</h3>
-                        <p class="feature-body" data-i18n="frnk.features.di.body">frnkModules(BackendChoice) and initializeFrnk() set up DI in one call so host apps stand up the toolkit in their Application class.</p>
+                        <h3 class="feature-title" data-i18n="frnk.features.di.title">One-call Koin bootstrap</h3>
+                        <p class="feature-body" data-i18n="frnk.features.di.body">initializeFrnk(modules) starts DI from the explicit module list the host passes, so capability modules you don't pass never enter the graph.</p>
                     </li>
                     <li class="feature-card">
-                        <h3 class="feature-title" data-i18n="frnk.features.persistence.title">SQLDelight persistence</h3>
-                        <p class="feature-body" data-i18n="frnk.features.persistence.body">Multiplatform driver factory and Multiplatform Settings key/value store. The toolkit owns the driver; your host app owns the schema.</p>
+                        <h3 class="feature-title" data-i18n="frnk.features.persistence.title">Room persistence</h3>
+                        <p class="feature-body" data-i18n="frnk.features.persistence.body">Room KMP with the bundled SQLite driver, plus a Multiplatform Settings key/value store. The toolkit owns the driver; your host app owns the schema.</p>
                     </li>
                     <li class="feature-card">
                         <h3 class="feature-title" data-i18n="frnk.features.monetization.title">RevenueCat monetization</h3>
                         <p class="feature-body" data-i18n="frnk.features.monetization.body">Entitlement and feature-gate interfaces with a RevenueCat implementation behind them — paywall logic stays out of feature modules.</p>
                     </li>
                     <li class="feature-card">
-                        <h3 class="feature-title" data-i18n="frnk.features.ci.title">Fast CI + pre-commit ktlint</h3>
-                        <p class="feature-body" data-i18n="frnk.features.ci.body">A single CI job runs compileAndroidMain and testDebugUnitTest; ktlint formatting is enforced via an auto-installed git pre-commit hook.</p>
+                        <h3 class="feature-title" data-i18n="frnk.features.ci.title">Tagged releases + pre-commit ktlint</h3>
+                        <p class="feature-body" data-i18n="frnk.features.ci.body">Each release tag is checked against Frnk.VERSION and published with notes from the CHANGELOG; ktlint formatting runs in a git pre-commit hook.</p>
                     </li>
                 </ul>
             </div>
@@ -221,9 +221,9 @@
                     <li class="chip">MVI</li>
                     <li class="chip">Koin</li>
                     <li class="chip">Nav3</li>
-                    <li class="chip">SQLDelight</li>
-                    <li class="chip">Supabase</li>
-                    <li class="chip">Firebase</li>
+                    <li class="chip">Room</li>
+                    <li class="chip">PostHog</li>
+                    <li class="chip">Sentry</li>
                     <li class="chip">RevenueCat</li>
                     <li class="chip">Unstyled Compose</li>
                 </ul>
