@@ -936,6 +936,54 @@
         }
         send('pageview', {});
 
+        // As the page goes away: one page leave, and the Core Web Vitals read with
+        // PerformanceObserver (same code as js/custom.js). CLS is the largest burst of layout
+        // shifts (a burst ends after a 1 s gap or at 5 s); INP is the slowest interaction, which is
+        // the INP of any page with fewer than 50 interactions. A page that loads in a background
+        // tab paints late, so it reports no FCP or LCP.
+        var vitals = {};
+        var types = (window.PerformanceObserver && PerformanceObserver.supportedEntryTypes) || [];
+        function observe(options, onEntry) {
+          if (types.indexOf(options.type) < 0) return;
+          options.buffered = true;
+          try {
+            new PerformanceObserver(function (list) { list.getEntries().forEach(onEntry); }).observe(options);
+          } catch (e) {}
+        }
+        if (document.visibilityState !== 'hidden') {
+          observe({ type: 'paint' }, function (entry) {
+            if (entry.name === 'first-contentful-paint') vitals.$web_vitals_FCP_value = Math.round(entry.startTime);
+          });
+          observe({ type: 'largest-contentful-paint' }, function (entry) {
+            vitals.$web_vitals_LCP_value = Math.round(entry.startTime);
+          });
+        }
+        if (types.indexOf('layout-shift') >= 0) vitals.$web_vitals_CLS_value = 0;
+        var burst = 0, burstStart = 0, lastShift = 0;
+        observe({ type: 'layout-shift' }, function (entry) {
+          if (entry.hadRecentInput) return;
+          if (burst && entry.startTime - lastShift < 1000 && entry.startTime - burstStart < 5000) {
+            burst += entry.value;
+          } else {
+            burst = entry.value;
+            burstStart = entry.startTime;
+          }
+          lastShift = entry.startTime;
+          vitals.$web_vitals_CLS_value = Math.max(vitals.$web_vitals_CLS_value, Math.round(burst * 10000) / 10000);
+        });
+        function onInteraction(entry) {
+          if (entry.interactionId) vitals.$web_vitals_INP_value = Math.max(vitals.$web_vitals_INP_value || 0, entry.duration);
+        }
+        observe({ type: 'event', durationThreshold: 16 }, onInteraction);
+        observe({ type: 'first-input' }, onInteraction);
+        var left = false;
+        window.addEventListener('pagehide', function () {
+          if (left) return;
+          left = true;
+          send('pageleave', {});
+          if (Object.keys(vitals).length) send('web_vitals', vitals);
+        });
+
         // Campaign links into the stores, so each store counts installs by campaign too (same
         // as faint.coffee). Only a tagged visit's links change. Google Play takes the UTM tags as
         // its `referrer` parameter (Play Console acquisition reports); the App Store takes the

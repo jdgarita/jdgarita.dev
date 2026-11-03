@@ -360,6 +360,63 @@
         } catch (e) {}
     }
 
+    /* Core Web Vitals from PerformanceObserver, no library. CLS is the largest burst of layout
+       shifts (a burst ends after a 1 s gap or at 5 s). INP is the slowest interaction, which is
+       the INP of any page with fewer than 50 interactions. A page that loads in a background
+       tab paints late, so it reports no FCP or LCP. */
+    function observeVitals() {
+        var vitals = {};
+        var types = (window.PerformanceObserver && PerformanceObserver.supportedEntryTypes) || [];
+        var hiddenAtLoad = document.visibilityState === 'hidden';
+        function observe(options, onEntry) {
+            if (types.indexOf(options.type) < 0) return;
+            options.buffered = true;
+            try {
+                new PerformanceObserver(function (list) { list.getEntries().forEach(onEntry); }).observe(options);
+            } catch (e) {}
+        }
+        if (!hiddenAtLoad) {
+            observe({ type: 'paint' }, function (entry) {
+                if (entry.name === 'first-contentful-paint') vitals.$web_vitals_FCP_value = Math.round(entry.startTime);
+            });
+            observe({ type: 'largest-contentful-paint' }, function (entry) {
+                vitals.$web_vitals_LCP_value = Math.round(entry.startTime);
+            });
+        }
+        if (types.indexOf('layout-shift') >= 0) vitals.$web_vitals_CLS_value = 0;
+        var burst = 0, burstStart = 0, lastShift = 0;
+        observe({ type: 'layout-shift' }, function (entry) {
+            if (entry.hadRecentInput) return;
+            if (burst && entry.startTime - lastShift < 1000 && entry.startTime - burstStart < 5000) {
+                burst += entry.value;
+            } else {
+                burst = entry.value;
+                burstStart = entry.startTime;
+            }
+            lastShift = entry.startTime;
+            vitals.$web_vitals_CLS_value = Math.max(vitals.$web_vitals_CLS_value, Math.round(burst * 10000) / 10000);
+        });
+        function onInteraction(entry) {
+            if (entry.interactionId) vitals.$web_vitals_INP_value = Math.max(vitals.$web_vitals_INP_value || 0, entry.duration);
+        }
+        observe({ type: 'event', durationThreshold: 16 }, onInteraction);
+        observe({ type: 'first-input' }, onInteraction);
+        return vitals;
+    }
+
+    // One page leave and one web vitals reading per page view, sent as the page goes away.
+    function trackPageExit() {
+        if (!beaconBase) return;
+        var vitals = observeVitals();
+        var sent = false;
+        window.addEventListener('pagehide', function () {
+            if (sent) return;
+            sent = true;
+            logEvent('pageleave', {});
+            if (Object.keys(vitals).length) logEvent('web_vitals', vitals);
+        });
+    }
+
     /* ---------- Helpers ---------- */
     function $(sel, root) { return (root || document).querySelector(sel); }
     function $$(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
@@ -422,6 +479,7 @@
         // Page view, once the language is known (the beacon records it).
         initBeacon();
         logEvent('pageview', {});
+        trackPageExit();
 
         // Theme toggle
         var themeBtn = $('#theme-toggle');

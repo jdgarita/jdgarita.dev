@@ -117,6 +117,6 @@ carries its own inline copy of the analytics beacon; the legal docs have none). 
 2. `css/custom.css` applies tokens for the resolved theme.
 3. `js/custom.js` runs after parse: fetches `i18n/<lang>.json` (falls back to the embedded
    `FALLBACK` dictionary), walks `[data-i18n]` / `[data-i18n-attr]` nodes, wires the toggles
-   and mobile nav, and sends a `pageview` beacon to `/e`.
+   and mobile nav, and sends a `pageview` beacon to `/e` (plus `pageleave` and `web_vitals` on `pagehide`).
 4. Toggling theme or language updates `<html>` attributes and `localStorage`, then
    re-applies the dictionary in place. No page reload.
