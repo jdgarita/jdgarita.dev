@@ -83,7 +83,7 @@ There is no component framework. "Components" are **markup patterns + CSS classe
 - **No new external dependencies** (CDN scripts, analytics vendors, fonts) without owner
   approval. Each one is a render-blocking or privacy cost.
 - **Analytics events** use the existing `logEvent` helper and the established event
-  names (`pageview`, `select_content`, `file_download`, `store_click`, `theme_toggle`,
+  names (`pageview`, `pageleave`, `web_vitals`, `select_content`, `file_download`, `store_click`, `theme_toggle`,
   `lang_toggle`, `mobile_nav_toggle`). A new event or property must also be added to
   `EVENTS` in `worker.js` (with a test), or the Worker drops it. Do not log personal data.
 

@@ -128,6 +128,36 @@ test('checkout_click keeps only a known plan', async () => {
   assert.equal(unknown.properties.plan, undefined);
 });
 
+test('a page leave is relayed as $pageleave', async () => {
+  await call(beacon({ ...VIEW, e: 'pageleave', extra: 'x' }));
+  const { event, properties } = sent[0].body;
+  assert.equal(event, '$pageleave');
+  assert.equal(properties.$pathname, '/still/');
+  assert.equal(properties.utm_source, 'reddit');
+  assert.equal(properties.extra, undefined);
+});
+
+test('web vitals keep only valid readings, under PostHog property names', async () => {
+  await call(beacon({
+    e: 'web_vitals', vid: 'v1', url: SITE,
+    $web_vitals_LCP_value: 1234.5, $web_vitals_FCP_value: 800, $web_vitals_INP_value: 96, $web_vitals_CLS_value: 0,
+  }));
+  await call(beacon({
+    e: 'web_vitals', vid: 'v1', url: SITE,
+    $web_vitals_LCP_value: -1, $web_vitals_FCP_value: '800', $web_vitals_INP_value: 16 * 60 * 1000,
+    $web_vitals_CLS_value: 1e9, $web_vitals_TTFB_value: 50,
+  }));
+  const [ok, bad] = sent.map((s) => s.body);
+  assert.equal(ok.event, '$web_vitals');
+  assert.equal(ok.properties.$web_vitals_LCP_value, 1234.5);
+  assert.equal(ok.properties.$web_vitals_FCP_value, 800);
+  assert.equal(ok.properties.$web_vitals_INP_value, 96);
+  assert.equal(ok.properties.$web_vitals_CLS_value, 0);
+  for (const key of ['LCP', 'FCP', 'INP', 'CLS', 'TTFB']) {
+    assert.equal(bad.properties[`$web_vitals_${key}_value`], undefined);
+  }
+});
+
 test('invalid property values are dropped, not relayed', async () => {
   await call(beacon({ e: 'select_content', vid: 'v1', url: SITE, content_type: 'evil', content_id: 'Has Spaces!' }));
   assert.equal(sent[0].body.properties.content_type, undefined);

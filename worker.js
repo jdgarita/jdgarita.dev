@@ -15,9 +15,27 @@
 const oneOf = (...values) => (value) => (values.includes(value) ? value : undefined);
 const slug = (value) =>
   typeof value === 'string' && /^[a-z0-9_-]{1,64}$/.test(value) ? value : undefined;
+// A Core Web Vitals reading: a finite number from 0 to max (milliseconds, or unitless for CLS).
+const metric = (max) => (value) =>
+  typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= max ? value : undefined;
+// posthog-js drops readings above 15 minutes; a longer one is a measurement fault.
+const MAX_VITAL_MS = 15 * 60 * 1000;
 
 const EVENTS = {
   pageview: { name: '$pageview', props: {} },
+  // Sent on pagehide, once per page view.
+  pageleave: { name: '$pageleave', props: {} },
+  // Also sent on pagehide, with the readings the page collected. PostHog's Web Vitals view reads
+  // these property names.
+  web_vitals: {
+    name: '$web_vitals',
+    props: {
+      $web_vitals_LCP_value: metric(MAX_VITAL_MS),
+      $web_vitals_FCP_value: metric(MAX_VITAL_MS),
+      $web_vitals_INP_value: metric(MAX_VITAL_MS),
+      $web_vitals_CLS_value: metric(100),
+    },
+  },
   file_download: {
     name: 'file_download',
     props: { file_name: oneOf('jd.pdf'), link_location: oneOf('nav', 'hero') },
