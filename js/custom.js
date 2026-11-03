@@ -367,7 +367,6 @@
     function observeVitals() {
         var vitals = {};
         var types = (window.PerformanceObserver && PerformanceObserver.supportedEntryTypes) || [];
-        var hiddenAtLoad = document.visibilityState === 'hidden';
         function observe(options, onEntry) {
             if (types.indexOf(options.type) < 0) return;
             options.buffered = true;
@@ -375,7 +374,7 @@
                 new PerformanceObserver(function (list) { list.getEntries().forEach(onEntry); }).observe(options);
             } catch (e) {}
         }
-        if (!hiddenAtLoad) {
+        if (document.visibilityState !== 'hidden') {
             observe({ type: 'paint' }, function (entry) {
                 if (entry.name === 'first-contentful-paint') vitals.$web_vitals_FCP_value = Math.round(entry.startTime);
             });
